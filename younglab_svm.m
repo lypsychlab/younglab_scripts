@@ -16,7 +16,7 @@ function younglab_svm(dataset,labeled_data,cnames,fname)
 	for t=1:length(dataset)
 	%define training and testing groups
 		testing=dataset(t,:);
-		train_inds=find(1:length(dataset) ~= t);
+		train_inds=find([1:length(dataset)] ~= t);
 		training=dataset(train_inds,:);
 		if strcmp(labeled_data{t},cnames{2})
 			recode_labels(t)=1;
