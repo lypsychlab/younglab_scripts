@@ -27,7 +27,7 @@ function younglab_svm(dataset,labeled_data,cnames,fname)
         labeled_training(t,:)=[];%remove t's label from class labels
 
 	%for each training/testing set: fit the svm model and then test on the left-out one
-		svmmodel = fitcsvm(training,labeled_training,'KernelFunction','rbf','Standardize',true,'ClassNames',cnames);
+		svmmodel = fitcsvm(training,labeled_training,'KernelFunction','linear','Standardize',true,'ClassNames',cnames);
 		[labels,softscores] = predict(svmmodel,testing);
 		%labels returns the label for each trial in testing
 		%softscores: t x 2 matrix of soft scores, where softscores(t,1) contains the score for the trial
