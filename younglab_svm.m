@@ -9,25 +9,23 @@ function younglab_svm(dataset,labeled_data,cnames,fname)
 %fname: output filename
 
 	output_labels={};
-	recode_labels=zeros(length(dataset),1); %holds CORRECT 0/1 classes
-	output_labels_recode=zeros(length(dataset),1); %holds PREDICTED 0/1 classes
+	recode_labels=zeros(size(dataset,1),1); %holds CORRECT 0/1 classes
+	output_labels_recode=zeros(size(dataset,1),1); %holds PREDICTED 0/1 classes
 	all_softscores=[];
 
-	for t=1:length(dataset)
+	for t=1:size(dataset,1)
         if strcmp(labeled_data{t},cnames{2}) %if this item is a member of class 2
 			recode_labels(t)=1; %gets numeric code 1 (class 1 = 0)
         end
 	%define training and testing groups
 		testing=dataset(t,:);
-		train_inds=find([1:length(dataset)] ~= t);
+		train_inds=find([1:size(dataset,1)] ~= t);
 		training=dataset(train_inds,:);
 		
         
         labeled_training = labeled_data;
         labeled_training(t,:)=[];%remove t's label from class labels
-        labeled_training
-        length(training)
-        length(labeled_training)
+
 	%for each training/testing set: fit the svm model and then test on the left-out one
 		svmmodel = fitcsvm(training,labeled_training,'KernelFunction','rbf','Standardize',true,'ClassNames',cnames);
 		[labels,softscores] = predict(svmmodel,testing);
