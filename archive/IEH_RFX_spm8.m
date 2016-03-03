@@ -1,0 +1,27 @@
+% Script for running random-effects (second-level) analysis for IEHFMRI.
+% Last modified by Brendan Gaesser 2/5/2014
+
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),1,'imagineVjournal')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),2,'imagineVestimate')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),3,'fixationVjournal')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),4,'memoryVjournal')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),5,'memoryVestimate')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),6,'imagineVmemory')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),7,'memoryVimagine')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),8,'imagVestimAndjourn')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),9,'memVestimAndjourn')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),10,'imagAndmemVjourn')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),11,'imagAndmemVestim')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),12,'imagAndmemVjourAndestim')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),13,'estimateVjournal')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),14,'estimateVimagine')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),15,'estimateVmemory')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),16,'journalVestimate')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),17,'journalVimagine')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),18,'journalVmemory')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),19,'journalVfixation')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),20,'imagineVfixation')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),21,'memoryVfixation')
+younglab_RFX_spm8('IEHFMRI','ieh_results_normed_Dur60',makeIDs('IEHFMRI',[104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,121,122,123,124,125]),22,'estimateVfixation')
+
+%younglab_RFX_spm8('IEHFMRI','tom_localizer_results_normed',makeIDs('IEHFMRI',[104,105,106,107,108,110,111,112,113,114,116,117,118,119,120,121,122,124,125]),1,'beliefVphoto')
