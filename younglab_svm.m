@@ -1,4 +1,4 @@
-function younglab_svm(dataset,labeled_data,cnames,fname)
+function [corracc] = younglab_svm(dataset,labeled_data,cnames,fname)
 %younglab_svm:
 %- performs leave-one-out classification with fitcsvm() and predict()
 %
@@ -51,11 +51,11 @@ function younglab_svm(dataset,labeled_data,cnames,fname)
 	incorrect_2 = find(class2_out==0); %how many class 2 items were incorrectly classified as class 1?
 	disp(['Class ' cnames{1} ' correctly classified (%): ' num2str(100*length(correct_1)/length(class1))]);
 	disp(['Class ' cnames{1} ' incorrectly classified (%): ' num2str(100*length(incorrect_1)/length(class1))]);
-	disp(['Class ' cnames{2} ' correct classification (%): ' num2str(100*length(correct_2)/length(class2))]);
+	disp(['Class ' cnames{2} ' correctly classified (%): ' num2str(100*length(correct_2)/length(class2))]);
 	disp(['Class ' cnames{2} ' incorrectly classified (%): ' num2str(100*length(incorrect_2)/length(class2))]);
 
-
+    corracc=(length(correct_1)+length(correct_2))/(length(class1)+length(class2));
 	prop_correct_as1=length(correct_1)/length(class1);
 	prop_incorrect_as1=length(incorrect_2)/length(class2);
-	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+% 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
 end
