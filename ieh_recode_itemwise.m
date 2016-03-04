@@ -8,21 +8,21 @@ end
 cd(fullfile('/younglab/studies',study,'duration60secs_behavioral'));
 
 for thissub=1:length(subjs)
-	betanames=[];
+	betanames={};
 
 	for thisrun=1:8
 		fname=[subjs{thissub} '.ieh.' num2str(thisrun) '.mat'];
 		f=load(fname);
 		names=cell(length(f.spm_inputs_itemwise),1);
 		for thisitem=1:length(f.spm_inputs_itemwise)
-			betanames=[betanames;f.spm_inputs_itemwise(thisitem).name '.nii'];
+			betanames{end+1}=[f.spm_inputs_itemwise(thisitem).name '.nii'];
 		end
 	end
 
 	cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_itemwise_results_normed'));
 	betadir=dir('beta_*.nii');
 	for thisbeta=1:length(betadir)
-		movefile(betadir(thisbeta).name,['beta_item_' num2str(thisbeta) '_' betanames(thisbeta,:)]);
+		movefile(betadir(thisbeta).name,['beta_item_' num2str(thisbeta) '_' betanames{thisbeta}]);
 	end
 
 end
