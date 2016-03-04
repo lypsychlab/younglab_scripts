@@ -19,7 +19,7 @@ for thissub=1:length(subjs)
 		end
 	end
 
-	cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_itemwise_results_normed'));
+	cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_results_itemwise_normed'));
 	betadir=dir('beta_*.nii');
 	for thisbeta=1:length(betadir)
 		movefile(betadir(thisbeta).name,['beta_item_' num2str(thisbeta) '_' betanames{thisbeta}]);
