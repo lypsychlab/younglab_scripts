@@ -30,7 +30,7 @@ end
 % for thiscond=1:length(condnames)
 	for thissub=1:length(subjs)
 		cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_results_itemwise_normed'));
-		betadir=dir(['beta_item*' num2str(thiscond) '.nii']);
+		betadir=dir(['beta_item*.nii']);
 		% betanames=cell(length(betadir),1);
 		for thisbeta=1:length(betadir)
 			item_tag=betadir(thisbeta).name(11:12);
