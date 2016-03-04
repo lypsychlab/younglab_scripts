@@ -33,10 +33,10 @@ end
 		betadir=dir(['beta_item*.nii']);
 		% betanames=cell(length(betadir),1);
 		for thisbeta=1:length(betadir)
-			item_tag=betadir(thisbeta).name(11:12);
-			if strcmp(item_tag(2),'_')
-				item_tag=sprintf('%02d',str2num(item_tag(1)));
-				newname=[betadir(thisbeta).name(1:10) item_tag betadir(thisbeta).name(12:end)];
+			item_tag=betadir(thisbeta).name(11:13);
+			if strcmp(item_tag(3),'_')
+				item_tag=sprintf('%02d',str2num(item_tag(1:2)));
+				newname=[betadir(thisbeta).name(1:10) item_tag betadir(thisbeta).name(13:end)];
 				movefile(betadir(thisbeta).name,newname);
 			end
 		end
