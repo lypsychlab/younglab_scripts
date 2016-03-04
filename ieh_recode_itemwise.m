@@ -5,10 +5,10 @@ for s=1:length(subj_nums)
     subjs{end+1}=['YOU_IEHFMRI_1' sprintf('%02d',subj_nums(s))];
 end
 
-cd(fullfile('/younglab/studies',study,'duration60secs_behavioral'));
 
 for thissub=1:length(subjs)
 	betanames={};
+	cd(fullfile('/younglab/studies',study,'duration60secs_behavioral'));
 
 	for thisrun=1:8
 		fname=[subjs{thissub} '.ieh.' num2str(thisrun) '.mat'];
