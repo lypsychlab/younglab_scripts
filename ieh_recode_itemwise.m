@@ -26,20 +26,21 @@ end
 % 	end
 
 % end
-% condnames={'est' 'imag' 'journ' 'mem'};
-% for thiscond=1:length(condnames)
-	for thissub=1:length(subjs)
-		cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_results_itemwise_normed'));
-		betadir=dir(['beta_item*.nii']);
-		% betanames=cell(length(betadir),1);
-		for thisbeta=1:length(betadir)
-			item_tag=betadir(thisbeta).name(11:13);
-			if strcmp(item_tag(3),'_')
-				item_tag=sprintf('%03d',str2num(item_tag(1:2)));
-				newname=[betadir(thisbeta).name(1:10) item_tag betadir(thisbeta).name(13:end)];
-				movefile(betadir(thisbeta).name,newname);
-			end
-		end
-	end
-% end
+condnames={'estim' 'imagn' 'journ' 'memry'};
+rootdir='/younglab/studies';
+resdir='ieh_results_itemwise_normed';
+subjIDs=subjs;
+roiname='Hipp_R'
 
+for thissub=1:length(subjs)
+	cd(fullfile('/younglab/studies',study,subjs{thissub},'results/ieh_results_itemwise_normed'));
+	betadir=dir('beta_item*.nii');
+	for thisbeta=1:length(betadir)
+				item_tag=betadir(thisbeta).name(15:16);
+				if strcmp(item_tag(2),'_')
+					item_tag=sprintf('%02d',str2num(item_tag(1)));
+					newname=[betadir(thisbeta).name(1:14) item_tag betadir(thisbeta).name(16:end)];
+					movefile(betadir(thisbeta).name,newname);
+				end
+	end
+end
