@@ -1,5 +1,6 @@
 clear all;
 subj_nums=[4:8 11:14 16:22 24 25]; % all subjects
+subj_nums=[5];
 subjs={};sessions={};
 csv_data=csvread('/younglab/studies/IEHFMRI/subjs_sessions.csv',1,0);
 for s=1:length(subj_nums)
@@ -24,3 +25,8 @@ for s=1:length(subjs)
 %     catch
 %     end
 end
+
+%TEST CODE (uncomment to test on first subject)
+s=1;
+younglab_model_spm8_itemwise_smooth_IEH('IEHFMRI',subjs{s},...
+        'ieh',sessions{s});

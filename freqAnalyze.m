@@ -107,7 +107,7 @@ SPM.xBF.Volterra  = 1;
 SPM.xBF.dt        = SPM.RT/SPM.xBF.T;
 [xBF] = spm_get_bf(SPM.xBF);
 % obtain behavioural files
-cd([expDir study '/behavioural/']);
+cd([expDir study '/behavioral/']);
 tT		= dir([subj '.' task '.*']);
 [T{1:length(tT)}] = deal(tT(1:end).name);
 load(T{1},'ips','spm_inputs');

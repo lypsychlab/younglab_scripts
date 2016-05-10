@@ -10,14 +10,19 @@ function [roi_struct] = make_roi_struct_IEH(study,subjIDs,numsess,anatomical,cho
 % - numsess: number of sessions (put 0 for now)
 % - anatomical: whether or not to include atlas ROIs (put 0 for now)
 % - chosen_roi: cell string of roi names
-
+    rootdir='/younglab/studies';
+    mkdir(fullfile(rootdir,study,'logs'));
+    diary(fullfile(rootdir,study,'logs',['make_roi_struct_IEH_' date '.txt']));
 	roi_struct=struct('names',[],'files',[]);
 	prev_dir=pwd;
     roinames=chosen_roi;
 	for sub=1:length(subjIDs)
-% 		cd(fullfile('/younglab/studies',study,subjIDs{sub},'roi'));
-        cd(fullfile('/younglab/studies',study,'ROI'))
         for i=1:length(roinames)
+            if strcmp(roinames{i},'RTPJ')
+                cd(fullfile('/younglab/studies',study,subjIDs{sub},'roi'));
+            else
+                cd(fullfile('/younglab/studies',study,'ROI'));
+            end
             d=fullfile(pwd,['*' roinames{i} '*.img']);
             roi_file_dir=dir(d);
             disp(roinames{i});
@@ -49,6 +54,6 @@ function [roi_struct] = make_roi_struct_IEH(study,subjIDs,numsess,anatomical,cho
     end %end if anatomical
     
 	cd(prev_dir);
-
-end %end make_roi_struct_PSYCH
+    diary off;
+end %end make_roi_struct_IEH
 

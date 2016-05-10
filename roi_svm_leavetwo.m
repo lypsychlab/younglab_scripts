@@ -1,5 +1,8 @@
 function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g2,cnames,roiname,outfile)
-%
+% roi_svm_leavetwo:
+% performs leave-2-out SVM 2-class classification within a given ROI,
+% where the two left-out items comprise one of each class.
+% 
 % Parameters:
 % - study: name of study folder (string)
 % - subj_tag: prefix to subject names (string) e.g. SAX_DIS
@@ -19,8 +22,8 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
 		subjIDs{end+1}=sprintf([subj_tag '_' '%02d'],sub_nums(sub));
 	end
 
-	%rootdir ='/mnt/englewood/data/';
-
+    mkdir(fullfile(rootdir,study,'logs'));
+    diary(fullfile(rootdir,study,'logs',['roi_svm_leavetwo_' date '.txt']));
 	cd('/younglab/scripts/');
 	load voxel_order2; 
 
@@ -49,12 +52,15 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
             labeled_data{l}=cnames{1};
         end
     end
+%     labels_numeric
+%     labeled_data
     
 	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
 	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
-	    for i=1:length(betafiles)
+	    for i=1:conditions 
 	        betafiles{i} = betadir(i).name;
-	    end
+        end
+%         betafiles
 	    disp('Loading beta files...')
 	    subimg    = spm_vol([repmat([fullfile(rootdir,study,subjIDs{subj},'results',[resdir '/'])],conditions,1) char(betafiles) repmat(',1',conditions,1)]); %spm_vol reads header info
 	    [Y,XYZ]   = spm_read_vols(subimg);clear betadir betafiles XYZ %read volumes
@@ -97,10 +103,11 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
         
         spherebetas=spherebetas';
         [hard,soft]=younglab_svm_leavetwo(spherebetas,labeled_data,cnames,...
-            fullfile(rootdir,study,subjIDs{sub},'results',[subjIDs{subj} '.' outfile]));
+            fullfile(rootdir,study,subjIDs{sub},'results',[subjIDs{subj} '.' outfile]),0);
         output_nums=[output_nums; hard];
         soft_nums=[soft_nums;soft];
 	end % subject list
     cd(fullfile(rootdir,study));
     save(['allsubs_' outfile],'output_nums','soft_nums');
+    diary off;
 end %end searchlight_all

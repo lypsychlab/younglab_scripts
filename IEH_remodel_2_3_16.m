@@ -4,7 +4,6 @@ tic;
 
 %SET UP BASIC PARAMETER INFO
 study='IEHFMRI';taskname='ieh';
-% fname='IEHFMRI_ROI_RTPJ-MTL';
 subj_nums=[4:8 11:14 16:22 24 25]; % all subjects
 % subj_nums=[5 7 13 14 16:22] % subjects with all 4 TOM ROIs
 % subj_nums=[4 5 7 8 11:14 16:22 24 25] % RTPJ + LTPJ
@@ -29,16 +28,23 @@ end
 %         save([subjs{s} '.' taskname '.' num2str(r) '.mat'],'spm_inputs','-append');
 %     end
 % end
-
-for thissub=2:length(subjs)
+% 
+for thissub=1:length(subjs)
     try
-        younglab_model_spm8_ieh(study,subjs{thissub},taskname,sessions{thissub});
+%         younglab_model_spm12_parametric_noconds_ieh(study,subjs{thissub},taskname,sessions{thissub},'no_art');
+          younglab_model_spm12_parametric_withconds_ieh(study,subjs{thissub},taskname,sessions{thissub},'no_art');
+    
+% toc;
     catch
-%         disp(['Unable to process subject ' subjs{thissub}]);
+        disp(['Unable to process subject ' subjs{thissub}]);
        continue
     end
 end
 
-%TEST CODE (uncomment to run sanity check on one subject's data):
+% TEST CODE (uncomment to run sanity check on one subject's data):
 % thissub=1;
-% younglab_model_spm8_ieh(study,subjs{thissub},taskname,sessions{thissub});
+% younglab_model_spm12_parametric_noruns_ieh(study,subjs{thissub},taskname,sessions{thissub},'clobber','no_art');
+% younglab_model_spm12_parametric_noconds_ieh(study,subjs{thissub},taskname,sessions{thissub},'clobber','no_art');
+% younglab_model_spm12_parametric_withconds_ieh(study,subjs{thissub},taskname,sessions{thissub},'clobber','no_art');
+
+% toc;

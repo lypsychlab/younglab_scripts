@@ -3,8 +3,11 @@ clear all;
 tic;
 
 %SET UP BASIC PARAMETER INFO
+rootdir='/younglab/studies';
 study='IEHFMRI';
-fname='IEHFMRI_ROI_MTL-benoitMPFC';
+fname='IEHFMRI_ROI_benoitVMPFC-MTL';
+mkdir(fullfile(rootdir,study,'logs'));
+diary(fullfile(rootdir,study,'logs',['conn_run_IEH_' date '.txt']));
 subj_nums=[4:8 11:14 16:22 24 25]; % all subjects
 % subj_nums=[5 7 13 14 16:22] % subjects with all 4 TOM ROIs
 % subj_nums=[4 5 7 8 11:14 16:22 24 25] % RTPJ + LTPJ
@@ -172,4 +175,4 @@ toc;
     %Setup.structurals, Setup.subjects, Setup.conditions) all match?
 %then uncomment to process through CONN:
 % conn_batch(BATCH)
-    
+    diary off;

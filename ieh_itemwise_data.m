@@ -1,7 +1,10 @@
 function ieh_itemwise_data(roinames)
+% ieh_itemwise_data:
+% grabs BOLD data from rois in (roinames) from itemwise beta images, for IEHFMRI
 
     study='IEHFMRI';
-    subj_nums=[4 6:8 11:14 16:22 24 25]; % all subjects leaving out 5 which has to be remodeled
+    subj_nums=[4:8 11:14 16:22 24 25]; % all subjects leaving out 5 which has to be remodeled
+%     subj_nums=[5];
     subjs={};sessions={};
     for s=1:length(subj_nums)
         subjs{end+1}=['YOU_IEHFMRI_1' sprintf('%02d',subj_nums(s))];
@@ -9,11 +12,16 @@ function ieh_itemwise_data(roinames)
 
 
     condnames={'estim' 'imagn' 'journ' 'memry'};
+    %1->1
+    %2->4
+    %3->2
+    %4->3
     rootdir='/younglab/studies';
     resdir='ieh_results_itemwise_normed';
     subjIDs=subjs;
     % roiname='Retrosplenial_R';
-    
+    mkdir(fullfile(rootdir,study,'logs'));
+    diary(fullfile(rootdir,study,'logs',['ieh_itemwise_data_' date '.txt']));
 
     for thisroi=1:length(roinames)
         roiname=roinames{thisroi};
@@ -83,5 +91,5 @@ function ieh_itemwise_data(roinames)
     cd(fullfile(rootdir,study,'results'));
     save(['all_itemwise_' roiname '.mat'],'all_sub_info','all_cond_info','all_neural_info','roinames');    
     end %end roi loop
-    
+    diary off;
 end

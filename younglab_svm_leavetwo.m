@@ -1,4 +1,4 @@
-function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
+function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname,diary_on)
 %younglab_svm:
 %- performs leave-two-out classification with fitcsvm() and predict().
 %- testing sets consist of every combination of 1 member of class 1 with 1 member of class 2
@@ -8,6 +8,11 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 %and labeled_data{t} = the correct class label for trial t
 %cnames: 1 x 2 cell array, cnames{c} = the name of the cth class
 %fname: output filename
+%diary_on: if 1, write out to a diary file
+
+	if diary_on
+		diary;
+	end
 
 	recode_labels=zeros(size(dataset,1),1); %holds CORRECT 0/1 classes
 	outputs = [];soft_outputs=[];
@@ -69,4 +74,7 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 	corracc=(length(find(outputs==1)))/length(outputs);
 	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
 % 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+	if diary_on
+		diary off;
+	end
 end

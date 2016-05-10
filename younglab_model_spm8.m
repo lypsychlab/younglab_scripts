@@ -198,7 +198,7 @@ global defaults;
 % setenv('FSLDIR','/usr/local/fsl');
 % setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
+EXPERIMENT_ROOT_DIR = '/mnt/englewood/data';
 TR               = 2;
 src_data_flag    = 'normed'; 
 RT_flag          = 0;
@@ -913,10 +913,14 @@ function skullStripMaker(study, subj, maskthresh)
     global mask_over;
     global inStruct;
     
-    directory = ['/younglab/studies/' study '/' subj '/3danat/'];
-    img = dir([directory 'ws0-0*-*-*-*.img']);
-    if strcmp(inStruct.src_data_flag,'unnormed')|isempty(img) 
+    directory = ['/mnt/englewood/data/' study '/' subj '/3danat/'];
+        if strcmp(inStruct.src_data_flag,'unnormed')
         img = dir([directory 's0-0*-*-*-*.img']);
+        elseif strcmp(inStruct.src_data_flag,'normed')
+            img = dir([directory 'ws0-0*-*-*-*.img']);
+            if isempty(img)
+                img = dir([directory 'ws0-0*-*-*-*.nii']);
+            end
         if isempty(img)
             pwd1 = pwd;
             cd(directory);
@@ -930,14 +934,8 @@ function skullStripMaker(study, subj, maskthresh)
         else
             img = [directory img.name];
         end
-    elseif length(img) > 1
-        pwd1 = pwd;
-        cd(directory);
-        img = spm_select(1,'img','There are too many anatomical files present. Please select the anatomical file.');
-        cd(pwd1);
-    else
-        img = [directory img.name];
     end
+
     fprintf('%s\n',img);
     fprintf('Making mask image...\n');
 %     if mask_over == 0
