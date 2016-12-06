@@ -200,6 +200,8 @@ Now I have two ways to communicate with GitHub's site, each associated with its 
 To test whether this process worked, I'll first make a new remote repo, 'testRepo', on github.com, 
 under the GitHub account I just associated with my new key.  
 In this example, my account name is emily-wasserman, and my new key's name is newKey.
+Then I will make a local repo, put a file in it, and try to sync that repo with my remote repo "testRepo".
+
 ```
 mkdir ~/GitHub/testRepo
 cd ~/GitHub/testRepo
