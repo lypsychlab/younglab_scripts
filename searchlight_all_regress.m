@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b1,b2,b3,b4,outtag)
+=======
+function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,B_in,outtag)
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 % searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b1,b2,b3,b4,outtag):
 % - performs searchlight RSA that, instead of correlating neural data
 % with a design matrix within each sphere, regresses four matrices
@@ -61,7 +65,11 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
     disp(['Study: ' study]);
     disp(['Results directory: ' resdir]);
     disp(['ID tag: ' outtag]);
+<<<<<<< HEAD
     disp(['Design matrices: ' b1 ' ' b2 ' ' b3 ' ' b4 ' const']);
+=======
+    % disp(['Design matrices: ' b1 ' ' b2 ' const']);
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 
 	cd('/younglab/scripts/');
@@ -71,6 +79,7 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	for subj=1:length(subjIDs) %grabbing beta images
 
 		disp(['Processing subject ' subjIDs{subj} '.']);
+<<<<<<< HEAD
 		load(fullfile(rootdir, study, 'behavioural',['behav_matrix_' subjIDs{subj} '_' b1 '.mat']));
         disp(fullfile(rootdir, study, 'behavioural',['behav_matrix_' subjIDs{subj} '_' b1 '.mat']));
 		behav_1=behav_matrix; clear behav_matrix;
@@ -95,6 +104,26 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
 	    for i=1:conditions
 	        betafiles{i} = betadir(i).name;
+=======
+		B=[];
+		for b=1:length(B_in)
+
+			load(fullfile(rootdir, study, 'behavioural',['behav_matrix_' B_in{b} '.mat']));
+	        disp(fullfile(rootdir, study, 'behavioural',['behav_matrix_' B_in{b} '.mat']));
+	        behav_matrix=sim2tril(behav_matrix);
+			B=[B behav_matrix];
+			clear behav_matrix;
+		end
+
+	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
+
+	    c1=conditions(1);
+	    conditions=length(conditions);
+
+	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
+	    for i=1:conditions
+	        betafiles{i} = betadir((i-1)+c1).name;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    end
 	    disp('Loading beta files...')
 	    subimg    = spm_vol([repmat([fullfile(rootdir,study,subjIDs{subj},'results',[resdir '/'])],conditions,1) char(betafiles) repmat(',1',conditions,1)]); %spm_vol reads header info
@@ -103,7 +132,11 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	    disp(['Processing correlations...'])
 	    triangle = ((conditions^2)/2)-(conditions/2);
 	    bigmat = zeros(length(greymattermask2),triangle);
+<<<<<<< HEAD
 	    corrs  = zeros(length(greymattermask2),5); 
+=======
+	    corrs  = zeros(length(greymattermask2),(size(B,2)+1)); 
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    for i = 1:length(greymattermask2)% for each voxel
 	        sphere      = repmat(voxel_order2(greymattermask2(i),:),length(coords),1) + coords; 
 	        spherebetas = zeros(length(coords),conditions);
@@ -121,6 +154,7 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	            bigmat(i,:) = temp(temp~=0)';% we now have a triangle x 1 matrix
 
 	            % temp        = corrcoef( behav_matrix , bigmat(i,:)' ); %correlation with behavioral matrix
+<<<<<<< HEAD
 	            predictors = horzcat(ones(length(behav_1),1),behav_1,behav_2,behav_3,behav_4);
 	            weights = regress(bigmat(i,:)',predictors);
 
@@ -135,10 +169,23 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	        end
 	    end
 	    clear temp simmat behav_1 behav_2 behav_3 behav_4 weights predictors
+=======
+	            predictors = horzcat(ones(size(B,1),1),B);
+	            weights = regress(bigmat(i,:)',predictors);
+	            weights=weights';
+
+	            % corrs(i)    = temp(2,1); %save a correlation value for this voxel
+	            corrs(i,:)=[weights(2:end) weights(1)];
+
+	        end
+	    end
+	    clear temp simmat B weights predictors
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 	    save(['bigmat_regression' outtag '.mat'], 'bigmat');
 	    save (['corrs_regression' outtag '.mat'], 'corrs');
 	    disp('Correlations saved.');
+<<<<<<< HEAD
 	    corrmap_1  = zeros(size(Y(:,:,:,1))); 
 	    corrmap_2  = zeros(size(Y(:,:,:,1))); 
 	    corrmap_3  = zeros(size(Y(:,:,:,1))); 
@@ -163,10 +210,29 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	                    voxel_order2(greymattermask2(i),2),...
 	                    voxel_order2(greymattermask2(i),3)) = corrs(i,5);
 	    end
+=======
+
+	    for b=1:(length(B_in)+1)
+		    corrmap(b).map  = zeros(size(Y(:,:,:,1))); 
+	   	end
+
+        clear Y;
+
+        for b=1:(length(B_in)+1)
+
+		    for i=1:length(greymattermask2) 
+
+	            corrmap(b).map(voxel_order2(greymattermask2(i),1),...
+	                    voxel_order2(greymattermask2(i),2),...
+	                    voxel_order2(greymattermask2(i),3)) = corrs(i,b);
+		    end
+		end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    disp('Creating template...');
 
 	    template_dir=dir('beta_*nii');
 	    template       = spm_vol([fullfile(rootdir,study,subjIDs{subj},'results', resdir,template_dir(1).name) ',1']);
+<<<<<<< HEAD
 	    template.fname = ['RSA_searchlight_regress_' b1 outtag '.img']; spm_write_vol(template,corrmap_1);
 	   	template.fname = ['RSA_searchlight_regress_' b2 outtag '.img']; spm_write_vol(template,corrmap_2);
 	   	template.fname = ['RSA_searchlight_regress_' b3 outtag '.img']; spm_write_vol(template,corrmap_3);
@@ -174,6 +240,15 @@ function searchlight_all_regress(study,subj_tag,resdir,sub_nums,conditions,sph,b
 	   	template.fname = ['RSA_searchlight_regress_const_' outtag '.img']; spm_write_vol(template,corrmap_5);
 
 	    clear corrs meantril
+=======
+
+	    for b=1:length(B_in)
+		    template.fname = ['RSA_searchlight_regress_' B_in{b} outtag '.img']; spm_write_vol(template,corrmap(b).map);
+		end
+		template.fname = ['RSA_searchlight_regress_const_' outtag '.img']; spm_write_vol(template,corrmap(length(B_in)+1).map);
+
+	    clear corrs meantril corrmap template
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    disp(['Subject ' subjIDs{subj} ' complete.'])
 	end % subject list
 end %end searchlight_all

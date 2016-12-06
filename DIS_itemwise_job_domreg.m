@@ -5,7 +5,11 @@
 %-----------------------------------------------------------------------
 rootdir='/mnt/englewood/data';study='PSYCH-PHYS';
 cd(fullfile(rootdir,study));
+<<<<<<< HEAD
 tagnames={'domain_domharmintent' 'hother_domharmintent' 'IntVAcc_Int_48_domharmintent' 'IntVAcc_Acc_48_domharmintent'};
+=======
+tagnames={'domain_domharmNODISG' 'hother_domharmNODISG' 'hself_domharmNODISG'};
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 for t=1:length(tagnames)
 matlabbatch{1}.spm.stats.factorial_design.dir = {['/mnt/englewood/data/PSYCH-PHYS/results/' tagnames{t} '/']};
 % sub_nums=[3:20 22:24 27:35 38:42 44:47];

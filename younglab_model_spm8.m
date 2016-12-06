@@ -198,7 +198,11 @@ global defaults;
 % setenv('FSLDIR','/usr/local/fsl');
 % setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
+<<<<<<< HEAD
 EXPERIMENT_ROOT_DIR = '/younglab/studies';
+=======
+EXPERIMENT_ROOT_DIR = '/mnt/englewood/data';
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 TR               = 2;
 src_data_flag    = 'normed'; 
 RT_flag          = 0;
@@ -913,10 +917,21 @@ function skullStripMaker(study, subj, maskthresh)
     global mask_over;
     global inStruct;
     
+<<<<<<< HEAD
     directory = ['/younglab/studies/' study '/' subj '/3danat/'];
     img = dir([directory 'ws0-0*-*-*-*.img']);
     if strcmp(inStruct.src_data_flag,'unnormed')|isempty(img) 
         img = dir([directory 's0-0*-*-*-*.img']);
+=======
+    directory = ['/mnt/englewood/data/' study '/' subj '/3danat/'];
+        if strcmp(inStruct.src_data_flag,'unnormed')
+        img = dir([directory 's0-0*-*-*-*.img']);
+        elseif strcmp(inStruct.src_data_flag,'normed')
+            img = dir([directory 'ws0-0*-*-*-*.img']);
+            if isempty(img)
+                img = dir([directory 'ws0-0*-*-*-*.nii']);
+            end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
         if isempty(img)
             pwd1 = pwd;
             cd(directory);
@@ -930,6 +945,7 @@ function skullStripMaker(study, subj, maskthresh)
         else
             img = [directory img.name];
         end
+<<<<<<< HEAD
     elseif length(img) > 1
         pwd1 = pwd;
         cd(directory);
@@ -938,6 +954,10 @@ function skullStripMaker(study, subj, maskthresh)
     else
         img = [directory img.name];
     end
+=======
+    end
+
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     fprintf('%s\n',img);
     fprintf('Making mask image...\n');
 %     if mask_over == 0

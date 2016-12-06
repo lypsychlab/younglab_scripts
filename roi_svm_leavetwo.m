@@ -1,5 +1,12 @@
 function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g2,cnames,roiname,outfile)
+<<<<<<< HEAD
 %
+=======
+% roi_svm_leavetwo:
+% performs leave-2-out SVM 2-class classification within a given ROI,
+% where the two left-out items comprise one of each class.
+% 
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 % Parameters:
 % - study: name of study folder (string)
 % - subj_tag: prefix to subject names (string) e.g. SAX_DIS
@@ -19,8 +26,13 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
 		subjIDs{end+1}=sprintf([subj_tag '_' '%02d'],sub_nums(sub));
 	end
 
+<<<<<<< HEAD
 	%rootdir ='/mnt/englewood/data/';
 
+=======
+    mkdir(fullfile(rootdir,study,'logs'));
+    diary(fullfile(rootdir,study,'logs',['roi_svm_leavetwo_' date '.txt']));
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	cd('/younglab/scripts/');
 	load voxel_order2; 
 
@@ -49,12 +61,24 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
             labeled_data{l}=cnames{1};
         end
     end
+<<<<<<< HEAD
     
 	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
 	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
 	    for i=1:length(betafiles)
 	        betafiles{i} = betadir(i).name;
 	    end
+=======
+%     labels_numeric
+%     labeled_data
+    
+	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
+	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
+	    for i=1:conditions 
+	        betafiles{i} = betadir(i).name;
+        end
+%         betafiles
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    disp('Loading beta files...')
 	    subimg    = spm_vol([repmat([fullfile(rootdir,study,subjIDs{subj},'results',[resdir '/'])],conditions,1) char(betafiles) repmat(',1',conditions,1)]); %spm_vol reads header info
 	    [Y,XYZ]   = spm_read_vols(subimg);clear betadir betafiles XYZ %read volumes
@@ -97,10 +121,18 @@ function roi_svm_leavetwo(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g
         
         spherebetas=spherebetas';
         [hard,soft]=younglab_svm_leavetwo(spherebetas,labeled_data,cnames,...
+<<<<<<< HEAD
             fullfile(rootdir,study,subjIDs{sub},'results',[subjIDs{subj} '.' outfile]));
+=======
+            fullfile(rootdir,study,subjIDs{sub},'results',[subjIDs{subj} '.' outfile]),0);
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
         output_nums=[output_nums; hard];
         soft_nums=[soft_nums;soft];
 	end % subject list
     cd(fullfile(rootdir,study));
     save(['allsubs_' outfile],'output_nums','soft_nums');
+<<<<<<< HEAD
+=======
+    diary off;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 end %end searchlight_all

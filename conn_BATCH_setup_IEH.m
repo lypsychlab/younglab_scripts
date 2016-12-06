@@ -69,7 +69,12 @@ function filename = conn_BATCH_setup_IEH(varargin)
 
 
 	global EXPERIMENT_ROOT_DIR;
+<<<<<<< HEAD
 	
+=======
+	EXPERIMENT_ROOT_DIR='/younglab/studies/';
+    rootdir=EXPERIMENT_ROOT_DIR;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	%binary optionals:
 	mask_subject=0;
 	raw_units=0;
@@ -115,6 +120,11 @@ function filename = conn_BATCH_setup_IEH(varargin)
 	sessions=varargin{3};
 	an=varargin{4};
 	filename=varargin{5};
+<<<<<<< HEAD
+=======
+	mkdir(fullfile(rootdir,study,'logs'));
+	diary(fullfile(rootdir,study,'logs',['conn_BATCH_setup_IEH_' date '.txt']));
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 	disp('Mandatory parameters set. Checking for optional parameters...')
 	%check for optional parameters
@@ -156,7 +166,10 @@ function filename = conn_BATCH_setup_IEH(varargin)
 	disp('Optional parameters set. Beginning setup...')
 
 
+<<<<<<< HEAD
 	EXPERIMENT_ROOT_DIR='/younglab/studies/';
+=======
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	cd(fullfile(EXPERIMENT_ROOT_DIR,study));mkdir('conn');cd(fullfile(pwd,'conn'));
 	
 	save_filename=['conn_' filename '.mat'];
@@ -282,9 +295,15 @@ function filename = conn_BATCH_setup_IEH(varargin)
 	if default_roi
 		;
     else 
+<<<<<<< HEAD
 %         BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'RTPJ' 'LTPJ'});
 %         BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'RTPJ' 'PC'});
         BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'Hipp_R' 'Parahipp_R' 'Retrosplenial_R' 'benoitVMPFC'});
+=======
+%         BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'parahippR_RTPJImag' 'Hipp_L' 'Hipp_R' 'Parahipp_L' 'Parahipp_R' 'Retrosplenial_L' 'Retrosplenial_R'});
+        BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'benoitVMPFC' 'RTPJ' 'Hipp_L' 'Hipp_R' 'Parahipp_L' 'Parahipp_R' 'Retrosplenial_L' 'Retrosplenial_R' 'benoitParahipp_R' 'parahippR_RTPJImag' 'conjunctionMPFC' 'benoitDMPFC'});
+        % BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'Hipp_R' 'Parahipp_R' 'Retrosplenial_R' 'benoitVMPFC'});
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 % 		BATCH.Setup.rois=make_roi_struct_IEH(study,subjIDs,length(sessions{1}),anatomical,{'RTPJ' 'Hipp_L' 'Hipp_R' 'Parahipp_L' 'Parahipp_R' 'Retrosplenial_L' 'Retrosplenial_R'}); %
 	end
 
@@ -318,10 +337,19 @@ function filename = conn_BATCH_setup_IEH(varargin)
 	%BEGIN PREPROCESSING
 
 	%specify bandpass filter
+<<<<<<< HEAD
 	if filt==0
 		filt=[0.01 0.1];
     end
 	
+=======
+% 	if filt==0
+% 		filt=[0.01 0.1];
+%     end
+
+%     uncomment below to implement high-pass filter (128 s/0.008 Hz):
+	filt=[0.008 Inf]; 
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 		BATCH.Preprocessing.filter=filt;
 	
 
@@ -361,5 +389,9 @@ function filename = conn_BATCH_setup_IEH(varargin)
 	save(save_filename,'BATCH','an');
 	
     %filename = filename(1:end-4);
+<<<<<<< HEAD
+=======
+    diary off;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 end %end conn_BATCH_setup
 

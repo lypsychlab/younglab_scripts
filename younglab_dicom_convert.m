@@ -194,6 +194,10 @@ for subj_index=1:num_subs
     fprintf ('dicoms read as %s\n',dicoms(1,:));
     
     hdrs = spm_dicom_headers(dicoms);
+<<<<<<< HEAD
+=======
+    keyboard
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     
     if pace
         % check hdrs for func runs and grab non-motion-corrected ones
@@ -206,12 +210,20 @@ for subj_index=1:num_subs
         end
         hdrs = trimmed_hdrs;
     end
+<<<<<<< HEAD
     
+=======
+    keyboard
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     % some labs don't put '0' for patient id
     for dumb=1:length(hdrs)
         hdrs{dumb}.PatientID='0';
     end
+<<<<<<< HEAD
     
+=======
+    keyboard
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     fprintf ('Converting images for subject %s\n',subj_as_str);
     spm_dicom_convert(hdrs,'all');
     

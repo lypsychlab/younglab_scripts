@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 function [roi_struct] = make_roi_struct_IEH(study,subjIDs,numsess,chosen_roi)
+=======
+function [roi_struct] = make_roi_struct_IEH(study,subjIDs,numsess,anatomical,chosen_roi)
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 % [roi_struct] = make_roi_struct_PSYCH(study,subjIDs,numsess,anatomical,chosen_roi):
 % - formats a structure to hold the names and file names associated with the ROI/S
 % in question, as preparation for CONN analyses.

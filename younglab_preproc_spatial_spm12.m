@@ -79,10 +79,19 @@ function younglab_preproc_spatial_spm12 (varargin)
 % <bold> <dicom> <3danat> <results> <scout> <roi>     
 %   ^                         ^               |        
 % <001...00n>             <task(s)>          ...   
+<<<<<<< HEAD
 spm fmri
 global EXPERIMENT_ROOT_DIR;
 EXPERIMENT_ROOT_DIR = '/younglab/studies';
 sprintf(EXPERIMENT_ROOT_DIR);
+=======
+addpath(genpath('/software/spm12'));
+spm fmri
+global EXPERIMENT_ROOT_DIR;
+% EXPERIMENT_ROOT_DIR = '/home/younglw';
+EXPERIMENT_ROOT_DIR='/younglab/studies';
+addpath(genpath('/younglab/scripts'));
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment - 
 %           doubles # of functional runs) - tells the script to process
@@ -103,7 +112,10 @@ end
 
 if nargin>=2
     study    = varargin{1};
+<<<<<<< HEAD
     sprintf(study);
+=======
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     for i=2:nargin
         switch class(varargin{i})
             case 'char'
@@ -193,9 +205,14 @@ for subj_index=1:length(subject)
     
     % constants (restore prep_seq in case it was changed in previous pass)
     realigned = 0; normalised = 0; prep_seq = orig_prep_seq;
+<<<<<<< HEAD
     sprintf(num2str(prep_seq))
     if mod(prep_seq,2)  % grabs even values of prep_seq
 %          try
+=======
+    if mod(prep_seq,2)  % grabs even values of prep_seq
+         % try
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
             func_images = get_images(study, subjID, func_runs, realigned,normalised);
             fprintf ('==============================\n');
             fprintf ('Realigning subject %s\n',subjID);
@@ -206,6 +223,7 @@ for subj_index=1:length(subject)
             fprintf ('==============================\n');
             prep_seq = prep_seq-1;
             realigned = 1;
+<<<<<<< HEAD
 %        catch
 %            fprintf ('==========================================\n');
 %            fprintf ('Realignment failed for subject %s\n',subjID);
@@ -219,12 +237,28 @@ for subj_index=1:length(subject)
 %         % when prep_seq=2 or prep_seq=6. Only change this if you actually
 %         % want to normalize un-realigned data
 %          try
+=======
+       % catch
+       %     fprintf ('==========================================\n');
+       %     fprintf ('Realignment failed for subject %s\n',subjID);
+       %     fprintf ('==========================================\n');
+       % end
+    end
+
+
+    if prep_seq && ~xor(prep_seq,prep_seq-4) % isolates 2 & 6 from 0 & 4
+        realigned = 1;  % toggle this to control the behavior of saxelab_prep_bch
+        % when prep_seq=2 or prep_seq=6. Only change this if you actually
+        % want to normalize un-realigned data
+         % try
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
             func_images = get_images(study, subjID, func_runs, realigned,normalised);
             fprintf ('==========================================\n');
             fprintf ('Normalising subject %s functionals\n',subjID);
             fprintf ('==========================================\n');
             normalise(study, subjID, func_runs, func_images,'functionals');
             fprintf ('==========================================\n');
+<<<<<<< HEAD
             fprintf ('     Funtional normalisation complete\n');
             fprintf ('==========================================\n');
             normalised=1;
@@ -234,6 +268,17 @@ for subj_index=1:length(subject)
 %             fprintf ('Normalisation of functionals failed for subject %s\n',subjID);
 %             fprintf ('=========================================================\n');
 %         end
+=======
+            fprintf ('     Functional normalisation complete\n');
+            fprintf ('==========================================\n');
+            normalised=1;
+            prep_seq = prep_seq - 2;
+        % catch
+        %     fprintf ('=========================================================\n');
+        %     fprintf ('Normalisation of functionals failed for subject %s\n',subjID);
+        %     fprintf ('=========================================================\n');
+        % end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 %         try
             fprintf ('==========================================\n');
             fprintf ('Normalising subject %s anatomicals\n',subjID);
@@ -250,11 +295,19 @@ for subj_index=1:length(subject)
     end
 
     if prep_seq == 4 % now if a 4 remains, smooth
+<<<<<<< HEAD
         realigned = 1; normalised=0; % Default = commented
         % toggle these to control the behavior of saxelab_prep_bch
         % when prep_seq=4 (comment "normalised" to smooth rrun data for
         % prep_seq=4 and wrrun when prep_seq>=6
 %          try
+=======
+        realigned = 1; %normalised=1; % Default = commented
+        % toggle these to control the behavior of saxelab_prep_bch
+        % when prep_seq=4 (comment "normalised" to smooth rrun data for
+        % prep_seq=4 and wrrun when prep_seq>=6
+         try
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
             % set smothing kernel relative to normalization
             if normalised==1; fullwhm = 5;% 5mm full width half max
             else          fullwhm = 8;% 8mm full width half max
@@ -296,11 +349,19 @@ for subj_index=1:length(subject)
             
             fprintf ('       Done.\n');
             fprintf ('==============================\n');
+<<<<<<< HEAD
 %         catch
 %             fprintf ('==========================================\n');
 %             fprintf ('Smoothing failed for subject %s\n',subjID);
 %             fprintf ('==========================================\n');
 %         end
+=======
+        catch
+            fprintf ('==========================================\n');
+            fprintf ('Smoothing failed for subject %s\n',subjID);
+            fprintf ('==========================================\n');
+        end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     end
 end % subject loop
 
@@ -309,8 +370,13 @@ end % function preprocess
 
 function [func_images] = get_images(study, subjID, func_runs, realigned, normalised)
 global EXPERIMENT_ROOT_DIR;
+<<<<<<< HEAD
 
 % try
+=======
+fprintf('Getting images...\n');
+try
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     if ~realigned && ~normalised
         % Use spm_get to grab "aruns"
         for run = 1:length(func_runs)
@@ -338,12 +404,26 @@ global EXPERIMENT_ROOT_DIR;
             func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))), 'wraf*.img');
         end
     end
+<<<<<<< HEAD
 % catch
 %     fprintf ('=====================================\n');
 %     fprintf ('Could not grab functional runs for %s \n', subjID);
 %     fprintf ('Did you forget to do slice-timing correction?');
 %     fprintf ('=====================================\n');
 % end
+=======
+catch
+    fprintf ('=====================================\n');
+    fprintf ('Could not grab functional runs for %s \n', subjID);
+    fprintf ('Did you forget to do slice-timing correction?');
+    fprintf ('=====================================\n');
+end
+for rn=1:length(func_images)
+    if isempty(func_images{rn})
+        fprintf('You seem to be missing slice-time corrected images for run %s \n',func_runs{rn});
+    end
+end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 end % function get_images
 
 %=======================================================================
@@ -379,7 +459,11 @@ clear SPM;
 cd(fullfile(EXPERIMENT_ROOT_DIR, study, subjID));
 
 % make sure defaults are present in workspace
+<<<<<<< HEAD
 defaults = spm_defaults_lily; % uses voxel size of 3x3x3
+=======
+defaults = spm_defaults_MVPA; % uses voxel size of 2x2x2
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 %%% do realignment first
 realign_flags = struct('quality',defaults.realign.estimate.quality,'fwhm',5,'rtm',0);
@@ -387,6 +471,10 @@ if ~isempty(weight_image)
     realign_flags.PW = deblank(weight_image(i,:));
 end;
 
+<<<<<<< HEAD
+=======
+% keyboard;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 spm_realign(func_images, realign_flags);
 
 %%% do reslicing next, if requested
@@ -407,7 +495,11 @@ if opt == 2 | opt == 3,
     else
         reslice_flags.mean = 0;
     end
+<<<<<<< HEAD
 
+=======
+    % keyboard;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     spm_reslice(func_images, reslice_flags);
 end;
 end % function realign
@@ -431,7 +523,11 @@ cd(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID,'bold/'));
 % Option 1: Determine parameters from 1st functional against EPI template
 if strcmp(task_flag,'functionals')
     first_run = func_runs{1};
+<<<<<<< HEAD
     template_file = sprintf('/software/spm12/toolbox/OldNorm/EPI.nii');
+=======
+    template_file = sprintf('/software/spm8/templates/EPI.nii');
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     func_file = sprintf('%s/%s/%s/bold/%s/raf0-0%s-00001-000001-01.img', EXPERIMENT_ROOT_DIR, study, subjID, first_run,first_run);
     % Option 2: Determine parameters from anatomical against T1 template
     % template_file = sprintf('%s/analysis_tools/spm/spm2/templates/T1.mnc',EXPERIMENT_ROOT_DIR);;
@@ -450,8 +546,13 @@ end %functionals block
 
 % ==== Or Normalise the anatomical to the T1 template ====
 if strcmp(task_flag,'anatomical')
+<<<<<<< HEAD
     anat_file = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, '3danat'), 's*.img');
     template_file = sprintf('/software/spm12/toolbox/OldNorm/T1.nii');
+=======
+    anat_file = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, '3danat'), 's0*.img');
+    template_file = sprintf('/software/spm8/templates/T1.nii');
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     anat_file = anat_file(length(anat_file(:,1)),:);
     %in order to pick the final anatomical acquired
 

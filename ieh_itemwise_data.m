@@ -1,8 +1,17 @@
 function ieh_itemwise_data(roinames)
+<<<<<<< HEAD
 
     study='IEHFMRI';
     % subj_nums=[4:8 11:14 16:22 24 25]; % all subjects leaving out 5 which has to be remodeled
     subj_nums=[5];
+=======
+% ieh_itemwise_data:
+% grabs BOLD data from rois in (roinames) from itemwise beta images, for IEHFMRI
+
+    study='IEHFMRI';
+    subj_nums=[4:8 11:14 16:22 24 25]; % all subjects leaving out 5 which has to be remodeled
+%     subj_nums=[5];
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     subjs={};sessions={};
     for s=1:length(subj_nums)
         subjs{end+1}=['YOU_IEHFMRI_1' sprintf('%02d',subj_nums(s))];
@@ -18,14 +27,23 @@ function ieh_itemwise_data(roinames)
     resdir='ieh_results_itemwise_normed';
     subjIDs=subjs;
     % roiname='Retrosplenial_R';
+<<<<<<< HEAD
     
     neuro_total=[];
+=======
+    mkdir(fullfile(rootdir,study,'logs'));
+    diary(fullfile(rootdir,study,'logs',['ieh_itemwise_data_' date '.txt']));
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
     for thisroi=1:length(roinames)
         roiname=roinames{thisroi};
         all_sub_info=[];
         all_cond_info=[];
         all_neural_info=[];
+<<<<<<< HEAD
+=======
+        neuro_total=[];
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
         for thissub=1:length(subjs)
         	disp(['Processing subject ' subjs{thissub}]);
 
@@ -47,7 +65,11 @@ function ieh_itemwise_data(roinames)
         	    cd(fullfile(rootdir,study,'ROI'));
             	roidir=dir(['*' roiname '*img']);
             	if isempty(roidir)
+<<<<<<< HEAD
                 disp(['No ' roiname '; continuing to next subject']);
+=======
+                disp(['No ' roiname ' for subject ' subjIDs{thissub} '; continuing to next subject']);
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
                 continue
             	end
             	disp('Processing mask...')
@@ -83,11 +105,19 @@ function ieh_itemwise_data(roinames)
         	end%end cond loop
         end%end subject loop
 
+<<<<<<< HEAD
     neuro_total=[neuro_total all_neural_info];
+=======
+    % neuro_total=[neuro_total all_neural_info];
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     disp(['Finished with roi ' roiname])
     cd(fullfile(rootdir,study,'results'));
     save(['all_itemwise_' roiname '.mat'],'all_sub_info','all_cond_info','all_neural_info','roinames');    
     end %end roi loop
+<<<<<<< HEAD
     % save('all_itemwise_allrois.mat','neuro_total','roinames');
     
+=======
+    diary off;
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 end

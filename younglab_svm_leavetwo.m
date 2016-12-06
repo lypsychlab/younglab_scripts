@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
+=======
+<<<<<<< HEAD
+function [corracc] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
+=======
+function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname,diary_on)
+>>>>>>> younglab_scripts
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 %younglab_svm:
 %- performs leave-two-out classification with fitcsvm() and predict().
 %- testing sets consist of every combination of 1 member of class 1 with 1 member of class 2
@@ -8,9 +16,24 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 %and labeled_data{t} = the correct class label for trial t
 %cnames: 1 x 2 cell array, cnames{c} = the name of the cth class
 %fname: output filename
+<<<<<<< HEAD
+
+	recode_labels=zeros(size(dataset,1),1); %holds CORRECT 0/1 classes
+<<<<<<< HEAD
+	outputs = [];soft_outputs=[];
+=======
+	outputs = [];
+=======
+%diary_on: if 1, write out to a diary file
+
+	if diary_on
+		diary;
+	end
 
 	recode_labels=zeros(size(dataset,1),1); %holds CORRECT 0/1 classes
 	outputs = [];soft_outputs=[];
+>>>>>>> younglab_scripts
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 	for t=1:size(dataset,1)
         if strcmp(labeled_data{t},cnames{2}) %if this item is a member of class 2
@@ -47,6 +70,12 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 			%labels returns the label for each trial in testing
 			%softscores: t x 2 matrix of soft scores, where softscores(t,1) contains the score for the trial
 			%being classified, for the first class
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			labels
+=======
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 			class1ness=softscores(:,1);
 			output_class1=find(class1ness==max(class1ness)); %which of the two is more class-1-ish?
 			if output_class1==1 %i.e. the actual class 1 item was the more class-1-ish
@@ -54,6 +83,10 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 			else
 				soft_outputs=[soft_outputs;0];
 			end
+<<<<<<< HEAD
+=======
+>>>>>>> younglab_scripts
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
             
 			is_correct=(strcmp(labels{1},cnames{1}))&&(strcmp(labels{2},cnames{2}));
 			% 1 if there are no differences (i.e. the labels were correctly predicted)
@@ -67,6 +100,17 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 	end
 
 	corracc=(length(find(outputs==1)))/length(outputs);
+<<<<<<< HEAD
+	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
+=======
+<<<<<<< HEAD
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
+% 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+=======
 	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
 % 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+	if diary_on
+		diary off;
+	end
+>>>>>>> younglab_scripts
 end

@@ -81,7 +81,14 @@ function roi_svm(rootdir,study,subj_tag,resdir,sub_nums,conditions,g1,g2,cnames,
         
     	clear mask_img;
 
+<<<<<<< HEAD
 	
+=======
+	    disp(['Processing correlations...'])
+	    triangle = ((conditions^2)/2)-(conditions/2);
+	    bigmat = zeros(mask_length,triangle);
+	    corrs  = zeros(1);
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
         
 	    spherebetas = zeros(mask_length,conditions);
         

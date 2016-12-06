@@ -61,15 +61,26 @@ function searchlight_all(study,subj_tag,resdir,sub_nums,conditions,sph,behav_tag
 
 	for subj=1:length(subjIDs) %grabbing beta images
 
+<<<<<<< HEAD
 		disp(['Processing subject' subjIDs{subj} '.']);
+=======
+		disp(['Processing subject ' subjIDs{subj} '.']);
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 		load(fullfile(rootdir, study, 'behavioural' ,['behav_matrix_' subjIDs{subj} '_' behav_tag '.mat']));
         behav_matrix = sim2tril(behav_matrix);
 
 	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
+<<<<<<< HEAD
 	    betadir = dir('beta_*nii');betafiles=cell(conditions,1);
 	    for i=1:length(betadir)
 	        betafiles{i} = betadir(i).name;
 	    end
+=======
+	    betadir = dir('beta_item*nii');betafiles=cell(conditions,1);
+	    for i=1:conditions
+	        betafiles{i} = betadir(i).name;
+        end
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	    disp('Loading beta files...')
 %         disp([repmat([fullfile(rootdir,study,subjIDs{subj},'results/DIS_results_itemwise_normed/')],conditions,1) char(betafiles) repmat(',1',conditions,1)]);
 	    subimg    = spm_vol([repmat([fullfile(rootdir,study,subjIDs{subj},'results',[resdir '/'])],conditions,1) char(betafiles) repmat(',1',conditions,1)]); %spm_vol reads header info
@@ -92,6 +103,10 @@ function searchlight_all(study,subj_tag,resdir,sub_nums,conditions,sph,behav_tag
 	        if length(goodrows) > 9 % if there are at least 10 good voxels in this sphere
 	            simmat      = corrcoef(spherebetas(goodrows,:));% item similarities for this subject
 	            temp        = tril(simmat,-1); % tril() gets lower triangle of matrix
+<<<<<<< HEAD
+=======
+               
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 	            bigmat(i,:) = temp(temp~=0)';% we now have a triangle x 1 matrix
 	            temp        = corrcoef( behav_matrix , bigmat(i,:)' ); %correlation with behavioral matrix
 	            corrs(i)    = temp(2,1); %save a correlation value for this voxel

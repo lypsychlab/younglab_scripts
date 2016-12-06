@@ -110,7 +110,12 @@ if ~exist('roi','dir');
 end
 save(fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']), 'ROI','xY','-mat');
 cd(fullfile(subjects{i},'roi'));
+<<<<<<< HEAD
 mat2img( fullfile(subjects{1},res_dir,'spmT_0001.nii'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
+=======
+
+mat2img( fullfile(subjects{1},res_dir,'spmT_0001.img'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
+>>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 % update log
 notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(z_idx)};
