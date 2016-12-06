@@ -124,9 +124,9 @@ end
 		
 function sSubjs = resultsDirFinderator()
     expRoot		= '/younglab/studies/';
-studyName	= 'SHAPES' % input(sprintf('Study name:\t\t'),'s');
+studyName	= 'RACA' % input(sprintf('Study name:\t\t'),'s');
     taskName    = 'YOU_*' % input(sprintf('Subject name (i.e., ''YOU_SHAPES_*''):\t'),'s');
-    resultName	= 'VIDS_all_results_normed_by_secs' % input(sprintf('Results folder name:\t'),'s');
+    resultName	= 'RACA_postscan_results_normed_smoothed' % input(sprintf('Results folder name:\t'),'s');
 
         
     studyDir	= [expRoot studyName '/'];

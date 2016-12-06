@@ -212,7 +212,6 @@ else
             [0 1 2], 0);
         
     end
-    %for i = 1:8
     for i = 1:num_sess
         switch spm_ver
             case {1,2}
@@ -299,7 +298,6 @@ mv_data = [];
 for i = 1:length(M)
     mv_data = vertcat(mv_data,M{i});
 end
-
 %in FSL order of fields is three Euler angles (x,y,z in radians) then
 %three translation params (x,y,z in mm).
 %in SPM: x y z pitch roll yaw
@@ -1855,7 +1853,7 @@ while(~strcmp(s,'end'))
     end
     s = fscanf(fp,'%s',1);
 end
-
+% keyboard
 M = {};
 P = {};
 % read the filenames
@@ -1898,6 +1896,10 @@ while(~strcmp(s,'end'))
                     if ~isempty(dir(strprepend('rp_',strprepend(-n1,fullfile(tmotion_dir,s)),'.txt'))),
                         M{sess} = load(strprepend('rp_',strprepend(-n1,fullfile(tmotion_dir,s)),'.txt'));
                         break;
+                    else if ~isempty(dir(strprepend('concat_rp_',strprepend(-n1,fullfile(tmotion_dir,s)),'.txt'))),
+                        M{sess} = load(strprepend('concat_rp_',strprepend(-n1,fullfile(tmotion_dir,s)),'.txt'));
+                        break;
+                    end
                     end
                 end
                 if isempty(M{sess}),error(['No motion file found: ',strprepend('rp_',fullfile(tmotion_dir,s),'.txt'),' or similar']); end

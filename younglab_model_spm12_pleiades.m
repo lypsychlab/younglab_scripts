@@ -659,7 +659,7 @@ for subj = 1:length(subject)
                     % nevertheless, you must code onsets assuming the first
                     % image is 1.
                     SPM.Sess(run).U(cond).ons    = spm_inputs(cond).ons - 1;  % onsets in scans. 
-                    SPM.Sess(run).U(cond).name   = {spm_inputs(cond).name};   % name of condition; string from spm_inputs.name
+                    SPM.Sess(run).U(cond).name   = {spm_inputs(cond).name};   % string from spm_inputs.name
                     SPM.Sess(run).U(cond).dur    = spm_inputs(cond).dur;      % duration in scans from spm_inputs.dur
                     SPM.Sess(run).U(cond).P.name = 'none';                    % 'none' | 'time' | 'other'
                 end

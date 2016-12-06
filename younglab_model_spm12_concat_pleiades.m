@@ -221,6 +221,9 @@ mask_over        = 1;
 dont_smash		 = 0;
 old_names		 = 0;
 clobber_bit		 = 0;
+cflag = 1;
+
+
 
 defaults.maskthresh = maskthresh;
 defaults.filter_frequency = filter_frequency;
@@ -312,6 +315,8 @@ for i = 5:length(varargin)
 			dont_smash = 1;
 		case 'clobber'
 			clobber_bit = 1;
+        case 'no_con'
+            cflag = 0;
         otherwise
             try
                 eval(varargin{i});
@@ -350,13 +355,14 @@ inStruct.old_names = old_names;
 inStruct.src_data_flag = src_data_flag;
 inStruct.dont_smash = dont_smash;
 inStruct.clobber_bit = clobber_bit;
+inStruct.cflag = cflag;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % begin modeling
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 mkdir(fullfile(EXPERIMENT_ROOT_DIR,study,'logs'));
-diary(fullfile(EXPERIMENT_ROOT_DIR,study,'logs',['younglab_model_spm12_parametric_noruns_ieh_' date '.txt']));
+diary(fullfile(EXPERIMENT_ROOT_DIR,study,'logs',['younglab_model_spm12_concat_' date '.txt']));
 tic;
 [ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
 
@@ -532,11 +538,15 @@ for subj = 1:length(subject)
                 fprintf(fid,'use_diff_global:       %s\n','While this analysis may have the artifact regressors integrated, art_batch was not run.');
             end
 
-            
-            for cond=1:2
+            %initialize empty holders for onsets/durations
+            load(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural',parafiles{1}),'spm_inputs');
+            for cond=1:length(spm_inputs)
                 SPM.Sess(1).U(cond).ons=[]
                 SPM.Sess(1).U(cond).dur=[];
             end
+            clear spm_inputs;
+
+
             for run = 1:num_runs
                 disp(['Processing run ' num2str(run) '...']);
                 cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
@@ -614,7 +624,7 @@ for subj = 1:length(subject)
                 
                 for cond = 1:length(spm_inputs)
                     % disp(['Filling inputs for condition ' spm_inputs(cond).name{1} '...']); 
-                    disp(['Filling inputs for condition ' spm_inputs(cond).name '...']); 
+                    disp(['Filling inputs for condition ' spm_inputs(cond).name{1} '...']); 
 
                     % SUBTRACTING 1 BECAUSE SPM FIRST IMAGE = 0
                     % this is later fixed in jc_get_design before
@@ -867,17 +877,18 @@ for subj = 1:length(subject)
             %     con_name{end+1}=['Run_' num2str(k)];
             %     con_vals{end+1}=[zeros(1,conlength) cv(k,:)];
             % end
-
-            load(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural',parafiles{1}),'con_info');
-            total_len=length(SPM.Vbeta);
-            for thiscon=1:length(con_info)
-                if length(con_info(thiscon).vals)<total_len
-                    con_info(thiscon).vals = [con_info(thiscon).vals zeros(1,total_len-length(con_info(thiscon).vals))];
-                end
-                if isempty(SPM.xCon)
-                    SPM.xCon=spm_FcUtil('Set', con_info(thiscon).name{1}, 'T', 'c', con_info(thiscon).vals',SPM.xX.xKXs);
-                else
-                    SPM.xCon(end+1)=spm_FcUtil('Set', con_info(thiscon).name{1}, 'T', 'c', con_info(thiscon).vals',SPM.xX.xKXs);
+            if inStruct.cflag == 1
+                load(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural',parafiles{1}),'con_info');
+                total_len=length(SPM.Vbeta);
+                for thiscon=1:length(con_info)
+                    if length(con_info(thiscon).vals)<total_len
+                        con_info(thiscon).vals = [con_info(thiscon).vals zeros(1,total_len-length(con_info(thiscon).vals))];
+                    end
+                    if isempty(SPM.xCon)
+                        SPM.xCon=spm_FcUtil('Set', con_info(thiscon).name{1}, 'T', 'c', con_info(thiscon).vals',SPM.xX.xKXs);
+                    else
+                        SPM.xCon(end+1)=spm_FcUtil('Set', con_info(thiscon).name{1}, 'T', 'c', con_info(thiscon).vals',SPM.xX.xKXs);
+                    end
                 end
             end
 

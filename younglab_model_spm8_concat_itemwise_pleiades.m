@@ -713,6 +713,7 @@ for subj = 1:length(subject)
                     end
                     for reg=1:length(user_regressors)
                         start_ind=(run-1)*ips + 1; end_ind=start_ind+(ips-1);
+                        % keyboard
                         SPM.Sess(1).C.C(start_ind:end_ind,ncols+reg) = user_regressors(reg).ons;  % [n x c double] covariates (n=regressor, c=vector of images)
                         if run==1
                             SPM.Sess(1).C.name = [{SPM.Sess(1).C.name{:}} {user_regressors(reg).name}];   % [1 x c cell] - append to condition names

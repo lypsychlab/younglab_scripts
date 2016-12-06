@@ -1,11 +1,12 @@
 function roi_mvpa(study,sub_nums,resdir,thiscond,roiname,outfile)
-% mat_file_name = 'zero_mean_TC_RTPJ.mat';% mat_file_name = name of TC .mat file
-base_dir    = fullfile('/home/younglw',study); % Where the subjects' data is kept
+
+
+base_dir    = fullfile('/home/younglw'); % Where the subjects' data is kept
 results_dir = resdir;
-mkdir(fullfile(base_dir,'MVPA'));
+mkdir(fullfile(base_dir,study,'MVPA'));
 
+addpath(genpath('/usr/public/spm/spm12'));
 
-spm_get_defaults; warning off;
 subj_dirs={};sessions={};
 for thissub=1:length(sub_nums)
     subj_dirs{end+1}=sprintf('SAX_DIS_%02d',sub_nums(thissub));
@@ -32,10 +33,10 @@ for s=sub_nums
 end
 bolddirs_all=sessions;
 
-average_performance_ex_mask=zeros(1,length(subj_dirs));
+average_performance_ex_mask=zeros(length(subj_dirs),1);
 
 
-cd(fullfile(base_dir,'behavioural'));
+cd(fullfile(base_dir,study,'behavioural'));
 load categories;
 disp(['Training classifier ' categories(thiscond).name]);
 
@@ -83,7 +84,7 @@ for subj = 1:length(subj_dirs)
         
         spherebetas = zeros(mask_length,60);
         
-        for one_beta=1:conditions
+        for one_beta=1:60
             this_beta=Y(:,:,:,one_beta);
             for icoords = 1:mask_length % for each voxel
                 spherebetas(icoords,one_beta) = this_beta(mask_inds(icoords));
@@ -97,12 +98,22 @@ for subj = 1:length(subj_dirs)
         keep_inds=find(~isnan(labeled_data));
         spherebetas=spherebetas(keep_inds,:);
         labeled_data=labeled_data(keep_inds);
-        
+
         cnames=categories(thiscond).cnames;    
 
+        labels=cell(length(labeled_data),1);
+        for thislab=1:length(labeled_data)
+            if labeled_data(thislab)==0
+                labels{thislab}=cnames{1};
+            else
+                labels{thislab}=cnames{2};
+            end
+        end
+        
 
-        accuracy=younglab_svm(spherebetas,labeled_data,cnames,...
-        fullfile(base_dir,study,'SVM',[subj_dirs{subj} '.' outfile]));
+
+        accuracy=younglab_svm(spherebetas,labels,cnames,...
+        fullfile(base_dir,study,'MVPA',[subj_dirs{subj} '.' outfile]));
 
                     
         average_performance_ex_mask(subj)= accuracy;
@@ -113,8 +124,9 @@ for subj = 1:length(subj_dirs)
     end
 end; %%% End of loop through subjects
 
-[H,P,CI,STATS]=ttest(average_performance_ex_mask,0.5,0.05,'right')
+% keyboard
+[H,P,CI,STATS]=ttest(nonzeros(average_performance_ex_mask),0.5,0.05,'right');
 
-cd(fullfile(base_dir,'MVPA'));
-save(['average_performance_ex_mask_RTPJ_' outfile '.txt'],'average_performance_ex_mask','-ascii');
+cd(fullfile(base_dir,study,'MVPA'));
+save(['average_performance_ex_mask_RTPJ_' outfile '.mat'],'average_performance_ex_mask','H','P','CI','STATS');
 end %end function

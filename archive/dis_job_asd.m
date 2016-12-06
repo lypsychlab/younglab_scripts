@@ -1,0 +1,42 @@
+%-----------------------------------------------------------------------
+% Job saved on 08-Dec-2015 15:06:09 by cfg_util (rev $Rev: 6460 $)
+% spm SPM - SPM12 (6470)
+% cfg_basicio BasicIO - Unknown
+%-----------------------------------------------------------------------
+rootdir='/home/younglw/server/englewood/mnt/englewood/data';study='PSYCH-PHYS';
+cd(fullfile(rootdir,study));
+tagnames={'phys_fourcondsCross' 'psyc_fourcondsCross' 'inc_fourcondsCross' 'path_fourcondsCross' 'incVpath_fourcondsCross' 'physVpsyc_fourcondsCross'};
+for t=1:length(tagnames)
+matlabbatch{1}.spm.stats.factorial_design.dir = {['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/results/' tagnames{t} '_ASD/']};
+% sub_nums=[3:20 22:24 27:35 38:42 44:47];
+% subjIDs=cell(length(sub_nums),1);
+% for sub=1:length(sub_nums)
+%     subjIDs{sub}=char(sprintf(['SAX_DIS_' '%02d'],sub_nums(sub)));
+% end 
+% repmat(['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/' char(subjIDs) '/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']],39,1)
+matlabbatch{1}.spm.stats.factorial_design.des.t1.scans = {
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_18/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_15/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_16/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_17/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_19/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_20/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_22/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_23/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_24/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_29/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_30/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_31/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_39/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                          ['/home/younglw/server/englewood/mnt/englewood/data/PSYCH-PHYS/SAX_DIS_44/results/DIS_results_itemwise_normed/RSA_searchlight_regress_' tagnames{t} '.img,1']
+                                                         };
+matlabbatch{1}.spm.stats.factorial_design.cov = struct('c', {}, 'cname', {}, 'iCFI', {}, 'iCC', {});
+matlabbatch{1}.spm.stats.factorial_design.multi_cov = struct('files', {}, 'iCFI', {}, 'iCC', {});
+matlabbatch{1}.spm.stats.factorial_design.masking.tm.tm_none = 1;
+matlabbatch{1}.spm.stats.factorial_design.masking.im = 1;
+matlabbatch{1}.spm.stats.factorial_design.masking.em = {''};
+matlabbatch{1}.spm.stats.factorial_design.globalc.g_omit = 1;
+matlabbatch{1}.spm.stats.factorial_design.globalm.gmsca.gmsca_no = 1;
+matlabbatch{1}.spm.stats.factorial_design.globalm.glonorm = 1;
+output_list=spm_jobman('run',matlabbatch);
+end

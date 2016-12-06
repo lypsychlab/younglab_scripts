@@ -123,7 +123,7 @@ end
 end
 		
 function sSubjs = resultsDirFinderator(sname, tname, rname)
-    expRoot		= '/younglab/studies/';
+    expRoot		= '/home3/younglw/';
     studyName	= sname; %input(sprintf('Study name:\t\t'),'s');
     taskName    = tname; %input(sprintf('Subject name (i.e., ''YOU_SHAPES_*''):\t'),'s');
     resultName	= rname; %input(sprintf('Results folder name:\t'),'s');
@@ -135,7 +135,8 @@ function sSubjs = resultsDirFinderator(sname, tname, rname)
     cd(studyDir)
     [a subjs] = system(sprintf('ls *%s*/results/*%s* -dm',taskName,resultName));
     subjs = regexp(subjs,', *','split');
-    [s,v] = listdlg('PromptString',sprintf('Please select your result directories (ctrl+click selects multiple)'),'ListString',subjs,'ListSize',[500 600]);
+%     [s,v] = listdlg('PromptString',sprintf('Please select your result directories (ctrl+click selects multiple)'),'ListString',subjs,'ListSize',[500 600]);
+    s = 1
     for i=1:length(s)
         sSubjs{i} = [studyDir subjs{i} '/SPM.mat'];
     end

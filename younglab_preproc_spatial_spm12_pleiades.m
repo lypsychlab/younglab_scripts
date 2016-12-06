@@ -82,8 +82,8 @@ function younglab_preproc_spatial_spm12_pleiades (varargin)
 addpath(genpath('/usr/public/spm/spm12'));
 spm fmri
 global EXPERIMENT_ROOT_DIR;
-EXPERIMENT_ROOT_DIR = '/home/younglw';
-addpath(genpath('/home/younglw/scripts'));
+EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
+addpath(genpath('/home/younglw/lab/scripts'));
 
 pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment - 
 %           doubles # of functional runs) - tells the script to process

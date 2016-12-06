@@ -15,8 +15,6 @@ function conn_BATCH_setup(varargin)
 %	'roi' for ROI-ROI
 %	'seed' for seed-voxel
 %	'voxel' for voxel-voxel
-% filename:
-% 	- specify a name for your .mat project. 
 %
 %On/Off Parameters:
 %mask_subject:
@@ -46,6 +44,8 @@ function conn_BATCH_setup(varargin)
 % 	- 1: search for SPM.mat files
 %
 %User-specified parameters:
+% filename:
+% 	- specify a name for your .mat project. (if absent, script auto-generates an ugly project name)
 % filt:
 % 	- specify a bandpass filter [lower upper]
 % confounds:
@@ -86,9 +86,9 @@ function conn_BATCH_setup(varargin)
 	%non-binary optionals (if user specifies this param, param value changes to user's specification)
 	filename={};
 	filt=0;
-	confounds={};
+	confounds=0;
+	% steps=0;
 	subjects_info={};
-    conditions={};
 	
 	param_names={'filt' 'confounds' 'steps' 'filename'};
 
@@ -111,12 +111,11 @@ function conn_BATCH_setup(varargin)
 	subjIDs=varargin{2};
 	sessions=varargin{3};
 	an=varargin{4};
-	filename=varargin{5};
 
 	disp('Mandatory parameters set. Checking for optional parameters...')
 	%check for optional parameters
-	if nargin>5
-		for param=6:nargin
+	if nargin>4
+		for param=5:nargin
 			switch varargin{param}
 				case 'mask_subject'
 					mask_subject=1;
@@ -140,10 +139,15 @@ function conn_BATCH_setup(varargin)
 				case 'choose_roi'
 					default_roi=0;
 					choose_roi='choose_roi';
-				case 'subjects_info'
-                    subjects_info=evalin('base',varargin{param});
-                case 'conditions'
-                    conditions=evalin('base',varargin{param});
+				otherwise
+					for i=1:length(param_names)
+						if strfind(varargin{param}, param_names(i))
+							eval(varargin{param});
+						else
+							warning('Unrecognized or incorrect parameter!')
+							return;
+						end
+					end
 			end
 		end
 	end
@@ -153,26 +157,40 @@ function conn_BATCH_setup(varargin)
 
 	EXPERIMENT_ROOT_DIR='/younglab/studies/';
 	cd(fullfile(EXPERIMENT_ROOT_DIR,study));mkdir('conn');cd(fullfile(pwd,'conn'));
-	save_filename=[filename '.mat'];
+	if isempty(filename) %makes a gross default filename
+		filename=[study '_' strjoin(subjIDs,'.') '_' strjoin(an,'.')]; %strjoin DOES NOT WORK IN 2012b
+	end
 	filename=fullfile(EXPERIMENT_ROOT_DIR,study,'conn',['conn_' filename '.mat']),
 	clear BATCH;
 	BATCH.filename=filename;
 	BATCH.Setup.isnew=new;
+	% %if new:
+	% BATCH.New.steps={};
+	% for sub=1:length(subjIDs)
+	% 	BATCH.New.structurals{sub}='%path to struct image'
+	% 	for sess=1:length(sessions)
+	% 		BATCH.New.functionals{sub}{sess}='path to func image';
+	% 	end
+	% end
+	% BATCH.New.RT=;%specify inter-scan acquisition time in seconds
+	% BATCH.New.sliceorder=[];
+	% BATCH.New.template_structural='path to spms T1 image'
+	% %check input parameters for steps
+	% %if 'smoothing':
+	% BATCH.New.FWHM=8; %specify fwhm
+	% %if 'coregistration' or 'normalization'
+	% BATCH.New.VOX=2; %specify voxel size
 
 	%1. SETUP
 
-	BATCH.Setup.nsubjects=length(subjIDs);
-    BATCH.Setup.RT=2;
-    ips=166;
+	
     
-    %find SPM.mat files, if necessary
 	if spmfiles
 		for sub=1:length(subjIDs)
 			BATCH.Setup.spmfiles{sub}=fullfile(EXPERIMENT_ROOT_DIR,study,subjIDs{sub},'SPM.mat');
 		end
-    end
+	end
 
-    %set first-level analysis type
 	BATCH.Setup.analyses=[];
 	for a=1:length(an)
 		switch an{a,:}
@@ -192,7 +210,7 @@ function conn_BATCH_setup(varargin)
 		BATCH.Setup.voxelmask=2;
 	else
 		BATCH.Setup.voxelmask=1;
-		BATCH.Setup.voxelmaskfile='/software/spm12/toolbox/OldNorm/brainmask.nii'; 
+		BATCH.Setup.voxelmaskfile='/software/spm12/toolbox/OldNorm/brainmask.nii'; %REPLACE MIDDLE ARG W/CORRECT PATH
 	end
 
 	%specify voxel resolution: 
@@ -215,32 +233,22 @@ function conn_BATCH_setup(varargin)
 	prev_dir=pwd;
 	for sub=1:length(subjIDs)
         d = fullfile(EXPERIMENT_ROOT_DIR,study,subjIDs{sub},'3danat/');
-        p = fullfile(d,'ws*.nii');
+        p = fullfile(d,'ws*.img');
 		anatdir=dir(p);
 		BATCH.Setup.structurals{sub}=fullfile(d,anatdir(1).name);
 		for sess=1:length(sessions{sub}) %for every session specified for this subject
-			sessdir=fullfile(EXPERIMENT_ROOT_DIR,study,subjIDs{sub},'bold',sprintf('%03d',sessions{sub}(sess)), '/');
+			sessdir=fullfile(EXPERIMENT_ROOT_DIR,study,subjIDs{sub},'bold',['0' num2str(sessions{sub}(sess)) '/']);
 			cd(sessdir); %go to that session's folder
 			funcdir_tmp=dir('swraf*.img'); %find all the preprocessed images for that session (there will be many)
-			funcdir=[];
+			funcdir={};
             for fl=1:length(funcdir_tmp) %for all of those images 
-				funcdir=[funcdir ;fullfile(sessdir,funcdir_tmp(fl).name)]; %we want only the path to the name (funcdir contains other metadata)
+				funcdir{fl}=fullfile(sessdir,funcdir_tmp(fl).name); %we want only the path to the name (funcdir contains other metadata)
 			end
 			BATCH.Setup.functionals{sub}{sess}=funcdir; %fill .functionals with ALL the .imgs for that session
 		end
 	end
 	cd(prev_dir);
-    
-    %check to make sure sessions aren't missing scans
-    for s=1:BATCH.Setup.nsubjects
-        for sess=1:6
-            if length(BATCH.Setup.functionals{s}{sess})~=ips
-                sprintf('Problem with subject %s session %s functional data:',subjIDs{s},num2str(sessions{s}(sess)))
-                sprintf('Incorrect number of scans present.')
-            end
-        end
-    end
-    
+
 	%specify source of unsmoothed BOLD signal volumes for ROI timeseries extraction
 	%currently defaults to using BATCH.setup.functionals files without leading s
 	BATCH.Setup.roiextract=2;
@@ -266,27 +274,43 @@ function conn_BATCH_setup(varargin)
 		end
 		cd(prev_dir);
 
+		% find_structure('choose_mask',EXPERIMENT_ROOT_DIR,study);
+		% BATCH.Setup.Grey.files=choose_mask.Grey.files; %each element of files should be a path to the desired image
+		% BATCH.Setup.Grey.dimensions=choose_mask.Grey.dimensions; %CONN defaults are 1 component for Grey, 16 for White/CSF
+		% BATCH.Setup.White.files=choose_mask.White.files;
+		% BATCH.Setup.White.dimensions=choose_mask.White.dimensions;		
+		% BATCH.Setup.CSF.files=choose_mask.CSF.files;
+		% BATCH.Setup.CSF.dimensions=choose_mask.CSF.dimensions;
+
 	end
 
 	%BATCH.Setup.rois
-	%can use this to fill in ROI information from subject-specific roi
-	%files
+	%can use this to fill in ROI information from choose_roi structure
 	%left unspecified, CONN will use ROI files in /.conn/rois
 	if default_roi
 		;
 	else
-		BATCH.Setup.rois=make_roi_struct(study,subjIDs); 
-    end
+		BATCH.Setup.rois=make_roi_struct(study,subjIDs); %
+		
+		% find_structure('choose_roi',EXPERIMENT_ROOT_DIR,study);
+		% BATCH.Setup.rois.names=choose_roi.names;
+		% BATCH.Setup.rois.dimensions=choose_roi.dimensions;
+		% for nm=1:length(choose_roi.names)
+		% 	BATCH.Setup.rois.files{nm}=choose_roi.files{nm};
+		% end
+	end
 
-    %checking whether user specified second-level covariates & conditions
+	%we assume that conditions and covariates information is pulled from BATCH.setup.spmfiles
+
+	%if we want to explicitly specify covariate/confound/2nd-level information from previously created .mats:
+	% if find_all_structures
+	% 	find_all_structures(EXPERIMENT_ROOT_DIR,study,'conn');
+	% end
+
 	if ~isempty(subjects_info)
-		BATCH.Setup.subjects=subjects_info;
-    end
+		BATCH.Setup.subjects=subjects_info
+	end
 
-    if ~isempty(conditions)
-		BATCH.Setup.conditions=conditions;
-    end
-    
 	%tell CONN to segment anatomical volumes and extract ROI data
 	BATCH.Setup.done=1;
 
@@ -298,7 +322,7 @@ function conn_BATCH_setup(varargin)
 	end
 
 	%END SETUP
-	disp('Setup complete. Preparing preprocessing info...')
+	disp('Setup complete. Begin preprocessing...')
 
 
 	%BEGIN PREPROCESSING
@@ -308,7 +332,7 @@ function conn_BATCH_setup(varargin)
 		filt=[0.01 0.1];
     end
 	
-    BATCH.Preprocessing.filter=filt;
+		BATCH.Preprocessing.filter=filt;
 	
 
 	%optionally choose to detrend/despike
@@ -321,8 +345,13 @@ function conn_BATCH_setup(varargin)
 	end
 
 	%specify confounds with confounds structure
-	if ~isempty(confounds)
-        BATCH.Preprocessing.confounds=confounds;
+	if confounds==0 %no confounds specified
+		; %use CONN's defaults
+	else
+		find_structure('confounds',EXPERIMENT_ROOT_DIR,study)
+		BATCH.Preprocessing.confounds.names=confounds.names;
+		BATCH.Preprocessing.confounds.dimensions=confounds.dimensions;
+		BATCH.Preprocessing.confounds.deriv=confounds.deriv;
 	end
 
 	%tell CONN to perform confound removal and filter the residual BOLD signal
@@ -335,11 +364,11 @@ function conn_BATCH_setup(varargin)
 	end
 
 	%END PREPROCESSING
-	disp('Preprocessing setup complete.')
+	disp('Preprocessing structure complete.')
 
 	cd(fullfile(EXPERIMENT_ROOT_DIR,study,'conn')); 
-	sprintf('Saving BATCH as %s in directory %s.',save_filename,pwd)
-	save(save_filename,'BATCH','an');
+	sprintf('Saving BATCH as %s in directory %s.',filename,pwd)
+	save(filename,'BATCH','an');
 	
 end %end conn_BATCH_setup
 
@@ -348,3 +377,4 @@ end %end conn_BATCH_setup
 
 
 
+%note for later: functions have their own workspaces so BATCH will NOT be shared across processing functions unless you save/load as .mat

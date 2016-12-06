@@ -249,7 +249,7 @@ subject         = varargin{2};
 
 % set the root directory here based on study / subject pair
 
-z = adir(fullfile('/younglab/studies*',char(study),char(subject)));
+z = adir(fullfile('/home/younglw*',char(study),char(subject)));
 if ~iscell(z)
     disp('error: cannot locate your study! please check your spelling!');
     return

@@ -1,20 +1,20 @@
 function DIS_mvpa()
 
 %April 122, for DIS
+%August 19, 2014 for DIS on Pleiades (inc)
 
-
-savedirectory = '/younglab/studies/DIS_MVPA/MVPA_data_raw_SAX_DIS_03_Jorie'
+savedirectory = '/home/younglw/DIS_2mm/MVPA_replicate/MVPA_domain_nondirectional_smoothed_normed'
 mkdir(savedirectory,'MVPA_images');
 
 roiFiles = {'RTPJ'}; %{'RTPJ','LTPJ','PC','DMPFC'}
 group = 0;
-group_loc = '/younglab/roi_library/newrois';
+group_loc = '/home/younglw/roi_library/newrois';
 parametric = 1; 
 
 experiments=struct(...
     'name','DIS',...
-    'pwd1','/younglab/studies/DIS_MVPA/',...   %folder with participants 
-    'pwd2','results/DIS_results_normed_Jorie',...   %inside each participant, path to .spm   
+    'pwd1','/younglw/DIS_2mm/DIS_MVPA/',...   %folder with participants 
+    'pwd2','results/DIS_results_smoothed_normed',...   %inside each participant, path to .spm   
     'data',{{'SAX_DIS_03'}});
 %   'data',{{'SAX_DIS_03',	'SAX_DIS_04','SAX_DIS_05',	'SAX_DIS_06',	'SAX_DIS_07',	'SAX_DIS_08',	'SAX_DIS_09',...
 %       'SAX_DIS_10',	'SAX_DIS_11',	'SAX_DIS_12',	'SAX_DIS_13',	'SAX_DIS_14', 'SAX_DIS_27', 'SAX_DIS_28',...

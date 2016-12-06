@@ -193,16 +193,7 @@ global skip_art;
 global mask_over;
 global defaults;
 
-% add FSL to the path and set FSL environment variables
-% setenv('PATH',[getenv('PATH') ':/usr/lib/fsl/5.0']);
-% setenv('FSLDIR','/usr/local/fsl');
-% setenv('FSLOUTPUTTYPE','NIFTI_GZ');
-
-<<<<<<< HEAD
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
-=======
-EXPERIMENT_ROOT_DIR = '/mnt/englewood/data';
->>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
+EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
 TR               = 2;
 src_data_flag    = 'normed'; 
 RT_flag          = 0;
@@ -444,7 +435,7 @@ ErrorLog={};SPM=[];
 if strmatch(src_data_flag,'normed')
     filter = 'swraf*img';
 elseif strmatch(src_data_flag,'unnormed')
-    filter = 'sraf*img';
+    filter = 'srf*img';
 else
     disp('src_data_flag: illegal value.  "normed" & "unnormed" allowed');
 end
@@ -805,7 +796,6 @@ for subj = 1:length(subject)
                     fprintf('\nThe ips doesn''t match the number of image files in\n');
                     fprintf('"%s/%s/%s/bold/%.3d" (run %d)\n\n',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(i),i);
                 end
-            
             end
             
             save SPM SPM
@@ -902,36 +892,16 @@ for subj = 1:length(subject)
     end % task loop
 end % subject loop
 end %function model
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function skullStripMaker(study, subj, maskthresh)
-%skullStripMaker calls FSL through the terminal to make a skull-stripped
-%structural mask.
-%It assumes that either you are running as root (in which case, the 
-%necessary line in /etc/bashrc is already there) or that the profile
-%under which you are running Matlab has the line:
-%. /etc/fsl/5.0/fsl.sh
-
     set(0,'DefaultFigureVisible','on');
     global mask_over;
     global inStruct;
-    
-<<<<<<< HEAD
-    directory = ['/younglab/studies/' study '/' subj '/3danat/'];
+    directory = ['/home/younglw/lab/' study '/' subj '/3danat/'];
     img = dir([directory 'ws0-0*-*-*-*.img']);
     if strcmp(inStruct.src_data_flag,'unnormed')|isempty(img) 
         img = dir([directory 's0-0*-*-*-*.img']);
-=======
-    directory = ['/mnt/englewood/data/' study '/' subj '/3danat/'];
-        if strcmp(inStruct.src_data_flag,'unnormed')
-        img = dir([directory 's0-0*-*-*-*.img']);
-        elseif strcmp(inStruct.src_data_flag,'normed')
-            img = dir([directory 'ws0-0*-*-*-*.img']);
-            if isempty(img)
-                img = dir([directory 'ws0-0*-*-*-*.nii']);
-            end
->>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
         if isempty(img)
             pwd1 = pwd;
             cd(directory);
@@ -945,7 +915,6 @@ function skullStripMaker(study, subj, maskthresh)
         else
             img = [directory img.name];
         end
-<<<<<<< HEAD
     elseif length(img) > 1
         pwd1 = pwd;
         cd(directory);
@@ -954,44 +923,19 @@ function skullStripMaker(study, subj, maskthresh)
     else
         img = [directory img.name];
     end
-=======
-    end
-
->>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
     fprintf('%s\n',img);
     fprintf('Making mask image...\n');
-%     if mask_over == 0
-%         fprintf('Skipping mask creation.');
-%         V = spm_vol([directory 'skull_strip_mask.nii']);
-%         Vo = struct('fname',[directory 'skull_strip_mask.img'],'dim',[V(1).dim(1:3)],'dt',[spm_type('float32'), 1],'mat',V(1).mat,'descrip','spm - algebra','mask',1);
-%         Vo = spm_imcalc(V,Vo,'i1>0');
-%     end
     if ~exist([directory 'skull_strip_mask.img'],'file') | mask_over
         if exist([directory 'skull_strip_mask.img'],'file')
             fprintf('Old mask found!\n');
-            fprintf('Attempting to remove skull_strip_mask files...\n');
-            cmd = sprintf('/bin/bash --login -c ''rm -rf %s''',[directory 'skull_strip_mask*']);
-            system(cmd);
-            check_if_there = dir([directory 'skull_strip_mask*']);
-            if length(check_if_there) == 0
-                fprintf('Old files successfully removed!\n');
-            else
-                fprintf('Old files not successfully removed; check your 3danat folder.\n');
-                return
-            end
+            fprintf('Attempting to remove old mask...\n');
+            eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.nii.gz']));
+            eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.nii']));
+            fprintf('Old mask removed, making new mask...\n');
         end
-        try
-            cmd = sprintf('/bin/bash --login -c ''bet %s %s -f %0.01f''',...
-                img,[directory 'skull_strip_mask'],maskthresh);
-            system(cmd);
-            fprintf('Mask image made, unzipping...\n');
-            cmd = sprintf('/bin/bash --login -c ''gunzip %s.nii.gz -f''',...
-                [directory 'skull_strip_mask']);
-            system(cmd);
-        catch
-            fprintf('Could not make mask. Terminating skullStripMaker now.\n');
-            return
-        end
+        eval(sprintf('!bet %s %s -f %0.01f',img,[directory 'skull_strip_mask'],maskthresh));
+        fprintf('Mask image made, unzipping...\n');
+        eval(sprintf('!gunzip %s.nii.gz -f',[directory 'skull_strip_mask']));
         fprintf('Constructing binary brain mask...\n');
         V = spm_vol([directory 'skull_strip_mask.nii']);
         Vo = struct('fname',[directory 'skull_strip_mask.img'],'dim',[V(1).dim(1:3)],'dt',[spm_type('float32'), 1],'mat',V(1).mat,'descrip','spm - algebra','mask',1);

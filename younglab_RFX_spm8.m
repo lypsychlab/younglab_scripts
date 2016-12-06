@@ -36,10 +36,9 @@ function younglab_RFX_spm8(study,task,subjs,confile,varargin)
 
 
 %===============  Set-up the Directories ==========================
-% EXPERIMENT_ROOT_DIR = '/younglab/studies';
-EXPERIMENT_ROOT_DIR = '/mnt/englewood/data';
+EXPERIMENT_ROOT_DIR = '/home3/younglw/lab';
 
-addpath(genpath('/software/spm8'));
+addpath(genpath('/usr/public/spm/spm8'));
 % Convert confile to array if scalar was provided:
 if ~(length(confile)-1)  %crude test for array vs float
     confile = confile*ones(1,length(subjs));

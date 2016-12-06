@@ -1,5 +1,7 @@
 function Amelia_younglab_create_contrast(name, conditions,values, varargin)
 
+%SHOULD BE OK FOR PLEIADES 8/19/14
+
 % younglab_create_contrasts(contrast name, {conditions}, [values])
 % conditions is a cell array of conditions
 %	- these can be partial matches (i.e., 'music' for Sn(1) e_music*bf(1))
@@ -30,10 +32,7 @@ function Amelia_younglab_create_contrast(name, conditions,values, varargin)
 
 % matching is CASE INSENSITIVE.
 
-% opengl software %nope, doesn't work
-
 %destsubjT = spm_select(Inf,'mat','Choose subject SPM.mat destination files for contrast copying.','',pwd,'SPM.*',1);
-
 destsubj = resultsDirFinderator();
 doassoc = 0;
 
@@ -126,7 +125,7 @@ end
 end
 		
 function sSubjs = resultsDirFinderator()
-    expRoot		= '/younglab/studies/';
+    expRoot		= '/home/younglw/';
     studyName	= input(sprintf('Study name:\t\t'),'s');
     taskName    = input(sprintf('Subject name (i.e., ''YOU_SHAPES_*''):\t'),'s');
     resultName	= input(sprintf('Results folder name:\t'),'s');

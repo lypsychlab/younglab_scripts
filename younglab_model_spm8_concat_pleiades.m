@@ -355,9 +355,6 @@ inStruct.clobber_bit = clobber_bit;
 % begin modeling
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-mkdir(fullfile(rootdir,study,'logs'));
-diary(fullfile(rootdir,study,'logs',['younglab_model_spm12_parametric_noruns_ieh_' date '.txt']));
-tic;
 [ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
 
 model_time_el = toc; 
@@ -490,7 +487,7 @@ for subj = 1:length(subject)
             mkdir(results_string);
             cd(results_string);
             rS1 = pwd;
-			percRetained = freqAnalyze_pleiades(study, subject{subj}, tasks{subj}{task}, filter_frequency, rS1);
+			% percRetained = freqAnalyze_pleiades(study, subject{subj}, tasks{subj}{task}, filter_frequency, rS1);
             set(0,'DefaultFigureVisible','Off');
             % Now, write metadata about the results to the directory
             if RT_flag == 1

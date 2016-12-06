@@ -81,9 +81,9 @@ function younglab_preproc_spatial (varargin)
 % <001...00n>             <task(s)>          ...   
 spm fmri
 global EXPERIMENT_ROOT_DIR;
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
+EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
 
-addpath(genpath('/software/spm8'));
+addpath(genpath('/usr/public/spm/spm8'));
 
 pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment - 
 %           doubles # of functional runs) - tells the script to process
@@ -194,7 +194,7 @@ for subj_index=1:length(subject)
     % constants (restore prep_seq in case it was changed in previous pass)
     realigned = 0; normalised = 0; prep_seq = orig_prep_seq;
     if mod(prep_seq,2)  % grabs even values of prep_seq
-%          try
+         try
             func_images = get_images(study, subjID, func_runs, realigned,normalised);
             fprintf ('==============================\n');
             fprintf ('Realigning subject %s\n',subjID);
@@ -205,11 +205,11 @@ for subj_index=1:length(subject)
             fprintf ('==============================\n');
             prep_seq = prep_seq-1;
             realigned = 1;
-%        catch
-%            fprintf ('==========================================\n');
-%            fprintf ('Realignment failed for subject %s\n',subjID);
-%            fprintf ('==========================================\n');
-%        end
+       catch
+           fprintf ('==========================================\n');
+           fprintf ('Realignment failed for subject %s\n',subjID);
+           fprintf ('==========================================\n');
+       end
     end
 
 
@@ -233,7 +233,7 @@ for subj_index=1:length(subject)
             fprintf ('Normalisation of functionals failed for subject %s\n',subjID);
             fprintf ('=========================================================\n');
         end
-%         try
+        try
             fprintf ('==========================================\n');
             fprintf ('Normalising subject %s anatomicals\n',subjID);
             fprintf ('==========================================\n');
@@ -241,11 +241,11 @@ for subj_index=1:length(subject)
             fprintf ('=========================================\n');
             fprintf ('     Anatomical normalisation complete\n');
             fprintf ('=========================================\n');
-%         catch
-%             fprintf ('=========================================================\n');
-%             fprintf ('Normalisation of anatomical failed for subject %s\n',subjID);
-%             fprintf ('=========================================================\n');
-%         end
+        catch
+            fprintf ('=========================================================\n');
+            fprintf ('Normalisation of anatomical failed for subject %s\n',subjID);
+            fprintf ('=========================================================\n');
+        end
     end
 
     if prep_seq == 4 % now if a 4 remains, smooth
@@ -253,7 +253,7 @@ for subj_index=1:length(subject)
         % toggle these to control the behavior of saxelab_prep_bch
         % when prep_seq=4 (comment "normalised" to smooth rrun data for
         % prep_seq=4 and wrrun when prep_seq>=6
-%          try
+         try
             % set smothing kernel relative to normalization
             if normalised==1; fullwhm = 5;% 5mm full width half max
             else          fullwhm = 8;% 8mm full width half max
@@ -295,11 +295,11 @@ for subj_index=1:length(subject)
             
             fprintf ('       Done.\n');
             fprintf ('==============================\n');
-%         catch
-%             fprintf ('==========================================\n');
-%             fprintf ('Smoothing failed for subject %s\n',subjID);
-%             fprintf ('==========================================\n');
-%         end
+        catch
+            fprintf ('==========================================\n');
+            fprintf ('Smoothing failed for subject %s\n',subjID);
+            fprintf ('==========================================\n');
+        end
     end
 end % subject loop
 
@@ -430,7 +430,7 @@ cd(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID,'bold/'));
 % Option 1: Determine parameters from 1st functional against EPI template
 if strcmp(task_flag,'functionals')
     first_run = func_runs{1};
-    template_file = sprintf('/software/spm8/templates/EPI.nii');
+    template_file = sprintf('/usr/public/spm/spm8/templates/EPI.nii');
     func_file = sprintf('%s/%s/%s/bold/%s/raf0-0%s-00001-000001-01.img', EXPERIMENT_ROOT_DIR, study, subjID, first_run,first_run);
     % Option 2: Determine parameters from anatomical against T1 template
     % template_file = sprintf('%s/analysis_tools/spm/spm2/templates/T1.mnc',EXPERIMENT_ROOT_DIR);;
@@ -450,7 +450,7 @@ end %functionals block
 % ==== Or Normalise the anatomical to the T1 template ====
 if strcmp(task_flag,'anatomical')
     anat_file = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, '3danat'), 's*.img');
-    template_file = sprintf('/software/spm8/templates/T1.nii');
+    template_file = sprintf('/usr/public/spm/spm8/templates/T1.nii');
     anat_file = anat_file(length(anat_file(:,1)),:);
     %in order to pick the final anatomical acquired
 

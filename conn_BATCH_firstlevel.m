@@ -41,7 +41,7 @@ if isempty(firstlevel) && ~ismember('voxel',an) %if no firstlevel analyses speci
             conn_file.BATCH.Analysis.analysis_number=meas;
             switch firstlevel{meas}
                 case 'corr'
-                    disp('First-level analysis: Bivariate Correlation') %USE THIS
+                    disp('First-level analysis: Bivariate Correlation')
                     firstlevel_analyses(1);
                 case 'semicorr'
                     disp('First-level analysis: Semipartial Correlation')

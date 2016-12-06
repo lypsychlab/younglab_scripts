@@ -137,18 +137,17 @@ for s = 1:length(subjects)
             end
         end
 
-%         % Grab baseline from rest periods
-%         load('/younglab/studies/XPECT/onlist_stuff.mat');
-% 
-%         % make new offset list, omitting the first two trs
-%         for f = 1:length(SPM.nscan)
-%             nscan2(f) = sum(SPM.nscan(1:f));
-%         end
-%         croplist = sort([(nscan2-SPM.nscan(1)+1) (nscan2-SPM.nscan(1)+2)]);
-%         offlist{s}  = setdiff(offlist{s},croplist);
-        % baseline = mean(Y(offlist{s}));
-        baseline = mean(Y);
-        
+        % Grab baseline from rest periods
+        load('/younglab/studies/XPECT/onlist_stuff.mat');
+
+        % make new offset list, omitting the first two trs
+        for f = 1:length(SPM.nscan)
+            nscan2(f) = sum(SPM.nscan(1:f));
+        end
+        croplist = sort([(nscan2-SPM.nscan(1)+1) (nscan2-SPM.nscan(1)+2)]);
+        offlist{s}  = setdiff(offlist{s},croplist);
+        baseline = mean(Y(offlist{s}));
+
         % Convert from raw to PSC
         PSC = zeros(length(Cond),window_length);
         for c = 1:length(Cond)
@@ -173,11 +172,8 @@ for s = 1:length(subjects)
             end
             meanrow=meanrow+1;
         end
-        %save(fullfile(subjects{s},'roi', ['ROI_' roi_name '_' task '_' contrast_num '_' date '_psc.mat']), 'Cond','Y', 'PSC','offlist','-mat');
-        %clear Cond Y PSC offlist baseline croplist tmp_idx nscan2 V RT ROI vinv_data
-        
-        save(fullfile(subjects{s},'roi', ['ROI_' roi_name '_' task '_' contrast_num '_' date '_psc.mat']), 'Cond','Y', 'PSC','-mat');
-        clear Cond Y PSC baseline croplist tmp_idx nscan2 V RT ROI vinv_data
+        save(fullfile(subjects{s},'roi', ['ROI_' roi_name '_' task '_' contrast_num '_' date '_psc.mat']), 'Cond','Y', 'PSC','offlist','-mat');
+        clear Cond Y PSC offlist baseline croplist tmp_idx nscan2 V RT ROI vinv_data
     end
 %      catch
 %          warndlg(['Error with subject ' subjects{s}])

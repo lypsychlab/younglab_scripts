@@ -55,10 +55,10 @@ function younglab_preproc_temporal_spm12_pleiades (varargin)
 % <001...00n>             <task(s)>          ...      
 
 global EXPERIMENT_ROOT_DIR;
-EXPERIMENT_ROOT_DIR = '/home/younglw';
+EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
 
 addpath(genpath('/usr/public/spm/spm12'));
-addpath(genpath('/home/younglw/scripts'));
+addpath(genpath('/home/younglw/lab/scripts/'));
 pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment - 
 %           doubles # of functional runs) - tells the script to process
 %           only even functional runs

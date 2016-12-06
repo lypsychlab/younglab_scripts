@@ -96,7 +96,7 @@ end
 % set variables. 
 coF		= filter; 
 curD	= pwd;
-expDir	= '/younglab/studies/';
+expDir	= '/home/younglw/lab/';
 withSPM = 1;
 SPM.RT = 2;
 SPM.xBF.T = 128;
@@ -107,11 +107,7 @@ SPM.xBF.Volterra  = 1;
 SPM.xBF.dt        = SPM.RT/SPM.xBF.T;
 [xBF] = spm_get_bf(SPM.xBF);
 % obtain behavioural files
-<<<<<<< HEAD
 cd([expDir study '/behavioural/']);
-=======
-cd([expDir study '/behavioral/']);
->>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 tT		= dir([subj '.' task '.*']);
 [T{1:length(tT)}] = deal(tT(1:end).name);
 load(T{1},'ips','spm_inputs');

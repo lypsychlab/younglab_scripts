@@ -1,4 +1,4 @@
-function analyMVPA_general_nondirectional_real(roin, experiments,partition_names,condition_names_all,savedirectory,roinum, groups, group_loc,parametric)
+function analyMVPA_general_nondirectional(roin, experiments,partition_names,condition_names_all,savedirectory,roinum, groups, group_loc,parametric)
 
 % April 14 version -- Individual ROIs, parametric, 
 % with contrast image creation 
@@ -99,7 +99,6 @@ end
 datafilename={};
 if ~isempty(experiments)
     for nsubject=1:numel(experiments.data),
-        fprintf(['now on subject ' num2str(nsubject) '\n']);
         current_spm=fullfile(experiments.pwd1,experiments.data{nsubject},experiments.pwd2,'SPM.mat');
         [spm_data,SPM]=spm_ss_importspm(spm_data,current_spm);
         Cnames={SPM.xCon(:).name};

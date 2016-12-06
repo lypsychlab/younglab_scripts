@@ -15,22 +15,23 @@ distance_metric = 'correlation'; %don't change. other options could be euclidean
 feature_selection = ''; %don't change.
 
 input_id = {'YOU_XPECT_01','YOU_XPECT_02','YOU_XPECT_03','YOU_XPECT_04','YOU_XPECT_05',...
-'YOU_XPECT_06','YOU_XPECT_07','YOU_XPECT_08','YOU_XPECT_09','YOU_XPECT_10','YOU_XPECT_11','YOU_XPECT_12','YOU_XPECT_13',... 
-'YOU_XPECT_14','YOU_XPECT_15','YOU_XPECT_16','YOU_XPECT_17','YOU_XPECT_18','YOU_XPECT_19','YOU_XPECT_20','YOU_XPECT_21',...
-'YOU_XPECT_22','YOU_XPECT_23','YOU_XPECT_24'};
+'YOU_XPECT_06','YOU_XPECT_07','YOU_XPECT_08','YOU_XPECT_09','YOU_XPECT_10','YOU_XPECT_11', 'YOU_XPECT_12','YOU_XPECT_13',... 
+'YOU_XPECT_14','YOU_XPECT_15','YOU_XPECT_16', 'YOU_XPECT_17', 'YOU_XPECT_18', 'YOU_XPECT_19', 'YOU_XPECT_20', 'YOU_XPECT_21',...
+'YOU_XPECT_22', 'YOU_XPECT_23', 'YOU_XPECT_24'};
+
 input_runs = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
 num_conds = 6;
 
-study_path = '/younglab/studies/XPECT/';
-model_path = '/results/XPECT.outcome_results_normed';
-outputfolder = '/younglab/studies/XPECT/MVPA';
-outputname = 'story';
+study_path = '/home/younglw/XPECT/';
+model_path = '/results/XPECT.outcome_results_normed_unsmoothed';
+outputfolder = '/home/younglw/XPECT/MVPA';
+outputname = 'outcome_all24';
 
-condition_names = {'E_Non','E_Beh','E_Ment','U_Non','U_Beh','U_Ment'}; %These should match the order that they are listed in spm_input in the behavioural files.
-roiFiles = {'RTPJ_tom','LTPJ_tom','PC_tom','DMPFC_tom','VMPFC_tom'}; %it will wildcard either side of this, so make sure
+condition_names = {'Exp_Non','Exp_Beh','Exp_Men','Unexp_Non','Unexp_Beh','Unexp_Men'}; %These should match the order that they are listed in spm_input in the behavioural files.
+roiFiles = {'RTPJ_tom','LTPJ_tom','PC_tom','DMPFC_tom'}; %it will wildcard either side of this, so make sure
 %that these uniquely identify a ROI. It is looking for an image file.
-contrast_names = {'Non-Beh','Non-Ment','Beh-Ment'};
-contrast_nums = {[1 2; 1 3; 2 3]};
+contrast_names = {'EN-EB','EN-EM','EB-EM','UN-UB','UN-UM','UB-UM','EN-UN','EB-UB','EM-UM'};
+contrast_nums = {[1 2; 1 3; 2 3; 4 5; 4 6; 5 6; 1 4; 2 5; 3 6]};
 
 FisherTransform = 'Y' %Transform correlation coefficents to follow normal distribution, using atanh().
 preprocYN = 'Y' %this means preprocessing the BOLD data, either by centering voxels or runs.
@@ -251,145 +252,145 @@ end
     else 
         fprintf('\rSkipping Preprocessing\r');
     end    
-%     %% feature selection
-%     %we can talk
-%     
-%     if strcmp(feature_selection,'ANOVA'),
-%         
-%         %1. iterate by masks
-%         %2. for each rows within mask,
-%         %3. this voxel = mask(i)
-%         %4. p(i,1) = anova1(this voxel, pre_proc_index (123123123123123123,'off')
-%         %5. p(i,2) = i;
-%         %6. p = sortrows(p,1);
-%         %7. p = p(p<0.05,1);
-%         %8. for j = 1:numel(p(:,1))
-%         %9. fs_mask(j,:) = mask(p(j,2),:);
-%         %10. end
-%         %11. mask(i) = fs_mask;
-%         %12. end
-%        
-%     else
-%         fprintf('\rSkipping Feature Selection\r');
-%     end
-%     
-%     %% distance measure/classification
-%     preproc_ind_fs = repmat(1:num_conds,1,num_runs); 
-%     
-%     % create tester set (choose 4 out of 5, then choose pairs out of those 4s
-%     a = nchoosek(1:num_runs,4);
-%     for b=1:size(a,1)
-%         len_b = length(nchoosek(a(b,:),2));
-%         tester_set(len_b*(b-1)+1:len_b*b,1:2) = nchoosek(a(b,:),2);
-%     end
-% %     tester_set = nchoosek(1:num_runs,(num_runs/2));
-% 
-%     for nn = 1:numel(masked_vols), %going through each mask
-%         this_vol = masked_vols{nn};
-%         %We might need to implement something here eventually. Mask sizes
-%         %will not be even across participants, and so we might need to
-%         %randomly select a subset that matches the smallest ROI.
-%         
-%         if ~isempty(masked_vols{nn}) %skip empty masks.
-%         
-%             for oo = 1:(numel(tester_set(:,1))/2); %going through each tester set. After it is halfway through they become repeats.
-%                 training_set = setdiff(1:num_runs,tester_set(oo,:));
-% 
-%                 tester_voxels = this_vol(:,ismembc(preproc_ind,tester_set(oo,:))); %chooses columns of current volume within tester set
-%                 training_voxels = this_vol(:,ismembc(preproc_ind,training_set)); %chooses columns of current volumes within trainer set
-% 
-%                 testmeaned_conditions = zeros(numel(tester_voxels(:,1)),num_conds); %was originally zeros(tester_voxels(:,1),num_conds), but was getting error so added numel
-%                 trainmeaned_conditions = zeros(numel(tester_voxels(:,1)),num_conds);
-%                 %going through each condition.
-%                 for pp = 1:num_conds
-%                     testmeaned_conditions(:,pp) = nanmean(tester_voxels(:,ismember(preproc_ind_fs(1:numel(tester_voxels(1,:))),pp)),2);         
-%                     trainmeaned_conditions(:,pp) = nanmean(training_voxels(:,ismember(preproc_ind_fs(1:numel(training_voxels(1,:))),pp)),2);
-%                 end
-% 
-%                 %This loop populates results with all within condition
-%                 %correlations, and all relevant between. No correlations
-%                 %between conditions within a half are saved.
-%                 for zz = 1:num_conds
-%                     if strcmp(distance_metric,'correlation'),
-%                         distance_matrix = 1 - pdist([testmeaned_conditions(~isnan(testmeaned_conditions(:,1)),zz)  trainmeaned_conditions(~isnan(trainmeaned_conditions(:,1)), :)]', 'correlation');
-%                     else
-%                         distance_matrix = pdist([testmeaned_conditions(~isnan(testmeaned_conditions(:,1)),zz)  trainmeaned_conditions(~isnan(trainmeaned_conditions(:,1)), :)]',distance_metric);
-%                     end
-%                     if strcmp(FisherTransform, 'Y')
-%                         distance_matrix = atanh(distance_matrix);
-%                     end
-%                     results.participants(mm).ROI(nn).condition(zz).correlations(oo,:) = distance_matrix(1:num_conds);
-%                 end
-%             end %oo
-% 
-%             for zz = 1:numel(contrasts.contrasts(:,1)) 
-%                 results.participants(mm).ROI(nn).contrasts(zz).raw(:,1)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,1)).correlations(:,contrasts.contrasts(zz,1)); %gets raw within for conditon 1
-%                 results.participants(mm).ROI(nn).contrasts(zz).raw(:,2)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,2)).correlations(:,contrasts.contrasts(zz,2)); %gets raw within for conditon 2
-%                 results.participants(mm).ROI(nn).contrasts(zz).raw(:,3)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,1)).correlations(:,contrasts.contrasts(zz,2)); %gets between correlation of condition #1 w condition #2
-%                 results.participants(mm).ROI(nn).contrasts(zz).raw(:,4)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,2)).correlations(:,contrasts.contrasts(zz,1)); %gets between correlation of condition #2 w condition #1
-% 
-%                 results.participants(mm).ROI(nn).contrasts(zz).within_cond1=results.participants(mm).ROI(nn).contrasts(zz).raw(:,1);
-%                 results.participants(mm).ROI(nn).contrasts(zz).within_cond2=results.participants(mm).ROI(nn).contrasts(zz).raw(:,2);
-%                 results.participants(mm).ROI(nn).contrasts(zz).between=results.participants(mm).ROI(nn).contrasts(zz).raw(:,3:4);
-% 
-% %                 performing the comparisons
-% %                   Doing all between comparisons, as I am here, makes no
-% %                   differnece. If you compared w1-b2 and w2-b1 only, you
-% %                  would get the same results.
-%                 results.participants(mm).ROI(nn).contrasts(zz).total_correct=sum(sum(...
-%                     [results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2)]));
-%                 results.participants(mm).ROI(nn).contrasts(zz).total_tests=numel(...
-%                     [results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2),...
-%                     results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2)]);
-%                 results.participants(mm).ROI(nn).contrasts(zz).voxels = numel(this_vol(:,1));
-%                 
-%                 %moving proportion to analyze with other participants.
-%                 results.ROI(nn).contrasts(zz).acc = [results.ROI(nn).contrasts(zz).acc; results.participants(mm).ROI(nn).contrasts(zz).total_correct/results.participants(mm).ROI(nn).contrasts(zz).total_tests];
-% %                 results.ROI(nn).contrasts(zz).mean_between
-%             end   %zz
-%             %assemble within correlations for each condition
-%             within_temp = zeros(1,num_conds);
-%             for oo = 1:num_conds
-%                 within_temp(1,oo) = mean(results.participants(mm).ROI(nn).condition(oo).correlations(oo),1);
-%             end
-%             results.ROI(nn).within(mm,:) = within_temp;
-%         end    
-%     end %nn
-%     
-%     
+    %% feature selection
+    %we can talk
+    
+    if strcmp(feature_selection,'ANOVA'),
+        
+        %1. iterate by masks
+        %2. for each rows within mask,
+        %3. this voxel = mask(i)
+        %4. p(i,1) = anova1(this voxel, pre_proc_index (123123123123123123,'off')
+        %5. p(i,2) = i;
+        %6. p = sortrows(p,1);
+        %7. p = p(p<0.05,1);
+        %8. for j = 1:numel(p(:,1))
+        %9. fs_mask(j,:) = mask(p(j,2),:);
+        %10. end
+        %11. mask(i) = fs_mask;
+        %12. end
+       
+    else
+        fprintf('\rSkipping Feature Selection\r');
+    end
+    
+    %% distance measure/classification
+    preproc_ind_fs = repmat(1:num_conds,1,num_runs); 
+    
+    % create tester set (choose 4 out of 5, then choose pairs out of those 4s
+    a = nchoosek(1:num_runs,4);
+    for b=1:size(a,1)
+        len_b = length(nchoosek(a(b,:),2));
+        tester_set(len_b*(b-1)+1:len_b*b,1:2) = nchoosek(a(b,:),2);
+    end
+%     tester_set = nchoosek(1:num_runs,(num_runs/2));
+
+    for nn = 1:numel(masked_vols), %going through each mask
+        this_vol = masked_vols{nn};
+        %We might need to implement something here eventually. Mask sizes
+        %will not be even across participants, and so we might need to
+        %randomly select a subset that matches the smallest ROI.
+        
+        if ~isempty(masked_vols{nn}) %skip empty masks.
+        
+            for oo = 1:(numel(tester_set(:,1))/2); %going through each tester set. After it is halfway through they become repeats.
+                training_set = setdiff(1:num_runs,tester_set(oo,:));
+
+                tester_voxels = this_vol(:,ismembc(preproc_ind,tester_set(oo,:))); %chooses columns of current volume within tester set
+                training_voxels = this_vol(:,ismembc(preproc_ind,training_set)); %chooses columns of current volumes within trainer set
+
+                testmeaned_conditions = zeros(numel(tester_voxels(:,1)),num_conds); %was originally zeros(tester_voxels(:,1),num_conds), but was getting error so added numel
+                trainmeaned_conditions = zeros(numel(tester_voxels(:,1)),num_conds);
+                %going through each condition.
+                for pp = 1:num_conds
+                    testmeaned_conditions(:,pp) = nanmean(tester_voxels(:,ismember(preproc_ind_fs(1:numel(tester_voxels(1,:))),pp)),2);         
+                    trainmeaned_conditions(:,pp) = nanmean(training_voxels(:,ismember(preproc_ind_fs(1:numel(training_voxels(1,:))),pp)),2);
+                end
+
+                %This loop populates results with all within condition
+                %correlations, and all relevant between. No correlations
+                %between conditions within a half are saved.
+                for zz = 1:num_conds
+                    if strcmp(distance_metric,'correlation'),
+                        distance_matrix = 1 - pdist([testmeaned_conditions(~isnan(testmeaned_conditions(:,1)),zz)  trainmeaned_conditions(~isnan(trainmeaned_conditions(:,1)), :)]', 'correlation');
+                    else
+                        distance_matrix = pdist([testmeaned_conditions(~isnan(testmeaned_conditions(:,1)),zz)  trainmeaned_conditions(~isnan(trainmeaned_conditions(:,1)), :)]',distance_metric);
+                    end
+                    if strcmp(FisherTransform, 'Y')
+                        distance_matrix = atanh(distance_matrix);
+                    end
+                    results.participants(mm).ROI(nn).condition(zz).correlations(oo,:) = distance_matrix(1:num_conds);
+                end
+            end %oo
+
+            for zz = 1:numel(contrasts.contrasts(:,1)) 
+                results.participants(mm).ROI(nn).contrasts(zz).raw(:,1)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,1)).correlations(:,contrasts.contrasts(zz,1)); %gets raw within for conditon 1
+                results.participants(mm).ROI(nn).contrasts(zz).raw(:,2)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,2)).correlations(:,contrasts.contrasts(zz,2)); %gets raw within for conditon 2
+                results.participants(mm).ROI(nn).contrasts(zz).raw(:,3)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,1)).correlations(:,contrasts.contrasts(zz,2)); %gets between correlation of condition #1 w condition #2
+                results.participants(mm).ROI(nn).contrasts(zz).raw(:,4)=results.participants(mm).ROI(nn).condition(contrasts.contrasts(zz,2)).correlations(:,contrasts.contrasts(zz,1)); %gets between correlation of condition #2 w condition #1
+
+                results.participants(mm).ROI(nn).contrasts(zz).within_cond1=results.participants(mm).ROI(nn).contrasts(zz).raw(:,1);
+                results.participants(mm).ROI(nn).contrasts(zz).within_cond2=results.participants(mm).ROI(nn).contrasts(zz).raw(:,2);
+                results.participants(mm).ROI(nn).contrasts(zz).between=results.participants(mm).ROI(nn).contrasts(zz).raw(:,3:4);
+
+%                 performing the comparisons
+%                   Doing all between comparisons, as I am here, makes no
+%                   differnece. If you compared w1-b2 and w2-b1 only, you
+%                  would get the same results.
+                results.participants(mm).ROI(nn).contrasts(zz).total_correct=sum(sum(...
+                    [results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2)]));
+                results.participants(mm).ROI(nn).contrasts(zz).total_tests=numel(...
+                    [results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,1),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond1(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2),...
+                    results.participants(mm).ROI(nn).contrasts(zz).within_cond2(:) > results.participants(mm).ROI(nn).contrasts(zz).between(:,2)]);
+                results.participants(mm).ROI(nn).contrasts(zz).voxels = numel(this_vol(:,1));
+                
+                %moving proportion to analyze with other participants.
+                results.ROI(nn).contrasts(zz).acc = [results.ROI(nn).contrasts(zz).acc; results.participants(mm).ROI(nn).contrasts(zz).total_correct/results.participants(mm).ROI(nn).contrasts(zz).total_tests];
+%                 results.ROI(nn).contrasts(zz).mean_between
+            end   %zz
+            %assemble within correlations for each condition
+            within_temp = zeros(1,num_conds);
+            for oo = 1:num_conds
+                within_temp(1,oo) = mean(results.participants(mm).ROI(nn).condition(oo).correlations(oo),1);
+            end
+            results.ROI(nn).within(mm,:) = within_temp;
+        end    
+    end %nn
+    
+    
 end %mm
-% 
-% % results.output={};
-% %Non-parametric
-% for nn = 1:numel(masked_vols)
-%     results.output.p{1,nn+1}=roiFiles(nn);
-%     results.output.mean{1,nn+1}=roiFiles(nn);
-%     results.output.se{1,nn+1}=roiFiles(nn);
-%     for zz = 1:numel(contrasts.contrasts(:,2))
-%     [x,results.ROI(nn).contrasts(zz).p] = ttest(results.ROI(nn).contrasts(zz).acc,.5,.05,'right');
-%     results.output.p{zz+1,nn+1}=results.ROI(nn).contrasts(zz).p;
-%     results.output.mean{zz+1,nn+1}=mean(results.ROI(nn).contrasts(zz).acc);
-%     results.output.se{zz+1,nn+1}=std(results.ROI(nn).contrasts(zz).acc)/sqrt(numel(results.ROI(nn).contrasts(zz).acc));
-%     end
-% end
-% 
-%     
-% for zz = 1:numel(contrasts.contrasts(:,2))
-%     results.output.p{zz+1,1}=contrasts.name(zz);
-%     results.output.mean{zz+1,1}=contrasts.name(zz);
-%     results.output.se{zz+1,1}=contrasts.name(zz);
-% end
-% 
-% cd(outputfolder);
-% cell2csv(sprintf([outputname preprocname '_p' '.csv']), results.output.p,',','2010');
-% cell2csv(sprintf([outputname preprocname '_mean' '.csv']), results.output.mean,',','2010');
-% cell2csv(sprintf([outputname preprocname '_se' '.csv']), results.output.se,',','2010');
-% save([outputname preprocname '_results'], 'results')
+
+% results.output={};
+%Non-parametric
+for nn = 1:numel(masked_vols)
+    results.output.p{1,nn+1}=roiFiles(nn);
+    results.output.mean{1,nn+1}=roiFiles(nn);
+    results.output.se{1,nn+1}=roiFiles(nn);
+    for zz = 1:numel(contrasts.contrasts(:,2))
+    [x,results.ROI(nn).contrasts(zz).p] = ttest(results.ROI(nn).contrasts(zz).acc,.5,.05,'right');
+    results.output.p{zz+1,nn+1}=results.ROI(nn).contrasts(zz).p;
+    results.output.mean{zz+1,nn+1}=mean(results.ROI(nn).contrasts(zz).acc);
+    results.output.se{zz+1,nn+1}=std(results.ROI(nn).contrasts(zz).acc)/sqrt(numel(results.ROI(nn).contrasts(zz).acc));
+    end
+end
+
+    
+for zz = 1:numel(contrasts.contrasts(:,2))
+    results.output.p{zz+1,1}=contrasts.name(zz);
+    results.output.mean{zz+1,1}=contrasts.name(zz);
+    results.output.se{zz+1,1}=contrasts.name(zz);
+end
+
+cd(outputfolder);
+cell2csv(sprintf([outputname preprocname '_p' '.csv']), results.output.p,',','2010');
+cell2csv(sprintf([outputname preprocname '_mean' '.csv']), results.output.mean,',','2010');
+cell2csv(sprintf([outputname preprocname '_se' '.csv']), results.output.se,',','2010');
+save([outputname preprocname '_results'], 'results')
 
 %add a save for the matlab file of results, or else add more inclusive
 %correlation info. Ideally both.

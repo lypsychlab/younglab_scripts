@@ -5,9 +5,11 @@ function roi_picker(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
 %
 % roi_picker(threshold,cluster_size, radius, contrast_number, roi_name, start_xyz(in string), subjects(in cell), results_dir)
 % e.g.:
-% roi_picker(.001,5,9,1,'RTPJ','[0 0 0]',{'/mindhive/saxelab/CUES3/SAX_cues3_05'},'results/cues3_results_normed');
+% roi_picker(.001,5,9,1,'RTPJ','[0; 0; 0]',{'/mindhive/saxelab/CUES3/SAX_cues3_05'},'results/cues3_results_normed');
 % 
 % Written by Alek Chakroff, November 2009
+% Edited by Emily Wasserman, 2016
+% Note: use with SPM8 & Matlab 2012 - Emily
 
 % start log
 load(fullfile(subjects{1},res_dir,'SPM.mat'));
@@ -31,12 +33,25 @@ else
     jobs{1}.stats{1}.results.conspec(1).extent     = k;
     spm_jobman('run',jobs);
     
+    TOM_rois={'VMPFC' 'RTPJ' 'LTPJ' 'RSTS' 'LSTS' 'PC' 'MMPFC' 'RIFG' 'DMPFC'}
+    if ismember(roi_name,TOM_rois) & ischar(roi_xyz)
+        roifile=load(fullfile('/home/younglw/lab/roi_library/functional',[roi_name '_xyz.mat']));
+        roicoords=roifile.roi_xyz(1,:);
+        roi_xyz=sprintf('[%d; %d; %d]',roicoords(1),roicoords(2),roicoords(3));
+        clear roifile;
+    end
+
     % If ROI is 'other', with user-specified x y z
     if ischar(roi_xyz)
-        try   eval(['spm_mip_ui(''SetCoords'',[' roi_xyz' '],findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));']);
-        catch eval(['spm_mip_ui(''SetCoords'',' roi_xyz' ',findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));']);
-        end
-        spm_mip_ui('Jump',findobj(spm_figure('FindWin','Graphics'),'Tag','hMIPax'),'nrmax');
+
+    try   
+    eval(['spm_mip_ui(''SetCoords'',[' roi_xyz '],findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));']);
+    catch 
+    cmd=['spm_mip_ui(''SetCoords'',' roi_xyz ',findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));'];
+    eval(cmd);
+    end
+    spm_mip_ui('Jump',findobj(spm_figure('FindWin','Graphics'),'Tag','hMIPax'),'nrmax');
+        
     else
         % Set the cursor to the starting location for this ROI
         h  = findobj(spm_figure('FindWin','Graphics'),'Tag','hMIPax'); % Get Handle for the SPM figure
@@ -88,7 +103,6 @@ evalin('base','xY.Ic      = 0;');
 evalin('base','xY.Sess    = 1;');
 evalin('base','xY.def     = ''sphere'';');
 evalin('base',['xY.spec   = ' num2str(r) ';']);
-% save('xSPM.mat','xSPM','hReg');
 evalin('base','[Y,xY] = spm_regions(xSPM,SPM,hReg,xY);');
 ROI.XYZmm = evalin('base','xY.XYZmm;');% ROI coordinates
 vinv_data = evalin('base','inv(SPM.xY.VY(1).mat);');
@@ -110,12 +124,7 @@ if ~exist('roi','dir');
 end
 save(fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']), 'ROI','xY','-mat');
 cd(fullfile(subjects{i},'roi'));
-<<<<<<< HEAD
-mat2img( fullfile(subjects{1},res_dir,'spmT_0001.nii'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
-=======
-
 mat2img( fullfile(subjects{1},res_dir,'spmT_0001.img'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
->>>>>>> 4ea36e0abf8da612bbc2f8f0c2b7dc72c0a45376
 
 % update log
 notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(z_idx)};

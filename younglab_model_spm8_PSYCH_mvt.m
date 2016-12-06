@@ -47,15 +47,13 @@ function younglab_model_spm8_PSYCH_mvt(varargin)
 %                         option (confusingly) will disable this, causing
 %                         it to *not* overwrite the mask. 
 %
-%	  => 'dont_smash'	  Instead of overwriting old models, the script will
-%						  simply generate more by appending a value onto
-%						  the end of the directory name. 
+%     => 'dont_smash'     Instead of overwriting old models, the script will
+%                         simply generate more by appending a value onto
+%                         the end of the directory name. 
 %
-%	  => 'clobber'		  The script will now clobber old results
-%						  whose names collide with current results
-%						  directories without asking permission first.
-%
-%     => 'unsmoothed'     The script will expect unsmoothed data
+%     => 'clobber'        The script will now clobber old results
+%                         whose names collide with current results
+%                         directories without asking permission first.
 %
 % Assignment parameters:
 %     These variables all change the behavior of the script by directly
@@ -99,10 +97,10 @@ function younglab_model_spm8_PSYCH_mvt(varargin)
 %         must change the root directory, you must pass it in with escaped
 %         quotes. Like: 'root_dir = ''some string'''
 %
-%	  => 'old_names = 1'
-%		  This causes the script to assume the same naming conventions as
-%		  the old modeling script (i.e. naming it purely based on the behavioural
-%		  file and whether or not the data was normalized.)
+%     => 'old_names = 1'
+%         This causes the script to assume the same naming conventions as
+%         the old modeling script (i.e. naming it purely based on the behavioural
+%         file and whether or not the data was normalized.)
 %         
 % Some usage examples:
 % 
@@ -116,8 +114,8 @@ function younglab_model_spm8_PSYCH_mvt(varargin)
 % 
 %     - The script saves a screenshot of the art_batch results as 
 %       artifact_analysis_SUBJECT_TASK.png
-%	  - The script will save screenshots of its frequency analysis on the
-%	    conditions being run, so that you can review them later. 
+%     - The script will save screenshots of its frequency analysis on the
+%       conditions being run, so that you can review them later. 
 %     - The script will never overwrite old data, instead it will simply 
 %       create a new results directory with the same name but a "2" or "3" 
 %       (etc) appended to it.
@@ -195,6 +193,12 @@ global skip_art;
 global mask_over;
 global defaults;
 
+% add FSL to the path and set FSL environment variables
+% setenv('PATH',[getenv('PATH') ':/usr/lib/fsl/5.0']);
+% setenv('FSLDIR','/usr/local/fsl');
+% setenv('FSLOUTPUTTYPE','NIFTI_GZ');
+addpath(genpath('/usr/public/spm/spm8'));
+
 EXPERIMENT_ROOT_DIR = '/home/younglw';
 TR               = 2;
 src_data_flag    = 'normed'; 
@@ -217,10 +221,9 @@ mask_is_def      = 0;
 freq_is_def      = 0;
 is_legacy        = 0;
 mask_over        = 1;
-dont_smash		 = 0;
-old_names		 = 0;
-clobber_bit		 = 0;
-smooth_src_data_flag = 'smoothed';
+dont_smash       = 0;
+old_names        = 0;
+clobber_bit      = 0;
 
 defaults.maskthresh = maskthresh;
 defaults.filter_frequency = filter_frequency;
@@ -268,7 +271,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~iscell(varargin{4})
-	disp('Warning: `boldirs` argument not provided in cell format!');
+    disp('Warning: `boldirs` argument not provided in cell format!');
 end
 if strcmp(class(varargin{4}),'double')
     boldirs = {{varargin{4}}};
@@ -308,14 +311,10 @@ for i = 5:length(varargin)
             is_legacy = 1;
         case 'overwrite_mask'
             mask_over = 0;
-		case 'dont_smash'
-			dont_smash = 1;
-		case 'clobber'
-			clobber_bit = 1;
-        case 'unsmoothed'
-            smooth_src_data_flag = 'unsmoothed';
-        case 'smoothed'
-            smooth_src_data_flag = 'smoothed';
+        case 'dont_smash'
+            dont_smash = 1;
+        case 'clobber'
+            clobber_bit = 1;
         otherwise
             try
                 eval(varargin{i});
@@ -354,7 +353,6 @@ inStruct.old_names = old_names;
 inStruct.src_data_flag = src_data_flag;
 inStruct.dont_smash = dont_smash;
 inStruct.clobber_bit = clobber_bit;
-inStruct.smooth_src_data_flag = smooth_src_data_flag;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % now iterate through the 
@@ -415,7 +413,7 @@ inStruct.smooth_src_data_flag = smooth_src_data_flag;
 
 
 tic;
-[ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,smooth_src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
+[ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
 
 model_time_el = toc; 
 
@@ -433,21 +431,17 @@ end % Main Body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,smooth_src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh)
+function [ErrorLog,SPM]=model(study,subject,tasks,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh)
 global EXPERIMENT_ROOT_DIR;
 global skip_art;
 global defaults;
 global inStruct;
 ErrorLog={};SPM=[];
 
-if strmatch(src_data_flag,'normed') & strmatch(smooth_src_data_flag,'smoothed')
+if strmatch(src_data_flag,'normed')
     filter = 'swraf*img';
-elseif strmatch(src_data_flag,'unnormed') & strmatch(smooth_src_data_flag,'unsmoothed')
-    filter = 'raf*img';
 elseif strmatch(src_data_flag,'unnormed')
     filter = 'sraf*img';
-elseif strmatch(smooth_src_data_flag,'unsmoothed')
-    filter = 'wraf*img';
 else
     disp('src_data_flag: illegal value.  "normed" & "unnormed" allowed');
 end
@@ -461,7 +455,7 @@ for subj = 1:length(subject)
         for task = 1:length(tasks{subj})
             fprintf('Subject: %s    Task: %s\n',subject{subj},tasks{subj}{task});
             clear spm_inputs con_info ips scans; SPM=[];
-            cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural/behavioural_SHAPES'));
+            cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
             behavdata_thistask = dir(sprintf('%s.%s.*.mat',subject{subj},tasks{subj}{task}));
             num_behav_files = length(behavdata_thistask); % grabs mat files for this task for all acq
             clear vec;
@@ -493,63 +487,63 @@ for subj = 1:length(subject)
             cd(fullfile(EXPERIMENT_ROOT_DIR,study,subject{subj},'results'));
             % BUILD RESULTS STRING 
             % (constructs an appropriate name for the results)
-            results_string = [tasks{subj}{task} '_results_' src_data_flag '_' smooth_src_data_flag];
-			if ~inStruct.old_names
-				if RT_flag
-					results_string = [results_string '_RT'];
-				end
-				if implicit_flag
-					results_string = [results_string '_IMP_maskt'];
-					if maskthresh ~= 80
-						results_string = [results_string '_' num2str(maskthresh)];
-					end
-				end
-				if filter_frequency ~= defaults.filter_frequency;
-					results_string = [results_string '_hpf_' num2str(filter_frequency)];
-				end
-				if (~implicit_flag) & (maskthresh ~= defaults.maskthresh)
-					results_string = [results_string '_thr_' num2str(maskthresh)];
-				end
-				a = exist(results_string,'dir');
-				append_digit = 2;
-				results_string_pre = results_string;
-				if inStruct.dont_smash
-					while a
-						results_string = [results_string_pre '_' num2str(append_digit)];
-						a = exist(results_string,'dir');
-						append_digit = append_digit+1;
-					end
-				else
-					if exist(results_string,'dir')
-						if ~inStruct.clobber_bit
-							removeDir = questdlg('Old results directory found! Delete?','Dir with same name found','Yes','No','No');
-							if strcmpi(removeDir,'Yes')
+            results_string = [tasks{subj}{task} '_results_' src_data_flag];
+            if ~inStruct.old_names
+                if RT_flag
+                    results_string = [results_string '_RT'];
+                end
+                if implicit_flag
+                    results_string = [results_string '_IMP_maskt'];
+                    if maskthresh ~= 80
+                        results_string = [results_string '_' num2str(maskthresh)];
+                    end
+                end
+                if filter_frequency ~= defaults.filter_frequency;
+                    results_string = [results_string '_hpf_' num2str(filter_frequency)];
+                end
+                if (~implicit_flag) & (maskthresh ~= defaults.maskthresh)
+                    results_string = [results_string '_thr_' num2str(maskthresh)];
+                end
+                a = exist(results_string,'dir');
+                append_digit = 2;
+                results_string_pre = results_string;
+                if inStruct.dont_smash
+                    while a
+                        results_string = [results_string_pre '_' num2str(append_digit)];
+                        a = exist(results_string,'dir');
+                        append_digit = append_digit+1;
+                    end
+                else
+                    if exist(results_string,'dir')
+                        if ~inStruct.clobber_bit
+                            removeDir = questdlg('Old results directory found! Delete?','Dir with same name found','Yes','No','No');
+                            if strcmpi(removeDir,'Yes')
                                 fclose('all');
-								unix(sprintf('rm -rf %s',results_string));
-							end
+                                unix(sprintf('rm -rf %s',results_string));
+                            end
                         else 
                             fclose('all');
-							unix(sprintf('rm -rf %s',results_string));
-						end
-					end
-				end
+                            unix(sprintf('rm -rf %s',results_string));
+                        end
+                    end
+                end
             else
                 if exist(results_string,'dir')
                     if ~inStruct.clobber_bit
-						removeDir = questdlg('Old results directory found! Delete?','Dir with same name found','Yes','No','No');
-						if strcmpi(removeDir,'Yes')
-							unix(sprintf('rm -rf %s',results_dir));
-						end
-					else
-						unix(sprintf('rm -rf %s',results_dir));
-					end
+                        removeDir = questdlg('Old results directory found! Delete?','Dir with same name found','Yes','No','No');
+                        if strcmpi(removeDir,'Yes')
+                            unix(sprintf('rm -rf %s',results_dir));
+                        end
+                    else
+                        unix(sprintf('rm -rf %s',results_dir));
+                    end
                 end
-			end
+            end
             results_string;
             mkdir(results_string);
             cd(results_string);
             rS1 = pwd;
-			percRetained = freqAnalyze_SHAPES(study, subject{subj}, tasks{subj}{task}, filter_frequency, rS1);
+            % percRetained = freqAnalyze(study, subject{subj}, tasks{subj}{task}, filter_frequency, rS1);
             set(0,'DefaultFigureVisible','Off');
             % Now, write metadata about the results to the directory
             if RT_flag == 1
@@ -561,7 +555,7 @@ for subj = 1:length(subject)
                 mask_type_text = 'Implicit masking';
             else
                 mask_type_text = 'Explicit masking';
-			end
+            end
             fid = fopen([results_string '_metadata.txt'],'w');
             fprintf(fid,'Date of Analysis:      %s\n',datestr(now));
             fprintf(fid,'Experimenter:          %s\n',getenv('USER'));
@@ -569,7 +563,7 @@ for subj = 1:length(subject)
             fprintf(fid,'Subject:               %s\n',subject{subj});
             fprintf(fid,'Tasks:                 %s \n',tasks{subj}{1:length(tasks{subj})});
             fprintf(fid,'Bold directories:      %d \n',boldirs{subj}{1:length(boldirs{subj})});
-            fprintf(fid,'Preprocessing:         %s\n',src_data_flag,smooth_src_data_flag);
+            fprintf(fid,'Preprocessing:         %s\n',src_data_flag);
             fprintf(fid,'TR:                    %d\n',TR);
             fprintf(fid,'RTs included:          %s\n',rt_text);
             fprintf(fid,'Masking type:          %s\n',mask_type_text);
@@ -592,12 +586,12 @@ for subj = 1:length(subject)
             end
 
             for run = 1:num_runs
-                cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural/behavioural_SHAPES'));
+                cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
                 clear RT
                 try
-                    load(parafiles{run},'spm_inputs','con_info','ips','user_regressors','RT','design','item_vector');
+                    load(parafiles{run},'spm_inputs','con_info','ips','RT','design','item_vector');
                 catch
-                    load(parafiles{run},'spm_inputs','con_info','ips','user_regressors','RT','design');
+                    load(parafiles{run},'spm_inputs','con_info','ips','RT','design');
                 end
                 if ~exist('spm_inputs') | ~exist('ips')
                     fprintf('Failed to load behavioural data for subject %s task `%s`\n',subject{subj}, tasks{subj}{task});
@@ -645,26 +639,26 @@ for subj = 1:length(subject)
                 %conditions
                 %----------
 
-				% check to make sure the onsets are correct
-				if max(horzcat(spm_inputs(:).ons))/TR > ips % saxelab uses vertcat but horzcat should do the same thing
-					warning('\n----------------------------------------\nYour maximum onset: %.0f is greater than your ips (%.0f)!\n',max(horzcat(spm_inputs(:).ons)),ips);
-					onset_resp = input(sprintf('Do you want to e(x)it, (c)onvert the onsets to TRs, or (p)roceed anyway? (type x or c or p)\t'),'s');
-					if strcmpi(onset_resp,'x')
-						return;
-					elseif strcmpi(onset_resp,'c')
-						disp('Fixing onsets for behavioural file %s. Note that this fix is not permanent.',parafiles{run});
-						for onsTask = 1:length(spm_inputs)
-							spm_inputs(onsTask).ons = spm_inputs(onsTask).ons/2+1;
-						end
-					end
-				end
+                % check to make sure the onsets are correct
+                if max(horzcat(spm_inputs(:).ons)) > ips % saxelab uses vertcat but horzcat should do the same thing
+                    warning('\n----------------------------------------\nYour maximum onset: %.0f is greater than your ips (%.0f)!\n',max(horzcat(spm_inputs(:).ons)),ips);
+                    onset_resp = input(sprintf('Do you want to e(x)it, (c)onvert the onsets to TRs, or (p)roceed anyway? (type x or c or p)\t'),'s');
+                    if strcmpi(onset_resp,'x')
+                        return;
+                    elseif strcmpi(onset_resp,'c')
+                        disp('Fixing onsets for behavioural file %s. Note that this fix is not permanent.',parafiles{run});
+                        for onsTask = 1:length(spm_inputs)
+                            spm_inputs(onsTask).ons = spm_inputs(onsTask).ons/2+1;
+                        end
+                    end
+                end
                 for cond = 1:length(spm_inputs)
                     % SUBTRACTING 1 BECAUSE SPM FIRST IMAGE = 0
                     % this is later fixed in jc_get_design before
                     % extracting roi data in roi_batch.
                     % nevertheless, you must code onsets assuming the first
                     % image is 1.
-                    SPM.Sess(run).U(cond).ons    = spm_inputs(cond).ons;  % onsets in secs. 
+                    SPM.Sess(run).U(cond).ons    = spm_inputs(cond).ons - 1;  % onsets in scans. 
                     SPM.Sess(run).U(cond).name   = {spm_inputs(cond).name};   % string from spm_inputs.name
                     SPM.Sess(run).U(cond).dur    = spm_inputs(cond).dur;      % duration in scans from spm_inputs.dur
                     SPM.Sess(run).U(cond).P.name = 'none';                    % 'none' | 'time' | 'other'
@@ -697,7 +691,7 @@ for subj = 1:length(subject)
 
                         % generate a vector of all onsets
                         tp=[];tdur=[];
-							
+                            
                         for i=1:length(spm_inputs)
                             tp   = [tp spm_inputs(i).ons'];
                             tdur = [tdur spm_inputs(i).dur'];
@@ -724,7 +718,7 @@ for subj = 1:length(subject)
                         % add them to user_regressors, to be used in the next step.
                         if exist('user_regressors')
                             user_regressors(end+1).name = 'RT';
-                            user_regressors(end).ons  = RT_run;
+                            user_regressors(end+1).ons  = RT_run;
                         else
                             user_regressors(1).name = 'RT';
                             user_regressors(1).ons  = RT_run;
@@ -808,6 +802,7 @@ for subj = 1:length(subject)
                     fprintf('\nThe ips doesn''t match the number of image files in\n');
                     fprintf('"%s/%s/%s/bold/%.3d" (run %d)\n\n',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(i),i);
                 end
+            
             end
             
             save SPM SPM
@@ -817,17 +812,17 @@ for subj = 1:length(subject)
             
             % Configure design matrix
             %===========================================================================
-                try
+                % try
                     SPM = spm_fmri_spm_ui(SPM);
-                catch
-                    disp('Failed to create design')
-                    disp('Common causes: ')
-                    disp('    -The targeted data (swr / sr) doesn''t exist')
-                    disp('    -The ips doesn`t match the actual bold data')
-                    disp('    -The onsets or durations lead to invalid references')
-                    disp('    (or permissions, of course)')
-                    break
-                end
+                % catch
+                %     disp('Failed to create design')
+                %     disp('Common causes: ')
+                %     disp('    -The targeted data (swr / sr) doesn''t exist')
+                %     disp('    -The ips doesn`t match the actual bold data')
+                %     disp('    -The onsets or durations lead to invalid references')
+                %     disp('    (or permissions, of course)')
+                %     break
+                % end
                 
                 if implicit_flag == 1
                     SPM.xM.T           = ones(length(scans),1);
@@ -836,7 +831,7 @@ for subj = 1:length(subject)
                     SPM.xM.VM          = [];
                     SPM.xM.xs.Masking  = 'analysis threshold';
                 else
-                    skullStripMaker(study,subject{subj},maskthresh)
+%                     skullStripMaker(study,subject{subj},maskthresh)
                     SPM.xM.T           = SPM.xM.T;
                     SPM.xM.TH          = SPM.xM.TH * -Inf;
                     SPM.xM.I           = 0;
@@ -862,7 +857,7 @@ for subj = 1:length(subject)
             % use it now
             %---------------------------------------------------------------------------
             for k=1:num_runs
-                load(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural/behavioural_SHAPES',parafiles{k}),'con_info')
+                load(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural',parafiles{k}),'con_info')
                 if exist('con_info')
                     for contrast=1:length(con_info)
                         if k==1, con_vals{contrast} = []; end
@@ -880,33 +875,31 @@ for subj = 1:length(subject)
                     end
                 end
             end
-            
-            if exist('con_info')
-                for contrast=1:length(con_info)
-                    % if task is only 1 run, uncomment the following line
-                    % for regressors
-                    % con_vals{contrast}=[con_vals{contrast}, zeros(1,num_runs + num_regressors)]; %zero pad for effects of interest
+            for contrast=1:length(con_info)
+                % if task is only 1 run, uncomment the following line
+                % for regressors
+                % con_vals{contrast}=[con_vals{contrast}, zeros(1,num_runs + num_regressors)]; %zero pad for effects of interest
 
-                    % if task is more than one run, use the following line for regressors
-                    con_vals{contrast}=[con_vals{contrast}, zeros(1,num_runs)];
+                % if task is more than one run, use the following line for regressors
+                con_vals{contrast}=[con_vals{contrast}, zeros(1,num_runs)];
 
-                    %                     try
-                    if isempty(SPM.xCon)       
-                        SPM.xCon = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
-                    else
-                        SPM.xCon(end+1) = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
-                    end
-    %                     catch
-    %                         fprintf('\n=====\nError specifying contrasts for subject %s task %s\n=====\n',subject{subj},tasks{subj}{task});
-    %                         rethrow(lasterror)
-    %                     end
-                end %con_info loop
-            end
+                %                     try
+                if isempty(SPM.xCon)       
+                    SPM.xCon = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
+                else
+                    SPM.xCon(end+1) = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
+                end
+%                     catch
+%                         fprintf('\n=====\nError specifying contrasts for subject %s task %s\n=====\n',subject{subj},tasks{subj}{task});
+%                         rethrow(lasterror)
+%                     end
+            end %con_info loop
             %---------------------------------------------------------------------------
             spm_contrasts(SPM);
     end % task loop
 end % subject loop
 end %function model
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function skullStripMaker(study, subj, maskthresh)
@@ -946,11 +939,17 @@ function skullStripMaker(study, subj, maskthresh)
             fprintf('Attempting to remove old mask...\n');
             eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.nii.gz']));
             eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.nii']));
+            % system(sprintf('rm -rf %s',[directory 'skull_strip_mask.nii.gz']));
+            % system(sprintf('rm -rf %s',[directory 'skull_strip_mask.nii']));
+
             fprintf('Old mask removed, making new mask...\n');
         end
         eval(sprintf('!bet %s %s -f %0.01f',img,[directory 'skull_strip_mask'],maskthresh));
+        % system(sprintf('bet %s %s -f %0.01f',img,[directory 'skull_strip_mask'],maskthresh));
+
         fprintf('Mask image made, unzipping...\n');
         eval(sprintf('!gunzip %s.nii.gz -f',[directory 'skull_strip_mask']));
+        % system(sprintf('gunzip %s.nii.gz -f',[directory 'skull_strip_mask']));
         fprintf('Constructing binary brain mask...\n');
         V = spm_vol([directory 'skull_strip_mask.nii']);
         Vo = struct('fname',[directory 'skull_strip_mask.img'],'dim',[V(1).dim(1:3)],'dt',[spm_type('float32'), 1],'mat',V(1).mat,'descrip','spm - algebra','mask',1);
@@ -963,11 +962,11 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function art_maker(inStruct, resDir, artsubj, arttask)
 global_mean=        inStruct.global_mean;               % global mean type (1: Standard 2: User-defined Mask)
-motion_file_type=	inStruct.motion_file_type;          % motion file type (0: SPM .txt file 1: FSL .par file 2:Siemens .txt file)
-global_threshold=	inStruct.global_threshold;          % threshold for outlier detection based on global signal
+motion_file_type=   inStruct.motion_file_type;          % motion file type (0: SPM .txt file 1: FSL .par file 2:Siemens .txt file)
+global_threshold=   inStruct.global_threshold;          % threshold for outlier detection based on global signal
 motion_threshold=   inStruct.motion_threshold;          % threshold for outlier detection based on motion estimates
-use_diff_motion=	inStruct.use_diff_motion;           % 1: uses scan-to-scan motion to determine outliers; 0: uses absolute motion
-use_diff_global=	inStruct.use_diff_global;           % 1: uses scan-to-scan global signal change to determine outliers; 0: uses absolute global signal values
+use_diff_motion=    inStruct.use_diff_motion;           % 1: uses scan-to-scan motion to determine outliers; 0: uses absolute motion
+use_diff_global=    inStruct.use_diff_global;           % 1: uses scan-to-scan global signal change to determine outliers; 0: uses absolute global signal values
 use_norms=          1;                                  % 1: uses composite motion measure (largest voxel movement) to determine outliers; 0: uses raw motion measures (translation/rotation parameters) 
 mask_file=          [];                                 % set to user-defined mask file(s) for global signal estimation (if global_mean is set to 2) 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

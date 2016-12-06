@@ -143,7 +143,7 @@ switch fcn
     case 'specify'
         plotinfo=get(gcf,'UserData');
         % Pop up to select subjects
-        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Analysis','','/younglab/studies','.*',1);
+        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Analysis','','/home/younglw/studies','.*',1);
         % populate the listbox with subject names, for reassurance
         set(plotinfo.subbox,'string',plotinfo.subjects(:,size(plotinfo.subjects,2)-16:size(plotinfo.subjects,2)));
         set(gcf,'UserData',plotinfo);
@@ -186,10 +186,10 @@ switch fcn
      case 'save'
         plotinfo = get(gcf,'UserData');
         cmt  = inputdlg('Optional session name:');
-        saveas(gcf,['/younglab/scripts/roi_batch_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
+        saveas(gcf,['/home/younglw/scripts/roi_batch_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
         
     case 'load'
-        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/younglab/studies/scripts/roi_batch_sessions','.*',1);
+        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/home/younglw/studies/scripts/roi_batch_sessions','.*',1);
         close(gcf);open(cur_fig);
         
     case 'reset'

@@ -16,6 +16,9 @@ function conn_BATCH_secondlevel(study,connmat,between_subjects,between_condition
 %run_batch: 0 or 1. 0 = do not call conn_batch() (we want to save the analysis setup without running it). 
 %1 = run conn_batch()
 %
+%sample call:
+%conn_BATCH_secondlevel('RACA_02_03_roi','02vs03',0,0,'2v3',1)
+%(where 02vs03.mat is a file containing variables 'effect_names' and 'contrast')
 %
 %The "between" parameters should be .mat structures saved in /younglab/studies/study/conn/. 
 %If you do not want to specify an analysis for one of these parameters, enter 0 as a placeholder.
@@ -32,55 +35,55 @@ function conn_BATCH_secondlevel(study,connmat,between_subjects,between_condition
 	EXPERIMENT_ROOT_DIR='/younglab/studies';
 	cd(fullfile(EXPERIMENT_ROOT_DIR,study,'conn/'))
 	try
-	    cfile=load([connmat '.mat']);
+	    conn_file=load([connmat '.mat'])
 	catch
 	    sprintf('No .mat file named %s in directory %s',connmat,pwd)
 	    return
 	end	
 
-	BATCH=cfile.BATCH;
-    vars={'effect_names','contrast'};
-    
+	BATCH=conn_file.BATCH;
+
 	if between_subjects==0
-		between_subjects={};
+		;
 	else
-		between_subjects=load([between_subjects '.mat'],vars{:})
+		between_subjects=load(between_subjects,'-mat');
 	end
 
 	if between_conditions==0
-		between_conditions={};
+		;
 	else
-		between_conditions=load([between_conditions '.mat'],vars{:});
+		between_conditions=load(between_conditions,'-mat');
 	end
 
 	if between_sources==0
-		between_sources={};
+		;
 	else
-		between_sources=load([between_sources '.mat'],vars{:});
+		between_sources=load(between_sources,'-mat');
 	end
 
 
-	firstlevel=cfile.firstlevel;
+	firstlevel=conn_file.firstlevel;
 	for a=1:length(firstlevel) %note that this means ALL of your first-level analyses will undergo the same second-level analysis steps
 		%so choose wisely! only input first-level analyses you mean to use at the second level
 		BATCH.Results.analysis_number=a;
-		if isempty(between_subjects)&&isempty(between_conditions)&&isempty(between_sources)
+		if between_subjects & between_conditions & between_sources == 0
 			disp(['No second-level analyses specified for analysis #' num2str(a)])
-            return
+			disp('Performing CONN default second-level analyses.')
 		end
-		if ~isempty(between_subjects)
-			BATCH.Results.between_subjects=between_subjects;
-            disp('Between-subjects analysis')
+		if between_subjects ~= 0
+			%define between subjects analysis
+			BATCH.Results.second_levels.effect_names=between_subjects.effect_names;
+			BATCH.Results.second_levels.contrast=between_subjects.contrast;
 		end
-		if ~isempty(between_conditions)
-			BATCH.Results.between_conditions=between_conditions;
-            disp('Between-conditions analysis')
+		if between_conditions~=0
+			BATCH.Results.between_conditions.effect_names=between_conditions.effect_names;
+			BATCH.Results.between_conditions.contrast=between_conditions.contrast;
 		end
-		if ~isempty(between_sources)
-			BATCH.Results.between_sources=between_sources;
-            disp('Between-sources analysis')
+		if between_sources~=0
+			BATCH.Results.between_sources.effect_names=between_sources.effect_names;
+			BATCH.Results.between_sources.contrast=between_sources.contrast;
 		end
-		disp(['Analysis #' num2str(a)])
+		disp(['Performing specified second-level analyses for analysis #' num2str(a)])
 	end
 	BATCH.Results.done=1;
 
@@ -92,7 +95,7 @@ function conn_BATCH_secondlevel(study,connmat,between_subjects,between_condition
 
 	if run_batch
 	    conn_batch(BATCH);
-% 		disp('Functional connectivity analysis successful!')	    
+		disp('Functional connectivity analysis successful!')	    
 	else if run_batch == 0
 	    ;
 	else

@@ -213,12 +213,5 @@ switch fcn
         sprintf('roi_batch({''%s''}',subjects)
         call = sprintf('roi_batch({''%s''},''%s'', ''%s'', ''%s'', %s, %s, %s, ''%s'');',subjects,roi,task_dir,loc_dir,get(plotinfo.winbox,'string'),get(plotinfo.onsbox,'string'),num2str(hp),get(plotinfo.ampbox,'string'));
         disp('Your function call is:')
-        %untitled3(cellstr(subjects),roi, task_dir, loc_dir, con, win, ons, hp, amp);
-        %roi_batch_item_alek(cellstr(subjects),roi, task_dir, loc_dir, con, win, ons, hp, amp);
         roi_batch(cellstr(subjects),roi, task_dir, loc_dir, con, win, ons, hp, amp);
-        %subjects = cellstr(subjects);
-        %save('batchfiles','subjects','roi', 'task_dir', 'loc_dir', 'con', 'win', 'ons', 'hp', 'amp');
-
-        
-
 end

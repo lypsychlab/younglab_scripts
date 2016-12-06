@@ -1,6 +1,6 @@
 function younglab_RFX_spm12(study,task,subjs,confile,varargin)
 %   ====================================================================
-% function younglab_RFX_spm12(study,task,subjs,confile,varargin)
+% function younglab_RFX_spm8(study,task,subjs,confile,varargin)
 %
 % This script provides a way to quickly produce a Random Effects analysis
 % for a specified list of subjects and contrasts (saxelab style)
@@ -11,7 +11,7 @@ function younglab_RFX_spm12(study,task,subjs,confile,varargin)
 %   "RandomEffects" unless overridden with a final argument (see below)
 % "subjs" is an array of subjIDs
 %      -see "help makeIDs" for information on this shortcut
-% "confile" is the number in the con_000*.img file in the results directories.
+% "confile" is the number in the con_000*.nii file in the results directories.
 %   -If these vary between subjects, an array of numbers may be provided
 %   instead of a single value
 % "contrast_name" is an optional last argument to specify a unique name for
@@ -36,9 +36,9 @@ function younglab_RFX_spm12(study,task,subjs,confile,varargin)
 
 
 %===============  Set-up the Directories ==========================
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
+EXPERIMENT_ROOT_DIR = '/home3/younglw/lab';
 
-addpath(genpath('/software/spm12'));
+addpath(genpath('/usr/public/spm/spm12'));
 % Convert confile to array if scalar was provided:
 if ~(length(confile)-1)  %crude test for array vs float
     confile = confile*ones(1,length(subjs));
@@ -56,9 +56,9 @@ cd(rfx_root);
 fprintf('Relocating files for %d subjects\n',length(subjs));
 
 for sub=1:length(subjs)
-    source_img = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.img',confile(sub)));
+    source_img = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.nii',confile(sub)));
     P{sub}=source_img;
-    target_img = sprintf('%s/Img%02.f_%s_con_%04.f.img',rfx_root,sub,subjs{sub},confile(sub));
+    target_img = sprintf('%s/Img%02.f_%s_con_%04.f.nii',rfx_root,sub,subjs{sub},confile(sub));
     cpcmd = sprintf('!cp %s %s',source_img,target_img);
     eval(cpcmd);
     source_hdr = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.hdr',confile(sub)));
@@ -161,3 +161,6 @@ con_name = SPM.xY.VY(1).descrip(19:end); % Pull it out of original guys. conveni
 
 
 end %function rfx_anal
+
+
+

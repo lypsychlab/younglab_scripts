@@ -39,6 +39,7 @@ function younglab_preproc_temporal (varargin)
 % normalize realigned data to perform a reslice at that step?)  -same w/
 % smooth....    Consider passing OPT and perhaps others to each function
 %
+% -Saxelab, Jon Scholz 10/18/06
 % ====================================================================
 % To port this script to another workstation environment you can change the
 % root directory here.  
@@ -54,9 +55,9 @@ function younglab_preproc_temporal (varargin)
 % <001...00n>             <task(s)>          ...      
 
 global EXPERIMENT_ROOT_DIR;
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
+EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
 
-addpath(genpath('/software/spm8'));
+addpath(genpath('/usr/public/spm/spm8'));
 
 pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment - 
 %           doubles # of functional runs) - tells the script to process
@@ -69,7 +70,7 @@ end
 
 if nargin==1
     study    = varargin{1};
-    subj_dir_identifier = 'YOU';
+    subj_dir_identifier = 'YOU';s
     subject = find_subjects(study,subj_dir_identifier);
     preprocess(study,subject,0);
 end

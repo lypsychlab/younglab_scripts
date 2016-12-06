@@ -21,7 +21,7 @@ function roi_picker_gui(fcn)
 % if you choose 'other', you have two options
 % 1. you may choose your own roi search file to load. this contains a list
 % of coordinates for a previously-defined functional or anatomical roi - 
-% basically a tal file. to make your own, see /younglab/roi_library
+% basically a tal file. to make your own, see /home/younglw/roi_library
 % 2. you may enter x y z coordinates as a starting point for the script. 
 % it will find a local max near this location for each subject.
 % 
@@ -50,7 +50,7 @@ function roi_picker_gui(fcn)
 
 % First time it starts, run makeGUI, otherwise, the gui calls itself with
 % new input strings in the 'fcn' variable.
-addpath(genpath('/software/spm8'));
+addpath(genpath('/usr/public/spm/spm8'));
 
 if nargin == 0;fcn = 'makeGUI';end
 
@@ -151,20 +151,20 @@ switch fcn
         plotinfo=get(gcf,'UserData'); % data saved in the figure. only plotinfo persists
         plotinfo.roi=get(plotinfo.choose,'value');
         switch plotinfo.roi
-            case 1;  plotinfo.roi='RTPJ';  plotinfo.roi_xyz = load('/younglab/roi_library/functional/RTPJ_xyz');
-            case 2;  plotinfo.roi='LTPJ';  plotinfo.roi_xyz = load('/younglab/roi_library/functional/LTPJ_xyz');
-            case 3;  plotinfo.roi='RSTS';  plotinfo.roi_xyz = load('/younglab/roi_library/functional/RSTS_xyz');
-            case 4;  plotinfo.roi='LSTS';  plotinfo.roi_xyz = load('/younglab/roi_library/functional/LSTS_xyz');
-            case 5;  plotinfo.roi='PC';    plotinfo.roi_xyz = load('/younglab/roi_library/functional/PC_xyz');
-            case 6;  plotinfo.roi='MMPFC'; plotinfo.roi_xyz = load('/younglab/roi_library/functional/MMPFC_xyz');
-            case 7;  plotinfo.roi='DMPFC'; plotinfo.roi_xyz = load('/younglab/roi_library/functional/DMPFC_xyz');
-            case 8;  plotinfo.roi='RIFG';  plotinfo.roi_xyz = load('/younglab/roi_library/functional/RIFG_xyz');
+            case 1;  plotinfo.roi='RTPJ';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RTPJ_xyz');
+            case 2;  plotinfo.roi='LTPJ';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/LTPJ_xyz');
+            case 3;  plotinfo.roi='RSTS';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RSTS_xyz');
+            case 4;  plotinfo.roi='LSTS';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/LSTS_xyz');
+            case 5;  plotinfo.roi='PC';    plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/PC_xyz');
+            case 6;  plotinfo.roi='MMPFC'; plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/MMPFC_xyz');
+            case 7;  plotinfo.roi='DMPFC'; plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/DMPFC_xyz');
+            case 8;  plotinfo.roi='RIFG';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RIFG_xyz');
             case 9;
                 answer = questdlg('How Would you like to find an initial ROI peak?', 'ROI Specification','ROI Image','Coordinates','ROI Image');
                 if strcmp(answer,'ROI Image')
                     t                = inputdlg('Enter an ROI Name'); 
                     plotinfo.roi     = t{1};
-                    f                = spm_select(1,'mat',['Choose a coordinates file for ' t{1}],'','/younglab/roi_library','.*',1);
+                    f                = spm_select(1,'mat',['Choose a coordinates file for ' t{1}],'','/home/younglw/lab/roi_library','.*',1);
                     plotinfo.roi_xyz = load(f);% array
                 else
                     t=inputdlg({'ROI Name','Coordinates'},'ROI Info',1,{'','0 0 0'});
@@ -180,7 +180,7 @@ switch fcn
 
     case 'specify'
         plotinfo=get(gcf,'UserData');
-        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Picking','','/younglab/studies','.*',1);
+        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Picking','','/home/younglw/lab','.*',1);
         
         % populate the listbox with subject names, for reassurance
         set(plotinfo.subbox,'string',plotinfo.subjects(:,size(plotinfo.subjects,2)-16:size(plotinfo.subjects,2)));
@@ -217,10 +217,10 @@ switch fcn
     case 'save'
         plotinfo = get(gcf,'UserData');
         cmt  = inputdlg('Optional session name:');
-        saveas(gcf,['/younglab/scripts/roi_picker_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
+        saveas(gcf,['/home/younglw/lab/scripts/roi_picker_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
         
     case 'load'
-        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/younglab/scripts/roi_picker_sessions','.*',1);
+        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/home/younglw/lab/scripts/roi_picker_sessions','.*',1);
         close(gcf);open(cur_fig);
         
     case 'reset'

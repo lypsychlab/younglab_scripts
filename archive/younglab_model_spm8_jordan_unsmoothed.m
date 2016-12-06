@@ -193,7 +193,7 @@ global skip_art;
 global mask_over;
 global defaults;
 
-EXPERIMENT_ROOT_DIR = '/younglab/studies';
+EXPERIMENT_ROOT_DIR = '/home/younglw/';
 TR               = 2;
 src_data_flag    = 'normed'; 
 RT_flag          = 0;
@@ -742,7 +742,7 @@ for subj = 1:length(subject)
                 end
 
                 % make sure defaults are present in workspace
-                spm_defaults = spm_defaults_alek;
+                spm_defaults = spm_defaults_lily;
 
                 % Get filenames for functional scans - changed by "normed"
                 %===========================================================================
@@ -898,7 +898,7 @@ function skullStripMaker(study, subj, maskthresh)
     set(0,'DefaultFigureVisible','on');
     global mask_over;
     global inStruct;
-    directory = ['/younglab/studies/' study '/' subj '/3danat/'];
+    directory = ['/home/younglw/' study '/' subj '/3danat/'];
     img = dir([directory 'ws0-0*-*-*-*.img']);
     if strcmp(inStruct.src_data_flag,'unnormed')|isempty(img) 
         img = dir([directory 's0-0*-*-*-*.img']);

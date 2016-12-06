@@ -20,7 +20,7 @@ roi_xyz=0;
 % New functionality lets one apply a single ROI to all subjects
 if strcmp(roi_name,'GROUP')
     group_roi=1;
-    f     = spm_select(1,'mat','Choose a Group ROI file','','/younglab/roi_library','.*',1);
+    f     = spm_select(1,'mat','Choose a Group ROI file','','/home/younglw/roi_library','.*',1);
     load(f);if roi_xyz ==0;roi_xyz = xY.XYZmm';end % if VOI_*mat group ROI
     temp  = strread(f,'%s','delimiter','/');temp = temp{end};
     temp  = strread(temp,'%s','delimiter','.'); roi_name = temp{1};
@@ -196,9 +196,9 @@ for s = 1:length(subjects)
         %offlist.
         croplist = sort([(nscan2-SPM.nscan(1)+1) (nscan2-SPM.nscan(1)+2)]);
         offlist  = setdiff(offlist,croplist);
-%         wronglist = offlist([5 10 15 20 25 30]);
+        wronglist = offlist([5 10 15 20 25 30]);
 %         wronglist = offlist([5 10 15 20 25]);
-        wronglist = offlist([5 10 15 20]);
+%         wronglist = offlist([5 10 15 20]);
 %         wronglist = offlist([5 10 15]);
 %        wronglist = offlist([5 10]);
         offlist = setdiff(offlist, wronglist);
