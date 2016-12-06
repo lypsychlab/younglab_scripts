@@ -214,4 +214,5 @@ git push -u origin master
 ```
 
 If this all worked, I should see a README file appear in my remote "testRepo" repo,
-with the fake README message in it.
+with the fake README message in it.  
+Now, whenever I want to push under this account, I can push to 'origin' (though it's a good idea to check beforehand that 'origin' is pointing where you want it to point, by using ```git remote -v```). I could also name a new remote, by switching out 'origin' for a different name in my ```git remote add``` command, and push to that remote.
