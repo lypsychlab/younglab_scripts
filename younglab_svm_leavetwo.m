@@ -1,4 +1,4 @@
-function [corracc] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
+function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
 %younglab_svm:
 %- performs leave-two-out classification with fitcsvm() and predict().
 %- testing sets consist of every combination of 1 member of class 1 with 1 member of class 2
@@ -10,7 +10,7 @@ function [corracc] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
 %fname: output filename
 
 	recode_labels=zeros(size(dataset,1),1); %holds CORRECT 0/1 classes
-	outputs = [];
+	outputs = [];soft_outputs=[];
 
 	for t=1:size(dataset,1)
         if strcmp(labeled_data{t},cnames{2}) %if this item is a member of class 2
@@ -47,7 +47,13 @@ function [corracc] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
 			%labels returns the label for each trial in testing
 			%softscores: t x 2 matrix of soft scores, where softscores(t,1) contains the score for the trial
 			%being classified, for the first class
-			labels
+			class1ness=softscores(:,1);
+			output_class1=find(class1ness==max(class1ness)); %which of the two is more class-1-ish?
+			if output_class1==1 %i.e. the actual class 1 item was the more class-1-ish
+				soft_outputs=[soft_outputs;1];
+			else
+				soft_outputs=[soft_outputs;0];
+			end
             
 			is_correct=(strcmp(labels{1},cnames{1}))&&(strcmp(labels{2},cnames{2}));
 			% 1 if there are no differences (i.e. the labels were correctly predicted)
@@ -61,5 +67,6 @@ function [corracc] = younglab_svm_leavetwo(dataset,labeled_data,cnames,fname)
 	end
 
 	corracc=(length(find(outputs==1)))/length(outputs);
+	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
 % 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
 end
