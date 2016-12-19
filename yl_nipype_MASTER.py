@@ -22,6 +22,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
 
+
 	##### SETTING UP #####
 	# Find parameter file & load
 	with open(yl_nipype_params_file,'r') as jsonfile:
@@ -48,7 +49,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		for k2 in software_dict[k]: # for each node type
 			for k3 in k[k2]: # for each parameter pair
 				if k3 == 'func':
-					k2[k3] = eval(k2[k3])
+					k2[k3] = eval(k2[k3]) # point to the function object
+
 
 	##### CREATE, CONFIGURE, & CONNECT NODES #####
 	# Check the node flags and create nodes
@@ -78,9 +80,38 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			old_software_key = software_key
 			not_first = 1
 
+	infosource = npe.Node()
+	infosource.interface = util.IdentityInterface(fields=['subject_id'])
+	infosource.name = 'infosource'
+	infosource.iterables = [('subject_id',params["experiment_details"]["subject_ids"]),
+	('task_name',params["experiment_details"]["task_names"])]
+
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
-	# Implement subject looping
-	start_node.iterables = ('subject_id',params["experiment_details"]["subject_nums"])
+	# Implement subject looping for entire workflow by default
+	start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
+	# Implement any other iterations that appear in the parameter file
+	for i in range(len(params["iterate"]["node_names"])): # for each iterable node
+		# task looping not natively supported, so must specify
+		if params["iterate"]["iterate_over"][i][0] == 'task_name':
+			this_node_name = params["iterate"]["node_names"][i] # name of node to iterate
+			if this_node_name == 'specify_design' : pass # task looping is already set in configure_node
+			else:
+				this_node = eval(this_node_name) # pointer to node
+				this_iter_over = params["iterate"]["iterate_over"][i][1] # name of input files variable to iterate
+				these_inputs = [] # list to hold lists of input files
+				for j in range(len(params["experiment_details"]["task_names"])): # for each task
+					search_template = params["iterate"]["iterate_values"][i][j] # regular expression matching
+					ds = nin.io.DataGrabber()
+					ds.inputs.base_directory = params["params"][this_node_name]["infile_dir"]
+					ds.inputs.template = search_template # search for files with this type of name
+					these_inputs.append(ds.run()) # add the list of grabbed files to the list
+				this_node.iterables = (this_iter_over,these_inputs)  
+		else: # iterate the regular nipype way
+			eval(params["iterate"]["node_names"][i]).iterables= (
+				params["iterate"]["iterate_over"][i],
+				params["iterate"]["iterate_values"][i]
+				)
+			# Syntax: thisnode.iterables = (variable_to_iterate, values_to_iterate)
 
 
 	##### FINISHING #####
@@ -95,7 +126,18 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	workflow.write_graph()
 	workflow.run()
 
-	# Function definitions
+
+	##### FUNCTION DEFINITIONS #####
+	def create_subj_info(subj,taskname):
+		""""""
+		from nipype.interfaces.base import Bunch
+		output = []
+		for this_run in range(len(params['experiment_details']['spm_inputs'][taskname][subj]['dur'])):
+			on = [params['experiment_details']['spm_inputs'][taskname][subj]['ons'][this_run]]
+			du = [params['experiment_details']['spm_inputs'][taskname][subj]['dur'][this_run]]
+			cn = [params['experiment_details']['conditions'][taskname][subj]['condition'][this_run]]
+			output.insert(this_run,Bunch(conditions = cn, onsets=on, durations = du))
+		return output
 
 	def add_node(node_name):
 		"""
@@ -199,14 +241,27 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'specify_design': # specify parameters for first-level design setup
 			if software_spec == 'spm':
+				if specify_inputs:
+					ds = nin.io.DataGrabber()
+					ds.inputs.base_directory = params["params"]["specify_design"]["infile_dir"]
+					ds.inputs.template = params["params"]["specify_design"]["infile_template"]
+					node.inputs.functional_runs = ds.run()
 				node.inputs.high_pass_filter_cutoff = params["params"]["specify_design"]["high_pass_filter_cutoff"]
 				node.inputs.input_units = params["params"]["specify_design"]["input_units"]
 				node.inputs.time_repetition = params["params"]["specify_design"]["time_repetition"]
-				node.inputs.subject_info # fill this in  - emily
+				# pipe subject information out of infosource node, using create_subject_info()
+				workflow.connect(infosource,(('subject_id','task_name'),create_subject_info),node,'subject_info')
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'design': # specify parameters for first-level design
 			if software_spec == 'spm':
+				if specify_inputs:
+					ds = nin.io.DataGrabber()
+					ds.inputs.base_directory = params["params"]["design"]["mask_image_dir"]
+					ds.inputs.template = params["params"]["design"]["mask_image_template"]
+					node.inputs.mask_image = ds.run()
+				elif skull_strip_flag: #if we have made a binary brain mask in this workflow
+					workflow.connect([(skull_strip,node,[('mask_file','mask_image')])])
 				node.inputs.bases = params["params"]["design"]["bases"]
 				node.inputs.interscan_interval = params["params"]["design"]["interscan_interval"]
 				node.inputs.timing_units = params["params"]["design"]["timing_units"]
@@ -235,11 +290,11 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				if specify_inputs:
 					ds = nin.io.DataGrabber()
 					ds.inputs.base_directory = params["params"]["twosample_T"]["infile_dir_1"]
-					ds.inputs.template = '*.nii'
+					ds.inputs.template = params["params"]["twosample_T"]["infile_template_1"]
 					node.inputs.group1_files = ds.run()
 					ds = nin.io.DataGrabber()
 					ds.inputs.base_directory = params["params"]["twosample_T"]["infile_dir_2"]
-					ds.inputs.template = '*.nii'
+					ds.inputs.template = params["params"]["twosample_T"]["infile_template_2"]
 					node.inputs.group2_files = ds.run()
 				node.inputs.threshold_mask_none = params["params"]["twosample_T"]["threshold_mask_none"]
 				node.inputs.global_calc_omit = params["params"]["twosample_T"]["global_calc_omit"]
@@ -268,10 +323,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			if software_spec == 'spm':
 				if specify_inputs:
 					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"]["contrast"]["infile_dir"]
+					ds.inputs.base_directory = params["params"]["cluster_correct"]["infile_dir"]
 					ds.inputs.template = 'SPM.mat'
 					ds.inputs.spm_mat_file = ds.run()
-					ds.inputs.template = 'spmT*.nii'
+					ds.inputs.template = params["params"]["cluster_correct"]["template"]
 					ds.inputs.stat_image = ds.run()
 				node.inputs.contrast_index = params["params"]["cluster_correct"]["contrast_index"]
 				node.inputs.extent_fdr_p_threshold = params["params"]["cluster_correct"]["cluster_p_thresh"]
