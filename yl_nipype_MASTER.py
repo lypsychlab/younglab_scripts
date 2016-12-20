@@ -2,7 +2,7 @@
 import nipype.interfaces as nin
 import nipype.algorithms as nal
 import nipype.pipeline.engine as npe 
-import json, os, shutil
+import json, os, shutil, sys
 from collections import OrderedDict
 
 def yl_nipype_MASTER(yl_nipype_params_file,*args):
@@ -22,23 +22,34 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
 
+	try:
+		if sys.ps1: # we're in interactive mode
+			pass # don't need to do anything
+	except AttributeError: # we're in command-line mode
+		if len(yl_nipype_params_file) > 1: # we have optional arguments
+			args = yl_nipype_params_file[1:]
+		else: args = []
+		yl_nipype_params_file = yl_nipype_params_file[0] # mandatory argument
+
 
 	##### SETTING UP #####
 	# Find parameter file & load
+	print('Loading files and setting up...')
+	print(yl_nipype_params_file)
 	with open(yl_nipype_params_file,'r') as jsonfile:
 		params = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
 	# Navigate to study directory & set up directory/workflow name for nipype
-	studydir = os.join(params["directories"]["root"],
+	studydir = os.path.join(params["directories"]["root"],
 		params["directories"]["study"])
 	workflow = npe.Workflow(name=params["directories"]["workflow_name"])
 	workflow.base_dir = studydir
-	if not os.path.exists(os.join(studydir,params["directories"]["workflow_name"])):
-		os.makedirs(os.join(studydir,params["directories"]["workflow_name"]))
+	if not os.path.exists(os.path.join(studydir,params["directories"]["workflow_name"])):
+		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
 
 	# Set up software dictionary mapping software names to interface functions
-	if len(args): 
-		software_file = args[0]
+	if len(args) > 0: # if we have optional arguments
+		software_file = args[0] 
 	else:
 		software_file = '/home/younglw/lab/scripts/yl_nipype_software_dict_MASTER.json'
 	with open(software_file,'r') as jsonfile:
@@ -47,19 +58,23 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	# Convert the function name strings in the dict to function pointers
 	for k in software_dict: # for each software type
 		for k2 in software_dict[k]: # for each node type
-			for k3 in k[k2]: # for each parameter pair
+			for k3 in software_dict[k][k2]: # for each parameter pair
 				if k3 == 'func':
-					k2[k3] = eval(k2[k3]) # point to the function object
+					software_dict[k][k2][k3] = eval(software_dict[k][k2][k3]) # point to the function object
 
+
+	software_key = params["params"]["global_software_specs"]["software"]
 
 	##### CREATE, CONFIGURE, & CONNECT NODES #####
 	# Check the node flags and create nodes
+	print('Checking flags...')
 	not_first = 0
-	for flagname, flag in params["node_flags"].items():
+	for flagname, flag in params["node_flags"].items(): # iterate through flags
 		if flag:
 			node_name = flagname
+			print('Creating node %s' % node_name)
 			new_node = add_node(node_name) # create the node
-			if not_first:
+			if not_first: # don't auto-connect the first node!
 				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
 					num_inputs = len(software_dict[software_key][node_name][inp])
 					# create a tuple to match old outputs to new inputs
@@ -70,8 +85,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 					# note that this connects nodes serially, in the order they appear in params["node_flags"]
 					# to change the node order, change the order of the flags in your parameter file
 					# to chain different outputs/inputs, modify the associated fields in your software_dict file
-					else: # just add node to workflow, don't join it to previous node
-						workflow.add_nodes([new_node])
+				else: # just add node to workflow, don't join it to previous node
+					workflow.add_nodes([new_node])
 			else: # if it's the first/only node, just add it
 				start_node = new_node
 				workflow.add_nodes([new_node])
@@ -81,12 +96,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			not_first = 1
 
 	infosource = npe.Node()
-	infosource.interface = util.IdentityInterface(fields=['subject_id'])
+	infosource.interface = util.IdentityInterface(fields=['subject_id','task_name'])
 	infosource.name = 'infosource'
 	infosource.iterables = [('subject_id',params["experiment_details"]["subject_ids"]),
 	('task_name',params["experiment_details"]["task_names"])]
 
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
+	print('Implementing loops...')
 	# Implement subject looping for entire workflow by default
 	start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
 	# Implement any other iterations that appear in the parameter file
@@ -117,14 +133,16 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	##### FINISHING #####
 	# Copy parameter file into /code subdir of workflow dir
 	shutil.copy(yl_nipype_params_file,
-		os.join(studydir,params["directories"]["workflow_name"],'code'))
+		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
 	# Copy software_dict file into /code subdir as well
 	shutil.copy(software_file,
-		os.join(studydir,params["directories"]["workflow_name"],'code'))
+		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
 
 	# Run the workflow
+	print('Running workflow...')
 	workflow.write_graph()
 	workflow.run()
+	print('Done.\nWorkflow folder: %s' % os.path.join(studydir,params["directories"]["workflow_name"]))
 
 
 	##### FUNCTION DEFINITIONS #####
@@ -143,12 +161,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		"""
 		Add a generic node to the workflow.
 		"""
+		global software_key
 		if params["global_software_specs"]["use_global_specs"]:
 			# use key associated with global software spec
-			global software_key = params["global_software_specs"]["software"]
+			software_key = params["global_software_specs"]["software"]
 		else:
 			# use key associated with local software spec
-			global software_key = params[node_name]["local_software_spec"]
+			software_key = params[node_name]["local_software_spec"]
 		# grab the corresponding function defined in software_dict
 		node_function = software_dict[software_key][node_name]["func"]
 		# do you want to specify custom input files? 
@@ -175,18 +194,18 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				if specify_inputs:
 					ds = nin.io.DataGrabber()
 					ds.inputs.base_directory = params["params"]["dicom"]["infile_dir"]
-					ds.inputs.template = '*.dcm'
+					ds.inputs.template = params["params"]["dicom"]["template"]
 					dicom_files = ds.run()
 				else:
 					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = os.join(studydir,
+					ds.inputs.base_directory = os.path.join(studydir,
 						params["directories"]["dicom_subdir"])
-					ds.inputs.template = '*.dcm'
+					ds.inputs.template = params["params"]["dicom"]["template"]
 					dicom_files = ds.run()
 				node.inputs.in_files = dicom_files
 				node.inputs.output_dir_struct = params["params"]["dicom"]["output_dir_struct"]
 			elif software_spec == 'afni':
-				node.inputs.in_folder = os.join(studydir,
+				node.inputs.in_folder = os.path.join(studydir,
 					params["directories"]["dicom_subdir"])
 
 		elif node_name == 'slicetime': # specify slice-timing correction parameters
@@ -337,3 +356,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		else:
 			warnings.warn('Unrecognized node name!')
+
+
+if __name__ == "__main__":
+	yl_nipype_MASTER(sys.argv[1:])

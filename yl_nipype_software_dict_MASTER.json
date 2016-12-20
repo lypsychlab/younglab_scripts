@@ -52,7 +52,7 @@
 		"estimate" : {
 			"func" : "nin.spm.EstimateModel",
 			"inp" : "spm_mat_file",
-			"output" : ["beta_images","spm_mat_file","residual_image"[]]
+			"output" : ["beta_images","spm_mat_file","residual_image"]
 			},
 		"contrast" : {
 			"func" : "nin.spm.EstimateContrast",
@@ -65,15 +65,15 @@
 			}
 	}, 
 	"afni" : {
-		"dicom" : "nin.afni.To3D",
-		"slicetime" : "nin.afni.TShift",
-		"realign" : "nin.afni.Align_epi_anat", 
-		"reslice" : "nin.afni.Resample",
-		"normalize" : "nin.afni.Align_epi_anat",
-		"smooth" : "nin.afni.BlurToFWHM",
-		"model" : "nin.afni.3dDeconvolve",
-		"model_reml" : "nin.afni.3dREMLfit",
-		"contrast" : "nin.afni.3dANOVA",
-		"cluster_correct" : "nin.afni.3dClustSim",
+		"dicom" : {"func" : "nin.afni.To3D"},
+		"slicetime" : {"func" : "nin.afni.TShift"},
+		"realign" : {"func" : "nin.afni.Align_epi_anat"},
+		"reslice" : {"func" : "nin.afni.Resample"},
+		"normalize" : {"func" : "nin.afni.Align_epi_anat"},
+		"smooth" : {"func" : "nin.afni.BlurToFWHM"},
+		"model" : {"func" : "nin.afni.3dDeconvolve"},
+		"model_reml" : {"func" : "nin.afni.3dREMLfit"},
+		"contrast" : {"func" : "nin.afni.3dANOVA"},
+		"cluster_correct" : {"func" : "nin.afni.3dClustSim"}
 	} 
 }

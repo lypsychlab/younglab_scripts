@@ -1,6 +1,6 @@
 import json, sys, os, shutil, fnmatch, mat4py
 
-def configure_nipype_params(argu):
+def configure_nipype_params(*argu):
 	"""
 	A little interactive function to fill in *_params_*.json file
 
@@ -26,12 +26,11 @@ def configure_nipype_params(argu):
 	params["directories"]["root"] = rootdir
 	params["experiment_details"]["subject_tag"] = subjtag
 	params["experiment_details"]["subject_nums"] = sub_nums
-	params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in subject_nums]
+	params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
 	params["experiment_details"]["task_names"] = tsks
 
 	print("Pulling information from .mat files now...")
 	os.chdir(os.path.join(rootdir,studyname,'behavioral'))
-	subject_dirs=[subjtag+'_'+x.zfill(2) for x in sub_nums]
 	for t in tsks:
 		params["experiment_details"]["ips"][t] = 0
 		params["experiment_details"]["contrast_info"][t] = {}
@@ -39,7 +38,7 @@ def configure_nipype_params(argu):
 		params["experiment_details"]["design"][t] = {}
 		params["experiment_details"]["covariates"][t] = {}
 
-		for s in subject_dirs:
+		for s in params["experiment_details"]["subject_ids"]:
 			matname = [f for f in os.listdir('.') if fnmatch.fnmatch(f,s+'*'+t+'*.mat')]
 			if not matname: break # skip to next subject if they don't have this task
 			matfile = mat4py.loadmat(matname[0]) # pull just one to do the bulk of processing

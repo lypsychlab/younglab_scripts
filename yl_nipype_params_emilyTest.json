@@ -7,7 +7,7 @@
 		},
 	
 	"node_flags": {
-		"dicom": 0,
+		"dicom": 1,
 		"slicetime": 0,
 		"realign": 0,
 		"reslice": 0,
@@ -26,17 +26,17 @@
 		},
 
 	"directories": {
-		"workflow_name": "MYWORKFLOW",
+		"workflow_name": "emilyTest_dicom",
 		"root": "/home/younglw/lab",
-		"study": "STUDY",
+		"study": "EMILYTEST",
 		"behavioral_subdir": "behavioural",
 		"dicom_subdir": "dicom"
 		},
 
 	"experiment_details": {
-		"subject_tag": "SUBJTAG",
-		"subject_nums": ["SUBJNUMS"],
-		"task_names": ["TASKNAMES"],
+		"subject_tag": "SAX_DIS",
+		"subject_nums": ["SAX_DIS_03"],
+		"task_names": [""],
 		"ips": {
 			},
 		"runs": {
@@ -52,14 +52,14 @@
 		},
 
 	"iterate": {
-		"node_names": ["specify_design","smooth"],
-		"iterate_over": [["task_name","in_files"],["fwhm"]],
-		"iterate_values": [["/tom*/f*.nii","/SHAPES*/f*.nii"],[0,8]]
+		"node_names": [],
+		"iterate_over": [],
+		"iterate_values": []
 		},
 
 	"params": {
 		"dicom": {
-			"local_software_spec": "",
+			"local_software_spec": "spm",
 			"specify_inputs": 0,
 			"infile_dir": "*",
 			"template": "*.dcm",
