@@ -21,6 +21,7 @@ def configure_nipype_params(*argu):
 	sub_nums=[str(x) for x in input('Enter subject numbers (separate with spaces): ').split(' ')]
 	tsks = [str(x) for x in input('Enter task names (separate with spaces): ').split(' ')]
 
+	params["config"]["logging"]["log_directory"] = os.path.join(rootdir,studyname,wfname,'logs')
 	params["directories"]["study"] = studyname
 	params["directories"]["workflow_name"] = wfname
 	params["directories"]["root"] = rootdir
@@ -28,6 +29,7 @@ def configure_nipype_params(*argu):
 	params["experiment_details"]["subject_nums"] = sub_nums
 	params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
 	params["experiment_details"]["task_names"] = tsks
+
 
 	print("Pulling information from .mat files now...")
 	os.chdir(os.path.join(rootdir,studyname,'behavioral'))

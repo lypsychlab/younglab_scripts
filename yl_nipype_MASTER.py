@@ -6,6 +6,7 @@ import nipype.algorithms.modelgen as ngen
 import nipype.pipeline.engine as npe 
 import json, os, shutil, sys
 from collections import OrderedDict
+from nipype import config, logging
 
 def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	"""
@@ -48,6 +49,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	workflow.base_dir = studydir
 	if not os.path.exists(os.path.join(studydir,params["directories"]["workflow_name"])):
 		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
+	for k in params["config"]:
+		workflow.config[k] = params["config"][k]
 
 	# Set up software dictionary mapping software names to interface functions
 	if len(args) > 0: # if we have optional arguments
@@ -106,26 +109,26 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	('task_name',params["experiment_details"]["task_names"])]
 
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
-	print('Implementing loops...')
+	print('Implementing other iterables...')
 	# Implement subject looping for entire workflow by default
-	start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
+	# start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
 	# Implement any other iterations that appear in the parameter file
 	for i in range(len(params["iterate"]["node_names"])): # for each iterable node
 		# task looping not natively supported, so must specify
-		if params["iterate"]["iterate_over"][i][0] == 'task_name':
-			this_node_name = params["iterate"]["node_names"][i] # name of node to iterate
-			if this_node_name == 'specify_design' : pass # task looping is already set in configure_node
-			else:
-				this_node = eval(this_node_name) # pointer to node
-				this_iter_over = params["iterate"]["iterate_over"][i][1] # name of input files variable to iterate
-				these_inputs = [] # list to hold lists of input files
-				for j in range(len(params["experiment_details"]["task_names"])): # for each task
-					search_template = params["iterate"]["iterate_values"][i][j] # regular expression matching
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"][this_node_name]["infile_dir"]
-					ds.inputs.template = search_template # search for files with this type of name
-					these_inputs.append(ds.run()) # add the list of grabbed files to the list
-				this_node.iterables = (this_iter_over,these_inputs)  
+		# if params["iterate"]["iterate_over"][i][0] == 'task_name':
+			# this_node_name = params["iterate"]["node_names"][i] # name of node to iterate
+			# if this_node_name == 'specify_design' : pass # task looping is already set in configure_node
+			# else:
+			# 	this_node = eval(this_node_name) # pointer to node
+			# 	this_iter_over = params["iterate"]["iterate_over"][i][1] # name of input files variable to iterate
+			# 	these_inputs = [] # list to hold lists of input files
+			# 	for j in range(len(params["experiment_details"]["task_names"])): # for each task
+			# 		search_template = params["iterate"]["iterate_values"][i][j] # regular expression matching
+			# 		ds = nin.io.DataGrabber()
+			# 		ds.inputs.base_directory = params["params"][this_node_name]["infile_dir"]
+			# 		ds.inputs.template = search_template # search for files with this type of name
+			# 		these_inputs.append(ds.run()) # add the list of grabbed files to the list
+			# 	this_node.iterables = (this_iter_over,these_inputs)  
 		else: # iterate the regular nipype way
 			eval(params["iterate"]["node_names"][i]).iterables= (
 				params["iterate"]["iterate_over"][i],

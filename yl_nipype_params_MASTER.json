@@ -5,6 +5,19 @@
 		"spm_version": 12,
 		"afni_version": 16
 		},
+
+	"config": {
+		"logging": {
+			"log_to_file": true,
+			"log_directory": "MYLOGDIR"
+			},
+		"execution": {
+			"plugin": "Linear",
+			"stop_on_first_crash": true,
+			"keep_inputs": false,
+			"remove_unnecessary_outputs": true
+			}
+		},
 	
 	"node_flags": {
 		"dicom": 0,
