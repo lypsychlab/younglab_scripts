@@ -1,79 +1,79 @@
 {	
 	"spm" : {
 		"dicom" : {
-			"func" : "nin.spm.utils.DicomImport",
+			"func" : "nspm.utils.DicomImport",
 			"output" : "out_files"
 			},
 		"slicetime" : {
-			"func" : "nin.spm.SliceTiming",
+			"func" : "nspm.SliceTiming",
 			"inp" : "in_files",
 			"output" : "timecorrected_files"
 			},
 		"realign" : {
-			"func" : "nin.spm.Realign",
+			"func" : "nspm.Realign",
 			"inp" : "in_files",
 			"output" : "realigned_files"
 			},
 		"reslice" : {
-			"func" : "nin.spm.utils.Reslice",
+			"func" : "nspm.utils.Reslice",
 			"inp" : "in_file",
 			"output" : "out_file"
 			},
 		"normalize" : {
-			"func" : "nin.spm.Normalize",
+			"func" : "nspm.Normalize",
 			"inp" : "source",
 			"output" : "normalized_files"
 			},
 		"smooth" : {
-			"func" : "nin.spm.Smooth",
+			"func" : "nspm.Smooth",
 			"inp" : "in_files",
 			"output" : "smoothed_files"
 			},
 		"specify_design" : {
-			"func" : "nal.modelgen.SpecifySPMModel",
+			"func" : "ngen.SpecifySPMModel",
 			"inp" : "functional_runs",
 			"output" : "session_info"
 			},
 		"design" : {
-			"func" : "nin.spm.Level1Design",
+			"func" : "nspm.Level1Design",
 			"inp" : "session_info",
 			"output" : "spm_mat_file"
 			},
 		"onesample_T" : {
-			"func" : "nin.spm.OneSampleTTestDesign",
+			"func" : "nspm.OneSampleTTestDesign",
 			"inp" : "in_files",
 			"output" : "spm_mat_file"
 			},
 		"twosample_T" : {
-			"func" : "nin.spm.TwoSampleTTestDesign",
+			"func" : "nspm.TwoSampleTTestDesign",
 			"inp" : ["group1_files","group2_files"],
 			"output" : "spm_mat_file"
 			} ,
 		"estimate" : {
-			"func" : "nin.spm.EstimateModel",
+			"func" : "nspm.EstimateModel",
 			"inp" : "spm_mat_file",
 			"output" : ["beta_images","spm_mat_file","residual_image"]
 			},
 		"contrast" : {
-			"func" : "nin.spm.EstimateContrast",
+			"func" : "nspm.EstimateContrast",
 			"inp" : ["beta_images","spm_mat_file","residual_image"],
 			"output" : ["spm_mat_file","spmT_images"]
 			},
 		"cluster_correct" : {
-			"func" : "nin.spm.Threshold",
+			"func" : "nspm.Threshold",
 			"inp" : ["spm_mat_file","stat_image"]
 			}
 	}, 
 	"afni" : {
-		"dicom" : {"func" : "nin.afni.To3D"},
-		"slicetime" : {"func" : "nin.afni.TShift"},
-		"realign" : {"func" : "nin.afni.Align_epi_anat"},
-		"reslice" : {"func" : "nin.afni.Resample"},
-		"normalize" : {"func" : "nin.afni.Align_epi_anat"},
-		"smooth" : {"func" : "nin.afni.BlurToFWHM"},
-		"model" : {"func" : "nin.afni.3dDeconvolve"},
-		"model_reml" : {"func" : "nin.afni.3dREMLfit"},
-		"contrast" : {"func" : "nin.afni.3dANOVA"},
-		"cluster_correct" : {"func" : "nin.afni.3dClustSim"}
+		"dicom" : {"func" : "nafni.To3D"},
+		"slicetime" : {"func" : "nafni.TShift"},
+		"realign" : {"func" : "nafni.Align_epi_anat"},
+		"reslice" : {"func" : "nafni.Resample"},
+		"normalize" : {"func" : "nafni.Align_epi_anat"},
+		"smooth" : {"func" : "nafni.BlurToFWHM"},
+		"model" : {"func" : "nafni.3dDeconvolve"},
+		"model_reml" : {"func" : "nafni.3dREMLfit"},
+		"contrast" : {"func" : "nafni.3dANOVA"},
+		"cluster_correct" : {"func" : "nafni.3dClustSim"}
 	} 
 }

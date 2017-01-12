@@ -1,6 +1,8 @@
 # import statements here
-import nipype.interfaces as nin
-import nipype.algorithms as nal
+import nipype.interfaces.spm as nspm
+import nipype.interfaces.afni as nafni
+import nipype.interfaces.fsl as nfsl
+import nipype.algorithms.modelgen as ngen
 import nipype.pipeline.engine as npe 
 import json, os, shutil, sys
 from collections import OrderedDict
@@ -95,6 +97,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			old_software_key = software_key
 			not_first = 1
 
+	# Set up subject/task looping with infosource node
+	print('Implementing subject/task iteration...')
 	infosource = npe.Node()
 	infosource.interface = util.IdentityInterface(fields=['subject_id','task_name'])
 	infosource.name = 'infosource'
@@ -151,10 +155,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		from nipype.interfaces.base import Bunch
 		output = []
 		for this_run in range(len(params['experiment_details']['spm_inputs'][taskname][subj]['dur'])):
-			on = [params['experiment_details']['spm_inputs'][taskname][subj]['ons'][this_run]]
-			du = [params['experiment_details']['spm_inputs'][taskname][subj]['dur'][this_run]]
-			cn = [params['experiment_details']['conditions'][taskname][subj]['condition'][this_run]]
-			output.insert(this_run,Bunch(conditions = cn, onsets=on, durations = du))
+			on = params['experiment_details']['spm_inputs'][taskname][subj]['ons'][this_run]
+			du = params['experiment_details']['spm_inputs'][taskname][subj]['dur'][this_run]
+			cn = params['experiment_details']['design'][taskname][subj]['condition'][this_run]
+			# example with 2 conditions, 3 trials/condition, first run:
+			# on = [[1,10,20],[5,15,25]]
+			# du = [[3,3,3],[3,3,3]]
+			# cn = ['condition1','condition2']
+			output.insert(Bunch(conditions = cn, onsets=on, durations = du))
 		return output
 
 	def add_node(node_name):
@@ -269,7 +277,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.input_units = params["params"]["specify_design"]["input_units"]
 				node.inputs.time_repetition = params["params"]["specify_design"]["time_repetition"]
 				# pipe subject information out of infosource node, using create_subject_info()
-				workflow.connect(infosource,(('subject_id','task_name'),create_subject_info),node,'subject_info')
+				workflow.connect(infosource,(('subject_id','task_name'),create_subj_info),node,'subject_info')
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'design': # specify parameters for first-level design
