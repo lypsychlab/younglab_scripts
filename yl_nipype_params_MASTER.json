@@ -59,8 +59,6 @@
 		"spm_inputs": {
 			},
 		"design": {
-			},
-		"covariates": {
 			}
 		},
 
@@ -73,9 +71,10 @@
 	"params": {
 		"dicom": {
 			"local_software_spec": "",
-			"specify_inputs": 0,
+			"specify_inputs": 1,
 			"infile_dir": "*",
-			"template": "*.dcm",
+			"template": "%s/dicom/*.IMA",
+			"infields": ["subject_id"],
 			"in_files": [],
 			"output_dir_struct": "flat"
 			},

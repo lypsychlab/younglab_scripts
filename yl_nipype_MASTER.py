@@ -1,4 +1,6 @@
 # import statements here
+import nipype.interfaces.io as nio
+import nipype.interfaces.utility as nutil
 import nipype.interfaces.spm as nspm
 import nipype.interfaces.afni as nafni
 import nipype.interfaces.fsl as nfsl
@@ -25,13 +27,18 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
 
+	##### READ ARGS #####
+	args = []
 	try:
 		if sys.ps1: # we're in interactive mode
 			pass # don't need to do anything
 	except AttributeError: # we're in command-line mode
 		if len(yl_nipype_params_file) > 1: # we have optional arguments
 			args = yl_nipype_params_file[1:]
-		else: args = []
+		elif len(yl_nipype_params_file) == 0:
+			warnings.warn('You have not specified a parameter file! Exiting.\n')
+			return
+		else: pass
 		yl_nipype_params_file = yl_nipype_params_file[0] # mandatory argument
 
 
@@ -49,6 +56,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	workflow.base_dir = studydir
 	if not os.path.exists(os.path.join(studydir,params["directories"]["workflow_name"])):
 		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
+	# Set workflow execution config options
 	for k in params["config"]:
 		workflow.config[k] = params["config"][k]
 
@@ -103,10 +111,11 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	# Set up subject/task looping with infosource node
 	print('Implementing subject/task iteration...')
 	infosource = npe.Node()
-	infosource.interface = util.IdentityInterface(fields=['subject_id','task_name'])
+	infosource.interface = nutil.IdentityInterface(fields=['subject_id','task_name'])
 	infosource.name = 'infosource'
 	infosource.iterables = [('subject_id',params["experiment_details"]["subject_ids"]),
 	('task_name',params["experiment_details"]["task_names"])]
+
 
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
 	print('Implementing other iterables...')
@@ -153,8 +162,26 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 
 	##### FUNCTION DEFINITIONS #####
+	def grab_specified_data(node_name):
+		"""Pull structured data to pipe into a given node, using a template."""
+		# Set up DataGrabber() node
+		these_infields = params['params'][node_name]['infields']
+		# ex. ["subject_id"]
+		data_grabber = npe.Node(nio.DataGrabber(infields = these_infields),name='datasource_%s' % node_name)
+		data_grabber.inputs.base_directory = studydir
+		data_grabber.inputs.template = params['params'][node_name]['template']
+		# ex. /%s/dicom/*.IMA
+		# In this example, %s will be filled in using the 'subject_id' field
+		# Pipe subject/task information to the data grabber
+		if 'subject_id' in these_infields:
+			workflow.connect([(infosource,data_grabber,[('subject_id','subject_id')])])
+		elif 'task_name' in these_infields:
+			workflow.connect([(infosource,data_grabber,[('task_name','task_name')])])
+		else: pass # EMILY: implement more complex behavior later
+		return data_grabber.run()
+
 	def create_subj_info(subj,taskname):
-		""""""
+		"""Set up objects containing onsets, durations, & conditions for each subject/task/run."""
 		from nipype.interfaces.base import Bunch
 		output = []
 		for this_run in range(len(params['experiment_details']['spm_inputs'][taskname][subj]['dur'])):
@@ -198,21 +225,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		node_name : name of node (string); corresponds to key in params["params"]
 		node : Node() object
 		specify_inputs : if 1, grab input files from specified directory
-			if 0 (default), input files will be taken from output of previous node
+			if 0 (default for many nodes), input files will be taken from output of previous node
 		"""
 		if node_name == 'dicom': # specify dicom files/folder 
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"]["dicom"]["infile_dir"]
-					ds.inputs.template = params["params"]["dicom"]["template"]
-					dicom_files = ds.run()
+					dicom_files = grab_specified_data(node_name)
 				else:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = os.path.join(studydir,
-						params["directories"]["dicom_subdir"])
-					ds.inputs.template = params["params"]["dicom"]["template"]
-					dicom_files = ds.run()
+					warnings.warn('No input files specified for dicom node!\n')
 				node.inputs.in_files = dicom_files
 				node.inputs.output_dir_struct = params["params"]["dicom"]["output_dir_struct"]
 			elif software_spec == 'afni':

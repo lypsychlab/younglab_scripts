@@ -38,7 +38,6 @@ def configure_nipype_params(*argu):
 		params["experiment_details"]["contrast_info"][t] = {}
 		params["experiment_details"]["spm_inputs"][t] = {}
 		params["experiment_details"]["design"][t] = {}
-		params["experiment_details"]["covariates"][t] = {}
 
 		for s in params["experiment_details"]["subject_ids"]:
 			matname = [f for f in os.listdir('.') if fnmatch.fnmatch(f,s+'*'+t+'*.mat')]
@@ -61,7 +60,7 @@ def configure_nipype_params(*argu):
 			params["experiment_details"]["design"][t][s]["items"] = []
 			params["experiment_details"]["design"][t][s]['covariates'] = {}
 			params["experiment_details"]["design"][t][s]['condition'] = [] 
-			for k in matfile["covariates"].keys():
+			for k in matfile["covariates"]:
 					params["experiment_details"]["design"][t][s]['covariates'][k] = [] 
 			# start pulling data:
 			for m in range(len(matname)): # for each run:
@@ -71,25 +70,28 @@ def configure_nipype_params(*argu):
 				params["experiment_details"]["design"][t][s]['condition'].append([])
 				params["experiment_details"]["design"][t][s]['items'].append([])
 				# Pull spm_inputs: onsets, durations, condition names
-				for k in matfile['spm_inputs'].keys():
-					params["experiment_details"]["spm_inputs"][t][s]["ons"][m].append(matfile["spm_inputs"][k]["ons"].sort())
+				params["experiment_details"]["design"][t][s]["condition"][m] = matfile["spm_inputs"]["name"]
+				# ex. params["experiment_details"]["design"][t][s]['condition'] = [['condname1','condname2'],...]
+				for k in range(len(matfile['spm_inputs']["name"])):
+					# make sure each condition/run-specific onset list is actually a list, not a number
+					if len(matfile["spm_inputs"]["ons"][k])==1:
+						matfile["spm_inputs"]["ons"][k] = [matfile["spm_inputs"]["ons"][k]]
+					if len(matfile["spm_inputs"]["dur"][k])==1:
+						matfile["spm_inputs"]["dur"][k] = [matfile["spm_inputs"]["dur"][k]]
+					params["experiment_details"]["spm_inputs"][t][s]["ons"][m].append(matfile["spm_inputs"]["ons"][k].sort())
 					# ex. params["experiment_details"]["spm_inputs"][t][s]['ons'] = [[[1,5],[3,7]],...]
-					params["experiment_details"]["spm_inputs"][t][s]["dur"][m].append(matfile["spm_inputs"]["dur"])
+					params["experiment_details"]["spm_inputs"][t][s]["dur"][m].append(matfile["spm_inputs"]["dur"][k])
 					# ex. params["experiment_details"]["spm_inputs"][t][s]['dur'] = [[[2,2],[2,2]],...]
-					params["experiment_details"]["design"][t][s]["condition"][m].append(k)
 					# ex. params["experiment_details"]["design"][t][s]['condition'] = [['condname1','condname2'],...]
 					# each of these fields contains (# of runs) lists, each list being (# of conditions) long
 					# in the case of ons/dur, each list contains (# of conditions) lists, which are each (# of trials) long
 					# in the case of condition, each list contains (# of conditions) strings, which are condition names for that run
 				# Pull items
-				try:
-					params["experiment_details"]["design"][t][s]["items"].append(matfile["items_run"])
-				except KeyError: # no 'items' variable in matfile
-					params["experiment_details"]["design"][t][s]["items"].append(matfile["items"])
+				params["experiment_details"]["design"][t][s]["items"].append(matfile["items_run"])
 				# ex. params["experiment_details"]["design"][t][s]['items'] = [[10,1,7,4],...]					
 				# Pull covariates
-				for k in matfile["covariates"].keys():
-					params["experiment_details"]["design"][t][s]['covariates'].append(matfile["covariates"][k])
+				# for k in matfile["covariates"]:sc
+					params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
 					# assumes that "covariates" is a structure with fields corresponding to covariate variables (e.g., key, RT)
 					# and values corresponding to covariate values
 					# see: rework_behavioral.m	
