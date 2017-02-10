@@ -50,7 +50,7 @@ function roi_picker_gui(fcn)
 
 % First time it starts, run makeGUI, otherwise, the gui calls itself with
 % new input strings in the 'fcn' variable.
-addpath(genpath('/usr/public/spm/spm8'));
+addpath(genpath('/usr/public/spm/spm12'));
 
 if nargin == 0;fcn = 'makeGUI';end
 

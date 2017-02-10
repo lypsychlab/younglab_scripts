@@ -20,7 +20,7 @@
 		},
 	
 	"node_flags": {
-		"dicom": 0,
+		"dicom": 1,
 		"slicetime": 0,
 		"realign": 0,
 		"reslice": 0,
@@ -42,8 +42,7 @@
 		"workflow_name": "MYWORKFLOW",
 		"root": "/home/younglw/lab",
 		"study": "STUDY",
-		"behavioral_subdir": "behavioural",
-		"dicom_subdir": "dicom"
+		"behavioral_subdir": "behavioural"
 		},
 
 	"experiment_details": {
@@ -51,8 +50,6 @@
 		"subject_nums": ["SUBJNUMS"],
 		"task_names": ["TASKNAMES"],
 		"ips": {
-			},
-		"runs": {
 			},
 		"contrast_info": {
 			},
@@ -63,9 +60,9 @@
 		},
 
 	"iterate": {
-		"node_names": ["specify_design","smooth"],
-		"iterate_over": [["task_name","in_files"],["fwhm"]],
-		"iterate_values": [["/tom*/f*.nii","/SHAPES*/f*.nii"],[0,8]]
+		"node_names": [],
+		"iterate_over": [],
+		"iterate_values": []
 		},
 
 	"params": {
@@ -80,7 +77,7 @@
 			},
 		"slicetime": {
 			"local_software_spec": "",
-			"infile_dir": "dicom*",
+			"infile_dir": "dicom",
 			"in_files": [],
 			"num_slices": 36,
 			"ref_slice": 1,
@@ -88,7 +85,7 @@
 			},
 		"realign": {
 			"local_software_spec": "",
-			"infile_dir": "slicetime*",
+			"infile_dir": "slicetime",
 			"in_files": [],
 			"fwhm": 5,
 			"quality": 0.9,

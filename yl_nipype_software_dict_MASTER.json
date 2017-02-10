@@ -30,7 +30,7 @@
 			"output" : "smoothed_files"
 			},
 		"specify_design" : {
-			"func" : "ngen.SpecifySPMModel",
+			"func" : "nal.modelgen.SpecifySPMModel",
 			"inp" : "functional_runs",
 			"output" : "session_info"
 			},

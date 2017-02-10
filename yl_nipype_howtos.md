@@ -78,12 +78,8 @@ How do I:
  I could set the "output" value for "estimate" to specify only the beta images.
  Thus, yl_nipype_MASTER will be able to join the "estimate" and "onesample_T" nodes inside a workflow, passing the output of "estimate" (the beta images) into the input of "onesample_T" (the "in_files", or input files).
  Please consult the nipype documentation to see the names of input and output files - nipype automatically names the inputs/outputs and therefore you must use these names. For example, I cannot call my "estimate" output "beta_volumes" instead of "beta_images".
-
-11. Iterate over multiple values of a parameter for a given node?
-
-12. Use my own functions, or functions from a third-party package?
 	
-x. Change yl_nipype_MASTER.py?
+11. Change yl_nipype_MASTER.py?
 
  First, make sure that there's absolutely no way you can do what you want by modifying the parameters or software dict files.
  If you are convinced you must edit the script, make sure you are editing your OWN COPY, that you have renamed.

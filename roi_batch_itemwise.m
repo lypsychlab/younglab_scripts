@@ -1,4 +1,4 @@
-function roi_batch(subjects,roi_name,task_dir, loc_dir, contrast_num, win_secs, onsetdelay, highpass, meanwin)
+function roi_batch_itemwise(subjects,roi_name,task_dir, loc_dir, contrast_num, win_secs, onsetdelay, highpass, meanwin)
 
 temp       = strread(task_dir,'%s','delimiter','/');
 task       = temp{end};
@@ -20,7 +20,7 @@ roi_xyz=0;
 % New functionality lets one apply a single ROI to all subjects
 if strcmp(roi_name,'GROUP')
     group_roi=1;
-    f     = spm_select(1,'mat','Choose a Group ROI file','','/home/younglw/roi_library','.*',1);
+    f     = spm_select(1,'mat','Choose a Group ROI file','','/home3/younglw/lab/roi_library','.*',1);
     load(f);if roi_xyz ==0;roi_xyz = xY.XYZmm';end % if VOI_*mat group ROI
     temp  = strread(f,'%s','delimiter','/');temp = temp{end};
     temp  = strread(temp,'%s','delimiter','.'); roi_name = temp{1};
@@ -41,6 +41,7 @@ for s = 1:length(subjects)
         clear temp
         if group_roi==0;
             temp = dir(fullfile(subjects{s},'roi',['ROI_' roi_name '_' loc '_' contrast_num{:} '_' '*xyz.mat']));
+%             temp = c;
             if length(temp)>1
                 disp(length(temp))
                 f = spm_select(1,'mat','Choose a ROI xyz file','',fullfile(subjects{s},'roi'),'xyz.mat',1);
