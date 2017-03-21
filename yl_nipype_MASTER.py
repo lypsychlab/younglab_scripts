@@ -1,6 +1,10 @@
 # import statements here
-import nipype.interfaces as nin
-import nipype.algorithms as nal
+import nipype.interfaces.io as nio 
+import nipype.interfaces.utility as nutil
+import nipype.interfaces.spm as nspm
+import nipype.interfaces.afni as nafni
+import nipype.interfaces.fsl as nfsl
+import nipype.algorithms.modelgen as ngen
 import nipype.pipeline.engine as npe 
 import json, os, shutil, sys
 from collections import OrderedDict
@@ -21,6 +25,9 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
+	if isinstance(yl_nipype_params_file,str): 
+	# running from another function, e.g. test function
+		yl_nipype_params_file=[yl_nipype_params_file,args]
 
 	try:
 		if sys.ps1: # we're in interactive mode
@@ -31,11 +38,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		else: args = []
 		yl_nipype_params_file = yl_nipype_params_file[0] # mandatory argument
 
-
 	##### SETTING UP #####
 	# Find parameter file & load
 	print('Loading files and setting up...')
-	print(yl_nipype_params_file)
+	print('Using parameter file: %s',yl_nipype_params_file)
 	with open(yl_nipype_params_file,'r') as jsonfile:
 		params = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
@@ -48,7 +54,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
 
 	# Set up software dictionary mapping software names to interface functions
-	if len(args) > 0: # if we have optional arguments
+	if isinstance(args[0],tuple):
+		args[0]=args[0][0]
+	if len(args): # if we have optional arguments
+		print('Using custom software file: %s' % args[0])
 		software_file = args[0] 
 	else:
 		software_file = '/home/younglw/lab/scripts/yl_nipype_software_dict_MASTER.json'
@@ -63,87 +72,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 					software_dict[k][k2][k3] = eval(software_dict[k][k2][k3]) # point to the function object
 
 
-	software_key = params["params"]["global_software_specs"]["software"]
-
-	##### CREATE, CONFIGURE, & CONNECT NODES #####
-	# Check the node flags and create nodes
-	print('Checking flags...')
-	not_first = 0
-	for flagname, flag in params["node_flags"].items(): # iterate through flags
-		if flag:
-			node_name = flagname
-			print('Creating node %s' % node_name)
-			new_node = add_node(node_name) # create the node
-			if not_first: # don't auto-connect the first node!
-				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
-					num_inputs = len(software_dict[software_key][node_name][inp])
-					# create a tuple to match old outputs to new inputs
-					connectors = [(software_dict[old_software_key][old_node_name]["output"],
-						software_dict[software_key][node_name]["inp"]) for i in range(num_inputs)]
-					workflow.connect([(old_node, new_node, connectors)]) 
-					# connect input of this node to output of immediate previous node
-					# note that this connects nodes serially, in the order they appear in params["node_flags"]
-					# to change the node order, change the order of the flags in your parameter file
-					# to chain different outputs/inputs, modify the associated fields in your software_dict file
-				else: # just add node to workflow, don't join it to previous node
-					workflow.add_nodes([new_node])
-			else: # if it's the first/only node, just add it
-				start_node = new_node
-				workflow.add_nodes([new_node])
-			old_node_name = node_name # this node now becomes the 'old node'
-			old_node = new_node
-			old_software_key = software_key
-			not_first = 1
-
-	infosource = npe.Node()
-	infosource.interface = util.IdentityInterface(fields=['subject_id','task_name'])
-	infosource.name = 'infosource'
-	infosource.iterables = [('subject_id',params["experiment_details"]["subject_ids"]),
-	('task_name',params["experiment_details"]["task_names"])]
-
-	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
-	print('Implementing loops...')
-	# Implement subject looping for entire workflow by default
-	start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
-	# Implement any other iterations that appear in the parameter file
-	for i in range(len(params["iterate"]["node_names"])): # for each iterable node
-		# task looping not natively supported, so must specify
-		if params["iterate"]["iterate_over"][i][0] == 'task_name':
-			this_node_name = params["iterate"]["node_names"][i] # name of node to iterate
-			if this_node_name == 'specify_design' : pass # task looping is already set in configure_node
-			else:
-				this_node = eval(this_node_name) # pointer to node
-				this_iter_over = params["iterate"]["iterate_over"][i][1] # name of input files variable to iterate
-				these_inputs = [] # list to hold lists of input files
-				for j in range(len(params["experiment_details"]["task_names"])): # for each task
-					search_template = params["iterate"]["iterate_values"][i][j] # regular expression matching
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"][this_node_name]["infile_dir"]
-					ds.inputs.template = search_template # search for files with this type of name
-					these_inputs.append(ds.run()) # add the list of grabbed files to the list
-				this_node.iterables = (this_iter_over,these_inputs)  
-		else: # iterate the regular nipype way
-			eval(params["iterate"]["node_names"][i]).iterables= (
-				params["iterate"]["iterate_over"][i],
-				params["iterate"]["iterate_values"][i]
-				)
-			# Syntax: thisnode.iterables = (variable_to_iterate, values_to_iterate)
-
-
-	##### FINISHING #####
-	# Copy parameter file into /code subdir of workflow dir
-	shutil.copy(yl_nipype_params_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
-	# Copy software_dict file into /code subdir as well
-	shutil.copy(software_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
-
-	# Run the workflow
-	print('Running workflow...')
-	workflow.write_graph()
-	workflow.run()
-	print('Done.\nWorkflow folder: %s' % os.path.join(studydir,params["directories"]["workflow_name"]))
-
+	software_key = params["global_software_specs"]["software"]
+	os.chdir(os.path.join(params["directories"]["root"],params["directories"]["study"]))
 
 	##### FUNCTION DEFINITIONS #####
 	def create_subj_info(subj,taskname):
@@ -157,7 +87,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			output.insert(this_run,Bunch(conditions = cn, onsets=on, durations = du))
 		return output
 
-	def add_node(node_name):
+	def add_node(node_name,is_first):
 		"""
 		Add a generic node to the workflow.
 		"""
@@ -174,11 +104,11 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		node_inputs = params["params"][node_name]["specify_inputs"]
 		# create a Node object, calling configure_node() to specify arguments
 		this_node = npe.Node(interface = node_function(), name = node_name)
-		configure_node(software_key,node_name,this_node,node_inputs)
+		configure_node(software_key,node_name,this_node,node_inputs,is_first)
 		return this_node
 
 
-	def configure_node(software_spec,node_name,node,specify_inputs):
+	def configure_node(software_spec,node_name,node,specify_inputs,is_first):
 		"""
 		Configure the parameters for each specific type of node.
 
@@ -188,21 +118,35 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		node : Node() object
 		specify_inputs : if 1, grab input files from specified directory
 			if 0 (default), input files will be taken from output of previous node
+		is_first : if 1, input files will be grabbed before doing any processing
 		"""
+		def grab_data(node_name,node):
+			ds = npe.Node(interface=nio.DataGrabber(),
+				name="datasource") # create data grabber node
+			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
+			ds.inputs.template = params["params"][node_name]["template"]
+			ds.inputs.infields = params["params"][node_name]["infields"]
+			ds.inputs.outfields = params["params"][node_name]["outfields"]
+			ds.inputs.sort_filelist = params["params"][node_name]["sort"]
+			grabbed_info=dict()
+			for x in params["params"][node_name]["outfields"]:
+				for y in params["params"][node_name]["infields"]:
+					grabbed_info[x]=[[y,"*"]] #EDIT ME - list of lists in params file
+			ds.inputs.template_args=grabbed_info
+			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) # EDIT ME
+			# ex. connect 'subject_id' from infosource to 'subject_id' of data grabber
+			# infosource handles the iteration over subject ids
+			workflow.connect([(ds, node, [('dicom_files',software_dict[software_key][node_name]["inp"])])]) #EDIT ME
+			# ex. connect 'outfiles' output field to 'in_files' input field
+			# ds pipes the files it grabs into the node that will process them
+
+		if is_first: # implement generic data grabbing
+			grab_data(node_name,node)
+
 		if node_name == 'dicom': # specify dicom files/folder 
-			if software_spec == 'spm':
+			if software_spec == 'spm': 
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"]["dicom"]["infile_dir"]
-					ds.inputs.template = params["params"]["dicom"]["template"]
-					dicom_files = ds.run()
-				else:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = os.path.join(studydir,
-						params["directories"]["dicom_subdir"])
-					ds.inputs.template = params["params"]["dicom"]["template"]
-					dicom_files = ds.run()
-				node.inputs.in_files = dicom_files
+					grab_data(node_name,node)
 				node.inputs.output_dir_struct = params["params"]["dicom"]["output_dir_struct"]
 			elif software_spec == 'afni':
 				node.inputs.in_folder = os.path.join(studydir,
@@ -211,12 +155,9 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'slicetime': # specify slice-timing correction parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"]["slicetime"]["infile_dir"]
-					ds.inputs.template = '*.nii'
-					node.inputs.in_files = ds.run()
+					grab_data(node_name,node)
 				node.inputs.num_slices = params["params"]["slicetime"]["num_slices"]
-				node.inputss.ref_slice = params["params"]["slicetime"]["ref_slice"]
+				node.inputs.ref_slice = params["params"]["slicetime"]["ref_slice"]
 				node.inputs.slice_order = list(range(2,params["params"]["slicetime"]["num_slices"]+1,2)) + list(range(1,params["params"]["slicetime"]["num_slices"]+1,2))
 				node.inputs.time_acquisition = params["params"]["slicetime"]["TR"]-(params["params"]["slicetime"]["TR"]/params["params"]["slicetime"]["num_slices"])
 				node.inputs.time_repetition = params["params"]["slicetime"]["TR"]
@@ -225,10 +166,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'realign': # specify realignment parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
-					ds.inputs.base_directory = params["params"]["realign"]["infile_dir"]
-					ds.inputs.template = '*.nii'
-					node.inputs.in_files = ds.run()
+					grab_data(node_name,node)
 				node.inputs.fwhm = params["params"]["realign"]["fwhm"]
 				node.inputs.quality = params["params"]["realign"]["quality"]
 				node.inputs.register_to_mean = params["params"]["realign"]["register_to_mean"]
@@ -261,7 +199,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'specify_design': # specify parameters for first-level design setup
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["specify_design"]["infile_dir"]
 					ds.inputs.template = params["params"]["specify_design"]["infile_template"]
 					node.inputs.functional_runs = ds.run()
@@ -269,13 +207,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.input_units = params["params"]["specify_design"]["input_units"]
 				node.inputs.time_repetition = params["params"]["specify_design"]["time_repetition"]
 				# pipe subject information out of infosource node, using create_subject_info()
-				workflow.connect(infosource,(('subject_id','task_name'),create_subject_info),node,'subject_info')
+				workflow.connect(infosource,(('subject_id','task_name'),create_subj_info),node,'subject_info')
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'design': # specify parameters for first-level design
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["design"]["mask_image_dir"]
 					ds.inputs.template = params["params"]["design"]["mask_image_template"]
 					node.inputs.mask_image = ds.run()
@@ -294,7 +232,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'onesample_T': # specify parameters for 1-sample T-test
 			if software_spec == "spm":
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["onesample_T"]["infile_dir"]
 					ds.inputs.template = '*.nii'
 					node.inputs.in_files = ds.run()
@@ -307,11 +245,11 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'twosample_T': # specify parameters for 2-sample T-test
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["twosample_T"]["infile_dir_1"]
 					ds.inputs.template = params["params"]["twosample_T"]["infile_template_1"]
 					node.inputs.group1_files = ds.run()
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["twosample_T"]["infile_dir_2"]
 					ds.inputs.template = params["params"]["twosample_T"]["infile_template_2"]
 					node.inputs.group2_files = ds.run()
@@ -324,7 +262,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'contrast': # specify parameters for T/F contrasts
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["contrast"]["infile_dir"]
 					ds.inputs.template = 'beta*.nii'
 					node.inputs.beta_images = ds.run()
@@ -341,7 +279,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'cluster_correct': # specify cluster correction parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nin.io.DataGrabber()
+					ds = nio.DataGrabber()
 					ds.inputs.base_directory = params["params"]["cluster_correct"]["infile_dir"]
 					ds.inputs.template = 'SPM.mat'
 					ds.inputs.spm_mat_file = ds.run()
@@ -356,6 +294,88 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		else:
 			warnings.warn('Unrecognized node name!')
+
+	##### CREATE, CONFIGURE, & CONNECT NODES #####
+
+	# Create infosource node to handle subject/task iteration
+	infosource = npe.Node(interface=nutil.IdentityInterface(fields=['subject_id','task_name']),
+		name='infosource')
+	infosource.iterables = [('subject_id',params["experiment_details"]["subject_ids"]),
+	('task_name',params["experiment_details"]["task_names"])]
+
+
+	# Check the node flags and create nodes
+	print('Checking flags...')
+	not_first = 0
+	for flagname, flag in params["node_flags"].items(): # iterate through flags
+		if flag:
+			node_name = flagname
+			print('Creating node %s' % node_name)
+			new_node = add_node(node_name,~not_first) # create the node
+			if not_first: # don't auto-connect the first node!
+				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
+					num_inputs = len(software_dict[software_key][node_name]["inp"])
+					# create a tuple to match old outputs to new inputs
+					connectors = [(software_dict[old_software_key][old_node_name]["output"],
+						software_dict[software_key][node_name]["inp"]) for i in range(num_inputs)]
+					workflow.connect([(old_node, new_node, connectors)]) 
+					# connect input of this node to output of immediate previous node
+					# note that this connects nodes serially, in the order they appear in params["node_flags"]
+					# to change the node order, change the order of the flags in your parameter file
+					# to chain different outputs/inputs, modify the associated fields in your software_dict file
+				else: # just add node to workflow, don't join it to previous node
+					workflow.add_nodes([new_node])
+			else: # if it's the first/only node, chain nodes
+				start_node = new_node
+				# workflow.add_nodes([new_node])
+			old_node_name = node_name # this node now becomes the 'old node'
+			old_node = new_node
+			old_software_key = software_key
+			not_first = 1
+
+	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
+	print('Implementing loops...')
+	# Implement subject looping for entire workflow by default
+	# start_node.iterables = ('subject_id',params["experiment_details"]["subject_ids"])
+	# Implement any other iterations that appear in the parameter file
+	for i in range(len(params["iterate"]["node_names"])): # for each iterable node
+		# task looping not natively supported, so must specify
+		if params["iterate"]["iterate_over"][i][0] == 'task_name':
+			this_node_name = params["iterate"]["node_names"][i] # name of node to iterate
+			if this_node_name == 'specify_design' : pass # task looping is already set in configure_node
+			else:
+				this_node = eval(this_node_name) # pointer to node
+				this_iter_over = params["iterate"]["iterate_over"][i][1] # name of input files variable to iterate
+				these_inputs = [] # list to hold lists of input files
+				for j in range(len(params["experiment_details"]["task_names"])): # for each task
+					search_template = params["iterate"]["iterate_values"][i][j] # regular expression matching
+					ds = nio.DataGrabber()
+					ds.inputs.base_directory = params["params"][this_node_name]["infile_dir"]
+					ds.inputs.template = search_template # search for files with this type of name
+					these_inputs.append(ds.run()) # add the list of grabbed files to the list
+				this_node.iterables = (this_iter_over,these_inputs)  
+		else: # iterate the regular nipype way
+			eval(params["iterate"]["node_names"][i]).iterables= (
+				params["iterate"]["iterate_over"][i],
+				params["iterate"]["iterate_values"][i]
+				)
+			# Syntax: thisnode.iterables = (variable_to_iterate, values_to_iterate)
+
+
+	##### FINISHING #####
+	# Copy parameter file into /code subdir of workflow dir
+	shutil.copy(yl_nipype_params_file,
+		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
+	# Copy software_dict file into /code subdir as well
+	shutil.copy(software_file,
+		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
+
+	# Run the workflow
+	print('Running workflow...')
+	workflow.write_graph()
+	workflow.run()
+	print('Done.\nWorkflow folder: %s' % os.path.join(studydir,params["directories"]["workflow_name"]))
+
 
 
 if __name__ == "__main__":

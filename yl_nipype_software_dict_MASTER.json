@@ -2,6 +2,7 @@
 	"spm" : {
 		"dicom" : {
 			"func" : "nspm.utils.DicomImport",
+			"inp": "in_files",
 			"output" : "out_files"
 			},
 		"slicetime" : {
@@ -30,7 +31,7 @@
 			"output" : "smoothed_files"
 			},
 		"specify_design" : {
-			"func" : "nal.modelgen.SpecifySPMModel",
+			"func" : "ngen.SpecifySPMModel",
 			"inp" : "functional_runs",
 			"output" : "session_info"
 			},
@@ -67,13 +68,13 @@
 	"afni" : {
 		"dicom" : {"func" : "nafni.To3D"},
 		"slicetime" : {"func" : "nafni.TShift"},
-		"realign" : {"func" : "nafni.Align_epi_anat"},
+		"realign" : {"func_future" : "nafni.Align_epi_anat"},
 		"reslice" : {"func" : "nafni.Resample"},
-		"normalize" : {"func" : "nafni.Align_epi_anat"},
-		"smooth" : {"func" : "nafni.BlurToFWHM"},
-		"model" : {"func" : "nafni.3dDeconvolve"},
-		"model_reml" : {"func" : "nafni.3dREMLfit"},
-		"contrast" : {"func" : "nafni.3dANOVA"},
-		"cluster_correct" : {"func" : "nafni.3dClustSim"}
+		"normalize" : {"func_future" : "nafni.Align_epi_anat"},
+		"smooth" : {"func_future" : "nafni.BlurToFWHM"},
+		"model" : {"func_future" : "nafni.3dDeconvolve"},
+		"model_reml" : {"func_future" : "nafni.3dREMLfit"},
+		"contrast" : {"func_future" : "nafni.3dANOVA"},
+		"cluster_correct" : {"func_future" : "nafni.3dClustSim"}
 	} 
 }
