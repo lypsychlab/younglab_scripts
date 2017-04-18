@@ -1,4 +1,4 @@
-function roi_picker(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
+function roi_picker_2_laura(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
 % This is called on by roi_picker_gui.
 %
 % it could potentially be run without the gui (but what fun is that?), using the following implementation:
@@ -12,6 +12,7 @@ function roi_picker(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
 % Note: use with SPM8 & Matlab 2012 - Emily
 
 % start log
+% keyboard
 load(fullfile(subjects{1},res_dir,'SPM.mat'));
 notes = {['ROIs chosen for ' roi_name ' and ' SPM.xCon(c).name ' contrast at p=' num2str(t) ' unc and k=' num2str(k) ' with ' num2str(r) 'mm sphere'] '' '' '' '' '';...
     'Name' 'Peak X' 'Peak Y' 'Peak Z' 'N Voxels' 'T Value'};
@@ -35,7 +36,7 @@ else
     
     TOM_rois={'VMPFC' 'RTPJ' 'LTPJ' 'RSTS' 'LSTS' 'PC' 'MMPFC' 'RIFG' 'DMPFC'}
     if ismember(roi_name,TOM_rois) & ischar(roi_xyz)
-        roifile=load(fullfile('/home/younglw/lab/roi_library/functional',[roi_name '_xyz.mat']));
+        roifile=load(fullfile('/Users/wass/Desktop/roi_library/functional',[roi_name '_xyz.mat']));
         roicoords=roifile.roi_xyz(1,:);
         roi_xyz=sprintf('[%d; %d; %d]',roicoords(1),roicoords(2),roicoords(3));
         clear roifile;

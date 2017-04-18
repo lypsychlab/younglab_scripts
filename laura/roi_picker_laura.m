@@ -1,4 +1,4 @@
-function roi_picker(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
+function roi_picker_laura(t,k,r,c,roi_name,roi_xyz,subjects,res_dir)
 % This is called on by roi_picker_gui.
 %
 % it could potentially be run without the gui (but what fun is that?), using the following implementation:
@@ -103,6 +103,10 @@ evalin('base','xY.Ic      = 0;');
 evalin('base','xY.Sess    = 1;');
 evalin('base','xY.def     = ''sphere'';');
 evalin('base',['xY.spec   = ' num2str(r) ';']);
+working_SPM = evalin('base','SPM');
+for this_fname = 1:length(working_SPM.xY.VY)
+    evalin('base',['SPM.xY.VY(' num2str(this_fname) ').fname = strrep(SPM.xY.VY(' num2str(i) ').fname,''younglab/studies'',''home/younglw/lab'');']);
+end
 keyboard
 evalin('base','[Y,xY] = spm_regions(xSPM,SPM,hReg,xY);');
 ROI.XYZmm = evalin('base','xY.XYZmm;');% ROI coordinates

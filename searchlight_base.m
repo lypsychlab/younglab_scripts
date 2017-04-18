@@ -15,7 +15,7 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 % The nth matrix must be in the format "behav_matrix_*.mat" where * is B_in{n}
 % and must be stored in a variable within that .mat named behav_matrix.
 % These must be located in your study's behavioural directory.
-% - outtag: string to label this analysis. Must start with '_'
+% - outtag: string to label this analysis. 
 %
 % Output:
 % - bigmat*.mat: per-voxel item crosscorrelation values across the brain
@@ -26,8 +26,9 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 % Notes:
 % - greymattermask2 and voxel_order2 are designed for studies in 3x3x3mm space.
 % - in corrs*.mat and spear*.mat, the LAST value represents the constant (intercept) regressor.
+% - paths will need to be changed if you are running this on anything other than Pleiades (BC Linux cluster)
 
-	addpath('/home/younglw/scripts/combinator')
+	addpath('/home/younglw/lab/scripts/combinator')
 	addpath(genpath('/usr/public/spm/spm12'));
 	subjIDs={};
 	for sub=1:length(sub_nums)
@@ -55,7 +56,7 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
     	disp(sprintf([B_in{thisb} '\n']));
     end
 
-	cd('/home/younglw/scripts/');
+	cd('/home/younglw/lab/scripts/');
 	load voxel_order2; 
     load greymattermask2;
 
@@ -66,14 +67,14 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 		B=[];
 		for b=1:length(B_in)
 			try
-				load(fullfile(rootdir, study, 'behavioural',['behav_matrix_' B_in{b} '.mat']));
-		        disp(fullfile(rootdir, study, 'behavioural',['behav_matrix_' B_in{b} '.mat']));
+				load(fullfile(rootdir, study, 'behavioural_all',['behav_matrix_' B_in{b} '.mat']));
+		        disp(fullfile(rootdir, study, 'behavioural_all',['behav_matrix_' B_in{b} '.mat']));
 		        behav_matrix=sim2tril(behav_matrix);
 				B=[B behav_matrix];
 				clear behav_matrix;
 			catch
-				load(fullfile(rootdir, study, 'behavioural',['behav_matrix_' subjIDs{subj} '_' B_in{b} '.mat']));
-		        disp(fullfile(rootdir, study, 'behavioural',['behav_matrix_' subjIDs{subj} '_' B_in{b} '.mat']));
+				load(fullfile(rootdir, study, 'behavioural_all',['behav_matrix_' subjIDs{subj} '_' B_in{b} '.mat']));
+		        disp(fullfile(rootdir, study, 'behavioural_all',['behav_matrix_' subjIDs{subj} '_' B_in{b} '.mat']));
 		        behav_matrix=sim2tril(behav_matrix);
 				B=[B behav_matrix];
 				clear behav_matrix;
@@ -111,11 +112,11 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 	        end
 	        goodrows = find(isnan(spherebetas(:,1)) == 0);
 	        if length(goodrows) > 9 % if there are at least 10 good voxels in this sphere
-	            simmat      = corrcoef(spherebetas(goodrows,:));% item similarities for this subject
+	            simmat      = atanh(corrcoef(spherebetas(goodrows,:)));% item similarities for this subject
 	            temp        = tril(simmat,-1); % tril() gets lower triangle of matrix
-	            size(temp)
-	            size(temp(temp~=0)')
-	            size(bigmat(i,:))
+	            % size(temp)
+	            % size(temp(temp~=0)')
+	            % size(bigmat(i,:))
 	            bigmat(i,:) = temp(temp~=0)';% we now have a triangle x 1 matrix
 
 	            % temp        = corrcoef( behav_matrix , bigmat(i,:)' ); %correlation with behavioral matrix
@@ -123,8 +124,7 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 	            weights = regress(bigmat(i,:)',predictors);
 	            weights=weights';
 
-	            % corrs(i)    = temp(2,1); %save a correlation value for this voxel
-	            corrs(i,:)=[weights(2:end) weights(1)];
+	            corrs(i,:)=[weights(2:end) weights(1)]; %put the intercept at the end
 
 	            thisspear = corr([bigmat(i,:)' predictors],'type','Spearman');
 	            thisspear=thisspear(1,:); %only grab correlations of empirical data with predictors
@@ -134,11 +134,10 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 
 	        end
 	    end
-	    % clear temp simmat weights predictors thisspear
 
-	    save(['bigmat_regression' outtag '.mat'], 'bigmat');
-	    save (['corrs_regression' outtag '.mat'], 'corrs');
-	    save (['spearman_regression' outtag '.mat'], 'spear');
+	    save(['bigmat_regression_' outtag '.mat'], 'bigmat');
+	    save (['corrs_regression_' outtag '.mat'], 'corrs');
+	    save (['spearman_regression_' outtag '.mat'], 'spear');
 
 	    disp('Correlations saved.');
 
@@ -146,15 +145,13 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 		    corrmap(b).map  = zeros(size(Y(:,:,:,1))); 
 	   	end
 
-        % clear Y;
+        for b=1:(length(B_in)+1) %for each regressor
 
-        for b=1:(length(B_in)+1)
-
-		    for i=1:length(greymattermask2) 
+		    for i=1:length(greymattermask2)  %for each voxel
 
 	            corrmap(b).map(voxel_order2(greymattermask2(i),1),...
 	                    voxel_order2(greymattermask2(i),2),...
-	                    voxel_order2(greymattermask2(i),3)) = corrs(i,b);
+	                    voxel_order2(greymattermask2(i),3)) = corrs(i,b); %write the value to that voxel
 		    end
 		end
 	    disp('Creating template...');
@@ -163,7 +160,7 @@ function searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in,sph,B_i
 	    template       = spm_vol([fullfile(rootdir,study,subjIDs{subj},'results', resdir,template_dir(1).name) ',1']);
 
 	    for b=1:length(B_in)
-		    template.fname = ['RSA_searchlight_regress_' B_in{b} outtag '.img']; 
+		    template.fname = ['RSA_searchlight_regress_' B_in{b} '_' outtag '.img']; 
 		    spm_write_vol(template,corrmap(b).map);
 		end
 		template.fname = ['RSA_searchlight_regress_const_' outtag '.img']; spm_write_vol(template,corrmap(length(B_in)+1).map);
