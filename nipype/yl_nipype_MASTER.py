@@ -76,7 +76,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	os.chdir(os.path.join(params["directories"]["root"],params["directories"]["study"]))
 
-	##### FUNCTION DEFINITIONS #####
+	##### SUBFUNCTION DEFINITIONS #####
 	def create_subj_info(subj,taskname):
 		""""""
 		from nipype.interfaces.base import Bunch
@@ -124,6 +124,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		def grab_data(node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
 				name="datasource") # create data grabber node
+			print('\n'+params["params"][node_name]["infile_dir"]+'\n')
 			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
 			ds.inputs.template = params["params"][node_name]["template"]
 			ds.inputs.infields = params["params"][node_name]["infields"]
@@ -132,13 +133,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			grabbed_info=dict()
 			for x in params["params"][node_name]["outfields"]:
 				for y in params["params"][node_name]["infields"]:
-					grabbed_info[x]=[[y,"*"]] #EDIT ME - list of lists in params file
+					grabbed_info[x]=[[y,"*"]] 
 			ds.inputs.template_args=grabbed_info
-			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) # EDIT ME
+			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) 
 			# ex. connect 'subject_id' from infosource to 'subject_id' of data grabber
 			# infosource handles the iteration over subject ids
-			workflow.connect([(ds, node, [('dicom_files',software_dict[software_key][node_name]["inp"])])]) #EDIT ME
-			# ex. connect 'outfiles' output field to 'in_files' input field
+			for x in params["params"][node_name]["outfields"]:
+				workflow.connect([(ds, node, [(x,software_dict[software_key][node_name]["inp"])])]) 
+			# ex. connect 'dicom_files' output field to 'in_files' input field
 			# ds pipes the files it grabs into the node that will process them
 
 		if is_first: # implement generic data grabbing
@@ -158,7 +160,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				if specify_inputs:
 					grab_data(node_name,node)
 				node.inputs.num_slices = params["params"]["slicetime"]["num_slices"]
-				node.inputss.ref_slice = params["params"]["slicetime"]["ref_slice"]
+				node.inputs.ref_slice = params["params"]["slicetime"]["ref_slice"]
 				node.inputs.slice_order = list(range(2,params["params"]["slicetime"]["num_slices"]+1,2)) + list(range(1,params["params"]["slicetime"]["num_slices"]+1,2))
 				node.inputs.time_acquisition = params["params"]["slicetime"]["TR"]-(params["params"]["slicetime"]["TR"]/params["params"]["slicetime"]["num_slices"])
 				node.inputs.time_repetition = params["params"]["slicetime"]["TR"]
@@ -175,8 +177,9 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'reslice': # specify reslicing parameters
 			if software_spec == 'spm':
-				node.inputs.space_defining = node.inputs.in_files[0]
-				node.inputs.interp = params["params"]["reslice"]["interp"]
+				# grab the first filename to reslice to
+				pass # don't have to specify anything else
+				# node.inputs.interp = params["params"]["reslice"]["interp"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'normalize': # specify normalization parameters
