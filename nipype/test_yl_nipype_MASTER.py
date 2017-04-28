@@ -159,18 +159,18 @@ class RunDicomTestCase(BasicTestCase):
 class RunPreprocTestCase(BasicTestCase):
 	default_params['node_flags']['dicom']=0
 	default_params['node_flags']['slicetime']=0
-	# default_params['node_flags']['realign']=1
-	default_params['node_flags']['reslice']=1
+	default_params['node_flags']['realign']=1
+	# default_params['node_flags']['reslice']=1
 	# default_params['node_flags']['normalize']=1
 	# default_params['node_flags']['smooth']=1
-	default_params["directories"]["workflow_name"]='preproc3'
-	with open(pth.join(default_studydir,'preproc3_'+default_params_file),'w') as jsonfile:
+	default_params["directories"]["workflow_name"]='preproc_realign'
+	with open(pth.join(default_studydir,'preproc_realign_'+default_params_file),'w') as jsonfile:
 		json.dump(default_params,jsonfile)
 	from yl_nipype_MASTER import yl_nipype_MASTER
-	yl_nipype_MASTER(pth.join(default_studydir,'preproc3_'+default_params_file),
+	yl_nipype_MASTER(pth.join(default_studydir,'preproc_realign_'+default_params_file),
 		pth.join(default_scriptsdir,default_software_file))
 	# assert that the workflow folder was created
-	self.assertTrue(pth.exists(pth.join(default_studydir,"preproc3")))
+	self.assertTrue(pth.exists(pth.join(default_studydir,"preproc_realign")))
 
 # test case: preprocessing anatomical files specifically (i.e., only normalization)
 # in this one, we'll assume that dicom files were processed with a flat structure
