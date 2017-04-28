@@ -12,9 +12,12 @@ def configure_nipype_params(*argu):
 		print('\nNote: script being run via test script.')
 		argu=argu[0];
 	json_name = argu[1]
-	# with open('/Users/wass/GitHub/younglab_scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
-	with open('/home/younglw/lab/scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
-		params=json.load(jsonfile)
+	if os.path.exists(json_name):
+		with open(json_name,'r') as jsonfile:
+			params=json.load(jsonfile)
+	else:
+		with open('/home/younglw/lab/scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
+			params=json.load(jsonfile)
 
 	rootdir = input('Enter root directory: ')
 	studyname = input('Enter study name: ')
