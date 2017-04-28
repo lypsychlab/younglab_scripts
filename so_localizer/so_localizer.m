@@ -88,9 +88,9 @@ load(fullfile(rootdir,'so_localizer_stimuli.mat'));
 
 % choose the vector of randomized values
 design_run = design_randomization(acq,:);
-if state_type == 'state'
+if strcmp(state_type,'state')
     statecol=1;
-else if state_type == 'either'
+else if strcmp(state_type,'either')
     statecol=2;
 else
     disp('Please type ''either'' or ''state'' as the 4th parameter. Quitting.');
@@ -160,7 +160,7 @@ for trial = 1:40
     % present word/picture and get judgment:
     Screen(s,'TextSize',80);
     Screen('FillRect',s,[0 0 0], screenRect);
-    DrawFormattedText(s,[words_run{trial} '?'],'center',y0+300,255,wrap); 
+    DrawFormattedText(s,[words_run{trial} '?'],'center',y0+450,255,wrap); 
     im_draw=Screen('MakeTexture',s, ...
         target_image{cond_run(trial)});
     Screen('DrawTexture',s,im_draw);
