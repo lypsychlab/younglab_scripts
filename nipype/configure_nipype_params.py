@@ -33,6 +33,8 @@ def configure_nipype_params(*argu):
 		params["experiment_details"]["subject_nums"] = sub_nums
 		params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
 		params["experiment_details"]["task_names"] = tsks
+		for x in params["params"]:
+			params["params"][x]["infile_dir"] = os.path.join(rootdir,studyname)
 
 
 	print("Pulling information from .mat files now...")
