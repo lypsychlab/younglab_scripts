@@ -218,9 +218,13 @@ for subj_index=1:num_subs
     fprintf ('Relocating MPRAGE images for subject %s\n',subj_as_str);
     anatdir = fullfile(EXPERIMENT_ROOT_DIR,study,subj_as_str,'3danat'); mkdir(anatdir);
     delete([anatdir '/*']);
-    sfiles = dir([dicom_dir '/s0-0004*img']);
+    sfiles = dir([dicom_dir '/s0-0004*nii']);
 %     sfiles = dir([dicom_dir '/s*img']);
-    for i=1:length(sfiles);temp=dir(fullfile(dicom_dir,sfiles(i).name));sizefiles(i)=temp.bytes;end
+    % sizefiles=zeros(1,length(sfiles))
+    for i=1:length(sfiles)
+        temp=dir(fullfile(dicom_dir,sfiles(i).name));
+        sizefiles(i)=temp.bytes;
+    end
     [val, loc] = max(sizefiles); % this was used in saxelab, which picks out MPRAGE (3rd run)
     movefile(fullfile(dicom_dir,[sfiles(loc).name(1:end-3) '*']),anatdir);
 %     movefile(fullfile(dicom_dir,[sfiles.name(1:end-3) '*']),anatdir);

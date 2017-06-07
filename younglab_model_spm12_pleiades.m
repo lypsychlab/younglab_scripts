@@ -438,16 +438,10 @@ global defaults;
 global inStruct;
 ErrorLog={};SPM=[];
 
-if strmatch(src_data_flag,'normed')
-    filter = 'swraf*img';
-elseif strmatch(src_data_flag,'unnormed')
-    filter = 'sraf*img';
-else
-    disp('src_data_flag: illegal value.  "normed" & "unnormed" allowed');
-end
 
 for subj = 1:length(subject)
 %     try
+        
         fprintf('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
         fprintf('Beginning estimation & contrasts on subject %s \n',subject{subj});
         fprintf('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
@@ -455,6 +449,21 @@ for subj = 1:length(subject)
         for task = 1:length(tasks{subj})
             fprintf('Subject: %s    Task: %s\n',subject{subj},tasks{subj}{task});
             clear spm_inputs con_info ips scans; SPM=[];
+            if strmatch(src_data_flag,'normed')
+                filter = 'swraf*img';
+                if length(dir(fullfile(EXPERIMENT_ROOT_DIR,study,subject{subj},'bold',sprintf('%03d',boldirs{subj}{task}(1)),filter)))==0
+                    filter='swraf*.nii';
+                end
+            elseif strmatch(src_data_flag,'unnormed')
+                filter = 'sraf*img';
+                if length(dir(fullfile(EXPERIMENT_ROOT_DIR,study,subject{subj},'bold',sprintf('%03d',boldirs{subj}{task}(1)),filter)))==0
+                    filter='sraf*.nii';
+                end
+            else
+                disp('src_data_flag: illegal value.  "normed" & "unnormed" allowed');
+            end
+            disp(filter);
+
             cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
             behavdata_thistask = dir(sprintf('%s.%s.*.mat',subject{subj},tasks{subj}{task}));
             num_behav_files = length(behavdata_thistask); % grabs mat files for this task for all acq
@@ -912,17 +921,23 @@ function skullStripMaker(study, subj, maskthresh)
     global inStruct;
     directory = ['/home/younglw/lab/' study '/' subj '/3danat/'];
     img = dir([directory 'ws0-0*-*-*-*.img']);
+    if length(img)==0
+        img=dir([directory 'ws0-0*-*-*-*.nii']);
+    end
     if strcmp(inStruct.src_data_flag,'unnormed')|isempty(img) 
         img = dir([directory 's0-0*-*-*-*.img']);
+        if length(img)==0
+            img = dir([directory 's0-0*-*-*-*.nii']);
+        end
         if isempty(img)
             pwd1 = pwd;
             cd(directory);
-            img = spm_select(1,'img','Could not find proper anatomical file. Please select the anatomical file.');
+            img = spm_select(1,'*','Could not find proper anatomical file. Please select the anatomical file.');
             cd(pwd1);
         elseif length(img) > 1
             pwd1 = pwd;
             cd(directory);
-            img = spm_select(1,'img','There are too many anatomical files present. Please select the anatomical file.');
+            img = spm_select(1,'*','There are too many anatomical files present. Please select the anatomical file.');
             cd(pwd1);
         else
             img = [directory img.name];
@@ -930,7 +945,7 @@ function skullStripMaker(study, subj, maskthresh)
     elseif length(img) > 1
         pwd1 = pwd;
         cd(directory);
-        img = spm_select(1,'img','There are too many anatomical files present. Please select the anatomical file.');
+        img = spm_select(1,'*','There are too many anatomical files present. Please select the anatomical file.');
         cd(pwd1);
     else
         img = [directory img.name];
@@ -940,14 +955,14 @@ function skullStripMaker(study, subj, maskthresh)
     % keyboard
 
     % allimg = dir([directory 'ws0-0*-*-*-*.*']);
-    nifti=dir([directory 'ws0-0*-*-*-*.nii']);
+    % nifti=dir([directory 'ws0-0*-*-*-*.nii']);
  
-    try
-        disp(['Removing nifti file: ' nifti(1).name]);
-        eval(sprintf('!rm -rf %s',[directory nifti(1).name]));
-    catch
-        disp(['No nifti file to remove.'])
-    end
+    % try
+    %     disp(['Removing nifti file: ' nifti(1).name]);
+    %     eval(sprintf('!rm -rf %s',[directory nifti(1).name]));
+    % catch
+    %     disp(['No nifti file to remove.'])
+    % end
 
     fprintf('Making mask image...\n');
     if ~exist([directory 'skull_strip_mask.img'],'file') | mask_over
