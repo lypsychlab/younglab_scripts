@@ -183,7 +183,10 @@ function [func_images] = get_images(study, subjID, func_runs)
 global EXPERIMENT_ROOT_DIR;
 
     for run=1:length(func_runs)
-        func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),'f*.img');
+        func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),'f*.nii');
+        if isempty(func_images{run})
+            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),'f*.img');
+        end            
     end
 
 end % function get_images
@@ -204,8 +207,8 @@ cd(fullfile(EXPERIMENT_ROOT_DIR, study, subjID));
 defaults = spm_defaults_lily;
 
 % keyboard;
-num_slices = 36;            % number of slices;
-% num_slices=30;
+% num_slices = 36;            % number of slices;
+num_slices=36;
 ref_slice = 1;              % reference slice
 TR = 2;                     % TR in seconds
 TA = TR-(TR/num_slices);    % TA in seconds
