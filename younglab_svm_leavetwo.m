@@ -20,28 +20,34 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
         end
     end
 
-    class1=find(recode_labels==0); %indices of trials in class 1
+    class1=find(recode_labels==0); % row indices of trials in class 1
 	class2=find(recode_labels==1);
 
 
     for t=1:length(class1)
-    	tval=class1(t);
-    	testing_1=dataset(tval,:); % first one left out (from class 1)
+    	tval=class1(t); % index of this one
+    	testing_1=dataset(tval,:); % first row left out (from class 1)
 
     	for t2=1:length(class2)
 	%define training and testing groups
-			t2val=class2(t2);
-			testing_2=dataset(t2val,:); % second one left out (from class 2)
+			t2val=class2(t2); % index of second one
+			testing_2=dataset(t2val,:); % second row left out (from class 2)
 			testing=[testing_1;testing_2];  %stack them to run model on both
 
 			train_inds=find(~ismember([1:size(dataset,1)],[tval t2val])); %inds of everything NOT left out
 			training=dataset(train_inds,:);
 			
 	        
-	        labeled_training = labeled_data;
-	        labeled_training(t,:)=[];%remove t's label from class labels
-	        labeled_training(t2,:)=[];%same with t2
+	        labeled_training = {};
+	        for i = 1:size(dataset,1)
+	        	if ismember(i,train_inds)
+	        		labeled_training{end+1}=labeled_data{i};
+	        	end
+	        end
+	        % labeled_training(tval,:)=[];%remove t's label from list of class labels
+	        % labeled_training(t2val,:)=[];%same with t2
 
+	        % keyboard
 		%for each training/testing set: fit the svm model and then test on the left-out one
 			svmmodel = fitcsvm(training,labeled_training,'KernelFunction','linear',...
 				'Standardize',true,'ClassNames',cnames);
@@ -70,6 +76,6 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 
 	corracc=(length(find(outputs==1)))/length(outputs);
 	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
-% 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+	save(fname,'dataset','labeled_data','outputs','soft_outputs','recode_labels','corracc','corrsoft','cnames');
 	
 end
