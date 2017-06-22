@@ -42,7 +42,8 @@
 		"workflow_name": "MYWORKFLOW",
 		"root": "/home/younglw/lab",
 		"study": "STUDY",
-		"behavioral_subdir": "behavioural"
+		"behavioral_subdir": "behavioural",
+		"code": "code"
 		},
 
 	"experiment_details": {
@@ -68,10 +69,12 @@
 	"params": {
 		"dicom": {
 			"local_software_spec": "",
-			"specify_inputs": 1,
-			"infile_dir": "*",
+			"specify_inputs": 0,
+			"infile_dir": "",
 			"template": "%s/dicom/*.IMA",
 			"infields": ["subject_id"],
+			"outfields": ["dicom_files"],
+			"sort": false,
 			"in_files": [],
 			"output_dir_struct": "flat"
 			},
