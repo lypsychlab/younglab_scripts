@@ -69,6 +69,9 @@ else
     % Overlay on T1 image
     try
         imgdir = dir(fullfile(subjects{i},'3danat','ws*.img'));
+        if length(imgdir)==0
+            imgdir = dir(fullfile(subjects{i},'3danat','ws*.nii'));
+        end
         evalin('base',['spm_sections(xSPM,findobj(spm_figure(''FindWin'',''Interactive''),''Tag'',''hReg''),''' fullfile(subjects{i},'3danat',imgdir(1).name) ''');']);
     catch
         evalin('base','spm_sections(xSPM,findobj(spm_figure(''FindWin'',''Interactive''),''Tag'',''hReg''),''/software/spm8/canonical/single_subj_T1.nii'');');
@@ -103,7 +106,7 @@ evalin('base','xY.Ic      = 0;');
 evalin('base','xY.Sess    = 1;');
 evalin('base','xY.def     = ''sphere'';');
 evalin('base',['xY.spec   = ' num2str(r) ';']);
-keyboard
+
 evalin('base','[Y,xY] = spm_regions(xSPM,SPM,hReg,xY);');
 ROI.XYZmm = evalin('base','xY.XYZmm;');% ROI coordinates
 vinv_data = evalin('base','inv(SPM.xY.VY(1).mat);');
@@ -125,8 +128,11 @@ if ~exist('roi','dir');
 end
 save(fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']), 'ROI','xY','-mat');
 cd(fullfile(subjects{i},'roi'));
-mat2img( fullfile(subjects{1},res_dir,'spmT_0001.img'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
-
+try
+    mat2img( fullfile(subjects{1},res_dir,'spmT_0001.img'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
+catch
+    mat2img( fullfile(subjects{1},res_dir,'spmT_0001.nii'),fullfile(subjects{i},'roi',['ROI_' roi_name '_' task '_' num2str(c) '_' date '_xyz.mat']) );
+end
 % update log
 notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(z_idx)};
 temp         = strread(subjects{i},'%s','delimiter','/');
