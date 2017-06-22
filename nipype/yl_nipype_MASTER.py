@@ -25,10 +25,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
-	if isinstance(yl_nipype_params_file,str): 
-	# running from another function, e.g. test function
-		yl_nipype_params_file=[yl_nipype_params_file,args]
-
+	# if isinstance(yl_nipype_params_file,str): 
+	# # running from another function, e.g. test function
+	# 	yl_nipype_params_file=[yl_nipype_params_file,args]
+	print(args)
 	try:
 		if sys.ps1: # we're in interactive mode
 			pass # don't need to do anything
@@ -41,7 +41,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	##### SETTING UP #####
 	# Find parameter file & load
 	print('Loading files and setting up...')
-	print('Using parameter file: %s',yl_nipype_params_file)
+	print('Using parameter file: {}'.format(yl_nipype_params_file))
 	with open(yl_nipype_params_file,'r') as jsonfile:
 		params = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
@@ -54,13 +54,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
 
 	# Set up software dictionary mapping software names to interface functions
-	if isinstance(args[0],tuple):
+	if len(args) and isinstance(args[0],tuple):
 		args[0]=args[0][0]
 	if len(args): # if we have optional arguments
 		print('Using custom software file: %s',args[0])
 		software_file = args[0] 
 	else:
-		software_file = '/home/younglw/lab/scripts/yl_nipype_software_dict_MASTER.json'
+		software_file = '/home/younglw/lab/scripts/nipype/yl_nipype_software_dict_MASTER.json'
 	with open(software_file,'r') as jsonfile:
 		software_dict = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
