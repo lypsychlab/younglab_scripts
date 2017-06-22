@@ -1,7 +1,7 @@
 function run_all_jobs(tagnames,splitgroup)
 
 DIS_itemwise_job_pleiades(tagnames);
-estimate_spm_pleiades('/home/younglw/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagnames);
+estimate_spm_pleiades('/home/younglw/lab/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagnames);
 
 	if splitgroup == 1
 		DIS_itemwise_job_NT_pleiades(tagnames);
@@ -12,8 +12,8 @@ estimate_spm_pleiades('/home/younglw/server/englewood/mnt/englewood/data','PSYCH
 			tagsnt{end+1}=[tagnames{t} '_NT'];
 			tagsasd{end+1}=[tagnames{t} '_ASD'];
 		end
-		estimate_spm_pleiades('/home/younglw/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagsnt);
-		estimate_spm_pleiades('/home/younglw/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagsasd);
+		estimate_spm_pleiades('/home/younglw/lab/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagsnt);
+		estimate_spm_pleiades('/home/younglw/lab/server/englewood/mnt/englewood/data','PSYCH-PHYS',tagsasd);
 
 	end
 
