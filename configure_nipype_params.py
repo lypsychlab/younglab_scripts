@@ -12,29 +12,25 @@ def configure_nipype_params(*argu):
 		print('\nNote: script being run via test script.')
 		argu=argu[0];
 	json_name = argu[1]
-	if os.path.exists(json_name):
-		with open(json_name+'.json','r') as jsonfile:
-			params=json.load(jsonfile)
-	else:
-		with open('/home/younglw/lab/scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
-			params=json.load(jsonfile)
-		rootdir = input('Enter root directory: ')
-		studyname = input('Enter study name: ')
-		wfname = input('Enter workflow name: ')
-		subjtag = input('Enter subject tag (e.g. SAX_DIS): ')
-		sub_nums=[str(x) for x in input('Enter subject numbers (separate with spaces): ').split(' ')]
-		tsks = [str(x) for x in input('Enter task names (separate with spaces): ').split(' ')]
+	# with open('/Users/wass/GitHub/younglab_scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
+	with open('/home/younglw/lab/scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
+		params=json.load(jsonfile)
 
-		params["config"]["logging"]["log_directory"] = os.path.join(rootdir,studyname,wfname,'logs')
-		params["directories"]["study"] = studyname
-		params["directories"]["workflow_name"] = wfname
-		params["directories"]["root"] = rootdir
-		params["experiment_details"]["subject_tag"] = subjtag
-		params["experiment_details"]["subject_nums"] = sub_nums
-		params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
-		params["experiment_details"]["task_names"] = tsks
-		for x in params["params"]:
-			params["params"][x]["infile_dir"] = os.path.join(rootdir,studyname)
+	rootdir = input('Enter root directory: ')
+	studyname = input('Enter study name: ')
+	wfname = input('Enter workflow name: ')
+	subjtag = input('Enter subject tag (e.g. SAX_DIS): ')
+	sub_nums=[str(x) for x in input('Enter subject numbers (separate with spaces): ').split(' ')]
+	tsks = [str(x) for x in input('Enter task names (separate with spaces): ').split(' ')]
+
+	params["config"]["logging"]["log_directory"] = os.path.join(rootdir,studyname,wfname,'logs')
+	params["directories"]["study"] = studyname
+	params["directories"]["workflow_name"] = wfname
+	params["directories"]["root"] = rootdir
+	params["experiment_details"]["subject_tag"] = subjtag
+	params["experiment_details"]["subject_nums"] = sub_nums
+	params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
+	params["experiment_details"]["task_names"] = tsks
 
 
 	print("Pulling information from .mat files now...")
@@ -66,7 +62,8 @@ def configure_nipype_params(*argu):
 			params["experiment_details"]["design"][t][s]["items"] = []
 			params["experiment_details"]["design"][t][s]['covariates'] = {}
 			params["experiment_details"]["design"][t][s]['condition'] = [] 
-			for k in matfile["covariates"]:
+			if 'covariates' in matfile.keys():
+				for k in matfile["covariates"]:
 					params["experiment_details"]["design"][t][s]['covariates'][k] = [] 
 			# start pulling data:
 			for m in range(len(matname)): # for each run:
@@ -96,8 +93,9 @@ def configure_nipype_params(*argu):
 				params["experiment_details"]["design"][t][s]["items"].append(matfile["items_run"])
 				# ex. params["experiment_details"]["design"][t][s]['items'] = [[10,1,7,4],...]					
 				# Pull covariates
-				for k in matfile["covariates"]:
-					params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
+				if 'covariates' in matfile.keys():
+					for k in matfile["covariates"]:
+						params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
 					# assumes that "covariates" is a structure with fields corresponding to covariate variables (e.g., key, RT)
 					# and values corresponding to covariate values
 					# see: rework_behavioral.m	
