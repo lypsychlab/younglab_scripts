@@ -4,7 +4,7 @@ function DIS_rerun(load_flag,analysis_flag,starting_subject,function_flag,splitg
 % load_flag: 1 to load saved params, 0 to build from scratch
 % analysis_flag: 'supra','dom','subdom','subdom_60'
 % starting_subject: number of first subject to include
-% function_flag: 1 to run searchlight, 0 to just run estimate_spm_pleiades
+% function_flag: 1 to run searchlight, 2 to run Rmap, 0 to just run estimate_spm_pleiades
 % splitgroup: 1 to also split T-images by ASD/NT, 0 to only do all subjects
 % General parameters (run once)
 	rootdir = '/home/younglw/lab/server/englewood/mnt/englewood/data';
@@ -34,7 +34,6 @@ function DIS_rerun(load_flag,analysis_flag,starting_subject,function_flag,splitg
 		outtags{end+1} = 'subdom_60_Zscore';
 		outtags{end+1} = 'subdom_60_2_Zscore';
 
-
 		tagnames=cell(length(B_in));
 		for(i=1:length(B_in))
 			foo = {};
@@ -54,16 +53,16 @@ function DIS_rerun(load_flag,analysis_flag,starting_subject,function_flag,splitg
 % Supradomain:
 	switch analysis_flag
 	case 'supra'
-		if(function_flag)
+		if(function_flag) == 1
 			searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in{1},sph,B_in{1},outtags{1});
 		end
 		run_all_jobs(tagnames{1},splitgroup);
 	case 'dom'
-		if(function_flag)
+		if(function_flag) == 1
 			searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in{2},sph,B_in{2},outtags{2});
 		end
 		run_all_jobs(tagnames{2},splitgroup);
-	case 'subdom'
+	case 'subdom' 
 		if(function_flag)
 			searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in{2},sph,B_in{3},outtags{3});
 		end
@@ -74,10 +73,18 @@ function DIS_rerun(load_flag,analysis_flag,starting_subject,function_flag,splitg
 		end
 		run_all_jobs(tagnames{4},splitgroup);
 	case 'subdom_2_60'
-		if(function_flag)
+		if(function_flag) == 1
 			searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in{1},sph,B_in{5},outtags{5});
 		end
-		run_all_jobs(tagnames{5},splitgroup);
+		if(function_flag) == 2
+			searchlight_Rmap(rootdir,study,subj_tag,resdir,sub_nums,cond_in{1},sph,B_in{5},outtags{5});
+		end
+		% run_all_jobs(tagnames{5},splitgroup);
+	case 'subdom_3_60'
+		if(function_flag) == 1
+			searchlight_base(rootdir,study,subj_tag,resdir,sub_nums,cond_in{1},sph,B_in{6},outtags{6});
+		end
+		run_all_jobs(tagnames{6},splitgroup);
 	otherwise
 		disp('Invalid analysis flag! Exiting.');
 		return;
