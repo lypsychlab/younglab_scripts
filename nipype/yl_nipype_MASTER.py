@@ -184,7 +184,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'normalize': # specify normalization parameters
 			if software_spec == 'spm':
-				node.inputs.template = params["params"]["normalize"]["template"]
+				node.inputs.template = params["params"]["normalize"]["reference_template"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'smooth': # specify smoothing parameters
