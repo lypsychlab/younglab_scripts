@@ -367,12 +367,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 
 	##### FINISHING #####
+	if not os.path.exists(os.path.join(studydir,params["directories"]["workflow_name"],'code')):
+		os.mkdir(os.path.join(studydir,params["directories"]["workflow_name"],'code'))
 	# Copy parameter file into /code subdir of workflow dir
 	shutil.copy(yl_nipype_params_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
+		os.path.join(studydir,params["directories"]["workflow_name"],'code',yl_nipype_params_file))
 	# Copy software_dict file into /code subdir as well
 	shutil.copy(software_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
+		os.path.join(studydir,params["directories"]["workflow_name"],'code',yl_nipype_params_file))
 
 	# Run the workflow
 	print('Running workflow...')

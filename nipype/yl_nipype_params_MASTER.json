@@ -71,7 +71,7 @@
 			"local_software_spec": "",
 			"specify_inputs": 0,
 			"infile_dir": "",
-			"template": "%s/dicom/*.IMA",
+			"template": "%s/dicom/%s.IMA",
 			"infields": ["subject_id"],
 			"outfields": ["dicom_files"],
 			"sort": false,
