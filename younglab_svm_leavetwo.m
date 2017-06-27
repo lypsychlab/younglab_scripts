@@ -44,10 +44,7 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 	        		labeled_training{end+1}=labeled_data{i};
 	        	end
 	        end
-	        % labeled_training(tval,:)=[];%remove t's label from list of class labels
-	        % labeled_training(t2val,:)=[];%same with t2
 
-	        % keyboard
 		%for each training/testing set: fit the svm model and then test on the left-out one
 			svmmodel = fitcsvm(training,labeled_training,'KernelFunction','linear',...
 				'Standardize',true,'ClassNames',cnames);
