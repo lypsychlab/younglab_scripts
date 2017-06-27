@@ -16,7 +16,7 @@ import nipype.pipeline.engine as npe
 import json, os, shutil, sys
 from collections import OrderedDict
 default_studydir = '/home/younglw/lab/nipype_test_data'
-default_scriptsdir = '/home/younglw/lab/scripts'
+default_scriptsdir = '/home/younglw/lab/scripts/nipype'
 default_params_file = 'yl_nipype_params_TEST.json'
 default_software_file = 'yl_nipype_software_dict_MASTER.json'
 default_params_path = pth.join(default_studydir,default_params_file)
@@ -142,9 +142,10 @@ class SubjectInfoTestCase(BasicTestCase):
 			self.assertEqual(output[i].get("conditions"),default_params['experiment_details']['design'][self.default_taskname][self.default_subj]['condition'][i])
 
 # testing as if you are a user (realistic, running actual workflows)
+# NOTE: the following are SPM-specific unless otherwise noted
 
-# test case: preprocessing multiple subjects (spm)
-# fixture: use dicom files, in .../testing_dataset/dicom
+# test case: converting dicoms to .nii for multiple subjects (spm)
+# fixture: use dicom files, in .../nipype_test_data/SUBJECT/dicom/*.IMA
 class RunDicomTestCase(BasicTestCase):
 	def test_dicom(self):
 		# the default params file runs only dicom node
@@ -153,12 +154,67 @@ class RunDicomTestCase(BasicTestCase):
 		# assert that the workflow folder was created
 		self.assertTrue(pth.exists(pth.join(default_studydir,"wf")))
 
+# run functional & structural preproc, assuming dicom files already converted
+# assumes nifti files like so: .../wf/SUBJECT_DIR/dicom/converted_dicom/*.nii
+class RunPreprocTestCase(BasicTestCase):
+	default_params['node_flags']['dicom']=0
+	default_params['node_flags']['slicetime']=0
+	default_params['node_flags']['realign']=1
+	# default_params['node_flags']['reslice']=1
+	# default_params['node_flags']['normalize']=1
+	# default_params['node_flags']['smooth']=1
+	default_params["directories"]["workflow_name"]='preproc_realign'
+	with open(pth.join(default_studydir,'preproc_realign_'+default_params_file),'w') as jsonfile:
+		json.dump(default_params,jsonfile)
+	from yl_nipype_MASTER import yl_nipype_MASTER
+	yl_nipype_MASTER(pth.join(default_studydir,'preproc_realign_'+default_params_file),
+		pth.join(default_scriptsdir,default_software_file))
+	# assert that the workflow folder was created
+	self.assertTrue(pth.exists(pth.join(default_studydir,"preproc_realign")))
 
+# test case: preprocessing anatomical files specifically (i.e., only normalization)
+# in this one, we'll assume that dicom files were processed with a flat structure
+# so we need to pick out the anatomical files by their 's' prefix
+class RunAnatPreprocTestCase(BasicTestCase):
+	default_params['node_flags']['dicom']=0
+	default_params['node_flags']['normalize']=1
+	default_params["directories"]["workflow_name"]='normalize_anat'
+	default_params['node_flags']['normalize']['template']='wf/_subject_id_%s_task_name_HOWWHY/dicom/converted_dicom/f%s.nii'
+	with open(pth.join(default_studydir,'normalize_anat_'+default_params_file),'w') as jsonfile:
+		json.dump(default_params,jsonfile)
+	from yl_nipype_MASTER import yl_nipype_MASTER
+	yl_nipype_MASTER(pth.join(default_studydir,'normalize_anat_'+default_params_file),
+		pth.join(default_scriptsdir,default_software_file))
+	# assert that the workflow folder was created
+	self.assertTrue(pth.exists(pth.join(default_studydir,"normalize_anat")))
 # test case: modeling data (spm)
-# fixture: use previously preprocessed data, in .../testing_dataset/model
+# fixture: use previously preprocessed data, in .../preproc/SUBJECT_DIR/smooth/smoothed_files
+class RunModelTestCase(BasicTestCase):
+	default_params['node_flags']['dicom']=0
+	default_params['node_flags']['specify_design']=1
+	default_params['node_flags']['design']=1
+	default_params['node_flags']['estimate']=1
+	default_params["directories"]["workflow_name"]='model'
+	with open(pth.join(default_studydir,'preproc_'+default_params_file),'w') as jsonfile:
+		json.dump(default_params,jsonfile)
+	from yl_nipype_MASTER import yl_nipype_MASTER
+	yl_nipype_MASTER(default_params_path,pth.join(default_scriptsdir,default_software_file))
+	# assert that the workflow folder was created
+	self.assertTrue(pth.exists(pth.join(default_studydir,"model")))
 
 # test case: contrasts (spm)
-# fixture: use previously modeled data, in /testing_dataset/preproc
+# fixture: use previously modeled data, in .../model/SUBJECT_DIR/estimate/SPM.mat
+class RunContrastTestCase(BasicTestCase):
+	default_params['node_flags']['dicom']=0
+	default_params['node_flags']['contrast']=1
+	default_params['node_flags']['cluster_correct']=1
+	default_params["directories"]["workflow_name"]='contrast'
+	with open(pth.join(default_studydir,'contrast_'+default_params_file) + '.json','w') as jsonfile:
+		json.dump(default_params,jsonfile)
+	from yl_nipype_MASTER import yl_nipype_MASTER
+	yl_nipype_MASTER(default_params_path,pth.join(default_scriptsdir,default_software_file))
+	# assert that the workflow folder was created
+	self.assertTrue(pth.exists(pth.join(default_studydir,"contrast")))
 
 if __name__ == '__main__':
 	suite = unittest.TestLoader().loadTestsFromTestCase(eval(sys.argv[1]))

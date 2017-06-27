@@ -42,7 +42,8 @@
 		"workflow_name": "MYWORKFLOW",
 		"root": "/home/younglw/lab",
 		"study": "STUDY",
-		"behavioral_subdir": "behavioural"
+		"behavioral_subdir": "behavioural",
+		"code": "code"
 		},
 
 	"experiment_details": {
@@ -68,16 +69,23 @@
 	"params": {
 		"dicom": {
 			"local_software_spec": "",
-			"specify_inputs": 1,
-			"infile_dir": "*",
-			"template": "%s/dicom/*.IMA",
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "%s/dicom/%s.IMA",
 			"infields": ["subject_id"],
+			"outfields": ["dicom_files"],
+			"sort": false,
 			"in_files": [],
 			"output_dir_struct": "flat"
 			},
 		"slicetime": {
 			"local_software_spec": "",
-			"infile_dir": "dicom",
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "",
+			"infields": ["subject_id"],
+			"outfields": ["timecorrected_files"],
+			"sort": true,
 			"in_files": [],
 			"num_slices": 36,
 			"ref_slice": 1,
@@ -85,23 +93,37 @@
 			},
 		"realign": {
 			"local_software_spec": "",
+			"specify_inputs": 0,
 			"infile_dir": "slicetime",
+			"template": "",
+			"infields": ["subject_id"],
+			"outfields": ["slicetimecorr_files"],
+			"sort": true,
 			"in_files": [],
 			"fwhm": 5,
 			"quality": 0.9,
-			"register_to_mean": 0
+			"register_to_mean": false
 			},
 		"reslice": {
 			"local_software_spec": "",
-			"infile_dir": "realign*",
-			"in_file": [],
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "",
+			"infields": ["subject_id"],
+			"outfields": ["out_files"],
+			"sort": true,
 			"interp": 4
 			},
 		"normalize": {
 			"local_software_spec": "",
-			"infile_dir": "reslice*",
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "",
+			"infields": ["subject_id"],
+			"outfields": ["normalized_files"],
+			"sort": true,
 			"source": [],
-			"template": "/usr/public/spm/spm8/templates/EPI.nii"
+			"reference_template": "/usr/public/spm/spm8/templates/EPI.nii"
 			},
 		"skull_strip": {
 			"local_software_spec" : "fsl",

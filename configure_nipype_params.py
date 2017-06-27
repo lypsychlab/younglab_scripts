@@ -12,8 +12,8 @@ def configure_nipype_params(*argu):
 		print('\nNote: script being run via test script.')
 		argu=argu[0];
 	json_name = argu[1]
-	# with open('/Users/wass/GitHub/younglab_scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
-	with open('/home/younglw/lab/scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
+	# with open('/Users/wass/GitHub/younglab_scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
+	with open('/home/younglw/lab/scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
 		params=json.load(jsonfile)
 
 	rootdir = input('Enter root directory: ')
@@ -62,7 +62,8 @@ def configure_nipype_params(*argu):
 			params["experiment_details"]["design"][t][s]["items"] = []
 			params["experiment_details"]["design"][t][s]['covariates'] = {}
 			params["experiment_details"]["design"][t][s]['condition'] = [] 
-			for k in matfile["covariates"]:
+			if 'covariates' in matfile.keys():
+				for k in matfile["covariates"]:
 					params["experiment_details"]["design"][t][s]['covariates'][k] = [] 
 			# start pulling data:
 			for m in range(len(matname)): # for each run:
@@ -92,8 +93,9 @@ def configure_nipype_params(*argu):
 				params["experiment_details"]["design"][t][s]["items"].append(matfile["items_run"])
 				# ex. params["experiment_details"]["design"][t][s]['items'] = [[10,1,7,4],...]					
 				# Pull covariates
-				for k in matfile["covariates"]:
-					params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
+				if 'covariates' in matfile.keys():
+					for k in matfile["covariates"]:
+						params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
 					# assumes that "covariates" is a structure with fields corresponding to covariate variables (e.g., key, RT)
 					# and values corresponding to covariate values
 					# see: rework_behavioral.m	

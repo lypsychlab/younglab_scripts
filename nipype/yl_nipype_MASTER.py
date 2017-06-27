@@ -25,10 +25,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	# note: need to add Align_epi_anat, 3dDeconvolve, 3dREMLfit, 3dANOVA, 3dClustSim
 	# to nipype interfaces
-	if isinstance(yl_nipype_params_file,str): 
-	# running from another function, e.g. test function
-		yl_nipype_params_file=[yl_nipype_params_file,args]
-
+	# if isinstance(yl_nipype_params_file,str): 
+	# # running from another function, e.g. test function
+	# 	yl_nipype_params_file=[yl_nipype_params_file,args]
+	print(args)
 	try:
 		if sys.ps1: # we're in interactive mode
 			pass # don't need to do anything
@@ -41,7 +41,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	##### SETTING UP #####
 	# Find parameter file & load
 	print('Loading files and setting up...')
-	print('Using parameter file: %s',yl_nipype_params_file)
+	print('Using parameter file: {}'.format(yl_nipype_params_file))
 	with open(yl_nipype_params_file,'r') as jsonfile:
 		params = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
@@ -54,13 +54,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		os.makedirs(os.path.join(studydir,params["directories"]["workflow_name"]))
 
 	# Set up software dictionary mapping software names to interface functions
-	if isinstance(args[0],tuple):
+	if len(args) and isinstance(args[0],tuple):
 		args[0]=args[0][0]
 	if len(args): # if we have optional arguments
 		print('Using custom software file: %s',args[0])
 		software_file = args[0] 
 	else:
-		software_file = '/home/younglw/lab/scripts/yl_nipype_software_dict_MASTER.json'
+		software_file = '/home/younglw/lab/scripts/nipype/yl_nipype_software_dict_MASTER.json'
 	with open(software_file,'r') as jsonfile:
 		software_dict = json.load(jsonfile, object_pairs_hook=OrderedDict)
 
@@ -76,7 +76,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	os.chdir(os.path.join(params["directories"]["root"],params["directories"]["study"]))
 
-	##### FUNCTION DEFINITIONS #####
+	##### SUBFUNCTION DEFINITIONS #####
 	def create_subj_info(subj,taskname):
 		""""""
 		from nipype.interfaces.base import Bunch
@@ -124,6 +124,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		def grab_data(node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
 				name="datasource") # create data grabber node
+			print('\n'+params["params"][node_name]["infile_dir"]+'\n')
 			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
 			ds.inputs.template = params["params"][node_name]["template"]
 			ds.inputs.infields = params["params"][node_name]["infields"]
@@ -132,13 +133,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			grabbed_info=dict()
 			for x in params["params"][node_name]["outfields"]:
 				for y in params["params"][node_name]["infields"]:
-					grabbed_info[x]=[[y,"*"]] #EDIT ME - list of lists in params file
+					grabbed_info[x]=[[y,"*"]] 
 			ds.inputs.template_args=grabbed_info
-			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) # EDIT ME
+			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) 
 			# ex. connect 'subject_id' from infosource to 'subject_id' of data grabber
 			# infosource handles the iteration over subject ids
-			workflow.connect([(ds, node, [('dicom_files',software_dict[software_key][node_name]["inp"])])]) #EDIT ME
-			# ex. connect 'outfiles' output field to 'in_files' input field
+			for x in params["params"][node_name]["outfields"]:
+				workflow.connect([(ds, node, [(x,software_dict[software_key][node_name]["inp"])])]) 
+			# ex. connect 'dicom_files' output field to 'in_files' input field
 			# ds pipes the files it grabs into the node that will process them
 
 		if is_first: # implement generic data grabbing
@@ -158,7 +160,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				if specify_inputs:
 					grab_data(node_name,node)
 				node.inputs.num_slices = params["params"]["slicetime"]["num_slices"]
-				node.inputss.ref_slice = params["params"]["slicetime"]["ref_slice"]
+				node.inputs.ref_slice = params["params"]["slicetime"]["ref_slice"]
 				node.inputs.slice_order = list(range(2,params["params"]["slicetime"]["num_slices"]+1,2)) + list(range(1,params["params"]["slicetime"]["num_slices"]+1,2))
 				node.inputs.time_acquisition = params["params"]["slicetime"]["TR"]-(params["params"]["slicetime"]["TR"]/params["params"]["slicetime"]["num_slices"])
 				node.inputs.time_repetition = params["params"]["slicetime"]["TR"]
@@ -175,13 +177,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'reslice': # specify reslicing parameters
 			if software_spec == 'spm':
-				node.inputs.space_defining = node.inputs.in_files[0]
-				node.inputs.interp = params["params"]["reslice"]["interp"]
+				# grab the first filename to reslice to
+				pass # don't have to specify anything else
+				# node.inputs.interp = params["params"]["reslice"]["interp"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'normalize': # specify normalization parameters
 			if software_spec == 'spm':
-				node.inputs.template = params["params"]["normalize"]["template"]
+				node.inputs.template = params["params"]["normalize"]["reference_template"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'smooth': # specify smoothing parameters
@@ -364,12 +367,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 
 	##### FINISHING #####
+	if not os.path.exists(os.path.join(studydir,params["directories"]["workflow_name"],'code')):
+		os.mkdir(os.path.join(studydir,params["directories"]["workflow_name"],'code'))
 	# Copy parameter file into /code subdir of workflow dir
-	shutil.copy(yl_nipype_params_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
-	# Copy software_dict file into /code subdir as well
-	shutil.copy(software_file,
-		os.path.join(studydir,params["directories"]["workflow_name"],'code'))
+	# shutil.copy(yl_nipype_params_file,
+	# 	os.path.join(studydir,params["directories"]["workflow_name"],'code',yl_nipype_params_file))
+	# # Copy software_dict file into /code subdir as well
+	# shutil.copy(software_file,
+	# 	os.path.join(studydir,params["directories"]["workflow_name"],'code',yl_nipype_params_file))
 
 	# Run the workflow
 	print('Running workflow...')

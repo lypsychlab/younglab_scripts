@@ -16,9 +16,9 @@
 			"output" : "realigned_files"
 			},
 		"reslice" : {
-			"func" : "nspm.utils.Reslice",
-			"inp" : "in_file",
-			"output" : "out_file"
+			"func" : "nspm.utils.ResliceToReference",
+			"inp" : "in_files",
+			"output" : "out_files"
 			},
 		"normalize" : {
 			"func" : "nspm.Normalize",
