@@ -1,4 +1,5 @@
 import json, sys, os, shutil, fnmatch, mat4py
+from collections import OrderedDict
 
 def configure_nipype_params(*argu):
 	"""
@@ -14,7 +15,7 @@ def configure_nipype_params(*argu):
 	json_name = argu[1]
 	# with open('/Users/wass/GitHub/younglab_scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
 	with open('/home/younglw/lab/scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
-		params=json.load(jsonfile)
+		params=json.load(jsonfile,object_pairs_hook=OrderedDict)
 
 	rootdir = input('Enter root directory: ')
 	studyname = input('Enter study name: ')
@@ -67,7 +68,6 @@ def configure_nipype_params(*argu):
 					params["experiment_details"]["design"][t][s]['covariates'][k] = [] 
 			# start pulling data:
 			for m in range(len(matname)): # for each run:
-				matname[m] = "%s.%s.%d.mat" % (s,t,m+1) # e.g. YOU_HOWWHY.HOWWHY.1.mat
 				matfile = mat4py.loadmat(matname[m])
 				params["experiment_details"]["spm_inputs"][t][s]["ons"].append([]) # run-specific list
 				params["experiment_details"]["spm_inputs"][t][s]["dur"].append([]) # run-specific list
