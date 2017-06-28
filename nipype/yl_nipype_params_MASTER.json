@@ -110,9 +110,10 @@
 			"infile_dir": "",
 			"template": "",
 			"infields": ["subject_id"],
-			"outfields": ["out_files"],
+			"outfields": ["out_file"],
 			"sort": true,
-			"interp": 4
+			"interp": 4,
+			"space_defining": ""
 			},
 		"normalize": {
 			"local_software_spec": "",
@@ -126,14 +127,24 @@
 			"reference_template": "/usr/public/spm/spm8/templates/EPI.nii"
 			},
 		"skull_strip": {
-			"local_software_spec" : "fsl",
+			"local_software_spec": "fsl",
+			"specify_inputs": 0,
 			"infile_dir": "",
+			"template": "%s-0010-00001-000176-01.nii",
+			"infields": ["subject_id"],
+			"outfields": ["mask_file"],
 			"frac": 0.8,
-			"out_file": "skull_strip_mask"
+			"mask": true,
+			"out_file": "skull_strip_mask.nii"
 			},
 		"smooth": {
 			"local_software_spec": "",
-			"infile_dir": "normalize*",
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "",
+			"infields": ["subject_id"],
+			"outfields": ["smoothed_files"],
+			"sort": true,
 			"in_files": [],
 			"fwhm": [5, 5, 5]
 			},
