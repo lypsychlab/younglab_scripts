@@ -1,6 +1,7 @@
 # import statements here
 import nipype.interfaces.io as nio 
 import nipype.interfaces.utility as nutil
+import custom_utils
 import nipype.interfaces.spm as nspm
 import nipype.interfaces.afni as nafni
 import nipype.interfaces.fsl as nfsl
@@ -124,7 +125,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		def grab_data(node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
 				name="datasource") # create data grabber node
-			print('\n'+params["params"][node_name]["infile_dir"]+'\n')
+			# print('\n'+params["params"][node_name]["infile_dir"]+'\n')
 			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
 			ds.inputs.template = params["params"][node_name]["template"]
 			ds.inputs.infields = params["params"][node_name]["infields"]
@@ -177,14 +178,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'reslice': # specify reslicing parameters
 			if software_spec == 'spm':
-				# grab the first filename to reslice to
-				pass # don't have to specify anything else
-				# node.inputs.interp = params["params"]["reslice"]["interp"]
+				if specify_inputs:
+					grab_data(node_name,node)
+				node.inputs.interp = params["params"]["reslice"]["interp"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'normalize': # specify normalization parameters
 			if software_spec == 'spm':
-				node.inputs.template = params["params"]["normalize"]["reference_template"]
+				node.inputs.image_to_align = params["params"]["normalize"]["reference_template"]
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'smooth': # specify smoothing parameters
@@ -192,21 +193,31 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.fwhm = params["params"]["smooth"]["fwhm"]
 			elif software_spec == 'afni': pass
 
+		elif node_name == "skull_strip":
+			if software_spec == 'fsl':
+				node.inputs.frac = params["params"]["skull_strip"]["frac"]
+				node.inputs.mask = params["params"]["skull_strip"]["mask"]
+				node.inputs.out_file = params["params"]["skull_strip"]["out_file"]
+			else:
+				print("WARNING: You must use FSL to perform skull-stripping.")
+				break
+
 		elif node_name == 'model':
-			if software_spec == 'spm' : pass #raise an error: use specify_design/design
+			if software_spec == 'spm' : 
+				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
+				break
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'model_reml':
-			if software_spec == 'spm' : pass #raise an error: use specify_design/design
+			if software_spec == 'spm' : 
+				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
+				break
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'specify_design': # specify parameters for first-level design setup
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nio.DataGrabber()
-					ds.inputs.base_directory = params["params"]["specify_design"]["infile_dir"]
-					ds.inputs.template = params["params"]["specify_design"]["infile_template"]
-					node.inputs.functional_runs = ds.run()
+					grab_data(node_name,node)
 				node.inputs.high_pass_filter_cutoff = params["params"]["specify_design"]["high_pass_filter_cutoff"]
 				node.inputs.input_units = params["params"]["specify_design"]["input_units"]
 				node.inputs.time_repetition = params["params"]["specify_design"]["time_repetition"]
@@ -217,11 +228,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'design': # specify parameters for first-level design
 			if software_spec == 'spm':
 				if specify_inputs:
-					ds = nio.DataGrabber()
-					ds.inputs.base_directory = params["params"]["design"]["mask_image_dir"]
-					ds.inputs.template = params["params"]["design"]["mask_image_template"]
-					node.inputs.mask_image = ds.run()
-				elif skull_strip_flag: #if we have made a binary brain mask in this workflow
+					grab_data(node_name,node)
+				elif params["node_flags"]["skull_strip"]: #if we have made a binary brain mask in this workflow
 					workflow.connect([(skull_strip,node,[('mask_file','mask_image')])])
 				node.inputs.bases = params["params"]["design"]["bases"]
 				node.inputs.interscan_interval = params["params"]["design"]["interscan_interval"]
@@ -236,10 +244,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'onesample_T': # specify parameters for 1-sample T-test
 			if software_spec == "spm":
 				if specify_inputs:
-					ds = nio.DataGrabber()
-					ds.inputs.base_directory = params["params"]["onesample_T"]["infile_dir"]
-					ds.inputs.template = '*.nii'
-					node.inputs.in_files = ds.run()
+					grab_data(node_name,node)
 				node.inputs.threshold_mask_none = params["params"]["onesample_T"]["threshold_mask_none"]
 				node.inputs.global_calc_omit = params["params"]["onesample_T"]["global_calc_omit"]
 				node.inputs.no_grand_mean_scaling = params["params"]["onesample_T"]["no_grand_mean_scaling"]
