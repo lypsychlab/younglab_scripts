@@ -16,13 +16,13 @@
 			"output" : "realigned_files"
 			},
 		"reslice" : {
-			"func" : "nspm.utils.ResliceToReference",
-			"inp" : "in_files",
-			"output" : "out_files"
+			"func" : "custom_utils.ResliceToFirst",
+			"inp" : "in_file",
+			"output" : "out_file"
 			},
 		"normalize" : {
-			"func" : "nspm.Normalize",
-			"inp" : "source",
+			"func" : "nspm.Normalize12",
+			"inp" : "apply_to_files",
 			"output" : "normalized_files"
 			},
 		"smooth" : {
@@ -76,5 +76,12 @@
 		"model_reml" : {"func_future" : "nafni.3dREMLfit"},
 		"contrast" : {"func_future" : "nafni.3dANOVA"},
 		"cluster_correct" : {"func_future" : "nafni.3dClustSim"}
-	} 
+	},
+	"fsl" : {
+		"skull_strip" : {
+			"func" : "nfsl.BET",
+			"inp" : "in_file",
+			"output" : "mask_file"
+		}
+	}
 }
