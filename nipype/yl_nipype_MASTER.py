@@ -5,6 +5,8 @@ import custom_utils
 import nipype.interfaces.spm as nspm
 import nipype.interfaces.afni as nafni
 import nipype.interfaces.fsl as nfsl
+import nipype.algorithms.rapidart as nart
+import nipype.algorithms.misc as nmisc
 import nipype.algorithms.modelgen as ngen
 import nipype.pipeline.engine as npe 
 import json, os, shutil, sys
@@ -99,7 +101,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			software_key = params["global_software_specs"]["software"]
 		else:
 			# use key associated with local software spec
-			software_key = params[node_name]["local_software_spec"]
+			software_key = params["params"][node_name]["local_software_spec"]
 		# grab the corresponding function defined in software_dict
 		node_function = software_dict[software_key][node_name]["func"]
 		# do you want to specify custom input files? 
@@ -122,7 +124,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			if 0 (default), input files will be taken from output of previous node
 		is_first : if 1, input files will be grabbed before doing any processing
 		"""
-		def grab_data(node_name,node):
+		def grab_data(software_spec,node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
 				name="datasource") # create data grabber node
 			# print('\n'+params["params"][node_name]["infile_dir"]+'\n')
@@ -139,13 +141,14 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) 
 			# ex. connect 'subject_id' from infosource to 'subject_id' of data grabber
 			# infosource handles the iteration over subject ids
+			print("Software key: "+software_spec)
 			for x in params["params"][node_name]["outfields"]:
-				workflow.connect([(ds, node, [(x,software_dict[software_key][node_name]["inp"])])]) 
+				workflow.connect([(ds, node, [(x,software_dict[software_spec][node_name]["inp"])])]) 
 			# ex. connect 'dicom_files' output field to 'in_files' input field
 			# ds pipes the files it grabs into the node that will process them
 
 		if is_first: # implement generic data grabbing
-			grab_data(node_name,node)
+			grab_data(software_spec,node_name,node)
 
 		if node_name == 'dicom': # specify dicom files/folder 
 			if software_spec == 'spm': 
@@ -200,18 +203,18 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.out_file = params["params"]["skull_strip"]["out_file"]
 			else:
 				print("WARNING: You must use FSL to perform skull-stripping.")
-				break
+				
 
 		elif node_name == 'model':
 			if software_spec == 'spm' : 
 				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
-				break
+				
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'model_reml':
 			if software_spec == 'spm' : 
 				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
-				break
+				
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'specify_design': # specify parameters for first-level design setup

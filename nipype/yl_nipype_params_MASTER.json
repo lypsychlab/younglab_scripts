@@ -133,9 +133,10 @@
 			"template": "%s-0010-00001-000176-01.nii",
 			"infields": ["subject_id"],
 			"outfields": ["mask_file"],
+			"sort": true,
 			"frac": 0.8,
 			"mask": true,
-			"out_file": "skull_strip_mask.nii"
+			"out_file": "skull_strip.nii"
 			},
 		"smooth": {
 			"local_software_spec": "",

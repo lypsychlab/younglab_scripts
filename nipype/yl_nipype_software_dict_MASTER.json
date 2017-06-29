@@ -83,5 +83,15 @@
 			"inp" : "in_file",
 			"output" : "mask_file"
 		}
+	},
+	"nipype" : {
+		"art_detect" : {
+			"func" : "nart.ArtifactDetect",
+			"inp" : ,
+			"output" :
+			},
+		"unzip" : {
+
+		}
 	}
 }
