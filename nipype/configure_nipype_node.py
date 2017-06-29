@@ -1,4 +1,5 @@
 import json, argparse
+from collections import OrderedDict
 
 def configure_nipype_node(paramfile):
 	'''open param file & specify parameters/node_flag for a given node'''
@@ -36,7 +37,7 @@ def configure_nipype_node(paramfile):
 
 	print("Editing your parameter file "+args.parameter_file)
 	with open(args.parameter_file+'.json','r') as jsonfile:
-		params=json.load(jsonfile)
+		params=json.load(jsonfile,object_pairs_hook=OrderedDict)
 	print("***Instructions:***\nType the name of the node you would like to edit.")
 	print("Available nodes: ")
 	print([k for k in params["node_flags"].keys()])
@@ -46,6 +47,10 @@ def configure_nipype_node(paramfile):
 		loop_node_params(node_name)
 		turn_on_node(node_name)
 		node_name = input("Enter name of node to edit: ")
+	print("Current workflow name: "+params["directories"]["workflow_name"])
+	new_wf_name = input("Enter new workflow name here: ")
+	if new_wf_name:
+		params["directories"]["workflow_name"] = new_wf_name
 	print("Saving your parameter file.")
 	with open(args.parameter_file+'.json','w') as jsonfile:
 		json.dump(params,jsonfile)
