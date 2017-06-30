@@ -60,9 +60,6 @@ def configure_nipype_node(paramfile):
 	edit_runs = input("Do you want to input run information now? (y/n) ")
 	if edit_runs == 'y':
 		input_runs()
-	new_wf_name = input("Enter new workflow name here: ")
-	if new_wf_name:
-		params["directories"]["workflow_name"] = new_wf_name
 	print("Saving your parameter file.")
 	with open(args.parameter_file+'.json','w') as jsonfile:
 		json.dump(params,jsonfile)
