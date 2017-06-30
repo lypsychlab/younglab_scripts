@@ -9,7 +9,11 @@ def configure_nipype_params(*argu):
 	[1]: full path to new parameter file, MINUS the .json extension
 	[2]: v (to turn on verbose behavior)
 	"""
-	if type(argu) is tuple: 
+
+	def unlist(arr):
+		return [x for subarr in arr for x in subarr]
+		
+	if type(argu) is tuple:  
 		print('\nNote: script being run via test script.')
 		argu=argu[0];
 	json_name = argu[1]
@@ -81,6 +85,7 @@ def configure_nipype_params(*argu):
 						matfile["spm_inputs"]["ons"][k] = [matfile["spm_inputs"]["ons"][k]]
 					if type(matfile["spm_inputs"]["dur"][k]) is not list:
 						matfile["spm_inputs"]["dur"][k] = [matfile["spm_inputs"]["dur"][k]]
+					matfile["spm_inputs"]["dur"][k]=unlist(matfile["spm_inputs"]["dur"][k])
 					params["experiment_details"]["spm_inputs"][t][s]["ons"][m].append(sorted(matfile["spm_inputs"]["ons"][k]))
 					# ex. params["experiment_details"]["spm_inputs"][t][s]['ons'] = [[[1,5],[3,7]],...]
 					params["experiment_details"]["spm_inputs"][t][s]["dur"][m].append(matfile["spm_inputs"]["dur"][k])
