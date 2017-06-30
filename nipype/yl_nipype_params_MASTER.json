@@ -151,7 +151,11 @@
 			},
 		"specify_design": {
 			"local_software_spec": "",
-			"infile_dir": "smooth*",
+			"specify_inputs": 0,
+			"infile_dir": "",
+			"template": "_subject_id_{subj}_task_name_{task}/swraf{subj}-00{run}-*.nii",
+			"infields": ["subject_id"],
+			"outfields": ["smoothed_files"],
 			"functional_runs": [],
 			"subject_info": [],
 			"high_pass_filter_cutoff": 128,

@@ -12,6 +12,7 @@ import nipype.pipeline.engine as npe
 import json, os, shutil, sys
 from collections import OrderedDict
 
+
 def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	"""
 	Master function to implement a nipype processing pipeline.
@@ -80,16 +81,41 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 	os.chdir(os.path.join(params["directories"]["root"],params["directories"]["study"]))
 
 	##### SUBFUNCTION DEFINITIONS #####
-	def create_subj_info(subj,taskname):
-		""""""
+	def create_subj_info(params,subject_id,task_name):
+		"""get list of Bunches containing cond/ons/dur info per subject/task"""
 		from nipype.interfaces.base import Bunch
 		output = []
-		for this_run in range(len(params['experiment_details']['spm_inputs'][taskname][subj]['dur'])):
-			on = [params['experiment_details']['spm_inputs'][taskname][subj]['ons'][this_run]]
-			du = [params['experiment_details']['spm_inputs'][taskname][subj]['dur'][this_run]]
-			cn = [params['experiment_details']['conditions'][taskname][subj]['condition'][this_run]]
-			output.insert(this_run,Bunch(conditions = cn, onsets=on, durations = du))
+		spm_inputs = params['experiment_details']['spm_inputs']
+		for this_run in range(len(spm_inputs[task_name][subject_id]['dur'])):
+			on = []
+			du = []
+			cn = []
+			# only append if there's data for this condition
+			for this_cond in range(len(spm_inputs[task_name][subject_id]['ons'][this_run])):
+				if spm_inputs[task_name][subject_id]['ons'][this_run][this_cond]:
+					on.append(spm_inputs[task_name][subject_id]['ons'][this_run][this_cond])
+					du.append(spm_inputs[task_name][subject_id]['dur'][this_run][this_cond])
+					cn.append(params['experiment_details']['design'][task_name][subject_id]['condition'][this_run][this_cond])
+			output.append(Bunch(conditions = cn, onsets=on, durations = du))
 		return output
+
+	def create_func_runs(params,subject_id,task_name):
+		"""get list of lists containing functional files per run"""
+		import os
+		from glob import glob
+		functional_runs = []
+		# _subject_id_%s_task_name_%s/swraf%s-00%d-*.nii (DataGrabber format) ->
+		# _subject_id_{subj}_task_name_{task}/swraf{subj}-00{run}-*.nii (Python native format)
+		run_nums = params["experiment_details"]["design"][task_name][subject_id]["runs"]
+		infile_dir = params["params"]["specify_design"]["infile_dir"]
+		template = params["params"]["specify_design"]["template"]
+		dir_string = os.path.join(infile_dir,template)
+		for this_run in run_nums:
+			srch_string = dir_string.format(subj=subject_id,task=task_name,run=str(this_run))
+			func_files = glob(srch_string)
+			# func_files = [os.path.join(srch_string,x) for x in os.listdir(srch_string)]
+			functional_runs.append(func_files)
+		return functional_runs	
 
 	def add_node(node_name,is_first):
 		"""
@@ -148,7 +174,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			# ds pipes the files it grabs into the node that will process them
 
 		if is_first: # implement generic data grabbing
-			grab_data(software_spec,node_name,node)
+			if node_name == "specify_design":
+				pass
+			else:
+				grab_data(software_spec,node_name,node)
 
 		if node_name == 'dicom': # specify dicom files/folder 
 			if software_spec == 'spm': 
@@ -203,29 +232,41 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.out_file = params["params"]["skull_strip"]["out_file"]
 			else:
 				print("WARNING: You must use FSL to perform skull-stripping.")
-				
 
 		elif node_name == 'model':
 			if software_spec == 'spm' : 
-				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
-				
+				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')			
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'model_reml':
 			if software_spec == 'spm' : 
 				print('WARNING: Use specify_design (not model or model_reml) to model with SPM.')
-				
 			elif software_spec == 'afni' : pass # put in afni params here
 
 		elif node_name == 'specify_design': # specify parameters for first-level design setup
 			if software_spec == 'spm':
-				if specify_inputs:
-					grab_data(node_name,node)
+				if is_first or specify_inputs:
+					# set up list of lists of functional runs via create_func_runs
+					func_runs_node = npe.Node(nutil.Function(input_names=['params','subject_id','task_name'],
+						output_names=['functional_runs'],
+						function=create_func_runs),
+						name='create_func_runs')
+					func_runs_node.inputs.params = params
+					workflow.connect([(infosource,func_runs_node,[('subject_id','subject_id'),
+						('task_name','task_name')])])
+					workflow.connect([(func_runs_node,node,[('functional_runs','functional_runs')])])
+				# pipe subject information out of infosource node, using create_subj_info
+				subj_info_node = npe.Node(nutil.Function(input_names=['params','subject_id','task_name'],
+					output_names=['subject_info'],
+					function=create_subj_info),
+					name='create_subj_info')
+				subj_info_node.inputs.params = params
+				workflow.connect([(infosource,subj_info_node,[('subject_id','subject_id'),
+						('task_name','task_name')])])
+				workflow.connect([(subj_info_node,node,[('subject_info','subject_info')])])
 				node.inputs.high_pass_filter_cutoff = params["params"]["specify_design"]["high_pass_filter_cutoff"]
 				node.inputs.input_units = params["params"]["specify_design"]["input_units"]
-				node.inputs.time_repetition = params["params"]["specify_design"]["time_repetition"]
-				# pipe subject information out of infosource node, using create_subject_info()
-				workflow.connect(infosource,(('subject_id','task_name'),create_subj_info),node,'subject_info')
+				node.inputs.time_repetition = int(params["params"]["specify_design"]["time_repetition"])
 			elif software_spec == 'afni': pass
 
 		elif node_name == 'design': # specify parameters for first-level design
@@ -328,8 +369,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
 					num_inputs = len(software_dict[software_key][node_name]["inp"])
 					# create a tuple to match old outputs to new inputs
-					connectors = [(software_dict[old_software_key][old_node_name]["output"],
-						software_dict[software_key][node_name]["inp"]) for i in range(num_inputs)]
+					connectors = [(software_dict[old_software_key][old_node_name]["output"][i],
+						software_dict[software_key][node_name]["inp"][i]) for i in range(num_inputs)]
 					workflow.connect([(old_node, new_node, connectors)]) 
 					# connect input of this node to output of immediate previous node
 					# note that this connects nodes serially, in the order they appear in params["node_flags"]
