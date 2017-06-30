@@ -7,11 +7,10 @@ def convert_TR(paramfile):
 	TR = params['params']['slicetime']['TR']
 	for tname in params['experiment_details']['spm_inputs'].keys():
 		for sname in params['experiment_details']['spm_inputs'][tname].keys():
-			for rnum in params['experiment_details'][tname][sname]['ons']:
-				for cnum in params['experiment_details'][tname][sname]['ons'][rnum]:
-					for tnum in params['experiment_details'][tname][sname]['ons'][rnum][cnum]:
-						params['experiment_details'][tname][sname]['ons'][rnum][cnum]=int(round(tnum/TR))
+			for rnum in range(len(params['experiment_details']['spm_inputs'][tname][sname]['ons'])):
+				for cnum in range(len(params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum])):
+					for tnum in range(len(params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum][cnum])):
+						# params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum][cnum][tnum]=int(round(params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum][cnum][tnum]))
+						params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum][cnum][tnum]=int(round(params['experiment_details']['spm_inputs'][tname][sname]['ons'][rnum][cnum][tnum]/TR))
 	with open(paramfile+'.json','w') as jsonfile:
 		json.dump(params,jsonfile)
-
-end
