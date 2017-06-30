@@ -35,6 +35,12 @@ def configure_nipype_node(paramfile):
 		else: 
 			params["node_flags"][node_name]=0
 
+	def input_runs():
+		'''input run numbers per subject/task'''
+		for t in params['experiment_details']['design'].keys():
+			for s in params['experiment_details']['design'][t].keys():
+				params['experiment_details']['design'][t][s]['runs']=[int(x) for x in input("Runs for task "+t+", subject "+s+": ").split(' ')]
+
 	print("Editing your parameter file "+args.parameter_file)
 	with open(args.parameter_file+'.json','r') as jsonfile:
 		params=json.load(jsonfile,object_pairs_hook=OrderedDict)
@@ -48,6 +54,12 @@ def configure_nipype_node(paramfile):
 		turn_on_node(node_name)
 		node_name = input("Enter name of node to edit: ")
 	print("Current workflow name: "+params["directories"]["workflow_name"])
+	new_wf_name = input("Enter new workflow name here: ")
+	if new_wf_name:
+		params["directories"]["workflow_name"] = new_wf_name
+	edit_runs = input("Do you want to input run information now? (y/n) ")
+	if edit_runs == 'y':
+		input_runs()
 	new_wf_name = input("Enter new workflow name here: ")
 	if new_wf_name:
 		params["directories"]["workflow_name"] = new_wf_name
