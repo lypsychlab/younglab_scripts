@@ -193,10 +193,6 @@ global skip_art;
 global mask_over;
 global defaults;
 
-% add FSL to the path and set FSL environment variables
-% setenv('PATH',[getenv('PATH') ':/usr/lib/fsl/5.0']);
-% setenv('FSLDIR','/usr/local/fsl');
-% setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 addpath(genpath('/home/younglw/lab/scripts'));
 addpath(genpath('/usr/public/spm/spm12'));
 EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
@@ -354,59 +350,6 @@ inStruct.src_data_flag = src_data_flag;
 inStruct.dont_smash = dont_smash;
 inStruct.clobber_bit = clobber_bit;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% now iterate through the 
-% behavioral files, and check 
-% that the onsets of the 
-% conditions do not exceed the 
-% frequency cutoff for the 
-% high-pass filter. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% if ~is_legacy & ~freq_is_def
-%     curDir = pwd; 
-%     longestPeriod = 0; 
-%     cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
-%     for subj = 1:length(subject)
-%         for task = 1:length(tasks{subj})
-%             behavdata_thistask = dir(sprintf('%s.%s.*.mat',subject{subj},tasks{subj}{task}));
-%             num_behav_files = length(behavdata_thistask);
-%             if num_behav_files
-%                 for i=1:num_behav_files
-%                     load(behavdata_thistask(i).name,'spm_inputs');
-%                     for j=1:length(spm_inputs)
-%                         if length(spm_inputs(j).ons) == 1
-%                             % what do you do if there is only one instance of a
-%                             % condition?
-%                         else    
-%                             for k=1:(length(spm_inputs(j).ons)-1)
-%                                 thisPeriod = spm_inputs(j).ons(k+1) - spm_inputs(j).ons(k);
-%                                 if thisPeriod > longestPeriod
-%                                     longestPeriod = thisPeriod;
-%                                 end
-%                             end
-%                         end
-%                     end
-%                     clear spm_inputs
-%                 end
-%             end
-%         end
-%     end
-%     load(behavdata_thistask(i).name,'ips');
-% 
-%     if longestPeriod*2 > filter_frequency
-%         fprintf('\nWARNING: The longest time between onsets for any condition \nin this analysis is %.0f seconds, while your filter is set \nto %.0f seconds. Recommend you set a larger frequency \nfor filter.\n',longestPeriod*2,filter_frequency); 
-%         change_bpf = input(sprintf('Would you like to change it? y/[n]:\t\t'), 's');   
-%         if strcmp(change_bpf,'Y') | strcmp(change_bpf,'y')
-%             if longestPeriod*1.5 > ips
-%                 recommendedPeriod = ips*2;
-%             else
-%                 recommendedPeriod = longestPeriod*2*1.2;
-%             end
-%             filter_frequency = input(sprintf('Input new frequency cutoff (recommend %.0f) in seconds / cycle:\t\t',recommendedPeriod));
-%         end 
-%     end
-%     cd(curDir);
-% end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % begin modeling
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -440,7 +383,6 @@ ErrorLog={};SPM=[];
 
 
 for subj = 1:length(subject)
-%     try
         
         fprintf('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
         fprintf('Beginning estimation & contrasts on subject %s \n',subject{subj});
@@ -552,7 +494,6 @@ for subj = 1:length(subject)
             mkdir(results_string);
             cd(results_string);
             rS1 = pwd;
-			% percRetained = freqAnalyze_itemwise_DIS(study, subject{subj}, tasks{subj}{task}, filter_frequency, rS1);
             set(0,'DefaultFigureVisible','Off');
             % Now, write metadata about the results to the directory
             if RT_flag == 1
@@ -597,20 +538,14 @@ for subj = 1:length(subject)
             for run = 1:num_runs
                 cd(fullfile(EXPERIMENT_ROOT_DIR,study,'behavioural'));
                 clear RT
-                % try
-                    load(parafiles{run},'spm_inputs','con_info','ips','user_regressors','RT','design','item_vector');
-                % catch
-                %     load(parafiles{run},'spm_inputs','con_info','ips','user_regressors','RT','design');
-                % end
+                load(parafiles{run},'spm_inputs','con_info','ips','user_regressors','RT','design');
+
                 if ~exist('spm_inputs') | ~exist('ips')
                     fprintf('Failed to load behavioural data for subject %s task `%s`\n',subject{subj}, tasks{subj}{task});
                     fprintf('\t-variables "spm_inputs" and "ips" required (and "con_info" is handy)\n');
                     fprintf('\t-crashing on pass %d...\n\n',task);
-                    %continue
                 elseif ~exist('con_info')
                     fprintf('No ''con_info'' variable detected for subject %s task `%s`\n',subject{subj}, tasks{subj}{task});
-%                 elseif ~exist('user_regressors')
-%                     fprintf('No ''user_regressors'' variable deteceted for subject %s task `%s`\n',subject{subj}, tasks{subj}{task});
                 end
 
                 cd(fullfile(EXPERIMENT_ROOT_DIR,study,subject{subj},'results',results_string));
@@ -732,14 +667,6 @@ for subj = 1:length(subject)
                             user_regressors(1).name = 'RT';
                             user_regressors(1).ons  = RT_run;
                         end
-%                     catch
-%                         disp('Error using RTs as regressors')
-%                         disp('Common causes: ')
-%                         disp('    -No RT or design (or item_vector) saved in behavioral file')
-%                         disp('    -RT includes fixation trials, while design does not')
-%                         disp('    -# non-fixation onsets in RT, design, and spm_inputs do not match')
-%                         disp('    -RT is not formatted as a single vector of length(trials) - no structures, please')
-%                     end
                 end
 
                 % user-specified covariates
@@ -763,12 +690,10 @@ for subj = 1:length(subject)
                 %===========================================================================
 
                 % Pull out some information to save for error checking...
-                %files{run} =  spm_get('files',sprintf('%s/%s/%s/bold/%.3d',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(run)),filter);
                 files{run} = alek_get(sprintf('%s/%s/%s/bold/%.3d',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(run)),filter);
                 expected_num_files(run) = ips;
                 
                 fprintf('loading image files for run %d \n',boldirs{subj}{task}(run));
-                %scans = [scans; spm_get('files',sprintf('%s/%s/%s/bold/%.3d',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(run)),filter)];
                 scans = [scans; alek_get(sprintf('%s/%s/%s/bold/%.3d',EXPERIMENT_ROOT_DIR,study,subject{subj},boldirs{subj}{task}(run)),filter)];
                 clear spm_inputs ips user_regressors
             end % run/acq loop
@@ -821,17 +746,7 @@ for subj = 1:length(subject)
             
             % Configure design matrix
             %===========================================================================
-                % try
-                    SPM = spm_fmri_spm_ui_pleiades(SPM);
-                % catch
-                %     disp('Failed to create design')
-                %     disp('Common causes: ')
-                %     disp('    -The targeted data (swr / sr) doesn''t exist')
-                %     disp('    -The ips doesn`t match the actual bold data')
-                %     disp('    -The onsets or durations lead to invalid references')
-                %     disp('    (or permissions, of course)')
-                %     break
-                % end
+                SPM = spm_fmri_spm_ui_pleiades(SPM);
                 
                 if implicit_flag == 1
                     SPM.xM.T           = ones(length(scans),1);
@@ -856,11 +771,8 @@ for subj = 1:length(subject)
             
             % Estimate parameters
             %===========================================================================
-                % try
-                    SPM = spm_spm_pleiades(SPM);
-                % catch
-                %     break
-                % end
+               
+            SPM = spm_spm_pleiades(SPM);
 
             % T-contrasts - if con_info existed in any sourced data file,
             % use it now
@@ -892,16 +804,12 @@ for subj = 1:length(subject)
                 % if task is more than one run, use the following line for regressors
                 con_vals{contrast}=[con_vals{contrast}, zeros(1,num_runs)];
 
-                %                     try
                 if isempty(SPM.xCon)       
                     SPM.xCon = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
                 else
                     SPM.xCon(end+1) = spm_FcUtil('Set', con_name{contrast}, 'T', 'c', con_vals{contrast}',SPM.xX.xKXs);
                 end
-%                     catch
-%                         fprintf('\n=====\nError specifying contrasts for subject %s task %s\n=====\n',subject{subj},tasks{subj}{task});
-%                         rethrow(lasterror)
-%                     end
+
             end %con_info loop
             % ---------------------------------------------------------------------------
             spm_contrasts_pleiades(SPM);
@@ -912,10 +820,7 @@ end %function model
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function skullStripMaker(study, subj, maskthresh)
-    % path1=getenv('PATH');
-    % path1=[path1 ':/usr/public/fsl/5.0.8/fsl/bin'];
-    % setenv('PATH',path1);
-    % !echo PATH
+
     set(0,'DefaultFigureVisible','on');
     global mask_over;
     global inStruct;
@@ -952,17 +857,6 @@ function skullStripMaker(study, subj, maskthresh)
     end
     fprintf('Structural image file: \n');
     fprintf('%s\n',img);
-    % keyboard
-
-    % allimg = dir([directory 'ws0-0*-*-*-*.*']);
-    % nifti=dir([directory 'ws0-0*-*-*-*.nii']);
- 
-    % try
-    %     disp(['Removing nifti file: ' nifti(1).name]);
-    %     eval(sprintf('!rm -rf %s',[directory nifti(1).name]));
-    % catch
-    %     disp(['No nifti file to remove.'])
-    % end
 
     fprintf('Making mask image...\n');
     if ~exist([directory 'skull_strip_mask.img'],'file') | mask_over
@@ -973,17 +867,12 @@ function skullStripMaker(study, subj, maskthresh)
             eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.nii']));
             eval(sprintf('!rm -rf %s',[directory 'skull_strip_mask.img']));
 
-            % system(sprintf('rm -rf %s',[directory 'skull_strip_mask.nii.gz']));
-            % system(sprintf('rm -rf %s',[directory 'skull_strip_mask.nii']));
-
             fprintf('Old mask removed, making new mask...\n');
         end
         eval(sprintf('!bet %s %s -f %0.01f',img,[directory 'skull_strip_mask'],maskthresh));
-        % system(sprintf('bet %s %s -f %0.01f',img,[directory 'skull_strip_mask'],maskthresh));
 
         fprintf('Mask image made, unzipping...\n');
         eval(sprintf('!gunzip %s.nii.gz -f',[directory 'skull_strip_mask']));
-        % system(sprintf('gunzip %s.nii.gz -f',[directory 'skull_strip_mask']));
         fprintf('Constructing binary brain mask...\n');
         V = spm_vol([directory 'skull_strip_mask.nii']);
         Vo = struct('fname',[directory 'skull_strip_mask.img'],'dim',[V(1).dim(1:3)],'dt',[spm_type('float32'), 1],'mat',V(1).mat,'descrip','spm - algebra','mask',1);
