@@ -36,7 +36,9 @@ function younglab_preproc_spatial_spm12_pleiades (varargin)
 % process starting on the 2nd functional run and skip every other (so don't
 % be an idiot like me and delete the non-pace runs, and then try to use
 % 'pace'). This assumes that 'pace' takes only odd runs.
-
+% 
+% Including the string ".img" will tell the script to look for .img instead of .nii files.
+% 
 % Note that the order of the third and fourth arguments is irrelevant,
 %  the code is only sensitive to the class of its inputs.
 %       Examples with 3 arguments:
@@ -89,6 +91,7 @@ pace = 0;   % flag for the use of "pace" algorithm (w/in run realignment -
 %           doubles # of functional runs) - tells the script to process
 %           only even functional runs
 prep_seq = 7; % code for preprocessing steps
+img_type = '.nii';
 % ====================================================================
 
 if nargin<1
@@ -109,10 +112,12 @@ if nargin>=2
             case 'char'
                 if strcmp(varargin{i},'pace')
                     pace = 1;
+                else if strcmp(varargin{i},'img')
+                    img_type = '.img';
                 else
                     subject = test_id(study,varargin{i});
                 end
-
+                end
             case 'cell'
                 subject = varargin{i};
 
@@ -194,7 +199,6 @@ for subj_index=1:length(subject)
     % constants (restore prep_seq in case it was changed in previous pass)
     realigned = 0; normalised = 0; prep_seq = orig_prep_seq;
     if mod(prep_seq,2)  % grabs even values of prep_seq
-         % try
             func_images = get_images(study, subjID, func_runs, realigned,normalised);
             fprintf ('==============================\n');
             fprintf ('Realigning subject %s\n',subjID);
@@ -205,11 +209,7 @@ for subj_index=1:length(subject)
             fprintf ('==============================\n');
             prep_seq = prep_seq-1;
             realigned = 1;
-       % catch
-       %     fprintf ('==========================================\n');
-       %     fprintf ('Realignment failed for subject %s\n',subjID);
-       %     fprintf ('==========================================\n');
-       % end
+
     end
 
 
@@ -217,7 +217,6 @@ for subj_index=1:length(subject)
         realigned = 1;  % toggle this to control the behavior of saxelab_prep_bch
         % when prep_seq=2 or prep_seq=6. Only change this if you actually
         % want to normalize un-realigned data
-         % try
             func_images = get_images(study, subjID, func_runs, realigned,normalised);
             fprintf ('==========================================\n');
             fprintf ('Normalising subject %s functionals\n',subjID);
@@ -228,11 +227,7 @@ for subj_index=1:length(subject)
             fprintf ('==========================================\n');
             normalised=1;
             prep_seq = prep_seq - 2;
-        % catch
-        %     fprintf ('=========================================================\n');
-        %     fprintf ('Normalisation of functionals failed for subject %s\n',subjID);
-        %     fprintf ('=========================================================\n');
-        % end
+
         try
             fprintf ('==========================================\n');
             fprintf ('Normalising subject %s anatomicals\n',subjID);
@@ -269,29 +264,12 @@ for subj_index=1:length(subject)
             fprintf ('       Cleaning Up...\n');
             fprintf ('==============================\n');
             cd(fullfile(EXPERIMENT_ROOT_DIR,study,subjID));
-            % !rm -f bold/*/wrrun*;
-            % !rm -f bold/*/rrun*;
             
             boldDir = sprintf('%s/%s/%s/bold',EXPERIMENT_ROOT_DIR,study,subjID);
             cd(boldDir);
 
             content_boldDir = dir(boldDir);
             number_boldDir = content_boldDir(3:(end-1));
-
-            
-%             fprintf ('Deleting wraf* and raf* files for subject %s\n',subjID);
-%             for dirs = 1:(length(number_boldDir)) % removing all wrarun* and rarun* files in each bold dir
-%                 if ~isempty(str2num(number_boldDir(dirs).name))
-%                     cd(sprintf('%s',number_boldDir(dirs).name));
-% %                     delete('wraf*.img');
-% %                     delete('wraf*.hdr');
-% %                     delete('raf*.img');
-% %                     delete('raf*.hdr');
-%                 end
-%                 cd(boldDir);
-%                 fprintf ('%s.............Done\n',number_boldDir(dirs).name);
-%             end
-
             
             fprintf ('       Done.\n');
             fprintf ('==============================\n');
@@ -313,28 +291,28 @@ try
     if ~realigned && ~normalised
         % Use spm_get to grab "aruns"
         for run = 1:length(func_runs)
-            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),'af*.img');
+            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),['af*' img_type]);
         end
     end
 
     if realigned && ~normalised
         % Use spm_get to grab "raruns"
         for run = 1:length(func_runs)
-            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))), 'raf*.img');
+            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))), ['raf*' img_type]);
         end
     end
 
     if normalised && ~realigned
         % Use spm_get to grab "waruns"
         for run = 1:length(func_runs)
-            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),'waf*.img');
+            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))),['waf*' img_type]);
         end
     end
 
     if realigned && normalised
         % Use spm_get to grab "wraruns"
         for run = 1:length(func_runs)
-            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))), 'wraf*.img');
+            func_images{run} = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, 'bold', char(func_runs(run))), ['wraf*' img_type]);
         end
     end
 catch
@@ -437,7 +415,7 @@ cd(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID,'bold/'));
 if strcmp(task_flag,'functionals')
     first_run = func_runs{1};
     template_file = sprintf('/usr/public/spm/spm8/templates/EPI.nii');
-    func_file = sprintf('%s/%s/%s/bold/%s/raf0-0%s-00001-000001-01.img', EXPERIMENT_ROOT_DIR, study, subjID, first_run,first_run);
+    func_file = sprintf(['%s/%s/%s/bold/%s/raf0-0%s-00001-000001-01' img_type], EXPERIMENT_ROOT_DIR, study, subjID, first_run,first_run);
     % Option 2: Determine parameters from anatomical against T1 template
     % template_file = sprintf('%s/analysis_tools/spm/spm2/templates/T1.mnc',EXPERIMENT_ROOT_DIR);;
     % func_file = sprintf('%s/%s/%s/3danat/srun002_001.img',EXPERIMENT_ROOT_DIR,study,subjID);
@@ -455,7 +433,7 @@ end %functionals block
 
 % ==== Or Normalise the anatomical to the T1 template ====
 if strcmp(task_flag,'anatomical')
-    anat_file = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, '3danat'), 's*.img');
+    anat_file = alek_get(fullfile(EXPERIMENT_ROOT_DIR,  study, subjID, '3danat'),['s*' img_type]);
     template_file = sprintf('/usr/public/spm/spm8/templates/T1.nii');
     anat_file = anat_file(length(anat_file(:,1)),:);
     %in order to pick the final anatomical acquired

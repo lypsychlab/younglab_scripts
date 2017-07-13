@@ -159,8 +159,6 @@ for subj_index=1:length(subject)
     end
     %=====================================================================
     % Now decide what the user wants done and get to it
-    
-    % try
         func_images = get_images(study, subjID, func_runs);
         fprintf ('===============================\n');
         fprintf ('Slice-timing correcting subject %s\n',subjID);
@@ -169,11 +167,6 @@ for subj_index=1:length(subject)
         fprintf ('=====================================\n');
         fprintf ('     Slice timing correction complete\n');
         fprintf ('=====================================\n');
-    % catch
-    %    fprintf ('==========================================\n');
-    %    fprintf ('Slice timing correction failed for subject %s\n',subjID);
-    %    fprintf ('==========================================\n');
-    % end
 end % subject loop
 
 end % function preprocess
@@ -203,11 +196,8 @@ clear SPM;
 cd(fullfile(EXPERIMENT_ROOT_DIR, study, subjID));
 
 % make sure defaults are present in workspace
-% defaults = spm_defaults_MVPA;
 defaults = spm_defaults_lily;
 
-% keyboard;
-% num_slices = 36;            % number of slices;
 num_slices=36;
 ref_slice = 1;              % reference slice
 TR = 2;                     % TR in seconds
@@ -215,7 +205,6 @@ TA = TR-(TR/num_slices);    % TA in seconds
 timing(1) = TA / (num_slices - 1);
 timing(2) = TR - TA;
 slice_ord = [2:2:num_slices 1:2:num_slices]; % interleaved starting even slices (b/c num_slice is even)
-% keyboard;
 spm_slice_timing(func_images, slice_ord, ref_slice, [timing(1) timing(2)])
 
 end % function slicetiming
