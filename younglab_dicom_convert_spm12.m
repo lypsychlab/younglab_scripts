@@ -26,7 +26,7 @@ function younglab_dicom_convert_spm12 (varargin)
 % Other optional arguments include 
 % 1) 'pace', which skips motion-corrected runs (default)
 % 2) 'nopace', which keeps motion-corrected runs
-%
+% 3) '3t1', which assumes that your structural image is run 10 instead of 4
 % -------------------------------------------------------------------------
 %
 % Examples:
@@ -83,6 +83,7 @@ EXPERIMENT_ROOT_DIR = '/home/younglw/lab';
 addpath(genpath('/usr/public/spm/spm12'));
 
 pace = 0;
+anat_template = '/s0-0004*nii';
 % ====================================================================
 
 if nargin==0
@@ -107,6 +108,9 @@ if nargin>=2
                     continue
                 elseif strcmp(varargin{arg},'nopace');
                     pace = 0;
+                    continue
+                elseif strcmp(varargin{arg},'3t1');
+                    anat_template = '/s0-0010*nii';
                     continue
                 end
                 if ~exist(fullfile(EXPERIMENT_ROOT_DIR,study,varargin{arg}),'dir') % identifier
@@ -218,16 +222,13 @@ for subj_index=1:num_subs
     fprintf ('Relocating MPRAGE images for subject %s\n',subj_as_str);
     anatdir = fullfile(EXPERIMENT_ROOT_DIR,study,subj_as_str,'3danat'); mkdir(anatdir);
     delete([anatdir '/*']);
-    sfiles = dir([dicom_dir '/s0-0004*nii']);
-%     sfiles = dir([dicom_dir '/s*img']);
-    % sizefiles=zeros(1,length(sfiles))
+    sfiles = dir([dicom_dir anat_template]);
     for i=1:length(sfiles)
         temp=dir(fullfile(dicom_dir,sfiles(i).name));
         sizefiles(i)=temp.bytes;
     end
     [val, loc] = max(sizefiles); % this was used in saxelab, which picks out MPRAGE (3rd run)
     movefile(fullfile(dicom_dir,[sfiles(loc).name(1:end-3) '*']),anatdir);
-%     movefile(fullfile(dicom_dir,[sfiles.name(1:end-3) '*']),anatdir);
     fprintf ('Relocating localizer images for subject %s\n',subj_as_str);
     scoutdir = fullfile(EXPERIMENT_ROOT_DIR,study,subj_as_str,'scout'); mkdir(scoutdir);
         delete([scoutdir '/*']);
