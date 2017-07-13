@@ -121,8 +121,9 @@ for i = 1:length(Ic)
                     V      = Vbeta(Q);
                     
                     cB     = zeros(1,size(XYZ,2));
+                    % keyboard
                     for j=1:numel(V)
-                        cB = cB + xCon(ic).c(Q(j)) * spm_data_read(V(j),'xyz',XYZ);
+                        cB = cB + xCon(ic).c(Q(j)) * spm_data_read(V(j).fname,'xyz',XYZ);
                     end
                     
                     %-Write contrast image
@@ -196,7 +197,7 @@ for i = 1:length(Ic)
             case 'T'                                 %-Compute SPM{t} image
                 %----------------------------------------------------------
                 cB  = spm_data_read(xCon(ic).Vcon,'xyz',XYZ);
-                l   = spm_data_read(VHp,'xyz',XYZ);    % get hyperparamters
+                l   = spm_data_read(VHp.fname,'xyz',XYZ);    % get hyperparamters
                 Vc  = xCon(ic).c'*SPM.xX.Bcov*xCon(ic).c;
                 SE  = sqrt(l*Vc);                      % and standard error
                 Z   = cB./SE;
