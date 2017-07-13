@@ -87,11 +87,13 @@
 	"nipype" : {
 		"art_detect" : {
 			"func" : "nart.ArtifactDetect",
-			"inp" : ,
-			"output" :
+			"inp" : "",
+			"output" : ""
 			},
-		"unzip" : {
-
+		"gunzip" : {
+			"func" : "nmisc.Gunzip",
+			"inp" : "in_file",
+			"output" : "out_file"
 		}
 	}
 }
