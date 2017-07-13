@@ -53,11 +53,14 @@ def configure_nipype_params(*argu):
 			# Pull ips
 			params["experiment_details"]["ips"][t] = matfile["ips"]
 			# Pull contrast info
-			contrast_dict = matfile["con_info"]
-			for i in range(len(contrast_dict["name"])):
-				params["experiment_details"]["contrast_info"][t][str(i)] = {}
-				params["experiment_details"]["contrast_info"][t][str(i)]["name"] = contrast_dict["name"][i]
-				params["experiment_details"]["contrast_info"][t][str(i)]["con_vals"] = contrast_dict["vals"][i]
+			try:
+				contrast_dict = matfile["con_info"]
+				for i in range(len(contrast_dict["name"])):
+					params["experiment_details"]["contrast_info"][t][str(i)] = {}
+					params["experiment_details"]["contrast_info"][t][str(i)]["name"] = contrast_dict["name"][i]
+					params["experiment_details"]["contrast_info"][t][str(i)]["con_vals"] = contrast_dict["vals"][i]
+			except: 
+				print('Error with contrast information.')
 				# params["experiment_details"]["contrast_info"][t][str(i)]["cond_names"] = matfile["cond_names"]
 			# initialize empty lists/dicts:
 			params["experiment_details"]["spm_inputs"][t][s] = {}
