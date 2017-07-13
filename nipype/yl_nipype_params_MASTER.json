@@ -73,9 +73,8 @@
 			"infile_dir": "",
 			"template": "%s/dicom/%s.IMA",
 			"infields": ["subject_id"],
-			"outfields": ["dicom_files"],
-			"sort": false,
-			"in_files": [],
+			"outfields": ["in_files"],
+			"sort": true,
 			"output_dir_struct": "flat"
 			},
 		"slicetime": {
@@ -84,9 +83,8 @@
 			"infile_dir": "",
 			"template": "",
 			"infields": ["subject_id"],
-			"outfields": ["timecorrected_files"],
+			"outfields": ["in_files"],
 			"sort": true,
-			"in_files": [],
 			"num_slices": 36,
 			"ref_slice": 1,
 			"TR": 2.0
@@ -97,9 +95,8 @@
 			"infile_dir": "slicetime",
 			"template": "",
 			"infields": ["subject_id"],
-			"outfields": ["slicetimecorr_files"],
+			"outfields": ["in_files"],
 			"sort": true,
-			"in_files": [],
 			"fwhm": 5,
 			"quality": 0.9,
 			"register_to_mean": false
@@ -165,9 +162,10 @@
 		"design": {
 			"local_software_spec": "",
 			"specify_inputs": 0,
-			"infile_dir": "specify_design*",
-			"mask_image_dir" : "",
-			"mask_image_template" : "",
+			"infile_dir": "",
+			"template": "skull_strip_mask.nii",
+			"infields": ["subject_id"],
+			"outfields": ["mask_file"],
 			"session_info": "",
 			"bases": {
 				"hrf": {
