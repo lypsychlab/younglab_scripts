@@ -153,9 +153,9 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		def grab_data(software_spec,node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
 				name="datasource") # create data grabber node
-			# print('\n'+params["params"][node_name]["infile_dir"]+'\n')
 			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
 			ds.inputs.template = params["params"][node_name]["template"]
+			# TODO: add field_template for multiple outfields case
 			ds.inputs.infields = params["params"][node_name]["infields"]
 			ds.inputs.outfields = params["params"][node_name]["outfields"]
 			ds.inputs.sort_filelist = params["params"][node_name]["sort"]
@@ -167,10 +167,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			workflow.connect([(infosource,ds,[('subject_id','subject_id')])]) 
 			# ex. connect 'subject_id' from infosource to 'subject_id' of data grabber
 			# infosource handles the iteration over subject ids
-			print("Software key: "+software_spec)
 			for x in params["params"][node_name]["outfields"]:
-				workflow.connect([(ds, node, [(x,software_dict[software_spec][node_name]["inp"])])]) 
-			# ex. connect 'dicom_files' output field to 'in_files' input field
+				workflow.connect([(ds, node, [(x,x)])]) 
+			# ex. connect 'in_files' output field to 'in_files' input field
+			# assumes that names in outfields are also correct names of inputs to the node
 			# ds pipes the files it grabs into the node that will process them
 
 		if is_first: # implement generic data grabbing
@@ -271,10 +271,16 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 		elif node_name == 'design': # specify parameters for first-level design
 			if software_spec == 'spm':
+				if not params["node_flags"]["specify_design"]:
+					print("ERROR: You have not included the specify_design node in this workflow.")
 				if specify_inputs:
-					grab_data(node_name,node)
-				elif params["node_flags"]["skull_strip"]: #if we have made a binary brain mask in this workflow
-					workflow.connect([(skull_strip,node,[('mask_file','mask_image')])])
+					print("ERROR: Do not set specify_inputs = 1 for the design node.\nRun specify_design and design in the same workflow.")
+				if params["node_flags"]["skull_strip"]: #if we have made a binary brain mask in this workflow
+					workflow.connect([(skull_strip,node,[('mask_file','mask_image')])]) # FIX ME
+				else:
+					grab_data(software_spec,node_name,node)
+					# NOTE: this will pipe the name of a skull-stripped mask file,
+					# not the session information, which needs to be piped directly from a specify_design node
 				node.inputs.bases = params["params"]["design"]["bases"]
 				node.inputs.interscan_interval = params["params"]["design"]["interscan_interval"]
 				node.inputs.timing_units = params["params"]["design"]["timing_units"]
@@ -324,10 +330,10 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 					ds.inputs.template = 'ResI*.nii'
 					node.inputs.residual_image = ds.run()
 				# build list of tuples for T-contrasts
-				node.inputs.contrasts = [tuple(i.values()) for i in params["params"]["contrast"]["contrasts"]]
+				con_info = params["params"]["contrast"]["contrasts"]
+				node.inputs.contrasts = [tuple(con_info[i].values()) for i in con_info]
 				if params["params"]["contrast"]["contrast_type"] == 'F': # list of T contrasts
 					node.inputs.contrasts = [(params["params"]["contrast"]["Fcontrast_name"],'F',node.inputs.contrasts)]
-			elif software_spec == 'afni': pass
 
 		elif node_name == 'cluster_correct': # specify cluster correction parameters
 			if software_spec == 'spm':
@@ -359,14 +365,19 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 
 	# Check the node flags and create nodes
 	print('Checking flags...')
-	not_first = 0
+	is_first = 1
 	for flagname, flag in params["node_flags"].items(): # iterate through flags
 		if flag:
 			node_name = flagname
 			print('Creating node %s' % node_name)
-			new_node = add_node(node_name,~not_first) # create the node
-			if not_first: # don't auto-connect the first node!
+			new_node = add_node(node_name,is_first) # create the node
+			if not is_first: # don't auto-connect the first node!
+				print('Connecting {} to {}'.format(old_node_name,node_name))
 				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
+					if type(software_dict[software_key][node_name]["inp"])==str:
+						software_dict[software_key][node_name]["inp"]=[software_dict[software_key][node_name]["inp"]]
+					if type(software_dict[old_software_key][old_node_name]["output"])==str:
+						software_dict[old_software_key][old_node_name]["output"]=[software_dict[old_software_key][old_node_name]["output"]]
 					num_inputs = len(software_dict[software_key][node_name]["inp"])
 					# create a tuple to match old outputs to new inputs
 					connectors = [(software_dict[old_software_key][old_node_name]["output"][i],
@@ -380,11 +391,11 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 					workflow.add_nodes([new_node])
 			else: # if it's the first/only node, chain nodes
 				start_node = new_node
+				is_first=0
 				# workflow.add_nodes([new_node])
 			old_node_name = node_name # this node now becomes the 'old node'
 			old_node = new_node
 			old_software_key = software_key
-			not_first = 1
 
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
 	print('Implementing loops...')
