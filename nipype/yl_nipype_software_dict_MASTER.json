@@ -22,7 +22,7 @@
 			},
 		"normalize" : {
 			"func" : "nspm.Normalize12",
-			"inp" : "apply_to_files",
+			"inp" : "image_to_align",
 			"output" : "normalized_files"
 			},
 		"smooth" : {
