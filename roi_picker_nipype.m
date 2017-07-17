@@ -1,7 +1,7 @@
 function roi_picker_nipype(t,k,r,c,roi_name,roi_xyz,subjects,spm_dir,res_dir,workflow_dir,rootdir)
 % Written by Alek Chakroff, November 2009
 % Edited by Emily Wasserman, 2016/17
-% Note: use with SPM8 & Matlab 2012 - Emily
+% Note: use with SPM8 & Matlab 2014a - Emily
 
 % E.g.:
 % t: .001
@@ -23,18 +23,20 @@ function roi_picker_nipype(t,k,r,c,roi_name,roi_xyz,subjects,spm_dir,res_dir,wor
 % Saves ROI files under: {rootdir}/roi/{subjID} folders
 
 % start log
-load(fullfile(spm_dir,'SPM.mat'));
-notes = {['ROIs chosen for ' roi_name ' and ' SPM.xCon(c).name ' contrast at p=' num2str(t) ' unc and k=' num2str(k) ' with ' num2str(r) 'mm sphere'] '' '' '' '' '';...
-    'Name' 'Peak X' 'Peak Y' 'Peak Z' 'N Voxels' 'T Value'};
-spm fmri;
-run_it(t,k,r,c,roi_name,roi_xyz,subjects,1,notes,res_dir);
-end
-
 if ~exist(fullfile(rootdir,'roi'),'dir');
     mkdir(fullfile(rootdir,'roi'));
 end
+load(fullfile(rootdir,workflow_dir,['_subject_id_' subjects{1} '_task_name_' res_dir],spm_dir,'SPM.mat'));
+notes = {['ROIs chosen for ' roi_name ' and ' SPM.xCon(c).name ' contrast at p=' num2str(t) ' unc and k=' num2str(k) ' with ' num2str(r) 'mm sphere'] '' '' '' '' '';...
+    'Name' 'Peak X' 'Peak Y' 'Peak Z' 'N Voxels' 'T Value'};
+spm fmri;
+run_it(t,k,r,c,roi_name,roi_xyz,subjects,1,notes,res_dir,spm_dir,workflow_dir,rootdir);
 
-function run_it(t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir)
+
+
+end
+
+function run_it(t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir)
 if i>length(subjects) % just finished last subject
     spm quit;clc;fprintf('\n\n\n\t\t\t\t\t\tFIN\n\n\n')
 else
@@ -101,19 +103,19 @@ else
     % back button
     uicontrol('Style','pushbutton',       'Units','normalized',...
         'Position',[0 .95 .1 .05],'String','Back',...
-        'BackgroundColor',[.9 .5 .9],'Callback',{@back_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir});
+        'BackgroundColor',[.9 .5 .9],'Callback',{@back_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir});
     % bad button
     uicontrol('Style','pushbutton',       'Units','normalized',...
         'Position',[.33 .59 .13 .1],'String','None found',...
-        'BackgroundColor','red','Callback',{@bad_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir});
+        'BackgroundColor','red','Callback',{@bad_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir});
     % good button
     uicontrol('Style','pushbutton',       'Units','normalized',...
         'Position',[.47 .59 .13 .1],'String','Continue',...
-        'BackgroundColor','green','Callback',{@good_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir});
+        'BackgroundColor','green','Callback',{@good_one,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir});
 end
 end
 
-function good_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir)
+function good_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir)
 
 % Extract Roi Information based on selected xyz location
 evalin('base','xY.xyz     = spm_mip_ui(''Jump'',findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''),''nrmax'');');
@@ -153,10 +155,10 @@ notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(
 cell2csv(fullfile(rootdir,'roi', ['ROI_picker_log_' roi_name '_' res_dir '_' num2str(c) '_' num2str(length(subjects)) '_subjects.csv']),notes,',','2000');
 
 % go to next subject
-run_it(t,k,r,c,roi_name,roi_xyz,subjects,i+1,notes,res_dir);
+run_it(t,k,r,c,roi_name,roi_xyz,subjects,i+1,notes,res_dir,spm_dir,workflow_dir,rootdir);
 end
 
-function bad_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir)
+function bad_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir)
 
 % update log
 notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(z_idx)};
@@ -164,10 +166,10 @@ cell2csv(fullfile(rootdir,'roi', ['ROI_picker_log_' roi_name '_' res_dir '_' num
 
 
 % go to next subject
-run_it(t,k,r,c,roi_name,roi_xyz,subjects,i+1,notes,res_dir);
+run_it(t,k,r,c,roi_name,roi_xyz,subjects,i+1,notes,res_dir,spm_dir,workflow_dir,rootdir);
 end
 
-function back_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir)
+function back_one(hObject,eventdata,t,k,r,c,roi_name,roi_xyz,subjects,i,notes,res_dir,spm_dir,workflow_dir,rootdir)
 if i>1
     % update log
     notes(i+2,:) = {subjects{i} xY.xyz(1) xY.xyz(2) xY.xyz(3) size(xY.XYZmm,2) MD.Z(z_idx)};
@@ -175,7 +177,7 @@ if i>1
 
 
     % go back one subject
-    run_it(t,k,r,c,roi_name,roi_xyz,subjects,i-1,notes,res_dir);
+    run_it(t,k,r,c,roi_name,roi_xyz,subjects,i-1,notes,res_dir,spm_dir,workflow_dir,rootdir);
 else
     warndlg('You can''t go back from the first subject, silly!', 'Duh.');
 end
