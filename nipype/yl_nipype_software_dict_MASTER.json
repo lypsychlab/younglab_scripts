@@ -13,7 +13,12 @@
 		"realign" : {
 			"func" : "nspm.Realign",
 			"inp" : "in_files",
-			"output" : "realigned_files"
+			"output" : ["realigned_files","mean_image"]
+			},
+		"coregister" : {
+			"func" : "nspm.Coregister",
+			"inp" : ["apply_to_files","source"],
+			"output" : "coregistered_files"
 			},
 		"reslice" : {
 			"func" : "custom_utils.ResliceToFirst",

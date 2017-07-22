@@ -121,13 +121,8 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		"""
 		Add a generic node to the workflow.
 		"""
-		global software_key
-		if params["global_software_specs"]["use_global_specs"]:
-			# use key associated with global software spec
-			software_key = params["global_software_specs"]["software"]
-		else:
-			# use key associated with local software spec
-			software_key = params["params"][node_name]["local_software_spec"]
+		software_key = get_software_key(node_name)
+		print(software_key)
 		# grab the corresponding function defined in software_dict
 		node_function = software_dict[software_key][node_name]["func"]
 		# do you want to specify custom input files? 
@@ -136,6 +131,15 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		this_node = npe.Node(interface = node_function(), name = node_name)
 		configure_node(software_key,node_name,this_node,node_inputs,is_first)
 		return this_node
+
+	def get_software_key(node_name):
+		if params["global_software_specs"]["use_global_specs"]:
+			# use key associated with global software spec
+			software_key = params["global_software_specs"]["software"]
+		else:
+			# use key associated with local software spec
+			software_key = params["params"][node_name]["local_software_spec"]
+		return software_key
 
 
 	def configure_node(software_spec,node_name,node,specify_inputs,is_first):
@@ -152,7 +156,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		"""
 		def grab_data(software_spec,node_name,node):
 			ds = npe.Node(interface=nio.DataGrabber(),
-				name="datasource") # create data grabber node
+				name="datasource_"+node_name) # create data grabber node
 			ds.inputs.base_directory = params["params"][node_name]["infile_dir"]
 			ds.inputs.template = params["params"][node_name]["template"]
 			# TODO: add field_template for multiple outfields case
@@ -182,7 +186,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		if node_name == 'dicom': # specify dicom files/folder 
 			if software_spec == 'spm': 
 				if specify_inputs:
-					grab_data(node_name,node)
+					grab_data(software_spec,node_name,node)
 				node.inputs.output_dir_struct = params["params"]["dicom"]["output_dir_struct"]
 			elif software_spec == 'afni':
 				node.inputs.in_folder = os.path.join(studydir,
@@ -191,7 +195,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'slicetime': # specify slice-timing correction parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					grab_data(node_name,node)
+					grab_data(software_spec,node_name,node)
 				node.inputs.num_slices = params["params"]["slicetime"]["num_slices"]
 				node.inputs.ref_slice = params["params"]["slicetime"]["ref_slice"]
 				node.inputs.slice_order = list(range(2,params["params"]["slicetime"]["num_slices"]+1,2)) + list(range(1,params["params"]["slicetime"]["num_slices"]+1,2))
@@ -202,7 +206,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'realign': # specify realignment parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					grab_data(node_name,node)
+					grab_data(software_spec,node_name,node)
 				node.inputs.fwhm = params["params"]["realign"]["fwhm"]
 				node.inputs.quality = params["params"]["realign"]["quality"]
 				node.inputs.register_to_mean = params["params"]["realign"]["register_to_mean"]
@@ -211,9 +215,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'reslice': # specify reslicing parameters
 			if software_spec == 'spm':
 				if specify_inputs:
-					grab_data(node_name,node)
+					grab_data(software_spec,node_name,node)
 				node.inputs.interp = params["params"]["reslice"]["interp"]
 			elif software_spec == 'afni': pass
+
+		elif node_name == 'coregister': # specify coregistration parameters
+			if software_spec == 'spm':
+				grab_data(software_spec,node_name,node) # always grab structural image
 
 		elif node_name == 'normalize': # specify normalization parameters
 			if software_spec == 'spm':
@@ -232,6 +240,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				node.inputs.out_file = params["params"]["skull_strip"]["out_file"]
 			else:
 				print("WARNING: You must use FSL to perform skull-stripping.")
+
+		elif node_name == "gunzip":
+			if software_spec == 'nipype':
+				if specify_inputs:
+					grab_data(software_spec,node_name,node)
+			else:
+				print("WARNING: You must set local_software_spec to nipype to use gunzip.")
 
 		elif node_name == 'model':
 			if software_spec == 'spm' : 
@@ -294,7 +309,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 		elif node_name == 'onesample_T': # specify parameters for 1-sample T-test
 			if software_spec == "spm":
 				if specify_inputs:
-					grab_data(node_name,node)
+					grab_data(software_spec,node_name,node)
 				node.inputs.threshold_mask_none = params["params"]["onesample_T"]["threshold_mask_none"]
 				node.inputs.global_calc_omit = params["params"]["onesample_T"]["global_calc_omit"]
 				node.inputs.no_grand_mean_scaling = params["params"]["onesample_T"]["no_grand_mean_scaling"]
@@ -372,10 +387,13 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 			print('Creating node %s' % node_name)
 			new_node = add_node(node_name,is_first) # create the node
 			if not is_first: # don't auto-connect the first node!
-				print('Connecting {} to {}'.format(old_node_name,node_name))
 				if ~params["params"][node_name]["specify_inputs"]: # default: join node to previous node
+					print('Connecting {} to {}'.format(old_node_name,node_name))
+					software_key = get_software_key(node_name)
+					print(software_key)
 					if type(software_dict[software_key][node_name]["inp"])==str:
 						software_dict[software_key][node_name]["inp"]=[software_dict[software_key][node_name]["inp"]]
+					print(old_software_key)
 					if type(software_dict[old_software_key][old_node_name]["output"])==str:
 						software_dict[old_software_key][old_node_name]["output"]=[software_dict[old_software_key][old_node_name]["output"]]
 					num_inputs = len(software_dict[software_key][node_name]["inp"])
@@ -388,6 +406,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 					# to change the node order, change the order of the flags in your parameter file
 					# to chain different outputs/inputs, modify the associated fields in your software_dict file
 				else: # just add node to workflow, don't join it to previous node
+					print('Adding node {} without connecting'.format(node_name))
 					workflow.add_nodes([new_node])
 			else: # if it's the first/only node, chain nodes
 				start_node = new_node
@@ -395,7 +414,7 @@ def yl_nipype_MASTER(yl_nipype_params_file,*args):
 				# workflow.add_nodes([new_node])
 			old_node_name = node_name # this node now becomes the 'old node'
 			old_node = new_node
-			old_software_key = software_key
+			old_software_key = get_software_key(node_name)
 
 	##### SET UP SUBJECTS/TASKS/RUNS LOOPING #####
 	print('Implementing loops...')
