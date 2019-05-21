@@ -706,7 +706,7 @@ for subj = 1:length(subject)
                 %===========================================================================
 
                 % Pull out some information to save for error checking...
-
+                formatted_run_num = sprintf("%02d", num2str(boldirs{subj}{task}(run)))
                 split_files_dir = ['/data/younglw/lab/' study '/derivatives/fmriprep/' subj_bids{subj} '/func/' boldfiles{subj}{task} '_run_0' num2str(boldirs{subj}{task}(run))];
                 files{run} = alek_get(split_files_dir,'smooth*bold_0*nii');
                 if isequal(subject, {'YOU_TRAG_05'}) % literally only for subject-05 case
