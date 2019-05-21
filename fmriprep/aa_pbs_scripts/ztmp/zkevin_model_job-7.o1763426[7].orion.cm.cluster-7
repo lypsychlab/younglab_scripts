@@ -1,0 +1,110 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Name is nonexistent or not a directory:
+/data/younglw/lab/TPS_FMRIPREP/scripts] 
+[> In path (line 109)
+  In addpath (line 88)
+  In model_one_subject (line 13)] 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+Warning: `boldirs` argument not provided in cell format!
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_07 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_07    Task: TPS_crn
+MNI*preproc*.nii.gz
+Warning: number of behavioural data files does not match the
+number of runs for subject YOU_TPS_07
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 1 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 2 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 3 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 4 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 5 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 6 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 7 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 8 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 9 
+>> 

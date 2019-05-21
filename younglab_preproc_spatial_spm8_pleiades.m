@@ -383,7 +383,8 @@ clear SPM;
 cd(fullfile(EXPERIMENT_ROOT_DIR, study, subjID));
 
 % make sure defaults are present in workspace
-defaults = spm_defaults_MVPA; % uses voxel size of 2x2x2
+% defaults = spm_defaults_MVPA; % uses voxel size of 2x2x2
+defaults=spm_defaults_lily;
 fprintf(['Voxel dim:' num2str(defaults.normalise.write.vox(1)) '\n']);
 %%% do realignment first
 realign_flags = struct('quality',defaults.realign.estimate.quality,'fwhm',5,'rtm',0);
@@ -427,7 +428,8 @@ opt = 3;
 % 3 = determine params & write
 
 % make sure defaults are present in workspace
-defaults = spm_defaults_MVPA;
+% defaults = spm_defaults_MVPA;
+defaults=spm_defaults_lily;
 fprintf(['Voxel dim:' num2str(defaults.normalise.write.vox(1)) '\n']);
 
 clear SPM;

@@ -25,23 +25,26 @@ function permute_test_roi(rootdir,study,resdir,subnums,bmatrix,iter,roi,findtag)
     for it=1:iter
         
         disp(['ITERATION ' num2str(it)]);
-		cd(fullfile(rootdir,study,'behavioural'));
+		cd(fullfile(rootdir,study,'behavioural_all'));
 		load(bmatrix);
 		bmat=behav_matrix;
-		behav_matrix=sim2tril(bmat); %stretch into vector
+		if size(bmat,2) > 1
+			behav_matrix=sim2tril(bmat); %stretch into vector
+		end
 		newmat = behav_matrix(randperm(length(behav_matrix))); %scramble
 		behav_matrix=tril2sim(newmat); %make it a similarity matrix again
 		behav_matrix=tril(behav_matrix); %get the lower triangle
 		bname=['behav_matrix_PERM_' num2str(it) '.mat'];
-		save(fullfile(rootdir,study,'behavioural',bname),'behav_matrix');
+		save(fullfile(rootdir,study,'behavioural_all',bname),'behav_matrix');
 		% NOTE: this behavior saves all the scrambled matrices, for recording purposes
 		% you can delete the matrix at the end of each iteration to avoid this  
 
         for sub=subnums
             try
-		        searchlight_all_regress_roi_pleiades(rootdir,...
+		        rsa_roi(rootdir,...
 		      study,'SAX_DIS',resdir,sub,1:48,3,...
-		      {'phys' 'psyc' 'inc' 'path' 'physVpsyc' 'incVpath' ['PERM_' num2str(it)]},roi,'_PERM');
+		      {'phys' 'psyc' 'inc' 'path' 'physVpsyc' 'incVpath' ['PERM_' num2str(it)]},...
+		      roi,0,'_PERM');
 	    
 	        catch
 	            disp(['Could not process subject ' num2str(sub)]);
@@ -57,10 +60,10 @@ function permute_test_roi(rootdir,study,resdir,subnums,bmatrix,iter,roi,findtag)
 
         rdiff2=[];
         for i=2:length(ALL_cat) %first one is blank
-            if ALL_cat(i).Stats(3)<0.05 %if the category-only model is itself significant
+            % if ALL_cat(i).Stats(3)<0.05 %if the category-only model is itself significant
             rdiff2=[rdiff2; ALL_perm(i).Stats(1) - ALL_cat(i).Stats(1)]; 
             %get the R2 improvement from adding the junk regressor
-            end
+            % end
         end
         [h,p]=ttest(rdiff2); %test against zero
         H=[H;h]; 

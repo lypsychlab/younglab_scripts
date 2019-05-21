@@ -1,0 +1,27 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Name is nonexistent or not a directory:
+/data/younglw/lab/TPS_FMRIPREP/scripts] 
+[> In path (line 109)
+  In addpath (line 88)
+  In model_one_subject (line 13)] 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+Warning: `boldirs` argument not provided in cell format!
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_06 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_06    Task: tom_localizer
+MNI*preproc*.nii.gz
+>> 

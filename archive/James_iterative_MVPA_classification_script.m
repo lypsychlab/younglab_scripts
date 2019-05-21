@@ -14,24 +14,25 @@ clear all
 distance_metric = 'correlation'; %don't change. other options could be euclidean.
 feature_selection = ''; %don't change.
 
-input_id = {'YOU_XPECT_01','YOU_XPECT_02','YOU_XPECT_03','YOU_XPECT_04','YOU_XPECT_05',...
-'YOU_XPECT_06','YOU_XPECT_07','YOU_XPECT_08','YOU_XPECT_09','YOU_XPECT_10','YOU_XPECT_11', 'YOU_XPECT_12','YOU_XPECT_13',... 
-'YOU_XPECT_14','YOU_XPECT_15','YOU_XPECT_16', 'YOU_XPECT_17', 'YOU_XPECT_18', 'YOU_XPECT_19', 'YOU_XPECT_20', 'YOU_XPECT_21',...
-'YOU_XPECT_22', 'YOU_XPECT_23', 'YOU_XPECT_24'};
+input_id = {'YOU_HOWWHY_01','YOU_HOWWHY_02','YOU_HOWWHY_03','YOU_HOWWHY_04','YOU_HOWWHY_05','YOU_HOWWHY_06',...
+'YOU_HOWWHY_07','YOU_HOWWHY_08','YOU_HOWWHY_09','YOU_HOWWHY_10','YOU_HOWWHY_11','YOU_HOWWHY_12','YOU_HOWWHY_13',... 
+'YOU_HOWWHY_14','YOU_HOWWHY_15','YOU_HOWWHY_16','YOU_HOWHWY_17','YOU_HOWWHY_18','YOU_HOWWHY_19','YOU_HOWWHY_20',...
+'YOU_HOWWHY_21','YOU_HOWWHY_22','YOU_HOWWHY_23','YOU_HOWWHY_24','YOU_HOWWHY_25','YOU_HOWWHY_26','YOU_HOWWHY_27',...
+'YOU_HOWWHY_28','YOU_HOWWHY_29'};
 
-input_runs = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
-num_conds = 6;
+input_runs = {14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14};
+num_conds = 10;
 
-study_path = '/home/younglw/XPECT/';
-model_path = '/results/XPECT.outcome_results_normed_unsmoothed';
-outputfolder = '/home/younglw/XPECT/MVPA';
-outputname = 'outcome_all24';
+study_path = '/home/younglw/lab/HOWWHY_Runwise/';
+model_path = '/results/HOWWHY_results_harmpur_unsmoothnormed'; %%NEED TO MODEL UNSMOOTHED!!!
+outputfolder = '/home/younglw/HOWWHY_Runwise/MVPA_Haxby';
+outputname = 'MVPA_DISanalysis';
 
-condition_names = {'Exp_Non','Exp_Beh','Exp_Men','Unexp_Non','Unexp_Beh','Unexp_Men'}; %These should match the order that they are listed in spm_input in the behavioural files.
+condition_names = {'harm_acc','harm_acc','purity_acc','purity_acc','neutral_acc','harm_int','harm_int','purity_int','purity_int','neutral_int'}; %These should match the order that they are listed in spm_input in the behavioural files.
 roiFiles = {'RTPJ_tom','LTPJ_tom','PC_tom','DMPFC_tom'}; %it will wildcard either side of this, so make sure
 %that these uniquely identify a ROI. It is looking for an image file.
-contrast_names = {'EN-EB','EN-EM','EB-EM','UN-UB','UN-UM','UB-UM','EN-UN','EB-UB','EM-UM'};
-contrast_nums = {[1 2; 1 3; 2 3; 4 5; 4 6; 5 6; 1 4; 2 5; 3 6]};
+contrast_names = {'harm_acc_int1','harm_acc_int2','purity_acc_int1','purity_acc_int2'};
+contrast_nums = {[1 6; 2 7; 3 8; 4 9]};
 
 FisherTransform = 'Y' %Transform correlation coefficents to follow normal distribution, using atanh().
 preprocYN = 'Y' %this means preprocessing the BOLD data, either by centering voxels or runs.
@@ -72,7 +73,7 @@ preprocYN = 'Y' %this means preprocessing the BOLD data, either by centering vox
     
     
 experiments=struct(...
-    'name','XPECT',... % study name you %%%%need to change this
+    'name','HOWWHY_Runwise',... % study name you %%%%need to change this
     'pwd1',study_path,...
     'pwd2',model_path,... 
     'data',{input_id},...

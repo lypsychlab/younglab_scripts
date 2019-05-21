@@ -1,0 +1,12 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=2,walltime=24:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_dcm2bids_job
+#PBS -t 28
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+
+python /data/younglw/lab/scripts/fmriprep/final_dcm2bids.py -i /data/younglw/lab/TPS_FMRIPREP/mydicoms -o /data/younglw/lab/TPS_FMRIPREP/hopefully_bids/ --infile /data/younglw/lab/TPS_FMRIPREP/full_infile_TPS.csv --single-sub YOU_TPS_${sub_num} --no-sessions 
+# 

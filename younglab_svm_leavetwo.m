@@ -70,6 +70,6 @@ function [corracc,corrsoft] = younglab_svm_leavetwo(dataset,labeled_data,cnames,
 
 	corracc=(length(find(outputs==1)))/length(outputs);
 	corrsoft=(length(find(soft_outputs==1)))/length(soft_outputs);
-% 	save(fname,'dataset','labeled_data','output_labels','all_softscores','cnames');
+	save(fname,'dataset','labeled_data','outputs','soft_outputs','recode_labels','corracc','corrsoft','cnames');
 	
 end

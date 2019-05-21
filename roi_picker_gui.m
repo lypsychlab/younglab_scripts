@@ -4,45 +4,45 @@ function roi_picker_gui(fcn)
 % Implementation is pretty straightforward - This script accepts no arguments.
 %
 % This assumes a directory and naming convention output by younglab*SPM8
-% scripts. 
+% scripts.
 %
 % ======== Controls ======================
 %
-% Subjects: 
-% Opens spm file selection tool to load subjects. choose the subject 
-% folder titled SAX_* for each subject. These folders must contain a folder 
+% Subjects:
+% Opens spm file selection tool to load subjects. choose the subject
+% folder titled SAX_* for each subject. These folders must contain a folder
 % titled 'roi', and some results folders containing spm.mat files.
-% 
+%
 % ROI Chooser:
 % When you select an ROI, two things happen.
 % 1. This determines the output file name for the roi_log and coordinates files.
 % 2. This automatically loads an roi search region file
-% 
+%
 % if you choose 'other', you have two options
 % 1. you may choose your own roi search file to load. this contains a list
-% of coordinates for a previously-defined functional or anatomical roi - 
-% basically a tal file. to make your own, see /home/younglw/roi_library
-% 2. you may enter x y z coordinates as a starting point for the script. 
+% of coordinates for a previously-defined functional or anatomical roi -
+% basically a tal file. to make your own, see /data/younglw/roi_library
+% 2. you may enter x y z coordinates as a starting point for the script.
 % it will find a local max near this location for each subject.
-% 
+%
 % Threshold:
 % p value threshold for viewing each subject, all uncorrected.
-% 
+%
 % Cluster Size (k):
 % minimum number of contiguous voxels in a blob for displaying
-% 
+%
 % Radius Size:
 % this is the first paramater that directly affects the output of this
-% program! what is the radius of the sphere you want to build around 
+% program! what is the radius of the sphere you want to build around
 % your final cursor location?
-% 
+%
 % Localizer Contrast:
-% this is a two-part section. the first time you click, you will be asked 
+% this is a two-part section. the first time you click, you will be asked
 % for an example SPM.mat file. this is effectively to get you to click
 % through your desired task_results folder, giving it task information
-% it then loads up contrast names for that task, and allows you to click 
+% it then loads up contrast names for that task, and allows you to click
 % your desired contrast for viewing.
-% 
+%
 % Reset: closes and reopens the GUI
 % Begin: loads all of the paramaters, and implements roi_picker.m
 %
@@ -50,7 +50,8 @@ function roi_picker_gui(fcn)
 
 % First time it starts, run makeGUI, otherwise, the gui calls itself with
 % new input strings in the 'fcn' variable.
-addpath(genpath('/usr/public/spm/spm12'));
+% addpath(genpath('/usr/publisc/spm/spm12'));
+addpath(genpath('/usr/public/spm/spm8'));
 
 if nargin == 0;fcn = 'makeGUI';end
 
@@ -86,17 +87,17 @@ switch fcn
             'String','Right TPJ|Left TPJ|Right STS|Left STS|Precuneus|Medial PFC|Dorsomedial PFC|Right IFG|Other',...
             'Units','normalized','Position',[.34 .15 .3 .75],...
             'BackgroundColor',colormat,'CallBack',[plotinfo.myname,' choose'] );
-        
+
         %==Save button
         uicontrol(fig,'Style','Pushbutton', 'String','Save','fontsize',18,...
             'Units','normalized','Position',[.34 .03 .08 .1],...
             'BackgroundColor',colormat, 'CallBack',[plotinfo.myname,' save'] );
-        
+
         %==Load button
         uicontrol(fig,'Style','Pushbutton', 'String','Load','fontsize',18,...
             'Units','normalized','Position',[.45 .03 .08 .1],...
             'BackgroundColor',colormat, 'CallBack',[plotinfo.myname,' load'] );
-        
+
 
         %==Viewing Parameters
         uicontrol(fig,'Style','text','String','Viewing Parameters','fontsize',16,...
@@ -151,24 +152,24 @@ switch fcn
         plotinfo=get(gcf,'UserData'); % data saved in the figure. only plotinfo persists
         plotinfo.roi=get(plotinfo.choose,'value');
         switch plotinfo.roi
-            case 1;  plotinfo.roi='RTPJ';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RTPJ_xyz');
-            case 2;  plotinfo.roi='LTPJ';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/LTPJ_xyz');
-            case 3;  plotinfo.roi='RSTS';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RSTS_xyz');
-            case 4;  plotinfo.roi='LSTS';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/LSTS_xyz');
-            case 5;  plotinfo.roi='PC';    plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/PC_xyz');
-            case 6;  plotinfo.roi='MMPFC'; plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/MMPFC_xyz');
-            case 7;  plotinfo.roi='DMPFC'; plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/DMPFC_xyz');
-            case 8;  plotinfo.roi='RIFG';  plotinfo.roi_xyz = load('/home/younglw/lab/roi_library/functional/RIFG_xyz');
+            case 1;  plotinfo.roi='RTPJ';  plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/RTPJ_xyz');
+            case 2;  plotinfo.roi='LTPJ';  plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/LTPJ_xyz');
+            case 3;  plotinfo.roi='RSTS';  plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/RSTS_xyz');
+            case 4;  plotinfo.roi='LSTS';  plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/LSTS_xyz');
+            case 5;  plotinfo.roi='PC';    plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/PC_xyz');
+            case 6;  plotinfo.roi='MMPFC'; plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/MMPFC_xyz');
+            case 7;  plotinfo.roi='DMPFC'; plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/DMPFC_xyz');
+            case 8;  plotinfo.roi='RIFG';  plotinfo.roi_xyz = load('/data/younglw/lab/roi_library/functional/RIFG_xyz');
             case 9;
                 answer = questdlg('How Would you like to find an initial ROI peak?', 'ROI Specification','ROI Image','Coordinates','ROI Image');
                 if strcmp(answer,'ROI Image')
-                    t                = inputdlg('Enter an ROI Name'); 
+                    t                = inputdlg('Enter an ROI Name');
                     plotinfo.roi     = t{1};
-                    f                = spm_select(1,'mat',['Choose a coordinates file for ' t{1}],'','/home/younglw/lab/roi_library','.*',1);
+                    f                = spm_select(1,'mat',['Choose a coordinates file for ' t{1}],'','/data/younglw/lab/roi_library','.*',1);
                     plotinfo.roi_xyz = load(f);% array
                 else
                     t=inputdlg({'ROI Name','Coordinates'},'ROI Info',1,{'','0 0 0'});
-                    plotinfo.roi             = t{1}; 
+                    plotinfo.roi             = t{1};
                     plotinfo.roi_xyz.roi_xyz = t{2}; % string
                 end
 
@@ -180,8 +181,8 @@ switch fcn
 
     case 'specify'
         plotinfo=get(gcf,'UserData');
-        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Picking','','/home/younglw/lab','.*',1);
-        
+        plotinfo.subjects = spm_select(Inf,'dir','Choose subject directories for ROI Picking','','/data/younglw/lab','.*',1);
+
         % populate the listbox with subject names, for reassurance
         set(plotinfo.subbox,'string',plotinfo.subjects(:,size(plotinfo.subjects,2)-16:size(plotinfo.subjects,2)));
         set(gcf,'UserData',plotinfo);
@@ -194,7 +195,7 @@ switch fcn
             catch
                 warndlg('You must Choose Subjects First!');
             end
-            
+
             % grab results path in a really complicated fashion
             temp1 = strread(spmcon,'%s','delimiter','/');temp2 = strread(plotinfo.subjects(1,:),'%s','delimiter','/');
             [temp3 j] = setdiff(temp1,temp2);plotinfo.res_dir = '/';
@@ -202,7 +203,7 @@ switch fcn
             for i=1:length(temp3)-1 %count down from last to two
                 plotinfo.res_dir = [plotinfo.res_dir temp3{i} '/'];
             end
-            
+
             % now load up contrast names
             load(spmcon);
             for i=1:length(SPM.xCon); name{i} = SPM.xCon(i).name;
@@ -213,16 +214,16 @@ switch fcn
             plotinfo.c=get(plotinfo.cbox,'value');
         end
         set(gcf,'UserData',plotinfo);
-        
+
     case 'save'
         plotinfo = get(gcf,'UserData');
         cmt  = inputdlg('Optional session name:');
-        saveas(gcf,['/home/younglw/lab/scripts/roi_picker_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
-        
+        saveas(gcf,['/data/younglw/lab/scripts/roi_picker_sessions/sessions-' cmt{1} '-' plotinfo.roi '-' date '.fig'],'fig');
+
     case 'load'
-        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/home/younglw/lab/scripts/roi_picker_sessions','.*',1);
+        cur_fig = spm_select(1,'any','Choose subject directories for ROI Picking','','/data/younglw/lab/scripts/roi_picker_sessions','.*',1);
         close(gcf);open(cur_fig);
-        
+
     case 'reset'
         close(gcf); eval([mfilename ' makeGUI']);
 

@@ -1,0 +1,8 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+2019-05-10 14:06:24,815 mriqc:IMPORTANT 
+    Running MRIQC version 0.15.0:
+      * BIDS dataset path: /data/younglw/lab/TPS_FMRIPREP/hopefully_bids.
+      * Output folder: /data/younglw/lab/TPS_FMRIPREP/derivatives/mriqc.
+      * Analysis levels: group.
+    

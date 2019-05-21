@@ -70,7 +70,7 @@ end
 
 if nargin==1
     study    = varargin{1};
-    subj_dir_identifier = 'YOU';s
+    subj_dir_identifier = 'YOU';
     subject = find_subjects(study,subj_dir_identifier);
     preprocess(study,subject,0);
 end

@@ -1,4 +1,7 @@
-function roi_batch(subjects,roi_name,task_dir, loc_dir, contrast_num, win_secs, onsetdelay, highpass, meanwin)
+function roi_batch(studyname,subjects,roi_name,task_dir, loc_dir, contrast_num, win_secs, onsetdelay, highpass, meanwin)
+% example:
+% roi_batch('STOR',{'YOU_STOR_01'},'DMPFC','/results/STOR_results_normed', 'results/tom_localizer_results_normed',...
+ % '1', 40, 6, 1, '18:24')
 
 temp       = strread(task_dir,'%s','delimiter','/');
 task       = temp{end};
@@ -6,8 +9,8 @@ task       = temp{end};
 temp       = strread(loc_dir,'%s','delimiter','/');
 loc        = temp{end};
 
-temp       = strread(subjects{1},'%s','delimiter','/');
-study_dir  = [temp{1} '/' temp{2} '/' temp{3} '/' temp{4}];
+rootdir='/data/younglw/lab';
+study_dir=fullfile(rootdir,studyname);
 
 meanwin    = strread(meanwin,'%s','delimiter',';');
 
@@ -20,7 +23,7 @@ roi_xyz=0;
 % New functionality lets one apply a single ROI to all subjects
 if strcmp(roi_name,'GROUP')
     group_roi=1;
-    f     = spm_select(1,'mat','Choose a Group ROI file','','/younglab/roi_library','.*',1);
+    f     = spm_select(1,'mat','Choose a Group ROI file','','/data/younglw/lab/roi_library','.*',1);
     load(f);if roi_xyz ==0;roi_xyz = xY.XYZmm';end % if VOI_*mat group ROI
     temp  = strread(f,'%s','delimiter','/');temp = temp{end};
     temp  = strread(temp,'%s','delimiter','.'); roi_name = temp{1};
@@ -29,11 +32,10 @@ else
 end
 for s = 1:length(subjects)
     waitbar((s/length(subjects)),wb);
-    fprintf(['Now working on subject: ' subjects{s} '. . . ']);
-    try
-    if (exist((fullfile(subjects{s},task_dir,'SPM.mat')))== 0) 
-        disp(fullfile(subjects{s},task_dir,'SPM.mat'))
-        disp(['task dir: ' task_dir])
+    disp(['Now working on subject: ' subjects{s} '. . . ']);
+    if (exist((fullfile(subjects{s},task_dir,'SPM.mat')))== 0)
+        disp(['No SPM.mat file in this directory: ' fullfile(subjects{s},task_dir)]);
+        disp('Skipping subject.');
     else
         load(fullfile(subjects{s},task_dir,'SPM.mat'));
         clear temp
@@ -45,41 +47,25 @@ for s = 1:length(subjects)
                 newfilt = ['*' temp{end-1} '_' temp{end}];
                 temp = dir(fullfile(subjects{s},'roi',['ROI_' roi_name '_' loc '_' contrast_num{:} '_' newfilt]));
             end
-            load(fullfile(subjects{s},'roi',temp(1).name));
+            try
+                load(fullfile(subjects{s},'roi',temp(1).name));
+            catch
+                disp('Unable to load ROI for this subject');
+                continue
+            end
         else % if group ROI, still have to do this part
             vinv_data = inv(SPM.xY.VY(1).mat);
             ROI.XYZ   = vinv_data(1:3,:)*[roi_xyz'; ones(1,size(roi_xyz',2))];
             ROI.XYZ   = round(ROI.XYZ);
         end
-%     tempfile = dir(fullfile(subjects{s},'roi',['ROI_' roi_name '_' loc '*xyz.mat']));
-%     if length(tempfile) == 0
-%         fprintf([ subjects{s} ' has no ROI!']); 
-%     else
-%         fprintf([ subjects{s} ' has ROI!']);
-%         load(fullfile(subjects{s},task_dir,'SPM.mat'));
-%         clear temp
-%         if group_roi==0;
-%             temp = dir(fullfile(subjects{s},'roi',['ROI_' roi_name '_' loc '*xyz.mat']));
-%             if length(temp)>1
-%                 f = spm_select(1,'mat','Choose a ROI xyz file','',fullfile(subjects{s},'roi'),'xyz.mat',1);
-%                 load(f);temp = strread(f,'%s','delimiter','_');
-%                 newfilt = ['*' temp{end-1} '_' temp{end}];
-%                 temp = dir(fullfile(subjects{s},'roi',['ROI_' roi_name '_' loc newfilt]));
-%             end
-%             load(fullfile(subjects{s},'roi',temp(1).name));
-%             
-%         else % if group ROI, still have to do this part
-%             vinv_data = inv(SPM.xY.VY(1).mat);
-%             ROI.XYZ   = vinv_data(1:3,:)*[roi_xyz'; ones(1,size(roi_xyz',2))];
-%             ROI.XYZ   = round(ROI.XYZ);
-%         end
 
         [Cond, V, RT] = jc_get_design(SPM);
         window_length = round(win_secs / RT);
         V             = SPM.xY.VY;% Timepoints x 3D Images
 
         %start the excel cell array
-        if exist('notes','var')== 0
+        if s== 1
+            fprintf('Making notes variable');
             notes        = cell(length(subjects)+2,window_length+5);
             if group_roi==1
                 if highpass==1 notes(1,1)   = {['PSC averages for ' num2str(length(subjects)) ' Subjects with an offset delay of ' num2str(onsetdelay) ', Highpass filtered']};
@@ -102,9 +88,11 @@ for s = 1:length(subjects)
                 meanamp(1,i+3) = Cond(i).name;
             end
         end
-
+        % keyboard
         % Extract values for timepoints x voxels
         for t = 1:length(V)
+            % V(t).fname = strrep(V(t).fname,'/younglab/studies','/data/younglw/lab');
+            % uncomment the above to handle SPM.mat files generated on our old filesystem
             ROI.Y(t,:) = spm_sample_vol(V(t), ROI.XYZ(1,:), ROI.XYZ(2,:), ROI.XYZ(3,:),1);
         end
 
@@ -113,6 +101,7 @@ for s = 1:length(subjects)
 
         % High Pass Filtering to remove slow trends
         if highpass==1
+            disp('Applying highpass filtering...');
             clear K;
             for  ss = 1:length(SPM.Sess)
                 K(ss) = struct('HParam', 128,'row', SPM.Sess(ss).row,'RT', RT);
@@ -180,19 +169,16 @@ for s = 1:length(subjects)
         save(fullfile(subjects{s},'roi', ['ROI_' roi_name '_' task '_' contrast_num{:} '_' date '_psc.mat']), 'Cond','Y', 'PSC','offlist','-mat');
         clear Cond Y PSC offlist baseline croplist tmp_idx nscan2 V RT ROI vinv_data
     end
-     catch
-         warndlg(['Error with subject ' subjects{s}])
-         notes(row,1:3) = {subjects{s} '' 'Error with this subject'};row=row+1;
-         meanamp(meanrow,1:3) = {subjects{s} '' 'Error with this subject'};meanrow=meanrow+1;
-     end
 
     fprintf('Done \n');
-    
+
 end% subject loop
 
-if exist('notes','var') 
-cell2csv(fullfile(study_dir,'ROI', ['PSC_' roi_name '_' task '_' contrast_num{:} '_' num2str(length(subjects)) '_subs.csv']),notes,',','2000');
-cell2csv(fullfile(study_dir,'ROI', ['means_' roi_name '_' task '_' contrast_num{:} '_' num2str(length(subjects)) '_subs.csv']),meanamp,',','2000');
+try
+    cell2csv(fullfile(study_dir,'ROI', ['PSC_' roi_name '_' task '_' contrast_num{:} '_' num2str(length(subjects)) '_subs.csv']),notes,',','2000');
+    cell2csv(fullfile(study_dir,'ROI', ['means_' roi_name '_' task '_' contrast_num{:} '_' num2str(length(subjects)) '_subs.csv']),meanamp,',','2000');
+catch
+    fprintf('Could not save CSV files!');
 end
 
 cd(fullfile(study_dir,'ROI'));

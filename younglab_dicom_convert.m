@@ -107,7 +107,7 @@ if nargin>=2
                     continue
                 elseif strcmp(varargin{arg},'nopace');
                     pace = 0;
-                    continue
+                    continueyoung
                 end
                 if ~exist(fullfile(EXPERIMENT_ROOT_DIR,study,varargin{arg}),'dir') % identifier
                     subj_dir_identifier=varargin{arg};
@@ -180,7 +180,7 @@ for subj_index=1:num_subs
     
     cd(dicom_dir);
 
-    % We'll need these later on
+    % We'll need these later ons
     results_dir = fullfile(subj_dir,'results');
     roi_dir = fullfile(subj_dir,'roi');
     mkdir(results_dir); mkdir(roi_dir);

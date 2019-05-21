@@ -36,7 +36,7 @@ function younglab_RFX_spm12(study,task,subjs,confile,varargin)
 
 
 %===============  Set-up the Directories ==========================
-EXPERIMENT_ROOT_DIR = '/home3/younglw/lab';
+EXPERIMENT_ROOT_DIR = '/data/younglw/lab';
 
 addpath(genpath('/usr/public/spm/spm12'));
 % Convert confile to array if scalar was provided:
@@ -56,15 +56,18 @@ cd(rfx_root);
 fprintf('Relocating files for %d subjects\n',length(subjs));
 
 for sub=1:length(subjs)
-    source_img = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.nii',confile(sub)));
-    P{sub}=source_img;
-    target_img = sprintf('%s/Img%02.f_%s_con_%04.f.nii',rfx_root,sub,subjs{sub},confile(sub));
-    cpcmd = sprintf('!cp %s %s',source_img,target_img);
-    eval(cpcmd);
-    source_hdr = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.hdr',confile(sub)));
-    target_hdr = sprintf('%s/Img%02.f_%s_con_%04.f.hdr',rfx_root,sub,subjs{sub},confile(sub));
-    cpcmd = sprintf('!cp %s %s',source_hdr,target_hdr);
-    eval(cpcmd);
+    try
+        source_img = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.nii',confile(sub)));
+        P{sub}=source_img;
+        target_img = sprintf('%s/Img%02.f_%s_con_%04.f.nii',rfx_root,sub,subjs{sub},confile(sub));
+        cpcmd = sprintf('!cp %s %s',source_img,target_img);
+        eval(cpcmd);
+    catch
+        source_hdr = fullfile(EXPERIMENT_ROOT_DIR,study,subjs{sub},'results',task,sprintf('con_%04.f.hdr',confile(sub)));
+        target_hdr = sprintf('%s/Img%02.f_%s_con_%04.f.hdr',rfx_root,sub,subjs{sub},confile(sub));
+        cpcmd = sprintf('!cp %s %s',source_hdr,target_hdr);
+        eval(cpcmd);
+    end
 end
 
 %===============  Perform the Analysis =============================
@@ -145,22 +148,19 @@ SPM = spm_spm(SPM);
 
 % Finally, try and save some work on writing the little contrast
 con_vals = [1];
-con_name = SPM.xY.VY(1).descrip(19:end); % Pull it out of original guys. convenient, eh?
+con_name = SPM.xY.VY(1).descrip(12:end); % Pull it out of original guys. convenient, eh?
 %try
-    fprintf('Creating Contrasts for %d subjects\n',length(P));
-    %save temp SPM con_vals con_name
-    if isempty(SPM.xCon)
-        SPM.xCon = spm_FcUtil('Set', con_name, 'T', 'c', con_vals,SPM.xX.xKXs);
-    else
-        SPM.xCon(end+1) = spm_FcUtil('Set', con_name, 'T', 'c', con_vals,SPM.xX.xKXs);
-    end
-    spm_contrasts(SPM);
+fprintf('Creating Contrasts for %d subjects\n',length(P));
+%save temp SPM con_vals con_name
+if isempty(SPM.xCon)
+    SPM.xCon = spm_FcUtil('Set', con_name, 'T', 'c', con_vals,SPM.xX.xKXs);
+else
+    SPM.xCon(end+1) = spm_FcUtil('Set', con_name, 'T', 'c', con_vals,SPM.xX.xKXs);
+end
+spm_contrasts(SPM);
 %catch
 %    fprintf('Oops I screwed up your contrasts\n');
 %end
 
 
 end %function rfx_anal
-
-
-

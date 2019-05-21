@@ -552,7 +552,7 @@ end
 i = 1;
 while i <= 10
 	disp(num2str(i))
-% 	i = i + 1;
+	i = i + 1;
 end
 % Every time Matlab loops back to the 'while' statement, it checks to 
 % make sure the statement still evaluates to true.
@@ -701,7 +701,7 @@ end
 % (Here, we should have used == instead)
 
 % Possibly unbalanced (, {, or [
-cd(fullfile('Users','wass','Documents')
+cd(fullfile('Users',myname,'Documents')
 % (We're missing a final parenthesis)
 
 % Expression or statement is incomplete/incorrect

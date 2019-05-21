@@ -1,0 +1,16 @@
+{Index exceeds matrix dimensions.
+
+Error in spm_spm_pleiades (line 560)
+        Y(j,cmask) = spm_data_read(VY(j),chunk(cmask));%-Read chunk of data
+
+Error in younglab_model_spm12_sirius_BIDS_FT>model (line 808)
+            SPM = spm_spm_pleiades(SPM);
+
+Error in younglab_model_spm12_sirius_BIDS_FT (line 372)
+[ErrorLog,SPM]=model(study,subject,tasks,boldfiles,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
+
+Error in model_one_subject (line 17)
+	younglab_model_spm12_sirius_BIDS_FT(study_folder, subj, behavtask,
+        bidstask, runs, 'no_art', 'clobber');
+} 
+ssh: No match.

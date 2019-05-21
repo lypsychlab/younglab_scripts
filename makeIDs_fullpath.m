@@ -1,4 +1,4 @@
-function subjIDs = makeIDs_fullpath(studystring, numlist)
+function subjIDs = makeIDs_fullpath(studydir, studystring, numlist)
 % This is a quick script generate a list of formatted subjIDs 
 % given a single string for the study and an array of numbers.
 % The output will be a cell array with cells:
@@ -8,10 +8,7 @@ function subjIDs = makeIDs_fullpath(studystring, numlist)
 
 i=1;
 for num=numlist
-    if num<10
-	    subjIDs{i} = ['/home/younglw/lab/' studystring '/YOU_' studystring '_0' num2str(num)];
-    else
-        subjIDs{i} = ['/home/younglw/lab/' studystring '/YOU_' studystring '_' num2str(num)];
-    end
+    
+    subjIDs{i} = fullfile(studydir, sprintf('YOU_%s_%02d', studystring, num));
 	i=i+1;
 end

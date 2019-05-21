@@ -1,0 +1,9 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=24:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_predcm2bidsformatter_job
+#PBS -t 828
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+python /data/younglw/lab/scripts/fmriprep/pre_dcm2bids_formatter.py --source TPS --dest TPS_FMRIPREP --subnum ${PBS_ARRAYID}

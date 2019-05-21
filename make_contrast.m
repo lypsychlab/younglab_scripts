@@ -13,8 +13,7 @@ function make_contrast(loc,study,subj_tag,subnum,numruns,cond_list,taskname,res_
 % - res_string: string to indicate results subfolder in which data will be saved
 
 	if strcmp(loc,'pleiades')
-        addpath(genpath('/usr/public/spm/spm8'));
-        rootdir = '/home/younglw/';
+        rootdir = '/home/younglw/lab';
     else
         rootdir = '/younglab/studies';
     end

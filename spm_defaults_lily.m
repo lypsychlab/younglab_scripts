@@ -155,6 +155,19 @@ defaults.normalise.write.bb         = [[-78 -112 -50];[78 76 85]];
 defaults.normalise.write.vox        = [3 3 3];
 defaults.normalise.write.interp     = 1;
 defaults.normalise.write.wrap       = [0 0 0];
+defaults.old.normalise.estimate.smosrc  = 8;
+defaults.old.normalise.estimate.smoref  = 0;
+defaults.old.normalise.estimate.regtype = 'mni';
+defaults.old.normalise.estimate.weight  = '';
+defaults.old.normalise.estimate.cutoff  = 25;
+defaults.old.normalise.estimate.nits    = 16;
+defaults.old.normalise.estimate.reg     = 1;
+defaults.old.normalise.write.preserve   = 0;
+defaults.old.normalise.write.bb         = [[-78 -112 -70];[78 76 85]];
+defaults.old.normalise.write.vox        = [3 3 3];
+defaults.old.normalise.write.interp     = 1;
+defaults.old.normalise.write.wrap       = [0 0 0];
+defaults.old.normalise.write.prefix     = 'w';
 
 % Segmentation defaults
 %=======================================================================
@@ -246,3 +259,4 @@ defaults.ui.fs      = 14;
 %=======================================================================
 defaults.eeg.dtype = 'float';
 
+defaults.mat.format     = '-v6';

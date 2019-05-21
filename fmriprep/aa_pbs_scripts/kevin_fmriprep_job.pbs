@@ -1,0 +1,15 @@
+#!/bin/tcsh
+#PBS -l mem=30gb,nodes=1:ppn=8,walltime=24:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zTPS_fmriprep_job
+#PBS -t 12
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+module load singularity/3.1.0
+
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+
+singularity run --cleanenv -B /data/younglw/lab/ ~/my_images/fmriprep-1.3.2.simg /data/younglw/lab/TPS_FMRIPREP/hopefully_bids /data/younglw/lab/TPS_FMRIPREP/derivatives participant --participant-label ${sub_num} -w /data/younglw/lab/TPS_FMRIPREP/work/ --nthreads 8 --fs-license-file ~/freesurfer/license.txt --fs-no-reconall --output-space {T1w,template}
+
+# singularity run --cleanenv -B /data/younglw/lab/ ~/my_images/fmriprep-1.3.2.simg /data/younglw/lab/TPS_FMRIPREP/hopefully_bids /data/younglw/lab/TPS_FMRIPREP/derivatives participant --participant-label 01 -w /data/younglw/lab/TPS_FMRIPREP/work/ --nthreads 8 --fs-license-file ~/freesurfer/license.txt --output-space {T1w,template}

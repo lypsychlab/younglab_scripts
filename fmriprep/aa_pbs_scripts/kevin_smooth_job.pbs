@@ -1,0 +1,18 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=24:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_smooth_job_TPS_sub12only
+#PBS -t 12
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+#TPS note: 1-21,23-27,29-30
+
+module load fsl
+module load matlab
+cd /data/younglw/lab/scripts/fmriprep
+
+set study = 'TPS_FMRIPREP'  # replace with name of parent study folder
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+
+matlab -r "smooth_one_subject('${study}', 'sub-${sub_num}'); quit"  # -batch flag doesn't work for some reason

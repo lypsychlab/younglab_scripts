@@ -1,0 +1,13 @@
+{Index exceeds matrix dimensions.
+
+Error in younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+                load(parafiles{run},'spm_inputs','con_info','ips','RT','design');
+                
+Error in younglab_model_spm12_sirius_BIDS_FT (line 372)
+[ErrorLog,SPM]=model(study,subject,tasks,boldfiles,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
+
+Error in model_one_subject (line 16)
+	younglab_model_spm12_sirius_BIDS_FT(study_folder, subj, behavtask,
+        bidstask, runs, 'no_art');
+} 
+ssh: No match.

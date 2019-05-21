@@ -1,4 +1,5 @@
 import json, sys, os, shutil, fnmatch, mat4py
+from collections import OrderedDict
 
 def configure_nipype_params(*argu):
 	"""
@@ -9,10 +10,16 @@ def configure_nipype_params(*argu):
 	[2]: v (to turn on verbose behavior)
 	"""
 
+	def unlist(arr):
+		return [x for subarr in arr for x in subarr]
+		
+	if type(argu) is tuple:  
+		print('\nNote: script being run via test script.')
+		argu=argu[0];
 	json_name = argu[1]
-	with open('/Users/wass/GitHub/younglab_scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
-	# with open('/home/younglw/lab/scripts/yl_nipype_params_MASTER.json','r') as jsonfile:
-		params=json.load(jsonfile)
+	# with open('/Users/wass/GitHub/younglab_scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
+	with open('/home/younglw/lab/scripts/nipype/yl_nipype_params_MASTER.json','r') as jsonfile:
+		params=json.load(jsonfile,object_pairs_hook=OrderedDict)
 
 	rootdir = input('Enter root directory: ')
 	studyname = input('Enter study name: ')
@@ -30,6 +37,9 @@ def configure_nipype_params(*argu):
 	params["experiment_details"]["subject_ids"] = [subjtag + '_' + x.zfill(2) for x in sub_nums]
 	params["experiment_details"]["task_names"] = tsks
 
+	for x in params["params"].keys():
+		if "infile_dir" in params["params"][x].keys():
+			params["params"][x]["infile_dir"] = os.path.join(rootdir,studyname)
 
 	print("Pulling information from .mat files now...")
 	os.chdir(os.path.join(rootdir,studyname,'behavioral'))
@@ -46,11 +56,14 @@ def configure_nipype_params(*argu):
 			# Pull ips
 			params["experiment_details"]["ips"][t] = matfile["ips"]
 			# Pull contrast info
-			contrast_dict = matfile["con_info"]
-			for i in range(len(contrast_dict["name"])):
-				params["experiment_details"]["contrast_info"][t][str(i)] = {}
-				params["experiment_details"]["contrast_info"][t][str(i)]["name"] = contrast_dict["name"][i]
-				params["experiment_details"]["contrast_info"][t][str(i)]["con_vals"] = contrast_dict["vals"][i]
+			try:
+				contrast_dict = matfile["con_info"]
+				for i in range(len(contrast_dict["name"])):
+					params["experiment_details"]["contrast_info"][t][str(i)] = {}
+					params["experiment_details"]["contrast_info"][t][str(i)]["name"] = contrast_dict["name"][i]
+					params["experiment_details"]["contrast_info"][t][str(i)]["con_vals"] = contrast_dict["vals"][i]
+			except: 
+				print('Error with contrast information.')
 				# params["experiment_details"]["contrast_info"][t][str(i)]["cond_names"] = matfile["cond_names"]
 			# initialize empty lists/dicts:
 			params["experiment_details"]["spm_inputs"][t][s] = {}
@@ -60,7 +73,8 @@ def configure_nipype_params(*argu):
 			params["experiment_details"]["design"][t][s]["items"] = []
 			params["experiment_details"]["design"][t][s]['covariates'] = {}
 			params["experiment_details"]["design"][t][s]['condition'] = [] 
-			for k in matfile["covariates"]:
+			if 'covariates' in matfile.keys():
+				for k in matfile["covariates"]:
 					params["experiment_details"]["design"][t][s]['covariates'][k] = [] 
 			# start pulling data:
 			for m in range(len(matname)): # for each run:
@@ -68,17 +82,17 @@ def configure_nipype_params(*argu):
 				params["experiment_details"]["spm_inputs"][t][s]["ons"].append([]) # run-specific list
 				params["experiment_details"]["spm_inputs"][t][s]["dur"].append([]) # run-specific list
 				params["experiment_details"]["design"][t][s]['condition'].append([])
-				params["experiment_details"]["design"][t][s]['items'].append([])
 				# Pull spm_inputs: onsets, durations, condition names
 				params["experiment_details"]["design"][t][s]["condition"][m] = matfile["spm_inputs"]["name"]
 				# ex. params["experiment_details"]["design"][t][s]['condition'] = [['condname1','condname2'],...]
 				for k in range(len(matfile['spm_inputs']["name"])):
 					# make sure each condition/run-specific onset list is actually a list, not a number
-					if len(matfile["spm_inputs"]["ons"][k])==1:
+					if type(matfile["spm_inputs"]["ons"][k]) is not list:
 						matfile["spm_inputs"]["ons"][k] = [matfile["spm_inputs"]["ons"][k]]
-					if len(matfile["spm_inputs"]["dur"][k])==1:
+					if type(matfile["spm_inputs"]["dur"][k]) is not list:
 						matfile["spm_inputs"]["dur"][k] = [matfile["spm_inputs"]["dur"][k]]
-					params["experiment_details"]["spm_inputs"][t][s]["ons"][m].append(matfile["spm_inputs"]["ons"][k].sort())
+					matfile["spm_inputs"]["dur"][k]=unlist(matfile["spm_inputs"]["dur"][k])
+					params["experiment_details"]["spm_inputs"][t][s]["ons"][m].append(sorted(matfile["spm_inputs"]["ons"][k]))
 					# ex. params["experiment_details"]["spm_inputs"][t][s]['ons'] = [[[1,5],[3,7]],...]
 					params["experiment_details"]["spm_inputs"][t][s]["dur"][m].append(matfile["spm_inputs"]["dur"][k])
 					# ex. params["experiment_details"]["spm_inputs"][t][s]['dur'] = [[[2,2],[2,2]],...]
@@ -90,18 +104,20 @@ def configure_nipype_params(*argu):
 				params["experiment_details"]["design"][t][s]["items"].append(matfile["items_run"])
 				# ex. params["experiment_details"]["design"][t][s]['items'] = [[10,1,7,4],...]					
 				# Pull covariates
-				# for k in matfile["covariates"]:sc
-					params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
+				if 'covariates' in matfile.keys():
+					for k in matfile["covariates"]:
+						params["experiment_details"]["design"][t][s]['covariates'][k].append(matfile["covariates"][k])
 					# assumes that "covariates" is a structure with fields corresponding to covariate variables (e.g., key, RT)
 					# and values corresponding to covariate values
 					# see: rework_behavioral.m	
 					# ex. params["experiment_details"]["design"][t][s]['covariates'] = {'key':[[4,4],[2,4]],'RT':[[0.342,0.674],[0.983,0.356]]}
-				if argu[2]=='v':
-					print("Finished with %s" % m)
+				try:
+					if argu[2]=='v': # verbose behavior is on
+						print("Finished with %s" % matname[m])
 				except IndexError: pass
 
 	print("Done!\nWriting to %s.json." % json_name)
-
+	
 	with open(json_name + '.json','w') as jsonfile:
 		json.dump(params,jsonfile)
 

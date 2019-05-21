@@ -187,13 +187,13 @@ else
     motion_threshold=[];global_threshold=[];SPMfile=[];mask_file=[];output_dir=[];
     use_diff_motion=1;use_diff_global=1;use_norms=1;
     num_sess = spm_input('How many sessions?',1,'n',1,1);
-    
+
     global_type_flag = spm_input('Which global mean to use?', 1, 'm', ...
         'Regular | User Mask',...
         [1 2], 1);
 %         'Regular | Every Voxel | User Mask | Auto ( Generates ArtifactMask )',...
 %         [1 2 3 4], 1);
-    
+
     realignfile = 1;   % Default case is like artdetect4.
     % If there are no realignment files available,
     % compute some instead.
@@ -204,13 +204,13 @@ else
     % realignfile = spm_input('Have realignment
     %    files?',1, 'b', ' Yes | No ', [ 1 0 ], 1);
     %end
-    
+
     if realignfile == 1 %ask for type of input files
         %for moition params
         motionFileType = spm_input('Select type of motion params file.',1,'m',...
             ' txt(SPM) | par(FSL) | txt(Siemens)', ...
             [0 1 2], 0);
-        
+
     end
     for i = 1:num_sess
         switch spm_ver
@@ -248,9 +248,9 @@ else
             [output_path,mv_name,mv_ext] = fileparts(mvmt_file);
         end
     end
-    
-    
-    
+
+
+
 %     if global_type_flag==3,
 %         mask = spm_select(1, '.*\.nii|.*\.img', 'Select mask image in functional space');
 %         [maskY,maskXYZmm] = spm_read_vols(spm_vol(mask));
@@ -264,9 +264,9 @@ else
 %         maskcount = sum(sum(sum(Automask)));  %  Number of voxels in mask.
 %         voxelcount = prod(size(Automask));    %  Number of voxels in 3D volume.
 %     end
-    
+
     drop_flag = spm_input('Drop 1st scan of each session?', '+1', 'y/n', [1 0], 2);
-    
+
 end
 
 if global_type_flag==2,
@@ -301,6 +301,7 @@ end
 %in FSL order of fields is three Euler angles (x,y,z in radians) then
 %three translation params (x,y,z in mm).
 %in SPM: x y z pitch roll yaw
+
 if motionFileType == 1
     tmp = mv_data(:,1:3);
     mv_data(:,1:3) = mv_data(:,4:6);
@@ -323,7 +324,7 @@ for sess=1:num_sess
     fprintf('%-4s: ',['Mapping files for session ' num2str(sess) '...']);
     VY     = spm_vol(P{sess});
     fprintf('%3s\n','...done')
-    
+
     switch spm_ver
         case {1,2}
             if any(any(diff(cat(1,VY.dim),1,1),1)&[1,1,1,0])
@@ -334,16 +335,16 @@ for sess=1:num_sess
                 error('images do not all have the same dimensions')
             end
     end
-    
+
     nscans = size(VY,1);
     %keyboard;
     % ------------------------
     % Compute Global variate
     %--------------------------
-    
+
     %GM     = 100;
     g{sess} = zeros(nscans,4);
-    
+
     fprintf('%-4s: %3s','Calculating globals...',' ')
     if global_type_flag==1  % regular mean : Global-conjunction (uses conjunction of individual scan masks; individual scan mask are defined as voxels above mean/8 for each scan)
         Mask=ones(VY(1).dim(1:3));
@@ -359,14 +360,14 @@ for sess=1:num_sess
             for i  = 1:nscans
                 g{sess}(i) = spm_global(VY(i));
             end
-        else 
+        else
             if length(VY)>1&&any(any(VY(2).mat~=VY(1).mat)),
                 [tempx,tempy,tempz]=ind2sub(VY(1).dim(1:3),idxMask);xyz=VY(1).mat*[tempx(:),tempy(:),tempz(:),ones(numel(tempx),1)]';
                 for i = 1:nscans,
                     temp=spm_get_data(VY(i),pinv(VY(i).mat)*xyz);
                     g{sess}(i)=mean(temp);
                 end
-            else 
+            else
                 for i = 1:nscans,
                     temp=spm_read_vols(VY(i));
                     g{sess}(i)=mean(temp(idxMask));
@@ -388,7 +389,7 @@ for sess=1:num_sess
                 g{sess}(i)=mean(temp);
                 cumdisp([num2str(i),'/',num2str(nscans)]);
             end
-        else 
+        else
             for i = 1:nscans,
                 temp=spm_read_vols(VY(i));
                 [maskscan{end+1},masktemp]=art_maskglobal_scan(temp,VY(i),VY(1),VY1inv);
@@ -447,11 +448,11 @@ for sess=1:num_sess
 %     if global_type_flag==4
 %         fprintf('\n%g voxels were in the auto generated mask.\n', maskcount)
 %     end
-    
+
     % ------------------------
     % Compute default out indices by z-score
     % ------------------------
-    
+
     %gsigma{sess} = std(g{sess});
     %gmean{sess} = mean(g{sess});
     %pctmap{sess} = 100*gsigma{sess}/gmean{sess};
@@ -462,9 +463,9 @@ for sess=1:num_sess
     dgsigma{sess} = .7413*diff(prctile(g{sess}(:,3),[25,75]));dgsigma{sess}(dgsigma{sess}==0)=1;
     dgmean{sess} = median(g{sess}(:,3));
     g{sess}(2:end,4)=(g{sess}(2:end,3)-dgmean{sess})/max(eps,dgsigma{sess});
-    
+
     z_thresh = 0.1*round(z_thresh*10);
-    
+
 end
 VY1=VY(1);save('art_mask_temporalfile.mat','maskscan','VY1');
 %% END ohinds 2008-04-23: session specific computations
@@ -632,7 +633,7 @@ if ~(get(handles.norms,'Value') == get(handles.norms,'Max'))
     idx = [idx , getappdata(handles.rtthresh,'rt_p_outliers')];
     idx = [idx , getappdata(handles.rtthresh,'rt_r_outliers')];
     idx = [idx , getappdata(handles.rtthresh,'rt_y_outliers')];
-else 
+else
     idx = [idx , getappdata(handles.rtthresh,'rt_norm_outliers')];
     idx = [idx , getappdata(handles.mvthresh,'mv_norm_outliers')];
 end
@@ -719,7 +720,7 @@ if (get(handles.showDesign,'Value') == get(handles.showDesign,'Max'))
     if cur_sess_start-1~=size(design,1),
         disp(['warning: incorrect number of scans (design matrix: ',num2str(size(design,1)),' ; functional data: ',num2str(cur_sess_start-1),')']);
         outliers_per_condition=length(out_idx);
-    else 
+    else
         outliers_per_condition=[length(out_idx),sum(abs(design(out_idx,:)>0),1); size(design,1),sum(abs(design(:,:)>0),1)];
     end
     if size(outliers_per_condition,2)==length(names)+1,
@@ -738,7 +739,7 @@ if (get(handles.showDesign,'Value') == get(handles.showDesign,'Max'))
             if fpidx==1,
                 fp=1;
                 fprintf('Number of outliers\n');
-            else 
+            else
                 fp=fopen(stats_file_outliers,'w');
                 fprintf('saving outlier statistics to %s\n',[stats_file_outliers]);
             end
@@ -755,11 +756,11 @@ if (get(handles.showDesign,'Value') == get(handles.showDesign,'Max'))
         end
     end
     hold off
-    
+
 else  legend off; end
 if (get(handles.showMask,'Value') == get(handles.showMask,'Max'))
     showMask_Callback(hObject, eventdata, handles);
-else 
+else
     showMask_Callback(hObject, eventdata, []);
 end
 
@@ -786,20 +787,20 @@ out_idx=[];
 for sess=1:num_sess
     z_thresh = z_thresh*incr;
     out_idx = [out_idx; (find(abs(zscore(g{sess})) > z_thresh))'];
-    
+
     %update text ????
     %set(handles.zthresh{sess},'String',num2str(z_thresh{sess}));
-    
+
     %update plot
     plot(cur_sess_start:cur_sess_start+length(g{sess}), (zscore(g{sess})));
-    
+
     l=ylabel('global signal\newline[std]');%ylabel('stdv away \newlinefrom mean');
-    
+
     thresh_x = cur_sess_start:length(g{sess});
     thresh_y = z_thresh*ones(1,length(g{sess}));
     line(thresh_x, thresh_y, 'Color', 'black');
     line(thresh_x, -1*thresh_y, 'Color', 'black');
-    
+
     cur_sess_start = cur_sess_start + length(g{sess});
 end
 setappdata(handles.zthresh,'zoutliers',out_idx);
@@ -814,7 +815,7 @@ hold off;
 
 if (get(handles.showDesign,'Value') == get(handles.showDesign,'Max'))
     [SPM,design] = get_design(handles);
-    
+
     hold on
     colors = {'go','ro','co','mo','yo'};
     for i=1:size(design,2)
@@ -849,7 +850,7 @@ sessions = getappdata(handles.showDesign,'sessions');
 if isempty(sessions)||any(sessions<0),
     if length(sessions)==length(SPM.Sess) && all(sessions==-(1:length(sessions))),
         sessions = abs(sessions);
-    else 
+    else
         tmpsess = inputdlg('What session(s) to use? (e.g. 1 or [1,2])','',1,{['[',num2str(abs(sessions)),']']});
         sessions = eval(char(tmpsess));
     end
@@ -891,7 +892,7 @@ for sess=1:num_sess
     if get(handles.diff1,'value'),
         out_idx = [out_idx, ...
             cur_sess_start+(find(abs(g{sess}(:,idxind)) > z_thresh|abs([g{sess}(2:end,idxind);0]) > z_thresh))'-1]; % (bug? added "-1" here <alfnie> 01/09)
-    else 
+    else
         out_idx = [out_idx, ...
             cur_sess_start+(find(abs(g{sess}(:,idxind)) > z_thresh))'-1]; % (bug? added "-1" here <alfnie> 01/09)
     end
@@ -950,7 +951,7 @@ mvmt_thresh = mvmt_thresh*incr;
 
 if get(handles.diff2,'value'),
     out_mvmt_idx = (find(abs(mv_data(:,1:3)) > mvmt_thresh | [abs(mv_data(2:end,1:3));[0,0,0]] > mvmt_thresh ))';
-else 
+else
     out_mvmt_idx = (find(abs(mv_data(:,1:3)) > mvmt_thresh))';
 end
 out_mvmt_idx_X=[];
@@ -978,7 +979,7 @@ if (get(handles.norms,'Value') == get(handles.norms,'Max'))
     normv=mv_data(:,32);
     if get(handles.diff2,'value'),
         out_mvmt_idx_norm = find(normv>mvmt_thresh|[normv(2:end);0]>mvmt_thresh);
-    else 
+    else
         out_mvmt_idx_norm = find(normv>mvmt_thresh);
     end
     out_mvmt_idx_norm = out_mvmt_idx_norm';
@@ -1033,7 +1034,7 @@ if ~(get(handles.norms,'Value') == get(handles.norms,'Max'))
     for i = 1:length(out_mvmt_idx_Z)
         line((out_mvmt_idx_Z(i)*ones(1, length(axes_height))), axes_height, 'Color', 'black');
     end
-else 
+else
     for i = 1:length(out_mvmt_idx_norm)
         line((out_mvmt_idx_norm(i)*ones(1, length(axes_height))), axes_height, 'Color', 'black');
     end
@@ -1145,8 +1146,8 @@ if ~(get(handles.norms,'Value') == get(handles.norms,'Max'))
         line((out_rotat_idx_y(i)*ones(1, 2)), y_lim, 'Color', 'black');
     end
     set([h,handles.rt_up,handles.rt_down,handles.rtthresh,handles.text13],'visible','on')
-    
-else 
+
+else
     for i = 1:length(out_rt_idx_norm)
         line((out_rt_idx_norm(i)*ones(1, 2)), y_lim, 'Color', 'black');
     end
@@ -1317,14 +1318,14 @@ if (get(handles.showCorr,'Value') == get(handles.showCorr,'Max'))
         %cols = SPM.Sess(s).col;
         cols = SPM.Sess(s).col(1:length(SPM.Sess(s).U)); % alfnie@gmail.com 02/09 extracts only effects of interest (no covariates) from design matrix
         nrows=[nrows,length(rows)];
-        
+
         %create partial matrix to correlate
         %(we only want to correlate with the motion parameters within each
         %session). NOTE: This may cause weird behaviour in weird designs...
         part = [SPM.xX.X(rows,cols) mv_data(sum(nrows(1:end-1))+(1:nrows(end)),1:6)];
         cm{sess} = corrcoef(part);
         a = subplot(length(sessions),1,sess);
-        
+
         imagesc(cm{sess}(1:end-6,end-5:end),[-1,1]);
         colorbar;
         set(a,'XTickLabel',{'x','y','z','pitch','roll','yaw'});
@@ -1338,7 +1339,7 @@ if (get(handles.showCorr,'Value') == get(handles.showCorr,'Max'))
         analyses=getappdata(handles.savefile,'analyses');
         analyses.motion_task_correlation(sess)=struct('r',cm{sess}(1:end-6,end-5:end),'rows',{get(a,'yticklabel')},'cols',{get(a,'xticklabel')});
         setappdata(handles.savefile,'analyses',analyses);
-        
+
     end
 else
     f = getappdata(handles.showCorr,'figure');
@@ -1358,14 +1359,14 @@ if (get(handles.sigCorr,'Value') == get(handles.sigCorr,'Max'))
         rows = SPM.Sess(s).row;
         %cols = SPM.Sess(s).col;
         cols = SPM.Sess(s).col(1:length(SPM.Sess(s).U)); % alfnie@gmail.com 02/09 extracts only effects of interest (no covariates) from design matrix
-        
+
         %create partial matrix to correlate
         %(we only want to correlate with the motion parameters within each
         %session). NOTE: This may cause weird behaviour in weird designs...
         part = [SPM.xX.X(rows,cols) g{sess}(:,1)];%g(rows)];
         cm{sess} = corrcoef(part);
         a = subplot(length(sessions),1,sess);
-        
+
         imagesc(cm{sess}(end:end,1:end-1),[-1,1]);
         colorbar;
         names = {};
@@ -1396,10 +1397,10 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
     sessions = getappdata(handles.showDesign,'sessions');
     f = figure;
     setappdata(handles.showSpec,'figure',f);
-    
+
     %sampling freq.
     sf = 1/SPM.xY.RT;
-    
+
     nrows=0;
     for sess=1:length(sessions),
         s = sessions(sess);
@@ -1407,15 +1408,15 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
         %cols = SPM.Sess(s).col;
         cols = SPM.Sess(s).col(1:length(SPM.Sess(s).U)); % alfnie@gmail.com 02/09 extracts only effects of interest (no covariates) from design matrix
         nrows=[nrows,length(rows)];
-        
+
         %create partial design matrix which only contains relevant data
         %for curent session
         data = [SPM.xX.X(rows,cols),mv_data(sum(nrows(1:end-1))+(1:nrows(end)),1:6),g{sess}(:,1)]; %alfnie 08/2009: add global signal
-        
+
         cf = sf/2; %Nyquist freq.
         n = size(data,1);
         freqs = (0:cf/n:cf-cf/n)';%these are the descrete freqs used by dct
-        
+
         %this is done in a loop (and not in matrix ops)
         %since dct encounters memory problems for large matrices.
         hold on
@@ -1429,7 +1430,7 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
             %normalize
             F(:,i) = f(:,i)/(sum(abs(f(:,i))));F(1,i)=nan;
         end
-        
+
         a = subplot(length(sessions), 1, sess);
         hs = plot(freqs,F,'-'); axis tight; set(gca,'xlim',[sf/size(data,1),cf],'xscale','log','yscale','lin');set(gcf,'color',.9412*[1,1,1])
         names = {};
@@ -1440,8 +1441,8 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
         l = legend(names,'Location','EastOutside');
         pos = get(l,'Position');
         set(l,'Visible','off');
-        
-        
+
+
         for i = 1:length(names)
             color = get(hs(i),'Color');
             box = uicontrol('Style','checkbox','String',names(i),'ForegroundColor', color,'Callback',{@setvisibility},'Value',1,'UserData',hs(i),'Units','normalized');
@@ -1454,7 +1455,7 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
                 setvisibility(box,0);
             end
         end
-        
+
         title(sprintf('Session %d',s));
 %         xlabel('Frequency [Hz]');  DRG (2009-08-25) This line was moved
 %         ~15 lines down.
@@ -1474,13 +1475,13 @@ if (get(handles.showSpec,'Value') == get(handles.showSpec,'Max'))
         l = patch([x_lim(1) x_lim(1) cutoff cutoff],[ylim(a) fliplr(ylim(a))],[.8 .8 .8]);
         xlabel(sprintf('Frequency [Hz], cutoff=1/%i',1/cutoff));
         set(a,'UserData',l);
-        
+
         analyses=getappdata(handles.savefile,'analyses');
         analyses.motion_task_spectra(sess)=struct('Power',f,'rows',freqs,'cols',{names});
         setappdata(handles.savefile,'analyses',analyses);
-        
+
     end
-    
+
 else
     f = getappdata(handles.showSpec,'figure');
     if ishandle(f),close(f);end
@@ -1523,13 +1524,13 @@ if isempty(plotdata)||isempty(handles),
 %    plotdata.Ma=plotdata.Ma/max(plotdata.Ma(:));
    first=1;
 else
-    first=0; 
+    first=0;
 end
 %hfig=findobj('tag','art_showmask_callback_figure');
 %if isempty(hfig), hfig=figure('units','norm','position',[0.33,0.05,0.64,0.2000],'color','w','name','art mask display','numbertitle','off','menubar','none','tag','art_showmask_callback_figure','colormap',gray); first=1; end
 %if first, figure(hfig); end
 %if isempty(handles)||get(handles.showMask,'Value')==0,set(hfig,'visible','off'); return; elseif strcmp(get(hfig,'visible'),'off'), set(hfig,'visible','on'); end
-if isempty(handles)||get(handles.showMask,'Value')==0,if ~isempty(handles),set([handles.axes_mask,get(handles.axes_mask,'children')],'visible','off'); set([handles.text_all_outliers,handles.all_outliers],'visible','on'); end; return; 
+if isempty(handles)||get(handles.showMask,'Value')==0,if ~isempty(handles),set([handles.axes_mask,get(handles.axes_mask,'children')],'visible','off'); set([handles.text_all_outliers,handles.all_outliers],'visible','on'); end; return;
 elseif strcmp(get(handles.axes_mask,'visible'),'off'), set(get(handles.axes_mask,'children'),'visible','on'); set([handles.axes_mask,handles.text_all_outliers,handles.all_outliers],'visible','off'); end
 out_idx=round(str2num(get(handles.all_outliers, 'String')));
 b=ones(plotdata.VY1.dim);
@@ -1551,9 +1552,9 @@ if first||~isfield(plotdata,'h')||~ishandle(plotdata.h),
     axis off;
 %if first||~isfield(plotdata,'h')||~ishandle(plotdata.h),plotdata.h=imagesc(2-temp2);set(gca,'units','norm','position',[0,0,1,1],'clim',[0,2]);axis equal;axis off;
 else
-    set(plotdata.h,'cdata',2-temp2); 
+    set(plotdata.h,'cdata',2-temp2);
 end
-%set(hfig,'name',['art: analysis mask ',num2str(sum(b(:))),' voxels']); 
+%set(hfig,'name',['art: analysis mask ',num2str(sum(b(:))),' voxels']);
 
 
 
@@ -1577,20 +1578,20 @@ pathname = '.'; %getappdata(hObject, 'path');
 cd(pathname);
 
 switch s
-    
+
     %save outliers
     case 1
-        
+
         out_idx = round(str2num(get(handles.all_outliers, 'String')));
-        
+
         %ask user to choose filename
         filter = {'*.mat';'*.txt'};
         ext = {'.mat';'.txt'};
         [filename, pathname, filteridx] = uiputfile( filter,'Save outliers as:');
-        
+
         %save according to file format
         switch filteridx
-            
+
             %binary MAT file
             case 1
                 filename = strcat(char(pathname), char(filename));
@@ -1600,23 +1601,23 @@ switch s
                 filename = strcat(char(pathname), char(filename));
                 save(filename,'out_idx','-ascii');
         end
-        
+
         %save motion statistics
     case 2
-        
+
         mv_stats = getappdata(handles.mvthresh,'mv_stats');
         analyses=getappdata(handles.savefile,'analyses');
-        
+
         %save statistics to .mat file
         %mv_stats has 7 columns corresponding to x y z pitch roll yaw norm
         %and 3 rows corresponding to mean, stdv and max of the absolute values of
         %the movement parameters
-        
+
         %ask user to choose filename
         filter = {'*.mat'; '*.txt'};
         ext = {'.mat';'.txt'};
         [filename, pathname, filteridx] = uiputfile( filter,'Save motion statistics as');
-        
+
         %save according to file format
         switch filteridx
             %binary MAT file
@@ -1628,18 +1629,18 @@ switch s
                 filename = strcat(char(pathname), char(filename));
                 save(filename,'mv_stats','analyses','-ascii');
         end
-        
+
         %save graphs
     case 3
-        
+
         %ask user to choose filename
         filter = {'*.jpg';'*.eps';'*.fig'};
         ext = {'.jpg';'.eps';'.fig'};
         [filename, pathname, filteridx] = uiputfile( filter,'Save figure as:');
-        
+
         filename = strcat(char(pathname), char(filename));
         saveas(gcf,filename);
-        
+
         % saves SPM regressor files (one regressor file per session, named art_regression_outliers_*.mat)
         % Regressor matrices contains 1's at the location of each outlier.
         % This implements outlier removal in SPM when these regressor files are used as covariates.
@@ -1679,7 +1680,7 @@ for j=1:num_sess,
         filename = fullfile(char(pathname), char(filename));
         R=R2;save(filename ,'R','-mat');
     end
-    
+
     cur_idx=cur_idx+size(g{j},1);
 end
 
@@ -1751,25 +1752,25 @@ i = 1;
 while(~feof(fp))
     % read the motion header
     fscanf(fp,'%s',6);
-    
+
     if feof(fp)
         break;
     end
-    
+
     if i == 1
         fscanf(fp,'%s',5);
     end
-    
+
     fscanf(fp,'%s',7);
-    
-    
+
+
     for j=1:6
         fscanf(fp,'%s',4);
         mp(i,j) = fscanf(fp,'%f',1);
     end
-    
+
     fscanf(fp,'%s',1);
-    
+
     i=i+1;
 end
 
@@ -1862,8 +1863,8 @@ while(~strcmp(s,'end'))
     if strcmp(s,'session')
         sess = fscanf(fp,'%d',1);
         type = fscanf(fp,'%s',1);
-        
-        
+
+
         % set up P
         if size(P,2) < sess
             P{sess} = {};
@@ -1882,10 +1883,9 @@ while(~strcmp(s,'end'))
                 end
             end
             s(idx)=num2str(1,['%0',num2str(ns),'d']);
-        else 
+        else
             P{sess}{end+1} = fullfile(image_dir,s);
         end
-        
         if auto_motion_fname && length(P{sess})<=1
             tmotion_dir=image_dir;
             if motionFileType == 2
@@ -1907,7 +1907,7 @@ while(~strcmp(s,'end'))
                 M{sess} = load(strprepend('',fullfile(tmotion_dir,s),'.par'));
             end
         end
-        
+
     elseif strcmp(type,'movement') || strcmp(type,'motion')
         if motionFileType == 2
             M{sess} = read_siemens_motion_parm_file(fullfile(motion_dir,s));
@@ -1938,7 +1938,7 @@ if any(any(VYi.mat~=VY1.mat)),
 end
 idx=uint32(idx(:));
 
-            
+
 % take a cell array and pad appropritately to make a matrix
 function m = make_spm_file_matrix(p)
 
@@ -1988,9 +1988,9 @@ function cumdisp(txt)
 %
 persistent oldtxt;
 if nargin<1,
-    oldtxt=''; 
-    fprintf(1,'\n'); 
-else 
+    oldtxt='';
+    fprintf(1,'\n');
+else
     fprintf(1,[repmat('\b',[1,length(oldtxt)]),txt]);
     oldtxt=sprintf(txt);
 end
@@ -2007,7 +2007,7 @@ z(:) = interp1q(q,xx,p(:));
 function w=hanning(n)
 
 if ~rem(n,2),%even
-    w = .5*(1 - cos(2*pi*(1:n/2)'/(n+1))); 
+    w = .5*(1 - cos(2*pi*(1:n/2)'/(n+1)));
     w=[w;flipud(w)];
 else %odd
    w = .5*(1 - cos(2*pi*(1:(n+1)/2)'/(n+1)));

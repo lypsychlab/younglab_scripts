@@ -49,10 +49,9 @@ def convert_to_BIDS(argv):
 	# 				sub-01_T1w.nii.gz
 	# 				sub-01_T1w.json
 	# 			func/
-	# 				sub-01_task-TASKNAME_run-01/
-	# 					sub-01_task-TASKNAME_run-01.nii.gz
-	# 					sub-01_task-TASKNAME_run-01.json	
-	# 					sub-01_task-TASKNAME_run-01_events.tsv
+	# 				sub-01_task-TASKNAME_run-01.nii.gz
+	# 				sub-01_task-TASKNAME_run-01.json	
+	# 				sub-01_task-TASKNAME_run-01_events.tsv
 	# 			
 	# 
 	# MATLAB script dependencies: dicm2nii.m, run_dicm2nii.m, process_dcmHeaders.m
@@ -177,7 +176,8 @@ def convert_to_BIDS(argv):
 
 		# set up your column names
 		fieldNames=['onset','duration','condition','item','key','RT']
-		if eventVars[0]: fieldNames.append(eventVars)
+		if eventVars[0]: fieldNames=fieldNames+eventVars
+		print(fieldNames)
 		# open up a TSV file for writing
 		with open(outpath+'/'+outfile,'w') as tsvfile:
 			writer=csv.DictWriter(tsvfile,delimiter='\t',fieldnames=fieldNames)
@@ -203,9 +203,13 @@ def convert_to_BIDS(argv):
 				# also, this assumes that whatever your eventVars are,
 				# they are the same length as your spm_inputs variable
 				# i.e., one entry per stimulus run
-				if eventVars[0]:
-					for j in range(len(eventVars)):
-						newrow[eventVars[j]]=bdata[eventVars[j]][i]
+				
+					if eventVars[0]:
+						for j in range(len(eventVars)):
+							try:
+								newrow[eventVars[j]]=bdata[eventVars[j]][i]
+							except KeyError: 
+								print('Warning: no event variable named %s in file %s' % (eventVars[j],fname))
 				writer.writerow(newrow)
 
 	# convert_to_BIDS MAIN FUNCTION
@@ -383,7 +387,7 @@ def convert_to_BIDS(argv):
 				cmd = "matlab -nosplash -nodisplay -r 'process_dcmHeaders '%s''" % (dirpath+'/bids/'+new_subject_dirs[s]+'/func/')
 				os.system(cmd)
 				# convert the .mat files into JSON files
-			dicom2JSON(dirpath+'/bids/'+new_subject_dirs[s]+'/func/',tsks+['MPRAGE'])
+				dicom2JSON(dirpath+'/bids/'+new_subject_dirs[s]+'/func/',tsks+['MPRAGE'])
 
 	if flag=='inter':
 		moveYes=raw_input('Do you want to move your files now? (y/n)')
@@ -478,6 +482,27 @@ def convert_to_BIDS(argv):
 		else:
 			print(new_subject_dirs[s] + ': File check completed with no issues.')
 
+
+	# CLEANING UP
+
+	if flag == 'inter':
+		rmExtra=raw_input('Are you ready to delete your extra files? (y/n)')
+		if rmExtra=='y':
+			print('Deleting unused files...')
+			for s in range(len(new_subject_dirs)):
+				oldfile=[f for f in os.listdir(dirpath+'/bids/'+new_subject_dirs[s]+'/func') if fnmatch.fnmatch(f,'*.*')]
+				for n in oldfile:
+					os.remove(dirpath+'/bids/'+new_subject_dirs[s]+'/func/'+n)
+		elif rmExtra=='n':
+			print('Retaining extra files.')
+	elif flag == 'auto':
+		print('[AUTO MODE] Deleting extra files...')
+		for s in range(len(new_subject_dirs)):
+			oldfile=[f for f in os.listdir(dirpath+'/bids/'+new_subject_dirs[s]+'/func') if fnmatch.fnmatch(f,'*.*')]
+			for n in oldfile:
+				os.remove(dirpath+'/bids/'+new_subject_dirs[s]+'/func/'+n)
+		print('All unnecessary files deleted.')
+
 	if flag=='inter':
 		askMove=raw_input('Are you ready to move your functional files? (y/n)')
 		if askMove=='y':
@@ -493,33 +518,8 @@ def convert_to_BIDS(argv):
 						shutil.move(os.path.join(dirpath,'bids',new_subject_dirs[s],'func',s2,fl),
 							os.path.join(dirpath,'bids',new_subject_dirs[s],'func',fl)) #move all func files upward
 					os.rmdir(os.path.join(dirpath,'bids',new_subject_dirs[s],'func',s2)) #remove subfolders
-
-
-
-	# CLEANING UP
-
-	if flag == 'inter':
-		rmExtra=raw_input('Are you ready to delete your extra files? (y/n)')
-		if rmExtra=='y':
-			print('Deleting unused files...')
-			for s in range(len(new_subject_dirs)):
-				oldfile=[f for f in os.listdir(dirpath+'/bids/'+new_subject_dirs[s]+'/func') if fnmatch.fnmatch(f,'*.*')]
-				for n in oldfile:
-					os.remove(dirpath+'/bids/'+new_subject_dirs[s]+'/func/'+n)
-		elif rmExtra=='n':
-			print('Retaining extra files.')
-			print('Done.')
-			return
-	elif flag == 'auto':
-		print('[AUTO MODE] Deleting extra files...')
-		for s in range(len(new_subject_dirs)):
-			oldfile=[f for f in os.listdir(dirpath+'/bids/'+new_subject_dirs[s]+'/func') if fnmatch.fnmatch(f,'*.*')]
-			for n in oldfile:
-				os.remove(dirpath+'/bids/'+new_subject_dirs[s]+'/func/'+n)
-		print('All unnecessary files deleted. Exiting.')
-		return
-
 	print('Done!')
+	return
 # end function convert_to_BIDS
 
 # make it possible to run with the command-line syntax:

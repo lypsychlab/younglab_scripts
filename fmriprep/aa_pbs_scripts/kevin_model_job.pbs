@@ -1,0 +1,48 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=24:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_model_job_sub12tomonly
+#PBS -t 12
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+# TPS notes: 1-21,23-27,29-30
+
+module load fsl
+module load matlab
+cd /data/younglw/lab/scripts/fmriprep
+
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+
+######################### EDIT these for new studies! ##########################
+set study = 'TPS_FMRIPREP'  # replace with name of parent study folder
+set subj_name = "YOU_TPS_${sub_num}"  # replace with correct subject folder names
+set tom_runs = "[1 2]" # set tom_runs
+set task_runs = "[1 2 3 4 5 6 7 8 9 10]"  # set main task runs
+
+# exceptions for subjects
+if (${PBS_ARRAYID} == 13) then
+	set task_runs = "[1 2 3 4 6 7 8 9 10]"
+else if (${PBS_ARRAYID} == 23) then
+	set task_runs = "[2 3 4 5 6 7 8 9 10]"
+else if (${PBS_ARRAYID} == 12) then
+	set tom_runs = "[1]"
+endif
+
+# !! Don't forget to edit subject numbers!
+################################################################################
+################################### modeling ###################################
+# easy mistake: note that you need single quotes around ${subj_name} b/c it won't expand with quotes around it!
+# easy mistake: variables only expand within double quotes for tcsh?  pretty confusing...
+# % parameters: model_one_subject(study folder, subject name, behavioural.mat name, task name in bids, list of runs)
+
+matlab -r "model_one_subject('${study}','${subj_name}','tom_localizer','tom', ${tom_runs}); quit"
+# matlab -r "model_one_subject('${study}','${subj_name}','TPS_crn','tps',${task_runs}); quit"
+
+############################# Deprecated code below ############################
+# set correct subject name based on PBS_ARRAYID
+# if (${PBS_ARRAYID} < 10) then
+# 	set subj_name = "YOU_TPS_0${PBS_ARRAYID}"
+# else
+# 	set subj_name = "YOU_TPS_${PBS_ARRAYID}"
+# endif

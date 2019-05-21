@@ -1,0 +1,13 @@
+#!/bin/tcsh
+#PBS -l mem=50gb,nodes=1:ppn=8,walltime=15:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_mriqcgroup_job
+#PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
+#PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
+
+module load singularity/3.1.0
+
+set study = 'TPS_FMRIPREP'  # replace with name of parent study folder
+
+# generate group report
+singularity run --cleanenv -B /data/younglw/lab/ ~/my_images/mriqc-0.14.2.simg /data/younglw/lab/${study}/hopefully_bids /data/younglw/lab/${study}/derivatives/mriqc group -w /data/younglw/lab/${study}/work/mriqc

@@ -1,4 +1,4 @@
-function rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roiname,outtag)
+function rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roiname,orth_flag,outtag)
 % rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roiname,outtag):
 % - performs RSA within a given ROI, using 1 to n matrix regressors 
 % to model the empirical neural similarities.
@@ -86,6 +86,12 @@ function rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roin
 			end
 		end
 
+		if orth_flag == 2 % last regressor should be orthogonalized version
+			ortho_reg = load(fullfile(rootdir,study,'behavioural_all',['behav_matrix_' B_in{end} '_ortho.mat']));
+			B(:,end) = ortho_reg.behav_matrix; 
+			clear ortho_reg;
+		end
+
 		try
 	    cd(fullfile(rootdir,study,subjIDs{subj},'results', resdir));
 		catch
@@ -144,7 +150,12 @@ function rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roin
         temp        = tril(simmat,-1); % tril() gets lower triangle of matrix
         bigmat = temp(temp~=0)';% we now have a triangle x 1 matrix
 
-        predictors = horzcat(ones(size(B,1),1),B);
+        if orth_flag == 1
+        	disp(['Orthogonalizing regressors.'])
+        	predictors = horzcat(ones(size(B,1),1),orthogonalize_reg(B));
+        else
+        	predictors = horzcat(ones(size(B,1),1),B);
+        end
         % keyboard
 	    [weights,bint,Rval,Rint,Stats] = regress(bigmat',predictors);
 	    weights=weights';
@@ -157,7 +168,7 @@ function rsa_roi(rootdir,study,subj_tag,resdir,sub_nums,conditions,sph,B_in,roin
 	    spear=thisspear;
 
 	    clear temp simmat behav_1 behav_2 weights predictors thisspear
-
+	    % keyboard
  	    save(['bigmat_' roiname outtag '.mat'], 'bigmat');
 	    save(['corrs_' roiname outtag '.mat'], 'corrs');
 	    save(['spearman_' roiname outtag '.mat'], 'spear');

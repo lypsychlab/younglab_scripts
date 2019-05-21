@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/usr/local/miniconda/bin/mriqc", line 11, in <module>
+    load_entry_point('mriqc==0.15.0', 'console_scripts', 'mriqc')()
+  File "/usr/local/miniconda/lib/python3.7/site-packages/mriqc/bin/mriqc_run.py", line 290, in main
+    out_file=out_html)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/mriqc/reports/group.py", line 118, in gen_html
+    dtype={'bids_name': object})
+  File "/usr/local/miniconda/lib/python3.7/site-packages/pandas/io/parsers.py", line 678, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/pandas/io/parsers.py", line 440, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/pandas/io/parsers.py", line 787, in __init__
+    self._make_engine(self.engine)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/pandas/io/parsers.py", line 1014, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/pandas/io/parsers.py", line 1708, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 542, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.

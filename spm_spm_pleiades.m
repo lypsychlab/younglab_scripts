@@ -644,7 +644,7 @@ end
 %==========================================================================
 
 if ~spm_mesh_detect(VY)
-    [FWHM,VRpv,R] = spm_est_smoothness_DIS(VResI,VM,[nScan erdf]);
+    [FWHM,VRpv,R] = spm_est_smoothness_pleiades(VResI,VM,[nScan erdf]);
 else
     VRpv = struct(...
         'fname',   ['RPV' file_ext],...
