@@ -1,0 +1,293 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+This dataset appears to be BIDS compatible.
+        Summary:                  Available Tasks:        Available Modalities: 
+        1188 Files, 9.95GB        tom                     /participants         
+        30 - Subjects             tps                     T1w                   
+        1 - Session                                       bold                  
+                                                          events                
+
+If you have any questions please post on https://neurostars.org/tags/bids
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+190524-11:14:40,813 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.3.2:
+      * BIDS dataset path: /data/younglw/lab/TPS_FMRIPREP/hopefully_bids.
+      * Participant list: ['02'].
+      * Run identifier: 20190524-111440_35ba8450-4ca8-4ee2-97d7-6b9b75f71ba6.
+    
+190524-11:14:42,982 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tom_run-01_bold.nii.gz" (0.02 GB / 136 TRs). Memory resampled/largemem=0.09/0.12 GB.
+190524-11:14:42,986 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tom_run-01_bold.nii.gz
+190524-11:14:45,40 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:45,58 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tom_run-01_bold.nii.gz).
+190524-11:14:47,203 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tom_run-02_bold.nii.gz" (0.02 GB / 136 TRs). Memory resampled/largemem=0.09/0.12 GB.
+190524-11:14:47,207 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tom_run-02_bold.nii.gz
+190524-11:14:47,961 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:47,978 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tom_run-02_bold.nii.gz).
+190524-11:14:50,163 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-01_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.10/0.15 GB.
+190524-11:14:50,167 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-01_bold.nii.gz
+190524-11:14:50,861 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:50,879 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-01_bold.nii.gz).
+190524-11:14:53,101 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-02_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:14:53,105 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-02_bold.nii.gz
+190524-11:14:53,884 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:53,902 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-02_bold.nii.gz).
+190524-11:14:56,148 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-03_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:14:56,152 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-03_bold.nii.gz
+190524-11:14:56,734 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:56,751 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-03_bold.nii.gz).
+190524-11:14:58,984 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-04_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:14:58,988 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-04_bold.nii.gz
+190524-11:14:59,571 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:14:59,588 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-04_bold.nii.gz).
+190524-11:15:01,836 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-05_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:01,840 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-05_bold.nii.gz
+190524-11:15:02,420 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:02,438 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-05_bold.nii.gz).
+190524-11:15:04,630 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-06_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:04,634 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-06_bold.nii.gz
+190524-11:15:05,197 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:05,214 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-06_bold.nii.gz).
+190524-11:15:07,225 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-07_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:07,229 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-07_bold.nii.gz
+190524-11:15:07,798 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:07,815 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-07_bold.nii.gz).
+190524-11:15:10,31 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-08_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:10,36 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-08_bold.nii.gz
+190524-11:15:10,714 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:10,731 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-08_bold.nii.gz).
+190524-11:15:12,934 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-09_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:12,938 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-09_bold.nii.gz
+190524-11:15:13,503 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:13,519 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-09_bold.nii.gz).
+190524-11:15:15,622 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-10_bold.nii.gz" (0.03 GB / 165 TRs). Memory resampled/largemem=0.11/0.15 GB.
+190524-11:15:15,626 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-02_task-tps_run-10_bold.nii.gz
+190524-11:15:16,328 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190524-11:15:16,345 nipype.workflow WARNING:
+	 SDC: no fieldmaps found or they were ignored (/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-02/func/sub-02_task-tps_run-10_bold.nii.gz).
+190524-11:15:25,471 nipype.workflow IMPORTANT:
+	 Works derived from this fMRIPrep execution should include the following boilerplate:
+
+
+Results included in this manuscript come from preprocessing
+performed using *fMRIPrep* 1.3.2
+(@fmriprep1; @fmriprep2; RRID:SCR_016216),
+which is based on *Nipype* 1.1.9
+(@nipype1; @nipype2; RRID:SCR_002502).
+
+Anatomical data preprocessing
+
+: A total of 2 T1-weighted (T1w) images were found within the input
+BIDS dataset.
+All of them were corrected for intensity non-uniformity (INU)
+with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.2.0 [@ants, RRID:SCR_004757].
+The T1w-reference was then skull-stripped with a *Nipype* implementation of
+the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
+as target template.
+A T1w-reference map was computed after registration of
+2 T1w images (after INU-correction) using
+`mri_robust_template` [FreeSurfer 6.0.1, @fs_template].
+Brain surfaces were reconstructed using `recon-all` [FreeSurfer 6.0.1,
+RRID:SCR_001847, @fs_reconall], and the brain mask estimated
+previously was refined with a custom variation of the method to reconcile
+ANTs-derived and FreeSurfer-derived segmentations of the cortical
+gray-matter of Mindboggle [RRID:SCR_002438, @mindboggle].
+Spatial normalization to the
+*ICBM 152 Nonlinear Asymmetrical template version 2009c* [@mni152nlin2009casym, RRID:SCR_008796]
+was performed through nonlinear registration with `antsRegistration`
+(ANTs 2.2.0), using brain-extracted versions of both T1w volume
+and template.
+Brain tissue segmentation of cerebrospinal fluid (CSF),
+white-matter (WM) and gray-matter (GM) was performed on
+the brain-extracted T1w using `fast` [FSL 5.0.9, RRID:SCR_002823,
+@fsl_fast].
+
+
+Functional data preprocessing
+
+: For each of the 12 BOLD runs found per subject (across all
+tasks and sessions), the following preprocessing was performed.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+The BOLD reference was then co-registered to the T1w reference using
+`bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
+Co-registration was configured with nine degrees of freedom to account
+for distortions remaining in the BOLD reference.
+Head-motion parameters with respect to the BOLD reference
+(transformation matrices, and six corresponding rotation and translation
+parameters) are estimated before any spatiotemporal filtering using
+`mcflirt` [FSL 5.0.9, @mcflirt].
+BOLD runs were slice-time corrected using `3dTshift` from
+AFNI 20160207 [@afni, RRID:SCR_005927].
+The BOLD time-series (including slice-timing correction when applied)
+were resampled onto their original, native space by applying
+a single, composite transform to correct for head-motion and
+susceptibility distortions.
+These resampled BOLD time-series will be referred to as *preprocessed
+BOLD in original space*, or just *preprocessed BOLD*.
+The BOLD time-series were resampled to MNI152NLin2009cAsym standard space,
+generating a *preprocessed BOLD run in MNI152NLin2009cAsym space*.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+Several confounding time-series were calculated based on the
+*preprocessed BOLD*: framewise displacement (FD), DVARS and
+three region-wise global signals.
+FD and DVARS are calculated for each functional run, both using their
+implementations in *Nipype* [following the definitions by @power_fd_dvars].
+The three global signals are extracted within the CSF, the WM, and
+the whole-brain masks.
+Additionally, a set of physiological regressors were extracted to
+allow for component-based noise correction [*CompCor*, @compcor].
+Principal components are estimated after high-pass filtering the
+*preprocessed BOLD* time-series (using a discrete cosine filter with
+128s cut-off) for the two *CompCor* variants: temporal (tCompCor)
+and anatomical (aCompCor).
+Six tCompCor components are then calculated from the top 5% variable
+voxels within a mask covering the subcortical regions.
+This subcortical mask is obtained by heavily eroding the brain mask,
+which ensures it does not include cortical GM regions.
+For aCompCor, six components are calculated within the intersection of
+the aforementioned mask and the union of CSF and WM masks calculated
+in T1w space, after their projection to the native space of each
+functional run (using the inverse BOLD-to-T1w transformation).
+The head-motion estimates calculated in the correction step were also
+placed within the corresponding confounds file.
+All resamplings can be performed with *a single interpolation
+step* by composing all the pertinent transformations (i.e. head-motion
+transform matrices, susceptibility distortion correction when available,
+and co-registrations to anatomical and template spaces).
+Gridded (volumetric) resamplings were performed using `antsApplyTransforms` (ANTs),
+configured with Lanczos interpolation to minimize the smoothing
+effects of other kernels [@lanczos].
+Non-gridded (surface) resamplings were performed using `mri_vol2surf`
+(FreeSurfer).
+
+
+Many internal operations of *fMRIPrep* use
+*Nilearn* 0.5.0 [@nilearn, RRID:SCR_001362],
+mostly within the functional processing workflow.
+For more details of the pipeline, see [the section corresponding
+to workflows in *fMRIPrep*'s documentation](https://fmriprep.readthedocs.io/en/latest/workflows.html "FMRIPrep's documentation").
+
+
+### References
+
+
+190524-11:24:47,365 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_02_wf.anat_preproc_wf.surface_recon_wf.autorecon1" in "/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_02_wf/anat_preproc_wf/surface_recon_wf/autorecon1".
+190524-11:24:47,378 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon1 -noskullstrip -openmp 7 -subjid sub-02 -sd /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer -nomotioncor
+190524-11:24:47,379 nipype.workflow INFO:
+	 [Node] Running "autorecon1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+recon-all -autorecon1 -noskullstrip -openmp 7 -subjid sub-02 -sd /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer -nomotioncor
+190524-11:24:47,381 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon1 -noskullstrip -openmp 7 -subjid sub-02 -sd /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer -nomotioncor
+190524-11:24:52,891 nipype.workflow WARNING:
+	 [Node] Error on "fmriprep_wf.single_subject_02_wf.anat_preproc_wf.surface_recon_wf.autorecon1" (/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_02_wf/anat_preproc_wf/surface_recon_wf/autorecon1)
+190524-11:24:53,216 nipype.workflow ERROR:
+	 Node autorecon1 failed to run on host compute010.
+190524-11:24:53,220 nipype.workflow ERROR:
+	 Saving crash info to /data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-02/log/20190524-111440_35ba8450-4ca8-4ee2-97d7-6b9b75f71ba6/crash-20190524-112453-jiangko-autorecon1-5487d596-c125-4ff8-a067-8c90420abad5.txt
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 473, in run
+    result = self._run_interface(execute=True)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 557, in _run_interface
+    return self._run_command(execute)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 637, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 375, in run
+    runtime = self._run_interface(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 758, in _run_interface
+    self.raise_exception(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 695, in raise_exception
+    ).format(**runtime.dictcopy()))
+RuntimeError: Command:
+recon-all -autorecon1 -noskullstrip -openmp 7 -subjid sub-02 -sd /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer -nomotioncor
+Standard output:
+Subject Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+Current Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+INFO: SUBJECTS_DIR is /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer
+Actual FREESURFER_HOME /opt/freesurfer
+-rw-rw-r-- 1 jiangko younglw 25915 May 24 11:12 /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer/sub-02/scripts/recon-all.log
+Linux compute010 3.10.0-693.11.6.el7.x86_64 #1 SMP Thu Dec 28 14:23:39 EST 2017 x86_64 x86_64 x86_64 GNU/Linux
+
+ERROR: it appears that recon-all is already running
+for sub-02 based on the presence of /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer/sub-02/scripts/IsRunning.lh+rh. It could
+also be that recon-all was running at one point but
+died in an unexpected way. If it is the case that there
+is a process running, you can kill it and start over or
+just let it run. If the process has died, you should type:
+
+rm /data/younglw/lab/TPS_FMRIPREP/derivatives/freesurfer/sub-02/scripts/IsRunning.lh+rh
+
+and re-run. Or you can add -no-isrunning to the recon-all
+command-line. The contents of this file are:
+----------------------------------------------------------
+------------------------------
+SUBJECT sub-02
+HEMI    lh rh
+DATE Fri May 24 11:11:50 EDT 2019
+USER jiangko
+HOST compute010
+PROCESSID 121126 
+PROCESSOR x86_64
+OS Linux
+Linux compute010 3.10.0-693.11.6.el7.x86_64 #1 SMP Thu Dec 28 14:23:39 EST 2017 x86_64 x86_64 x86_64 GNU/Linux
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+----------------------------------------------------------
+Standard error:
+
+Return code: 1
+
+190524-11:25:35,248 nipype.workflow ERROR:
+	 could not run node: fmriprep_wf.single_subject_02_wf.anat_preproc_wf.surface_recon_wf.autorecon1

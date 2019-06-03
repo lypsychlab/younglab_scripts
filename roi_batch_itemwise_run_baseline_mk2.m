@@ -111,9 +111,9 @@ for s = 1:length(subjects)
                     end
                 end
                 notes(2,1:4) = {'Subject' 'Condition' 'Onset' 'Flag'};
-                for i=-1:window_length
-                    notes(2,i+6) = {(i*RT)-RT}; %This sets up all the TR onsets.
-                    %mknotes(2,i+4) = {(i*RT)-RT}; %This sets up all the TR onsets.
+                for i=1:window_length
+                    % notes(2,i+6) = {(i*RT)-RT}; %This sets up all the TR onsets.
+                    notes(2,i+4) = {(i*RT)-RT}; %mk: This sets up all the TR onsets.
                 end
 
                 meanamp = cell(length(subjects)+1,window_length+5);

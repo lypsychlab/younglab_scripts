@@ -1,0 +1,147 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Name is nonexistent or not a directory:
+/data/younglw/lab/TPS_FMRIPREP/scripts] 
+[> In path (line 109)
+  In addpath (line 88)
+  In model_one_subject (line 13)] 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+Warning: `boldirs` argument not provided in cell format!
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_08 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_08    Task: TPS_crn
+MNI*preproc*.nii.gz
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 1 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 2 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 3 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 4 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 5 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 6 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 7 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 8 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 9 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS_FT>model (line 555)
+  In younglab_model_spm12_sirius_BIDS_FT (line 372)
+  In model_one_subject (line 16)] 
+loading image files for run 10 
+
+No files matching "sub-08*01*MNI*preproc*.nii.gz" were found in the directory
+"/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-08/func", (run 10)
+
+"
+/
+SPM12: spm_fMRI_design_pleiades (v5183)            18:52:45 - 16/05/2019
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui_pleiades (v6088)            18:53:21 - 16/05/2019
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Structural image file: 
+/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-08/anat/sub-08_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii
+Making mask image...
+Old mask found!
+Attempting to remove old mask...
+Old mask removed, making new mask...
+Mask image made, unzipping...
+Constructing binary brain mask...
+
+SPM12: spm_imcalc (v6124)                          20:36:14 - 16/05/2019
+========================================================================
+Binary brain mask has been constructed successfully!
+
+SPM12: spm_spm_pleiades (v6015)                    20:36:16 - 16/05/2019
+========================================================================
+Chunk   1/55                            :                  ...processing                       ...doneChunk   2/55                            :                  ...processing                       ...doneChunk   3/55                            :                  ...processing                       ...doneChunk   4/55                            :                  ...processing

@@ -1,0 +1,32 @@
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "Thread-5" java.lang.NullPointerException
+	at com.teamdev.jxbrowser.chromium.internal.ipc.IPC.c(Unknown Source)
+	at com.teamdev.jxbrowser.chromium.internal.ipc.IPC.b(Unknown Source)
+	at com.teamdev.jxbrowser.chromium.internal.ipc.IPC.a(Unknown Source)
+	at com.teamdev.jxbrowser.chromium.internal.ipc.b.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+ssh: No match.

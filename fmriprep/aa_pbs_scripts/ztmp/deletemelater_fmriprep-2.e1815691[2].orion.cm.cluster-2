@@ -1,0 +1,21 @@
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+Although ``--fs-no-reconall`` was not set (i.e., FreeSurfer is to be run), no FreeSurfer output space (valid values are: fsaverage5, fsaverage6, fsaverage, fsnative) was selected. Adding default "fsaverage5" to the list of output spaces.
+fMRIPrep failed: Workflow did not execute cleanly. Check log for details
+Preprocessing did not finish successfully. Errors occurred while processing data from participants: 02 (12). Check the HTML reports for details.
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+Sentry is attempting to send 8 pending error messages
+Waiting up to 2.0 seconds
+Press Ctrl-C to quit
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.

@@ -1,0 +1,37 @@
+Exception in thread "Socket Writer" java.lang.NullPointerException
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.net.SocketOutputStream.<init>(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.getOutputStream(Unknown Source)
+	at java.net.Socket$3.run(Unknown Source)
+	at java.net.Socket$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.Socket.getOutputStream(Unknown Source)
+	at com.teamdev.jxbrowser.chromium.internal.ipc.SocketChannelStream.getOutputStream(Unknown Source)
+	at com.teamdev.jxbrowser.chromium.internal.ipc.SocketChannelWriter.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+ssh: No match.

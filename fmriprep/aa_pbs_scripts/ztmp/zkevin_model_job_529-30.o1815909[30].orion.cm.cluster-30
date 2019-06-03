@@ -1,0 +1,290 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+
+out =
+
+     1     2
+
+
+boldirs =
+
+  cell
+
+    {11 cell}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_30 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_30    Task: tom_localizer
+MNI*preproc*.nii.gz
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 1 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 2 
+
+SPM12: spm_fMRI_design_pleiades (v5183)            12:58:14 - 29/05/2019
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui_pleiades (v6088)            12:58:14 - 29/05/2019
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Gzip structural found!
+Unzipping...
+Removing gzip anatomical...
+Structural image file: 
+/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-30/anat/sub-30_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii
+Making mask image...
+Mask image made, unzipping...
+Constructing binary brain mask...
+
+SPM12: spm_imcalc (v6124)                          12:58:38 - 29/05/2019
+========================================================================
+Binary brain mask has been constructed successfully!
+
+SPM12: spm_spm_pleiades (v6015)                    12:58:39 - 29/05/2019
+========================================================================
+Chunk   1/9                             :                  ...processing                       ...doneChunk   2/9                             :                  ...processing                       ...doneChunk   3/9                             :                  ...processing                       ...doneChunk   4/9                             :                  ...processing                       ...doneChunk   5/9                             :                  ...processing                       ...doneChunk   6/9                             :                  ...processing                       ...doneChunk   7/9                             :                  ...processing                       ...doneChunk   8/9                             :                  ...processing                       ...doneChunk   9/9                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          12:58:53 - 29/05/2019
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+Design & estimation completed without errors in 0 minutes and 42.5 seconds
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+
+out =
+
+     1     2     3     4     5     6     7     8     9    10
+
+
+boldirs =
+
+  cell
+
+    {11 cell}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_30 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_30    Task: TPS_crn
+MNI*preproc*.nii.gz
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 1 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 2 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 3 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 4 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 5 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 6 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 7 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 8 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 9 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 10 
+
+SPM12: spm_fMRI_design_pleiades (v5183)            12:59:35 - 29/05/2019
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui_pleiades (v6088)            12:59:35 - 29/05/2019
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Structural image file: 
+/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-30/anat/sub-30_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii
+Making mask image...
+Old mask found!
+Attempting to remove old mask...
+Old mask removed, making new mask...
+Mask image made, unzipping...
+Constructing binary brain mask...
+
+SPM12: spm_imcalc (v6124)                          13:02:42 - 29/05/2019
+========================================================================
+Binary brain mask has been constructed successfully!
+
+SPM12: spm_spm_pleiades (v6015)                    13:02:43 - 29/05/2019
+========================================================================
+Chunk   1/55                            :                  ...processing                       ...doneChunk   2/55                            :                  ...processing                       ...doneChunk   3/55                            :                  ...processing                       ...doneChunk   4/55                            :                  ...processing                       ...doneChunk   5/55                            :                  ...processing                       ...doneChunk   6/55                            :                  ...processing                       ...doneChunk   7/55                            :                  ...processing                       ...doneChunk   8/55                            :                  ...processing                       ...doneChunk   9/55                            :                  ...processing                       ...doneChunk  10/55                            :                  ...processing                       ...doneChunk  11/55                            :                  ...processing                       ...doneChunk  12/55                            :                  ...processing                       ...doneChunk  13/55                            :                  ...processing                       ...doneChunk  14/55                            :                  ...processing                       ...doneChunk  15/55                            :                  ...processing                       ...doneChunk  16/55                            :                  ...processing                       ...doneChunk  17/55                            :                  ...processing                       ...doneChunk  18/55                            :                  ...processing                       ...doneChunk  19/55                            :                  ...processing                       ...doneChunk  20/55                            :                  ...processing                       ...doneChunk  21/55                            :                  ...processing                       ...doneChunk  22/55                            :                  ...processing                       ...doneChunk  23/55                            :                  ...processing                       ...doneChunk  24/55                            :                  ...processing                       ...doneChunk  25/55                            :                  ...processing                       ...doneChunk  26/55                            :                  ...processing                       ...doneChunk  27/55                            :                  ...processing                       ...doneChunk  28/55                            :                  ...processing                       ...doneChunk  29/55                            :                  ...processing                       ...doneChunk  30/55                            :                  ...processing                       ...doneChunk  31/55                            :                  ...processing                       ...doneChunk  32/55                            :                  ...processing                       ...doneChunk  33/55                            :                  ...processing                       ...doneChunk  34/55                            :                  ...processing                       ...doneChunk  35/55                            :                  ...processing                       ...doneChunk  36/55                            :                  ...processing                       ...doneChunk  37/55                            :                  ...processing                       ...doneChunk  38/55                            :                  ...processing                       ...doneChunk  39/55                            :                  ...processing                       ...doneChunk  40/55                            :                  ...processing                       ...doneChunk  41/55                            :                  ...processing                       ...doneChunk  42/55                            :                  ...processing                       ...doneChunk  43/55                            :                  ...processing                       ...doneChunk  44/55                            :                  ...processing                       ...doneChunk  45/55                            :                  ...processing                       ...doneChunk  46/55                            :                  ...processing                       ...doneChunk  47/55                            :                  ...processing                       ...doneChunk  48/55                            :                  ...processing                       ...doneChunk  49/55                            :                  ...processing                       ...doneChunk  50/55                            :                  ...processing                       ...doneChunk  51/55                            :                  ...processing                       ...doneChunk  52/55                            :                  ...processing                       ...doneChunk  53/55                            :                  ...processing                       ...doneChunk  54/55                            :                  ...processing                       ...doneChunk  55/55                            :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          14:08:01 - 29/05/2019
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	contrast image  4               :                   ...computing       ...written con_0004.nii
+	spm{T} image  4                 :                   ...computing      ...written spmT_0004.nii
+	contrast image  5               :                   ...computing       ...written con_0005.nii
+	spm{T} image  5                 :                   ...computing      ...written spmT_0005.nii
+	contrast image  6               :                   ...computing       ...written con_0006.nii
+	spm{T} image  6                 :                   ...computing      ...written spmT_0006.nii
+	contrast image  7               :                   ...computing       ...written con_0007.nii
+	spm{T} image  7                 :                   ...computing      ...written spmT_0007.nii
+	contrast image  8               :                   ...computing       ...written con_0008.nii
+	spm{T} image  8                 :                   ...computing      ...written spmT_0008.nii
+	contrast image  9               :                   ...computing       ...written con_0009.nii
+	spm{T} image  9                 :                   ...computing      ...written spmT_0009.nii
+	contrast image 10               :                   ...computing       ...written con_0010.nii
+	spm{T} image 10                 :                   ...computing      ...written spmT_0010.nii
+	contrast image 11               :                   ...computing       ...written con_0011.nii
+	spm{T} image 11                 :                   ...computing      ...written spmT_0011.nii
+	contrast image 12               :                   ...computing       ...written con_0012.nii
+	spm{T} image 12                 :                   ...computing      ...written spmT_0012.nii
+	contrast image 13               :                   ...computing       ...written con_0013.nii
+	spm{T} image 13                 :                   ...computing      ...written spmT_0013.nii
+	contrast image 14               :                   ...computing       ...written con_0014.nii
+	spm{T} image 14                 :                   ...computing      ...written spmT_0014.nii
+	contrast image 15               :                   ...computing       ...written con_0015.nii
+	spm{T} image 15                 :                   ...computing      ...written spmT_0015.nii
+	contrast image 16               :                   ...computing       ...written con_0016.nii
+	spm{T} image 16                 :                   ...computing      ...written spmT_0016.nii
+	contrast image 17               :                   ...computing       ...written con_0017.nii
+	spm{T} image 17                 :                   ...computing      ...written spmT_0017.nii
+Design & estimation completed without errors in 68 minutes and 59.5 seconds

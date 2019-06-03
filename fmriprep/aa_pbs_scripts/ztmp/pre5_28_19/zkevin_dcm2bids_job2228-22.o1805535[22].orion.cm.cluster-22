@@ -1,0 +1,424 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+
+------------------------------------------------------------
+Directory Structure
+------------------------------------------------------------
+DICOM Root Directory       : /gsfs0/data/younglw/lab/TPS_FMRIPREP/mydicoms
+BIDS Source Directory      : /gsfs0/data/younglw/lab/TPS_FMRIPREP/hopefully_bids
+BIDS Derivatives Directory : /gsfs0/data/younglw/lab/TPS_FMRIPREP/derivatives/conversion
+Working Directory          : /gsfs0/data/younglw/lab/TPS_FMRIPREP/work/conversion
+Use Session Directories    : No
+Overwrite Existing Files   : No
+Inclusion File             : /gsfs0/data/younglw/lab/TPS_FMRIPREP/full_infile_TPS.csv
+
+------------------------------------------------------------
+Pass 1 : DICOM to Nifti conversion and dictionary creation
+--one-sub parameter specified: only converting subject YOU_TPS_22
+------------------------------------------------------------
+
+------------------------------------------------------------
+Processing subject 22
+------------------------------------------------------------
+  BIDS working subject directory : /gsfs0/data/younglw/lab/TPS_FMRIPREP/work/conversion/sub-22
+  BIDS source subject directory  : /gsfs0/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-22
+  Converting all DICOM images in /gsfs0/data/younglw/lab/TPS_FMRIPREP/mydicoms/YOU_TPS_22/
+initiating dcm2niix conversion
+dcm2niix conversion complete
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+11 | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+37 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+15 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+35 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+21 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+33 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+41 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+13 | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+39 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+17 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+19 | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+TPS_crn | ['15', '17', '19', '21', '33', '35', '37', '39', '41', nan]
+tom_localizer | ['11', '13', nan, nan, nan, nan, nan, nan, nan, nan]
+  Adding protocol AAHead_Scout to dictionary template
+  Adding protocol AAHead_Scout to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_cor to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_sag to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol AAHead_Scout_MPR_tra to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol MoCoSeries to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav_RMS to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav_RMS to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav_RMS to dictionary template
+  Adding protocol T1w_MPRAGE_FourEcho_vNav_RMS to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol TPS_crn to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol ep_moco_vNav_setter to dictionary template
+  Adding protocol tom_localizer to dictionary template
+  Adding protocol tom_localizer to dictionary template
+* Protocol dictionary already exists : /gsfs0/data/younglw/lab/TPS_FMRIPREP/derivatives/conversion/Protocol_Translator.json
+* Skipping creation of new dictionary

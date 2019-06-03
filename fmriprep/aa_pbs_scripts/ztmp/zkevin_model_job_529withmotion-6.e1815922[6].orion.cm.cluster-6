@@ -1,0 +1,11 @@
+{Error using younglab_model_spm12_sirius_BIDS>model (line 468)
+Couldn't find behavioural data matching YOU_TPS_06.tom_localizer.*.mat
+
+Error in younglab_model_spm12_sirius_BIDS (line 398)
+[ErrorLog,SPM]=model(study,subject,tasks,boldfiles,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
+
+Error in model_one_subject (line 18)
+    younglab_model_spm12_sirius_BIDS(study_folder, subj, behavtask, bidstask,
+    runsorinfile, varargin{:});
+} 
+ssh: No match.

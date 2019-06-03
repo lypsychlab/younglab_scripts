@@ -1,8 +1,8 @@
 #!/bin/tcsh
-#PBS -l mem=35gb,nodes=1:ppn=1,walltime=24:00:00
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=6:30:00
 #PBS -m abe -M kevin.jiang@bc.edu
-#PBS -N zkevin_smooth_job_TPS_sub12only
-#PBS -t 12
+#PBS -N zTPS_smooth_job_TPS529
+#PBS -t 1-30
 #PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
 #PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
 

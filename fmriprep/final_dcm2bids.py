@@ -172,7 +172,13 @@ def main():
                        help='Specify functional runs to include')
 
     parser.add_argument('-s', '--single-sub', default="",
-                       help='Specify single subject to process (for running pbs script in parallel).  Automatically sets first_pass = True')
+                       help='Specify single subject to process (e.g., YOU_TPS_14).  For running pbs script in parallel).  Automatically sets first_pass = True')
+
+    parser.add_argument('--debug-mode', action='store_true', default=False,
+                       help='debugging mode, will not run dcm2niix (time-saving purposes).')
+
+    parser.add_argument('--keep-all-anats', action='store_true', default=False,
+                       help='keeps both anatomical runs (9 and 10) of MPRAGE.  Note flipped BIDS run specification (10 <-> 1; 9 <-> 2).  This was original dcm2bids behaviour, but deprecated as inconsistent with original lab pipeline conventions.')
 
     # Parse command line arguments
     args = parser.parse_args()
@@ -181,6 +187,8 @@ def main():
     overwrite = args.overwrite
     infile = os.path.realpath(args.infile)
     singlesub = args.single_sub
+    dbmode = args.debug_mode
+    keep_all_anats = args.keep_all_anats
 
     # Place derivatives and working directories in parent of BIDS source directory
     bids_src_dir = os.path.realpath(args.outdir)
@@ -306,19 +314,21 @@ def main():
                     print('  Converting all DICOM images in %s' % dcm_dir)
                     devnull = open(os.devnull, 'w')
 
-                    # testing dcm2bids
-                    print('initiating dcm2niix conversion')
-                    # ooo = open("out.txt", "a+")
-                    # eee = open("err.txt", "a+")
-
-                    # old subprocess call, comment back in when done
-                    subprocess.call(['dcm2niix', '-b', 'y', '-z', 'y', '-f', '%n--%d--%q--%s',
+                    if dbmode:
+                        print('dbmode active: dcm2niix conversion disabled')
+                    else:
+                        # testing dcm2bids
+                        print('initiating dcm2niix conversion')
+                        # ooo = open("out.txt", "a+")
+                        # eee = open("err.txt", "a+")
+                        
+                        subprocess.call(['dcm2niix', '-b', 'y', '-z', 'y', '-f', '%n--%d--%q--%s',
                                      '-o', work_conv_dir, dcm_dir],
                                     stdout=devnull, stderr=subprocess.STDOUT)
-                    # subprocess.call(['dcm2niix', '-b', 'y', '-z', 'y', '-f', '%n--%d--%q--%s',
-                    #                  '-o', work_conv_dir, dcm_dir],
-                    #                 stdout=ooo, stderr=eee)
-                    print('dcm2niix conversion complete')
+                        # subprocess.call(['dcm2niix', '-b', 'y', '-z', 'y', '-f', '%n--%d--%q--%s',
+                        #                  '-o', work_conv_dir, dcm_dir],
+                        #                 stdout=ooo, stderr=eee)
+                        print('dcm2niix conversion complete')
                 else:
                     print('  prior conversion folder exists, continuing to next subject.  if re-conversion needed, delete: %s' %work_conv_dir)
             else:
@@ -330,7 +340,7 @@ def main():
                 participants_fd.write("sub-%s\t%s\t%s\n" % (SID, dcm_info['Sex'], dcm_info['Age']))
 
             # Run dcm2niix output to BIDS source conversions
-            bids_run_conversion(work_conv_dir, first_pass, needs_converting, prot_dict, bids_src_ses_dir, SID, SES, infile, overwrite)
+            bids_run_conversion(work_conv_dir, first_pass, needs_converting, prot_dict, bids_src_ses_dir, SID, SES, infile, keep_all_anats, overwrite)
 
     if first_pass:
         # Create a template protocol dictionary
@@ -343,7 +353,7 @@ def main():
     sys.exit(0)
 
 
-def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_dir, SID, SES, infile, overwrite=False):
+def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_dir, SID, SES, infile, keep_all_anats, overwrite=False):
     """
     Run dcm2niix output to BIDS source conversions
 
@@ -363,6 +373,8 @@ def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_d
         session name or number
     :param infile: string
         File name of functional runs and corresponding behavioural files to include
+    :param keep_all_anats: bool
+        flag from argparser
     :param overwrite: bool
         overwrite flag
     :return:
@@ -528,7 +540,6 @@ def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_d
                     # Construct BIDS source Nifti and JSON filenames
 
                     if bids_purpose == 'func':
-
                         # add run suffix according to infile
                         try:
                             run_number = hash_infile[subj_name][ser_desc]['nii'].index(ser_no) + 1 # generate BIDS run number from hash_infile, add 1 b/c 0-indexed
@@ -543,12 +554,24 @@ def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_d
                         bids_nii_fname = os.path.join(bids_purpose_dir, bids_prefix + 'task-' + bids_suffix + '_bold.nii.gz')
                         bids_json_fname = bids_nii_fname.replace('.nii.gz','.json')
                     else:  # bids_purpose should be 'anat'
-                        # Add run suffix for duplicate T1w series descriptions
-                        if run_suffix[file_index]:
-                            bids_suffix = bids_add_run_number(bids_suffix, str(run_suffix[file_index]))
+                        if keep_all_anats:  # original dcm2bids behaviour
+                            # Add run suffix for duplicate T1w series descriptions
+                            if run_suffix[file_index]:
+                                bids_suffix = bids_add_run_number(bids_suffix, str(run_suffix[file_index]))
 
-                        bids_nii_fname = os.path.join(bids_purpose_dir, bids_prefix + bids_suffix + '.nii.gz')
-                        bids_json_fname = bids_nii_fname.replace('.nii.gz','.json')
+                            bids_nii_fname = os.path.join(bids_purpose_dir, bids_prefix + bids_suffix + '.nii.gz')
+                            bids_json_fname = bids_nii_fname.replace('.nii.gz','.json')
+                        else:  # consistent with lab pipeline: only use run 10
+                            if int(ser_no) == 10:  
+                                bids_suffix = bids_add_run_number(bids_suffix, str(run_suffix[file_index]))
+                                bids_nii_fname = os.path.join(bids_purpose_dir, bids_prefix + bids_suffix + '.nii.gz')
+                                bids_json_fname = bids_nii_fname.replace('.nii.gz','.json')
+                            elif int(ser_no) == 9:
+                                print('Skipping MPRAGE run 9 (re-run dcm2bids.py with --keep-all-anats flag if want to include this run)')
+                                continue
+                            else:
+                                print('Warning: MPRAGE anatomical run that is not 9 or 10; likely error in Protocol_Translator.  Skipping.')   
+                                continue                     
 
                     # Add prefix and suffix to IntendedFor values
                     if not 'UNASSIGNED' in bids_intendedfor:
@@ -744,10 +767,11 @@ def bids_purpose_handling(bids_purpose, bids_intendedfor, seq_name,
     print('  Populating BIDS source directory')
 
     if bids_nii_fname:
-        safe_copy(work_nii_fname, str(bids_nii_fname), overwrite)
+        copy_success = safe_copy(work_nii_fname, str(bids_nii_fname), overwrite)
 
-        # write metadata.csv with copied filenames
-        append_metadata(bids_root_dir, work_nii_fname, str(bids_nii_fname), behav_fname)
+        # write metadata.csv with copied filenames if copy was successful
+        if copy_success:
+            append_metadata(bids_root_dir, work_nii_fname, str(bids_nii_fname), behav_fname)
 
     if bids_json_fname:
         bids_write_json(bids_json_fname, info)
@@ -1290,7 +1314,7 @@ def safe_copy(file1, file2, overwrite=False):
     :param file1: str
     :param file2: str
     :param overwrite: bool
-    :return:
+    :returns: bool -- True if succesfully copied, False otherwise
     """
 
     if os.path.isfile(file2):
@@ -1306,6 +1330,8 @@ def safe_copy(file1, file2, overwrite=False):
 
     if create_file:
         shutil.copy(file1, file2)
+
+    return create_file
 
 
 def infile_reader(infile):

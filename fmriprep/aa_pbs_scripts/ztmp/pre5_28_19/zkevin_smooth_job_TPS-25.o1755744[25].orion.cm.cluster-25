@@ -1,0 +1,53 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: You appear to have added all SPM subfolders to the MATLAB
+search path. This is not recommended.
+You only need to add SPM main directory; relevant subfolders will be
+automatically added by SPM when needed.
+You can clear the MATLAB search path by typing the following:
+    spm_rmpath
+    addpath /usr/public/spm/spm12
+For more information, type the following:
+    help pathtool] 
+[> In spm_check_installation>check_basic (line 78)
+  In spm_check_installation (line 28)
+  In spm (line 317)
+  In younglab_preproc_spatial_spm12_BIDS_FT (line 86)
+  In smooth_one_subject (line 15)] 
+ ___  ____  __  __                                            
+/ __)(  _ \(  \/  )                                           
+\__ \ )___/ )    (   Statistical Parametric Mapping           
+(___/(__)  (_/\/\_)  SPM12 - http://www.fil.ion.ucl.ac.uk/spm/
+
+
+SPM12: v6906                                       14:11:45 - 10/05/2019
+========================================================================
+Initialising SPM                        :                   .Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+.....[Warning: MATLAB has disabled some advanced graphics rendering features by
+switching to software OpenGL. For more information, click <a
+href="matlab:opengl('problems')">here</a>.] 
+.Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+.done
+
+SPM present working directory:
+	/gsfs0/data/younglw/lab/scripts/fmriprep
+==========================================
+Smoothing failed for subject  
+==========================================
+Bye for now...
+

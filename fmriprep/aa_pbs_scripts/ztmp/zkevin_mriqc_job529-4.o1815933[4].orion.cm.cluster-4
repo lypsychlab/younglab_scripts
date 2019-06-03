@@ -1,0 +1,568 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+2019-05-29 16:08:40,579 mriqc:IMPORTANT 
+    Running MRIQC version 0.15.0:
+      * BIDS dataset path: /data/younglw/lab/TPS_FMRIPREP/hopefully_bids.
+      * Output folder: /data/younglw/lab/TPS_FMRIPREP/derivatives/mriqc.
+      * Analysis levels: participant.
+    
+2019-05-29 16:08:45,743 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-05-29 16:08:46,300 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+
+2019-05-29 16:08:46,305 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-05-29 16:08:47,080 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-05-29 16:08:47,888 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/jedi/evaluate/arguments.py:95: DeprecationWarning: invalid escape sequence \[
+  match = re.match('(?:(?:(\[),? ?|, ?|)(\w+)|, ?/)\]*', string)
+
+2019-05-29 16:08:48,861 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/ipywidgets/widgets/trait_types.py:148: DeprecationWarning: invalid escape sequence \-
+  _number_format_re = re.compile('^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$', re.I)
+
+2019-05-29 16:08:48,952 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-05-29 16:08:48,964 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+
+2019-05-29 16:08:48,964 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+
+2019-05-29 16:08:48,997 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+
+2019-05-29 16:08:49,052 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-05-29 16:08:49,124 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+
+2019-05-29 16:08:49,292 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+
+2019-05-29 16:08:49,434 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+
+2019-05-29 16:08:50,760 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/classes/reportviews.py:95: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Mapping, Set, Iterable
+
+2019-05-29 16:08:50,812 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/geometric.py:275: DeprecationWarning: invalid escape sequence \l
+  """
+
+2019-05-29 16:08:50,855 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/cluster.py:537: DeprecationWarning: invalid escape sequence \m
+  """
+
+2019-05-29 16:08:50,956 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/reciprocity.py:47: DeprecationWarning: invalid escape sequence \i
+  """
+
+2019-05-29 16:08:50,966 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/shortest_paths/weighted.py:1996: DeprecationWarning: invalid escape sequence \p
+  """
+
+2019-05-29 16:08:51,119 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/line.py:113: DeprecationWarning: invalid escape sequence \{
+  """
+
+2019-05-29 16:08:51,203 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/linalg/modularitymatrix.py:74: DeprecationWarning: invalid escape sequence \o
+  """
+
+190529-16:08:51,751 nipype.workflow INFO:
+	 Building anatomical MRIQC workflow, datasets list: ['sub-04/anat/sub-04_run-01_T1w.nii.gz', 'sub-04/anat/sub-04_run-02_T1w.nii.gz']
+2019-05-29 16:08:51,751 nipype.workflow:INFO Building anatomical MRIQC workflow, datasets list: ['sub-04/anat/sub-04_run-01_T1w.nii.gz', 'sub-04/anat/sub-04_run-02_T1w.nii.gz']
+2019-05-29 16:09:02,615 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-05-29 16:09:02,652 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+
+2019-05-29 16:09:02,655 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-05-29 16:09:02,732 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+
+2019-05-29 16:09:02,732 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+
+2019-05-29 16:09:02,874 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-05-29 16:09:02,884 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+
+2019-05-29 16:09:02,884 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+
+2019-05-29 16:09:02,908 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+
+2019-05-29 16:09:02,947 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-05-29 16:09:02,994 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+
+2019-05-29 16:09:03,182 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+
+2019-05-29 16:09:03,182 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+
+2019-05-29 16:09:03,196 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+
+2019-05-29 16:09:03,203 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+
+2019-05-29 16:09:03,203 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+
+2019-05-29 16:09:03,415 mriqc:WARNING Anonymized quality metrics (IQMs) will be submitted to MRIQC's metrics repository. Submission of IQMs can be disabled using the ``--no-sub`` argument. Please visit https://mriqc.readthedocs.io/en/latest/dsa.html to revise MRIQC's Data Sharing Agreement.
+2019-05-29 16:09:05,068 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/numpy/matrixlib/defmatrix.py:68: PendingDeprecationWarning: the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+  return matrix(data, dtype=dtype, copy=False)
+
+2019-05-29 16:09:08,320 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/numpy/matrixlib/defmatrix.py:68: PendingDeprecationWarning: the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+  return matrix(data, dtype=dtype, copy=False)
+
+190529-16:09:31,742 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-10_bold.nii.gz/GenerateReport".
+190529-16:09:31,742 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:31,756 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:09:31,954 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-10_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:31,954 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-10_bold.nii.gz/UploadMetrics".
+190529-16:09:31,955 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:31,955 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:31,967 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:31,967 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:32,522 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:32,522 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:32,574 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:32,668 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:32,668 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:32,677 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:32,677 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:32,678 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:32,678 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:33,731 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-09_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:33,731 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-09_bold.nii.gz/UploadMetrics".
+190529-16:09:33,732 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:33,732 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:33,746 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:33,746 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:33,763 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-09_bold.nii.gz/GenerateReport".
+190529-16:09:33,763 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:33,778 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:09:34,146 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:34,146 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:09:34,282 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:34,282 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:34,290 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:34,290 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:34,535 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:34,633 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:34,633 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:37,692 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-08_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:37,692 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-08_bold.nii.gz/UploadMetrics".
+190529-16:09:37,692 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:37,692 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:37,706 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:37,706 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:37,807 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-08_bold.nii.gz/GenerateReport".
+190529-16:09:37,808 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:37,822 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:09:38,106 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:38,106 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:09:38,238 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:38,238 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:38,246 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:38,246 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:38,564 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:38,685 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:38,685 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:45,694 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-07_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:45,694 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-07_bold.nii.gz/UploadMetrics".
+190529-16:09:45,695 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:45,695 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:45,708 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:45,708 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:45,730 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-07_bold.nii.gz/GenerateReport".
+190529-16:09:45,731 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:45,746 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:09:46,89 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:46,089 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:09:46,206 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:46,206 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:46,211 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:46,211 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:46,461 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:46,563 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:46,563 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:51,660 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-06_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:51,660 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-06_bold.nii.gz/UploadMetrics".
+190529-16:09:51,661 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:51,661 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:51,678 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:51,678 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:51,680 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:51,680 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:09:51,807 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:51,807 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:51,813 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:51,813 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:53,711 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-06_bold.nii.gz/GenerateReport".
+2019-05-29 16:09:53,711 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-06_bold.nii.gz/GenerateReport".
+190529-16:09:53,712 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:53,712 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:53,729 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:09:53,729 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:09:53,732 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:53,879 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:53,879 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:57,723 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-05_bold.nii.gz/UploadMetrics".
+2019-05-29 16:09:57,723 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-05_bold.nii.gz/UploadMetrics".
+190529-16:09:57,723 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:57,723 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:57,739 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:09:57,739 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:09:57,741 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:09:57,741 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:09:57,867 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:09:57,867 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:09:57,874 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:09:57,874 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:09:59,674 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-05_bold.nii.gz/GenerateReport".
+2019-05-29 16:09:59,674 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-05_bold.nii.gz/GenerateReport".
+190529-16:09:59,675 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:59,675 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:09:59,693 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:09:59,693 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:09:59,696 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:09:59,896 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:09:59,896 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:05,731 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-04_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:05,731 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-04_bold.nii.gz/UploadMetrics".
+190529-16:10:05,731 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:05,731 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:05,747 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:05,747 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:05,749 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:05,749 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:05,877 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:05,877 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:05,883 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:05,883 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:07,726 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-04_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:07,726 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-04_bold.nii.gz/GenerateReport".
+190529-16:10:07,727 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:07,727 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:07,746 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:07,746 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:07,750 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:07,864 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:07,864 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:14,416 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-03_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:14,416 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-03_bold.nii.gz/UploadMetrics".
+190529-16:10:14,417 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:14,417 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:14,432 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:14,432 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:14,434 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:14,434 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:14,562 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:14,562 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:14,568 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:14,568 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:16,472 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-03_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:16,472 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-03_bold.nii.gz/GenerateReport".
+190529-16:10:16,473 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:16,473 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:16,489 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-02_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:16,489 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-02_bold.nii.gz/UploadMetrics".
+190529-16:10:16,489 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:16,489 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:10:16,489 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:16,489 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:16,493 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:16,504 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:16,504 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:16,506 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:16,506 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:16,611 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:16,611 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:16,634 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:16,634 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:16,641 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:16,641 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:18,650 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-02_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:18,650 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-02_bold.nii.gz/GenerateReport".
+190529-16:10:18,651 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:18,651 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:18,668 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:18,668 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:18,671 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:18,815 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:18,815 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:21,656 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/metadata".
+2019-05-29 16:10:21,656 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/metadata".
+190529-16:10:21,670 nipype.workflow INFO:
+	 [Node] Running "metadata" ("niworkflows.interfaces.bids.ReadSidecarJSON")
+2019-05-29 16:10:21,670 nipype.workflow:INFO [Node] Running "metadata" ("niworkflows.interfaces.bids.ReadSidecarJSON")
+190529-16:10:22,577 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata".
+2019-05-29 16:10:22,577 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata".
+190529-16:10:22,922 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/metadata".
+2019-05-29 16:10:22,922 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/metadata".
+190529-16:10:22,935 nipype.workflow INFO:
+	 [Node] Running "metadata" ("niworkflows.interfaces.bids.ReadSidecarJSON")
+2019-05-29 16:10:22,935 nipype.workflow:INFO [Node] Running "metadata" ("niworkflows.interfaces.bids.ReadSidecarJSON")
+190529-16:10:23,644 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata".
+2019-05-29 16:10:23,644 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata".
+190529-16:10:26,489 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-01_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:26,489 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-01_bold.nii.gz/UploadMetrics".
+190529-16:10:26,490 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:26,490 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:26,507 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:26,507 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:26,509 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:26,509 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:26,637 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:26,637 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:26,643 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:26,643 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:28,485 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-01_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:28,485 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tps_run-01_bold.nii.gz/GenerateReport".
+190529-16:10:28,485 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:28,485 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:28,503 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:28,503 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:28,506 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:28,675 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:28,675 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:34,496 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-02_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:34,496 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-02_bold.nii.gz/UploadMetrics".
+190529-16:10:34,497 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:34,497 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:34,513 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:34,513 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:34,515 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:34,515 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:34,642 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:34,642 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:34,649 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:34,649 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:36,494 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-02_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:36,494 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-02_bold.nii.gz/GenerateReport".
+190529-16:10:36,495 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:36,495 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:36,513 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:36,513 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:36,516 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:36,629 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:36,629 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:42,505 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-01_bold.nii.gz/UploadMetrics".
+2019-05-29 16:10:42,505 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-01_bold.nii.gz/UploadMetrics".
+190529-16:10:42,506 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:42,506 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:42,521 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:42,521 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:42,523 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+2019-05-29 16:10:42,523 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/bold>
+190529-16:10:42,659 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:42,659 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:42,665 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+2019-05-29 16:10:42,665 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.UploadMetrics".
+190529-16:10:44,498 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-01_bold.nii.gz/GenerateReport".
+2019-05-29 16:10:44,498 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/funcMRIQC/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..func..sub-04_task-tom_run-01_bold.nii.gz/GenerateReport".
+190529-16:10:44,498 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:44,498 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:44,515 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:44,515 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:44,521 mriqc.report:WARNING Building bold report: no exclude index was found
+190529-16:10:44,661 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:44,661 nipype.workflow:INFO [Node] Finished "workflow_enumerator.funcMRIQC.ReportsWorkflow.GenerateReport".
+190529-16:10:52,502 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/GenerateReport".
+2019-05-29 16:10:52,502 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/GenerateReport".
+190529-16:10:52,503 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:52,503 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+190529-16:10:52,520 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:52,520 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:10:52,726 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/UploadMetrics".
+2019-05-29 16:10:52,726 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-02_T1w.nii.gz/UploadMetrics".
+190529-16:10:52,726 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+2019-05-29 16:10:52,726 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+190529-16:10:52,743 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:52,743 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:53,16 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:53,016 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+190529-16:10:53,423 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/T1w>
+2019-05-29 16:10:53,423 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/T1w>
+190529-16:10:53,562 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:53,562 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:53,570 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+2019-05-29 16:10:53,570 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+190529-16:10:54,688 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/GenerateReport".
+2019-05-29 16:10:54,688 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/GenerateReport".
+190529-16:10:54,688 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:54,688 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+190529-16:10:54,706 nipype.workflow INFO:
+	 [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+2019-05-29 16:10:54,706 nipype.workflow:INFO [Node] Running "GenerateReport" ("nipype.interfaces.utility.wrappers.Function")
+190529-16:10:55,189 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+2019-05-29 16:10:55,189 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.GenerateReport".
+190529-16:10:56,613 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/UploadMetrics".
+2019-05-29 16:10:56,613 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.UploadMetrics" in "/data/younglw/lab/TPS_FMRIPREP/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..TPS_FMRIPREP..hopefully_bids..sub-04..anat..sub-04_run-01_T1w.nii.gz/UploadMetrics".
+190529-16:10:56,613 nipype.workflow INFO:
+	 [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+2019-05-29 16:10:56,613 nipype.workflow:INFO [Node] Outdated cache found for "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+190529-16:10:56,628 nipype.workflow INFO:
+	 [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+2019-05-29 16:10:56,628 nipype.workflow:INFO [Node] Running "UploadMetrics" ("mriqc.interfaces.webapi.UploadIQMs")
+190529-16:10:57,42 nipype.interface INFO:
+	 MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/T1w>
+2019-05-29 16:10:57,042 nipype.interface:INFO MRIQC Web API: submitting to <https://mriqc.nimh.nih.gov:443/api/v1/T1w>
+190529-16:10:57,179 nipype.interface INFO:
+	 QC metrics successfully uploaded.
+2019-05-29 16:10:57,179 nipype.interface:INFO QC metrics successfully uploaded.
+190529-16:10:57,186 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+2019-05-29 16:10:57,186 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.UploadMetrics".
+2019-05-29 16:11:00,417 mriqc:WARNING Anonymized quality metrics (IQMs) will be submitted to MRIQC's metrics repository. Submission of IQMs can be disabled using the ``--no-sub`` argument. Please visit https://mriqc.readthedocs.io/en/latest/dsa.html to revise MRIQC's Data Sharing Agreement.

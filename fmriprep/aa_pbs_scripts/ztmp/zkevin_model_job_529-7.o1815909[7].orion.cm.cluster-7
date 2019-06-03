@@ -1,0 +1,244 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+
+out =
+
+     1     2
+
+
+boldirs =
+
+  cell
+
+    {11 cell}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_07 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_07    Task: tom_localizer
+MNI*preproc*.nii.gz
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 1 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 2 
+
+SPM12: spm_fMRI_design_pleiades (v5183)            12:56:37 - 29/05/2019
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui_pleiades (v6088)            12:56:38 - 29/05/2019
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Gzip structural found!
+Unzipping...
+Removing gzip anatomical...
+Structural image file: 
+/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-07/anat/sub-07_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii
+Making mask image...
+Mask image made, unzipping...
+Constructing binary brain mask...
+
+SPM12: spm_imcalc (v6124)                          12:56:54 - 29/05/2019
+========================================================================
+Binary brain mask has been constructed successfully!
+
+SPM12: spm_spm_pleiades (v6015)                    12:56:55 - 29/05/2019
+========================================================================
+Chunk   1/9                             :                  ...processing                       ...doneChunk   2/9                             :                  ...processing                       ...doneChunk   3/9                             :                  ...processing                       ...doneChunk   4/9                             :                  ...processing                       ...doneChunk   5/9                             :                  ...processing                       ...doneChunk   6/9                             :                  ...processing                       ...doneChunk   7/9                             :                  ...processing                       ...doneChunk   8/9                             :                  ...processing                       ...doneChunk   9/9                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          12:57:04 - 29/05/2019
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+Design & estimation completed without errors in 0 minutes and 28.0 seconds
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Warning: `tasks` argument not provided in cell format!
+Warning: `boldfiles` argument not provided in cell format!
+
+out =
+
+     1     2     3     4     5     6     7     8    10
+
+
+boldirs =
+
+  cell
+
+    {11 cell}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Beginning estimation & contrasts on subject YOU_TPS_07 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Subject: YOU_TPS_07    Task: TPS_crn
+MNI*preproc*.nii.gz
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 1 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 2 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 3 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 4 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 5 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 6 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 7 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 8 
+[Warning: Variable 'RT' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+[Warning: Variable 'design' not found.] 
+[> In younglab_model_spm12_sirius_BIDS>model (line 577)
+  In younglab_model_spm12_sirius_BIDS (line 394)
+  In model_one_subject (line 18)] 
+Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+loading image files for run 10 
+
+No files matching "sub-07*01*MNI*preproc*.nii.gz" were found in the directory
+"/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-07/func", (run 10)
+
+"	/
+SPM12: spm_fMRI_design_pleiades (v5183)            12:57:24 - 29/05/2019
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui_pleiades (v6088)            12:57:26 - 29/05/2019
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Structural image file: 
+/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-07/anat/sub-07_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii
+Making mask image...
+Old mask found!
+Attempting to remove old mask...
+Old mask removed, making new mask...
+Mask image made, unzipping...
+Constructing binary brain mask...
+
+SPM12: spm_imcalc (v6124)                          12:59:11 - 29/05/2019
+========================================================================
+Binary brain mask has been constructed successfully!
+
+SPM12: spm_spm_pleiades (v6015)                    12:59:12 - 29/05/2019
+========================================================================
+Chunk   1/49                            :                  ...processing                       ...doneChunk   2/49                            :                  ...processing                       ...doneChunk   3/49                            :                  ...processing>> 

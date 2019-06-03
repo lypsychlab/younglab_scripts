@@ -1,8 +1,8 @@
 #!/bin/tcsh
-#PBS -l mem=35gb,nodes=1:ppn=1,walltime=24:00:00
+#PBS -l mem=25gb,nodes=1:ppn=1,walltime=5:00:00
 #PBS -m abe -M kevin.jiang@bc.edu
-#PBS -N zkevin_model_job_sub12tomonly
-#PBS -t 12
+#PBS -N zkevin_model_job_529withmotion15
+#PBS -t 15
 #PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
 #PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
 
@@ -15,29 +15,41 @@ cd /data/younglw/lab/scripts/fmriprep
 set sub_num = `printf "%02d" ${PBS_ARRAYID}`
 
 ######################### EDIT these for new studies! ##########################
-set study = 'TPS_FMRIPREP'  # replace with name of parent study folder
+set study_folder = 'TPS_FMRIPREP'  # replace with name of parent study_folder folder
 set subj_name = "YOU_TPS_${sub_num}"  # replace with correct subject folder names
-set tom_runs = "[1 2]" # set tom_runs
-set task_runs = "[1 2 3 4 5 6 7 8 9 10]"  # set main task runs
+
+# either set runs or set infile
+# set tom_runs = "[1 2]" # set tom_runs
+# set task_runs = "[1 2 3 4 5 6 7 8 9 10]"  # set main task runs
+set infile = "full_infile_TPS.csv"
 
 # exceptions for subjects
-if (${PBS_ARRAYID} == 13) then
-	set task_runs = "[1 2 3 4 6 7 8 9 10]"
-else if (${PBS_ARRAYID} == 23) then
-	set task_runs = "[2 3 4 5 6 7 8 9 10]"
-else if (${PBS_ARRAYID} == 12) then
-	set tom_runs = "[1]"
-endif
+# if (${PBS_ARRAYID} == 13) then
+# 	set task_runs = "[1 2 3 4 6 7 8 9 10]"
+# else if (${PBS_ARRAYID} == 23) then
+# 	set task_runs = "[2 3 4 5 6 7 8 9 10]"
+# else if (${PBS_ARRAYID} == 12) then
+# 	set tom_runs = "[1]"
+# endif
 
-# !! Don't forget to edit subject numbers!
+########## !! Don't forget to edit subject numbers in PBS header !! ############
 ################################################################################
 ################################### modeling ###################################
 # easy mistake: note that you need single quotes around ${subj_name} b/c it won't expand with quotes around it!
 # easy mistake: variables only expand within double quotes for tcsh?  pretty confusing...
-# % parameters: model_one_subject(study folder, subject name, behavioural.mat name, task name in bids, list of runs)
+# parameters: model_one_subject(study_folder, subject_name, behavioural.mat name, task name in bids, list of runs)
 
-matlab -r "model_one_subject('${study}','${subj_name}','tom_localizer','tom', ${tom_runs}); quit"
-# matlab -r "model_one_subject('${study}','${subj_name}','TPS_crn','tps',${task_runs}); quit"
+# example with runs
+# matlab -r "model_one_subject('${study_folder}','${subj_name}','tom_localizer','tom',${tom_runs},'no_art'); quit"
+# matlab -r "model_one_subject('${study_folder}','${subj_name}','TPS_crn','tps',${task_runs},'no_art'); quit"
+
+# example with infile
+matlab -r "model_one_subject('${study_folder}','${subj_name}','tom_localizer','tom','${infile}','no_art'); quit"
+matlab -r "model_one_subject('${study_folder}','${subj_name}','TPS_crn','tps','${infile}','no_art'); quit"
+
+# example with infile and clobber (overwrites any existing results)
+# matlab -r "model_one_subject('${study_folder}','${subj_name}','tom_localizer','tom','${infile}','no_art','clobber'); quit"
+# matlab -r "model_one_subject('${study_folder}','${subj_name}','TPS_crn','tps','${infile}','no_art','clobber'); quit"
 
 ############################# Deprecated code below ############################
 # set correct subject name based on PBS_ARRAYID

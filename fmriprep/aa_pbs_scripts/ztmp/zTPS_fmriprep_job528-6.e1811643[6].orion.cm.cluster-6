@@ -1,0 +1,1104 @@
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/image.py:58: DeprecationWarning: invalid escape sequence \*
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/interfaces/fmap.py:501: DeprecationWarning: invalid escape sequence \D
+  """Read :math:`\Delta_\text{TE}` from BIDS metadata dict"""
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/classes/reportviews.py:95: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Mapping, Set, Iterable
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/geometric.py:275: DeprecationWarning: invalid escape sequence \l
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/reciprocity.py:47: DeprecationWarning: invalid escape sequence \i
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/shortest_paths/weighted.py:1996: DeprecationWarning: invalid escape sequence \p
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/connectivity/connectivity.py:302: DeprecationWarning: invalid escape sequence \d
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/line.py:113: DeprecationWarning: invalid escape sequence \{
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/linalg/modularitymatrix.py:74: DeprecationWarning: invalid escape sequence \o
+  """
+Captured warning (<class 'ImportWarning'>): can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \k
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \s
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \ 
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \.
+Captured warning (<class 'ImportWarning'>): can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+Captured warning (<class 'ImportWarning'>): can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \#
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \c
+Captured warning (<class 'DeprecationWarning'>): Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \s
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \g
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \.
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \d
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \{
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \%
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \S
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \|
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \[
+Captured warning (<class 'ResourceWarning'>): unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \A
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \h
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \s
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \*
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \m
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \-
+Captured warning (<class 'DeprecationWarning'>): invalid escape sequence \D
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'DeprecationWarning'>): In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/image/resampling.py:510: UserWarning: Casting data from int32 to float32
+  warnings.warn("Casting data from %s to %s" % (data.dtype.name, aux))
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+Captured warning (<class 'PendingDeprecationWarning'>): the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii3/lh.pial_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs3/lh.pial_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii2/rh.pial_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs2/rh.pial_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii1/lh.smoothwm_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs1/lh.smoothwm_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii6/rh.midthickness_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs6/rh.midthickness_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii4/rh.inflated_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs4/rh.inflated_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii5/lh.inflated_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs5/lh.inflated_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/contour.py:1173: UserWarning: No contour levels were found within the data range.
+  warnings.warn("No contour levels were found"
+/usr/local/miniconda/lib/python3.7/site-packages/scipy/ndimage/measurements.py:272: DeprecationWarning: In future, it will be an error for 'np.bool_' scalars to be interpreted as an index
+  return _nd_image.find_objects(input, max_label)
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii0/rh.smoothwm_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs0/rh.smoothwm_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/gifti/gifti.py:760: ResourceWarning: unclosed file <_io.BufferedReader name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fs_2_gii/mapflow/_fs_2_gii7/lh.midthickness_converted.gii'>
+  parser.parse(fptr=file_map['image'].get_prepare_fileobj('rb'))
+/usr/local/miniconda/lib/python3.7/site-packages/nibabel/filebasedimages.py:334: ResourceWarning: unclosed file <_io.BufferedWriter name='/data/younglw/lab/TPS_FMRIPREP/work/fmriprep_wf/single_subject_06_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/fix_surfs/mapflow/_fix_surfs7/lh.midthickness_converted.gii'>
+  self.to_file_map()
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+/usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/algorithms/confounds.py:1037: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(X, data.T)[0]
+/usr/local/miniconda/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2364: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  return list(data) if isinstance(data, collections.MappingView) else data
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 101, in _python_exit
+    thread_wakeup.wakeup()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 89, in wakeup
+    self._writer.send_bytes(b"")
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/connection.py", line 183, in send_bytes
+    self._check_closed()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/connection.py", line 136, in _check_closed
+    raise OSError("handle is closed")
+OSError: handle is closed
+Sentry is attempting to send 0 pending error messages
+Waiting up to 2.0 seconds
+Press Ctrl-C to quit
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.

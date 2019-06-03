@@ -1,0 +1,7 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+/gsfs0/data/jiangko
+/gsfs0/data/jiangko
+The dir contains: ['fmriprep_test', 'roi_library', 'FT_FMRIPREP', 'YOU_bp_ipt', 'tpsdcm', 'roi_batch_itemwise_mk.m', 'tragmk', 'behavioural', 'singularity', 'RA_training_ea', 'ROI', 'FB_test', 'TPS_FMRIPREP', 'license.txt', 'training_kevin', 'RA_training_mk', 'tpsr', 'FT_SANITY', 'TRAG', 'TPS', 'MM', 'FB_BIDS', 'scripts']
+Warning, FileExistsError (continuing w/o creating directory): /data/younglw/lab/TPS_FMRIPREP/mydicoms
+copying: /data/younglw/lab/TPS/YOU_TPS_28/dicom -> /data/younglw/lab/TPS_FMRIPREP/mydicoms/YOU_TPS_28

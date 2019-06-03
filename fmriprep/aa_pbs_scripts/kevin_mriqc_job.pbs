@@ -1,8 +1,8 @@
 #!/bin/tcsh
-#PBS -l mem=50gb,nodes=1:ppn=8,walltime=15:00:00
+#PBS -l mem=35gb,nodes=1:ppn=8,walltime=2:00:00
 #PBS -m abe -M kevin.jiang@bc.edu
-#PBS -N zkevin_mriqc_job
-#PBS -t 1-21,23-27,29-30
+#PBS -N zkevin_mriqc_jobgroup529
+#PBS -t 1-30
 #PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
 #PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
 
@@ -12,7 +12,7 @@ set study = 'TPS_FMRIPREP'  # replace with name of parent study folder
 set sub_num = `printf "%02d" ${PBS_ARRAYID}`
 
 # generate report for individual participants
-singularity run --cleanenv -B /data/younglw/lab/ ~/my_images/mriqc-0.14.2.simg /data/younglw/lab/${study}/hopefully_bids /data/younglw/lab/${study}/derivatives/mriqc participant --participant-label ${sub_num} -w /data/younglw/lab/${study}/work/mriqc --n_procs 8
+singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/mriqc-0.14.2.simg /data/younglw/lab/${study}/hopefully_bids /data/younglw/lab/${study}/derivatives/mriqc participant --participant-label ${sub_num} -w /data/younglw/lab/${study}/work/mriqc --n_procs 8
 
 # generate group report
-# singularity run --cleanenv -B /data/younglw/lab/ ~/my_images/mriqc-0.14.2.simg /data/younglw/lab/${study}/hopefully_bids /data/younglw/lab/${study}/derivatives/mriqc group -w /data/younglw/lab/${study}/work/mriqc
+# singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/mriqc-0.14.2.simg /data/younglw/lab/${study}/hopefully_bids /data/younglw/lab/${study}/derivatives/mriqc group -w /data/younglw/lab/${study}/work/mriqc

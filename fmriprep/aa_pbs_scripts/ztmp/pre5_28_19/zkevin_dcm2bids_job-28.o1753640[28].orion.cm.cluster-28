@@ -1,0 +1,29 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+
+------------------------------------------------------------
+Directory Structure
+------------------------------------------------------------
+DICOM Root Directory       : /gsfs0/data/younglw/lab/TPS_FMRIPREP/mydicoms
+BIDS Source Directory      : /gsfs0/data/younglw/lab/TPS_FMRIPREP/hopefully_bids
+BIDS Derivatives Directory : /gsfs0/data/younglw/lab/TPS_FMRIPREP/derivatives/conversion
+Working Directory          : /gsfs0/data/younglw/lab/TPS_FMRIPREP/work/conversion
+Use Session Directories    : No
+Overwrite Existing Files   : No
+Inclusion File             : /gsfs0/data/younglw/lab/TPS_FMRIPREP/full_infile_TPS.csv
+
+------------------------------------------------------------
+Pass 1 : DICOM to Nifti conversion and dictionary creation
+--one-sub parameter specified: only converting subject YOU_TPS_28
+------------------------------------------------------------
+
+------------------------------------------------------------
+Processing subject 28
+------------------------------------------------------------
+  BIDS working subject directory : /gsfs0/data/younglw/lab/TPS_FMRIPREP/work/conversion/sub-28
+  BIDS source subject directory  : /gsfs0/data/younglw/lab/TPS_FMRIPREP/hopefully_bids/sub-28
+  Converting all DICOM images in /gsfs0/data/younglw/lab/TPS_FMRIPREP/mydicoms/YOU_TPS_28/
+initiating dcm2niix conversion
+dcm2niix conversion complete
+* Protocol dictionary already exists : /gsfs0/data/younglw/lab/TPS_FMRIPREP/derivatives/conversion/Protocol_Translator.json
+* Skipping creation of new dictionary

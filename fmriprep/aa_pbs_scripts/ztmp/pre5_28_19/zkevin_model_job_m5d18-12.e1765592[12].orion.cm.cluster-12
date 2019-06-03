@@ -1,0 +1,22 @@
+{Error using spm_vol>spm_vol_hdr (line 80)
+File
+"/data/younglw/lab/TPS_FMRIPREP/derivatives/fmriprep/sub-12/anat/skull_strip_mask.nii"
+does not exist.
+
+Error in spm_vol (line 61)
+        v = spm_vol_hdr(deblank(P(i,:)));
+
+Error in younglab_model_spm12_sirius_BIDS_FT>skullStripMaker (line 931)
+        V = spm_vol([directory 'skull_strip_mask.nii']);
+
+Error in younglab_model_spm12_sirius_BIDS_FT>model (line 791)
+                    skullStripMaker(study,subj_bids{subj},maskthresh)
+
+Error in younglab_model_spm12_sirius_BIDS_FT (line 372)
+[ErrorLog,SPM]=model(study,subject,tasks,boldfiles,boldirs,src_data_flag,TR,RT_flag,implicit_flag,filter_frequency,maskthresh);
+
+Error in model_one_subject (line 17)
+	younglab_model_spm12_sirius_BIDS_FT(study_folder, subj, behavtask,
+        bidstask, runs, 'no_art', 'clobber');
+} 
+ssh: No match.

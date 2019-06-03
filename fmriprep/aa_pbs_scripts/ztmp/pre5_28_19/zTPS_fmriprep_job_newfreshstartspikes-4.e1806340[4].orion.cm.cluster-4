@@ -1,0 +1,33 @@
+usage: fmriprep [-h] [--version] [--skip_bids_validation]
+                [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]
+                [-t TASK_ID] [--echo-idx ECHO_IDX] [--nthreads NTHREADS]
+                [--omp-nthreads OMP_NTHREADS] [--mem_mb MEM_MB] [--low-mem]
+                [--use-plugin USE_PLUGIN] [--anat-only] [--boilerplate]
+                [--ignore-aroma-denoising-errors] [--error-on-aroma-warnings]
+                [-v] [--debug]
+                [--ignore {fieldmaps,slicetiming,sbref} [{fieldmaps,slicetiming,sbref} ...]]
+                [--longitudinal] [--t2s-coreg] [--bold2t1w-dof {6,9,12}]
+                [--output-space {T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} [{T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} ...]]
+                [--force-bbr] [--force-no-bbr]
+                [--template {MNI152NLin2009cAsym}]
+                [--output-grid-reference OUTPUT_GRID_REFERENCE]
+                [--template-resampling-grid TEMPLATE_RESAMPLING_GRID]
+                [--medial-surface-nan] [--use-aroma]
+                [--aroma-melodic-dimensionality AROMA_MELODIC_DIMENSIONALITY]
+                [--skull-strip-template {OASIS30ANTs,NKI,MNI152NLin2009cAsym}]
+                [--skull-strip-fixed-seed] [--fmap-bspline] [--fmap-no-demean]
+                [--use-syn-sdc] [--force-syn] [--fs-license-file PATH]
+                [--no-submm-recon] [--cifti-output | --fs-no-reconall]
+                [-w WORK_DIR] [--resource-monitor] [--reports-only]
+                [--run-uuid RUN_UUID] [--write-graph] [--stop-on-first-crash]
+                [--notrack] [--sloppy]
+                bids_dir output_dir {participant}
+fmriprep: error: unrecognized arguments: --fd-spike-threshold 3 --dvars-spike-threshold 3
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
