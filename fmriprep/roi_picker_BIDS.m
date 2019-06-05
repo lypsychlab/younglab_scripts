@@ -46,14 +46,13 @@ else
 
     % If ROI is 'other', with user-specified x y z
     if ischar(roi_xyz)
-
-    try
-    eval(['spm_mip_ui(''SetCoords'',[' roi_xyz '],findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));']);
-    catch
-    cmd=['spm_mip_ui(''SetCoords'',' roi_xyz ',findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));'];
-    eval(cmd);
-    end
-    spm_mip_ui('Jump',findobj(spm_figure('FindWin','Graphics'),'Tag','hMIPax'),'nrmax');
+        try
+            eval(['spm_mip_ui(''SetCoords'',[' roi_xyz '],findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));']);
+        catch
+            cmd=['spm_mip_ui(''SetCoords'',' roi_xyz ',findobj(spm_figure(''FindWin'',''Graphics''),''Tag'',''hMIPax''));'];
+            eval(cmd);
+        end
+        spm_mip_ui('Jump',findobj(spm_figure('FindWin','Graphics'),'Tag','hMIPax'),'nrmax');
 
     else
         % Set the cursor to the starting location for this ROI

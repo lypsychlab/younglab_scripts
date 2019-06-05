@@ -1,0 +1,138 @@
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/image.py:58: DeprecationWarning: invalid escape sequence \*
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/__init__.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/usr/local/miniconda/lib/python3.7/site-packages/pytest.py' mode='r' encoding='utf-8'>
+  imp.find_module('pytest')
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/_shared/_warnings.py:107: DeprecationWarning: invalid escape sequence \A
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/deconvolution.py:118: DeprecationWarning: invalid escape sequence \h
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/restoration/uft.py:23: DeprecationWarning: invalid escape sequence \s
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/measure/_regionprops.py:633: DeprecationWarning: invalid escape sequence \*
+  matches = re.finditer('\*\*(\w+)\*\* \:.*?\n(.*?)(?=\n    [\*\S]+)',
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/transform/_geometric.py:530: DeprecationWarning: invalid escape sequence \m
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/skimage/filters/rank/generic.py:49: DeprecationWarning: invalid escape sequence \-
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/interfaces/fmap.py:501: DeprecationWarning: invalid escape sequence \D
+  """Read :math:`\Delta_\text{TE}` from BIDS metadata dict"""
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/classes/reportviews.py:95: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Mapping, Set, Iterable
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/geometric.py:275: DeprecationWarning: invalid escape sequence \l
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/reciprocity.py:47: DeprecationWarning: invalid escape sequence \i
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/shortest_paths/weighted.py:1996: DeprecationWarning: invalid escape sequence \p
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/connectivity/connectivity.py:302: DeprecationWarning: invalid escape sequence \d
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/line.py:113: DeprecationWarning: invalid escape sequence \{
+  """
+/usr/local/miniconda/lib/python3.7/site-packages/networkx/linalg/modularitymatrix.py:74: DeprecationWarning: invalid escape sequence \o
+  """
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 775, in build_workflow
+    err_on_aroma_warn=opts.error_on_aroma_warnings,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 218, in init_fmriprep_wf
+    err_on_aroma_warn=err_on_aroma_warn,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 391, in init_single_subject_wf
+    subject_id, task_id if task_id else '<all>'))
+Exception: No BOLD images found for participant 01 and task <all>. All workflows require BOLD images.
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/mriqc/bin/mriqc_run.py", line 400, in init_mriqc
+    exclude=['derivatives', 'sourcedata', r'^\..*'])
+  File "/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py", line 146, in __init__
+    raise ValueError("BIDS root does not exist: %s" % root)
+ValueError: BIDS root does not exist: /data/younglw/lab/chunktesting_TPS/hopefully_bids
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+Exception in thread "XPCOMMessageLoop" java.lang.IllegalStateException: GTK GUI can't be initialized. Critical failure.
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.d(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.impl.linux.LinuxMozillaToolkit.a(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.MozillaToolkit.initialize(Unknown Source)
+	at com.teamdev.jxbrowser.gecko.xpcom.AppShellXPCOMThread$b.run(Unknown Source)
+{Error using cd
+Cannot CD to /data/younglw/lab/chunktesting_TPS/derivs/fmriprep/ (Name is
+nonexistent or not a directory).
+
+Error in younglab_preproc_spatial_spm12_BIDS>find_subjects (line 140)
+cd(fullfile(EXPERIMENT_ROOT_DIR,bids_dir));
+
+Error in younglab_preproc_spatial_spm12_BIDS>test_id (line 174)
+    subject = find_subjects(bids_dir,test_str);
+
+Error in younglab_preproc_spatial_spm12_BIDS (line 119)
+                    subject = test_id(bids_dir,varargin{i});
+
+Error in smooth_one_subject (line 15)
+	younglab_preproc_spatial_spm12_BIDS(study_folder, subj);
+} 
+behav_task: Command not found.
+bids_task: Command not found.
+behav_task: Undefined variable.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.
+ssh: No match.

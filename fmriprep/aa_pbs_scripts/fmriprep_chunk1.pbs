@@ -1,0 +1,31 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=12:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_chunk1big
+#PBS -t 1-3,7-30
+
+################################################################################
+######################### EDIT these for new studies! ##########################
+# Note that YOU_${study_acronym}_${sub_num} are your subject names
+
+set dicom_source_folder = 'TPS'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'chunktesting_TPS'
+set study_acronym = 'TPS'  # replace with study acronym (should be used when naming subjects)
+set infile = 'full_infile_TPS.csv'  # must include file extension (.csv)
+set bids_folder_name = 'this_is_bids'
+
+################################################################################
+################################################################################
+
+module load anaconda/4.4.0-P3.6
+
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+
+# sets up folder structure
+python /data/younglw/lab/scripts/fmriprep/pre_dcm2bids_formatter.py --source ${dicom_source_folder} --dest ${study_folder} --studyname ${study_acronym} --subnum ${sub_num}
+
+# dcm2bids.py first pass: converts dicoms to nii.gz files
+# make sure infile and behavioural files have been created appropriately before running
+python /data/younglw/lab/scripts/fmriprep/final_dcm2bids.py --indir /data/younglw/lab/${study_folder}/mydicoms --outdir /data/younglw/lab/${study_folder}/${bids_folder_name} --infile /data/younglw/lab/${study_folder}/${infile} --single-sub YOU_${study_acronym}_${sub_num} --no-sessions
+
+# Before running next chunk, edit Protocol_Translator.json, located in ${study_folder}/derivatives/conversion/Protocol_Translator.json

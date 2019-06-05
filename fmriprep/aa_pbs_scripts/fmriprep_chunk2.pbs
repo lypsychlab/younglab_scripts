@@ -1,0 +1,25 @@
+#!/bin/tcsh
+#PBS -l mem=35gb,nodes=1:ppn=1,walltime=2:00:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N zkevin_chunk2big
+
+################################################################################
+######################### EDIT these for new studies! ##########################
+# Note that YOU_${study_acronym}_${sub_num} are your subject names
+
+set dicom_source_folder = 'TPS'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'chunktesting_TPS'
+set study_acronym = 'TPS'  # replace with study acronym (should be used when naming subjects)
+set infile = 'full_infile_TPS.csv'  # must include file extension (.csv)
+set bids_folder_name = 'this_is_bids'
+
+################################################################################
+################################################################################
+
+# Before running chunk2, edit Protocol_Translator.json, 
+# located in ${study_folder}/derivatives/conversion/Protocol_Translator.json
+
+module load anaconda/4.4.0-P3.6
+
+# dcm2bids.py second pass: copies dicoms to ${bids_folder_name}, in proper structure, for fmriprep processing
+python /data/younglw/lab/scripts/fmriprep/final_dcm2bids.py --indir /data/younglw/lab/${study_folder}/mydicoms --outdir /data/younglw/lab/${study_folder}/${bids_folder_name} --infile /data/younglw/lab/${study_folder}/${infile} --no-sessions

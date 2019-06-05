@@ -1,8 +1,8 @@
 """
 Kevin Jiang
-5/3/19
+last updated: 6/4/19
 copies functionality of pre_dcm2bids_formatter.csh into python script
-maintains use of cp -an for safe copy that will not overwrite files
+maintains use of cp -an for safe copy that won't overwrite files
 recommended to specify source/dest as named parameters when calling function
 Can be run using pbs script to process subjects in parallel!
 """

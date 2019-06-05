@@ -6,4 +6,6 @@
 #PBS -e /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.e$PBS_JOBID
 #PBS -o /data/younglw/lab/scripts/fmriprep/aa_pbs_scripts/ztmp/$PBS_JOBNAME.o$PBS_JOBID
 
+module load anaconda/4.4.0-P3.6
+
 python /data/younglw/lab/scripts/fmriprep/pre_dcm2bids_formatter.py --source TPS --dest deletemelater --studyname TPS --subnum ${PBS_ARRAYID}

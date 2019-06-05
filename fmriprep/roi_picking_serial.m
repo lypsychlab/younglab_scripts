@@ -11,12 +11,12 @@ study_folder = 'TPS_FMRIPREP';
 study_acronym = 'TPS';
 
 subjs = {};  % note that subjs must contain full path here
-% for i = [1 26 29 30]
-%     subjs = [subjs, sprintf('/data/younglw/lab/%s/YOU_%s_%.02d', study_folder, study_acronym, i)];
-% end
-for i = [1]
-    subjs = [subjs, sprintf('/data/younglw/lab/%s/YOU_%s_%.02d', study_folder, study_acronym, i)];
-end
+ for i = [29]
+     subjs = [subjs, sprintf('/data/younglw/lab/%s/YOU_%s_%.02d', study_folder, study_acronym, i)];
+ end
+%for i = [1]
+ %   subjs = [subjs, sprintf('/data/younglw/lab/%s/YOU_%s_%.02d', study_folder, study_acronym, i)];
+%end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % roi picker example calls
@@ -27,10 +27,10 @@ end
 % some roi picking examples using roi_picker_BIDS
  %roi_picker_BIDS(.001,16,9,1,'LTPJ','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
 
- roi_picker_BIDS(.001,16,9,1,'RTPJ','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
+ %roi_picker_BIDS(.001,16,9,1,'RTPJ','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
  %roi_picker_BIDS(.001,16,9,1,'LTPJ','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
- % roi_picker_BIDS(.001,16,9,1,'PC','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
-% roi_picker_BIDS(.001,16,9,1,'DMPFC','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
+ roi_picker_BIDS(.001,16,9,1,'PC','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
+%roi_picker_BIDS(.001,16,9,1,'DMPFC','[0; 0; 0]',subjs,study_folder,'results/tom_localizer_results_normed')
 
 % deprecated code
 % % add full path

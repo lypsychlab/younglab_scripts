@@ -1,0 +1,324 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+Beginning FMRIPREP
+This dataset appears to be BIDS compatible.
+        Summary:                 Available Tasks:        Available Modalities: 
+        164 Files, 1.27GB        tps                     /participants         
+        30 - Subjects            tom                     T1w                   
+        1 - Session                                      bold                  
+                                                         events                
+
+If you have any questions please post on https://neurostars.org/tags/bids
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+190605-15:23:28,301 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.3.2:
+      * BIDS dataset path: /data/younglw/lab/chunktesting_TPS/this_is_bids.
+      * Participant list: ['01'].
+      * Run identifier: 20190605-152328_c5e20d8a-adbb-4969-b3c2-de79ddc97af6.
+    
+Beginning mriqc
+2019-06-05 15:23:39,487 mriqc:IMPORTANT 
+    Running MRIQC version 0.15.0:
+      * BIDS dataset path: /data/younglw/lab/chunktesting_TPS/this_is_bids.
+      * Output folder: /data/younglw/lab/chunktesting_TPS/derivatives/mriqc.
+      * Analysis levels: participant.
+    
+2019-06-05 15:23:44,914 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 15:23:45,802 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+
+2019-06-05 15:23:45,806 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 15:23:46,943 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 15:23:48,513 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/jedi/evaluate/arguments.py:95: DeprecationWarning: invalid escape sequence \[
+  match = re.match('(?:(?:(\[),? ?|, ?|)(\w+)|, ?/)\]*', string)
+
+2019-06-05 15:23:49,656 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/ipywidgets/widgets/trait_types.py:148: DeprecationWarning: invalid escape sequence \-
+  _number_format_re = re.compile('^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$', re.I)
+
+2019-06-05 15:23:49,749 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 15:23:49,761 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+
+2019-06-05 15:23:49,761 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+
+2019-06-05 15:23:49,795 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+
+2019-06-05 15:23:49,851 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 15:23:49,925 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+
+2019-06-05 15:23:50,149 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+
+2019-06-05 15:23:50,298 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+
+2019-06-05 15:23:50,835 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/classes/reportviews.py:95: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Mapping, Set, Iterable
+
+2019-06-05 15:23:50,875 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/geometric.py:275: DeprecationWarning: invalid escape sequence \l
+  """
+
+2019-06-05 15:23:50,909 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/cluster.py:537: DeprecationWarning: invalid escape sequence \m
+  """
+
+2019-06-05 15:23:50,988 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/reciprocity.py:47: DeprecationWarning: invalid escape sequence \i
+  """
+
+2019-06-05 15:23:50,996 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/algorithms/shortest_paths/weighted.py:1996: DeprecationWarning: invalid escape sequence \p
+  """
+
+2019-06-05 15:23:51,115 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/generators/line.py:113: DeprecationWarning: invalid escape sequence \{
+  """
+
+2019-06-05 15:23:51,180 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/networkx/linalg/modularitymatrix.py:74: DeprecationWarning: invalid escape sequence \o
+  """
+
+190605-15:23:51,194 nipype.workflow INFO:
+	 Building anatomical MRIQC workflow, datasets list: ['sub-01/anat/sub-01_run-01_T1w.nii.gz']
+2019-06-05 15:23:51,194 nipype.workflow:INFO Building anatomical MRIQC workflow, datasets list: ['sub-01/anat/sub-01_run-01_T1w.nii.gz']
+2019-06-05 15:24:01,425 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 15:24:01,462 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+
+2019-06-05 15:24:01,465 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 15:24:01,545 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:854: DeprecationWarning: invalid escape sequence \ 
+  'Rotation\ &\ Translation\ Matrix:\n(?P<rot_tran_mat>[0-9\.\ \n-]+)[\s\n]*'
+
+2019-06-05 15:24:01,545 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/fsl/utils.py:863: DeprecationWarning: invalid escape sequence \.
+  '(?P<fwd_half_xfm>[0-9\.\ \n-]+)[\s\n]*'
+
+2019-06-05 15:24:01,646 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 15:24:01,656 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+
+2019-06-05 15:24:01,656 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+
+2019-06-05 15:24:01,680 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+
+2019-06-05 15:24:01,766 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 15:24:01,814 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+
+2019-06-05 15:24:02,027 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+
+2019-06-05 15:24:02,069 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:780: DeprecationWarning: invalid escape sequence \{
+  to_rep = re.findall('\{(.*?)\}', template)
+
+2019-06-05 15:24:02,069 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/core.py:784: DeprecationWarning: invalid escape sequence \%
+  template += '[^\%s]*$' % os.path.sep
+
+2019-06-05 15:24:02,083 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/external/inflect.py:845: DeprecationWarning: invalid escape sequence \S
+  'general': ['(?!major|lieutenant|brigadier|adjutant|.*star)\S+'],
+
+2019-06-05 15:24:02,090 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:33: DeprecationWarning: invalid escape sequence \|
+  match = re.search('([^|<]+)(<.*?>)?(\|.*)?', ent)
+
+2019-06-05 15:24:02,090 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/grabbit/extensions/writable.py:92: DeprecationWarning: invalid escape sequence \[
+  optional_patterns = re.findall('\[(.*?)\]', pattern)
+
+2019-06-05 15:24:02,203 mriqc:WARNING Anonymized quality metrics (IQMs) will be submitted to MRIQC's metrics repository. Submission of IQMs can be disabled using the ``--no-sub`` argument. Please visit https://mriqc.readthedocs.io/en/latest/dsa.html to revise MRIQC's Data Sharing Agreement.
+2019-06-05 15:24:02,426 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/numpy/matrixlib/defmatrix.py:68: PendingDeprecationWarning: the matrix subclass is not the recommended way to represent matrices or deal with linear algebra (see https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html). Please adjust your code to use regular ndarray.
+  return matrix(data, dtype=dtype, copy=False)
+
+190605-15:24:07,145 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.conform" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform".
+2019-06-05 15:24:07,145 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.conform" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform".
+190605-15:24:07,151 nipype.workflow INFO:
+	 [Node] Running "conform" ("mriqc.interfaces.common.ConformImage")
+2019-06-05 15:24:07,151 nipype.workflow:INFO [Node] Running "conform" ("mriqc.interfaces.common.ConformImage")
+190605-15:24:08,135 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/metadata".
+190605-15:24:08,141 nipype.workflow INFO:
+	 [Node] Running "metadata" ("niworkflows.interfaces.bids.ReadSidecarJSON")
+190605-15:24:08,224 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.conform".
+2019-06-05 15:24:08,224 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.conform".
+190605-15:24:08,276 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.metadata".
+190605-15:24:11,71 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.inu_n4" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/inu_n4".
+190605-15:24:11,77 nipype.workflow INFO:
+	 [Node] Running "inu_n4" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection -d 3 --input-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --output [ sub-01_run-01_T1w_conformed_corrected.nii.gz, sub-01_run-01_T1w_conformed_bias.nii.gz ]
+190605-15:24:13,643 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicNoise" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/PlotMosaicNoise".
+2019-06-05 15:24:13,643 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicNoise" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/PlotMosaicNoise".
+190605-15:24:13,644 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AirMaskWorkflow.RotationMask" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AirMaskWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/RotationMask".
+2019-06-05 15:24:13,644 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AirMaskWorkflow.RotationMask" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AirMaskWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/RotationMask".
+190605-15:24:13,648 nipype.workflow INFO:
+	 [Node] Running "PlotMosaicNoise" ("mriqc.interfaces.viz.PlotMosaic")
+2019-06-05 15:24:13,648 nipype.workflow:INFO [Node] Running "PlotMosaicNoise" ("mriqc.interfaces.viz.PlotMosaic")
+190605-15:24:13,649 nipype.workflow INFO:
+	 [Node] Running "RotationMask" ("mriqc.interfaces.anatomical.RotationMask")
+2019-06-05 15:24:13,649 nipype.workflow:INFO [Node] Running "RotationMask" ("mriqc.interfaces.anatomical.RotationMask")
+190605-15:24:14,538 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.AirMaskWorkflow.RotationMask".
+2019-06-05 15:24:14,538 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.AirMaskWorkflow.RotationMask".
+190605-15:24:31,45 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicNoise".
+2019-06-05 15:24:31,045 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicNoise".
+190605-15:27:18,702 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.inu_n4".
+190605-15:27:23,173 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.skullstrip" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/skullstrip".
+190605-15:27:23,178 nipype.workflow INFO:
+	 [Node] Running "skullstrip" ("nipype.interfaces.afni.preprocess.SkullStrip"), a CommandLine Interface with command:
+3dSkullStrip -input /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/skullstrip/sub-01_run-01_T1w_conformed_corrected.nii.gz -prefix sub-01_run-01_T1w_conformed_corrected_skullstrip.nii.gz
+190605-15:27:23,546 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.HeadMaskWorkflow.fsl_bet" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/HeadMaskWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/fsl_bet".
+190605-15:27:23,553 nipype.workflow INFO:
+	 [Node] Running "fsl_bet" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/inu_n4/sub-01_run-01_T1w_conformed_corrected.nii.gz /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/HeadMaskWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/fsl_bet/sub-01_run-01_T1w_conformed_corrected_brain.nii.gz -A
+190605-15:28:20,764 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.HeadMaskWorkflow.fsl_bet".
+190605-15:28:38,959 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.skullstrip".
+190605-15:28:43,110 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.sstrip_orig_vol" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/sstrip_orig_vol".
+190605-15:28:43,116 nipype.workflow INFO:
+	 [Node] Running "sstrip_orig_vol" ("nipype.interfaces.afni.utils.Calc"), a CommandLine Interface with command:
+3dcalc -a /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz -b /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/skullstrip/sub-01_run-01_T1w_conformed_corrected_skullstrip.nii.gz -expr "a*step(b)" -prefix sub-01_run-01_T1w_conformed_calc.nii.gz
+190605-15:28:44,485 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.sstrip_orig_vol".
+190605-15:28:44,779 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.binarize" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/binarize".
+190605-15:28:44,783 nipype.workflow INFO:
+	 [Node] Running "binarize" ("nipype.interfaces.fsl.maths.Threshold"), a CommandLine Interface with command:
+fslmaths /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/sstrip_orig_vol/sub-01_run-01_T1w_conformed_calc.nii.gz -thr 0.0010000000 -bin /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/binarize/sub-01_run-01_T1w_conformed_calc_thresh.nii.gz
+190605-15:28:44,934 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.segmentation" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/segmentation".
+2019-06-05 15:28:44,934 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.segmentation" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/segmentation".
+190605-15:28:44,938 nipype.workflow INFO:
+	 [Node] Running "segmentation" ("nipype.interfaces.fsl.preprocess.FAST"), a CommandLine Interface with command:
+fast -t 1 -o segment -g -S 1 /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/segmentation/sub-01_run-01_T1w_conformed_calc.nii.gz
+2019-06-05 15:28:44,938 nipype.workflow:INFO [Node] Running "segmentation" ("nipype.interfaces.fsl.preprocess.FAST"), a CommandLine Interface with command:
+fast -t 1 -o segment -g -S 1 /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/segmentation/sub-01_run-01_T1w_conformed_calc.nii.gz
+190605-15:28:45,816 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.AFNISkullStripWorkflow.binarize".
+190605-15:28:46,783 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicZoomed" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/PlotMosaicZoomed".
+2019-06-05 15:28:46,783 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicZoomed" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/PlotMosaicZoomed".
+190605-15:28:46,786 nipype.workflow INFO:
+	 [Node] Running "PlotMosaicZoomed" ("mriqc.interfaces.viz.PlotMosaic")
+2019-06-05 15:28:46,786 nipype.workflow:INFO [Node] Running "PlotMosaicZoomed" ("mriqc.interfaces.viz.PlotMosaic")
+190605-15:28:46,856 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.smoothness" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/smoothness".
+2019-06-05 15:28:46,856 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.smoothness" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/smoothness".
+190605-15:28:46,860 nipype.workflow INFO:
+	 [Node] Running "smoothness" ("nipype.interfaces.afni.utils.FWHMx"), a CommandLine Interface with command:
+3dFWHMx -ShowMeClassicFWHM -combine -detrend -input /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz -mask /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/binarize/sub-01_run-01_T1w_conformed_calc_thresh.nii.gz -detprefix sub-01_run-01_T1w_conformed_detrend -out sub-01_run-01_T1w_conformed_subbricks.out > sub-01_run-01_T1w_conformed_fwhmx.out
+2019-06-05 15:28:46,860 nipype.workflow:INFO [Node] Running "smoothness" ("nipype.interfaces.afni.utils.FWHMx"), a CommandLine Interface with command:
+3dFWHMx -ShowMeClassicFWHM -combine -detrend -input /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz -mask /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/binarize/sub-01_run-01_T1w_conformed_calc_thresh.nii.gz -detprefix sub-01_run-01_T1w_conformed_detrend -out sub-01_run-01_T1w_conformed_subbricks.out > sub-01_run-01_T1w_conformed_fwhmx.out
+190605-15:28:49,948 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.SpatialNormalization.SpatialNormalization" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization".
+190605-15:28:49,951 nipype.workflow INFO:
+	 [Node] Running "SpatialNormalization" ("niworkflows.interfaces.registration.RobustMNINormalizationRPT")
+190605-15:28:55,348 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.smoothness".
+2019-06-05 15:28:55,348 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.smoothness".
+190605-15:29:04,693 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicZoomed".
+2019-06-05 15:29:04,693 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.PlotMosaicZoomed".
+190605-15:29:04,816 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.MergePlots" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ReportsWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MergePlots".
+190605-15:29:04,819 nipype.workflow INFO:
+	 [Node] Running "MergePlots" ("nipype.interfaces.utility.base.Merge")
+190605-15:29:04,822 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ReportsWorkflow.MergePlots".
+190605-15:33:07,816 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.segmentation".
+2019-06-05 15:33:07,816 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.segmentation".
+190605-15:33:11,4 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.harmonize" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/harmonize".
+2019-06-05 15:33:11,004 nipype.workflow:INFO [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.harmonize" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/harmonize".
+190605-15:33:11,6 nipype.workflow INFO:
+	 [Node] Running "harmonize" ("mriqc.interfaces.anatomical.Harmonize")
+2019-06-05 15:33:11,006 nipype.workflow:INFO [Node] Running "harmonize" ("mriqc.interfaces.anatomical.Harmonize")
+190605-15:33:13,635 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.harmonize".
+2019-06-05 15:33:13,635 nipype.workflow:INFO [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.harmonize".
+190605-15:34:02,519 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.SpatialNormalization.SpatialNormalization".
+190605-15:34:03,154 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.AirMaskWorkflow.invert_xfm" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AirMaskWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/invert_xfm".
+190605-15:34:03,157 nipype.workflow INFO:
+	 [Node] Running "invert_xfm" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_desc-head_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-01_desc-head_mask_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/AFNISkullStripWorkflow/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/binarize/sub-01_run-01_T1w_conformed_calc_thresh.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+190605-15:34:05,117 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t10" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t10".
+190605-15:34:05,118 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t11" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t11".
+2019-06-05 15:34:05,118 nipype.workflow:INFO [Node] Setting-up "_MNItpms2t11" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t11".
+190605-15:34:05,119 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t12" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t12".
+2019-06-05 15:34:05,119 nipype.workflow:INFO [Node] Setting-up "_MNItpms2t12" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t12".
+190605-15:34:05,121 nipype.workflow INFO:
+	 [Node] Running "_MNItpms2t10" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_label-CSF_probseg.nii.gz --interpolation Linear --output tpl-MNI152NLin2009cAsym_res-01_label-CSF_probseg_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+190605-15:34:05,122 nipype.workflow INFO:
+	 [Node] Running "_MNItpms2t11" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_label-GM_probseg.nii.gz --interpolation Linear --output tpl-MNI152NLin2009cAsym_res-01_label-GM_probseg_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+2019-06-05 15:34:05,122 nipype.workflow:INFO [Node] Running "_MNItpms2t11" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_label-GM_probseg.nii.gz --interpolation Linear --output tpl-MNI152NLin2009cAsym_res-01_label-GM_probseg_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+190605-15:34:05,122 nipype.workflow INFO:
+	 [Node] Running "_MNItpms2t12" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_label-WM_probseg.nii.gz --interpolation Linear --output tpl-MNI152NLin2009cAsym_res-01_label-WM_probseg_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+2019-06-05 15:34:05,122 nipype.workflow:INFO [Node] Running "_MNItpms2t12" ("nipype.interfaces.ants.resampling.ApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_label-WM_probseg.nii.gz --interpolation Linear --output tpl-MNI152NLin2009cAsym_res-01_label-WM_probseg_trans.nii.gz --reference-image /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/conform/sub-01_run-01_T1w_conformed.nii.gz --transform /data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/SpatialNormalization/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/SpatialNormalization/ants_t1_to_mniInverseComposite.h5
+190605-15:34:08,684 nipype.workflow INFO:
+	 [Node] Finished "_MNItpms2t10".
+190605-15:34:09,237 nipype.workflow INFO:
+	 [Node] Finished "_MNItpms2t11".
+2019-06-05 15:34:09,237 nipype.workflow:INFO [Node] Finished "_MNItpms2t11".
+190605-15:34:09,237 nipype.workflow INFO:
+	 [Node] Finished "_MNItpms2t12".
+2019-06-05 15:34:09,237 nipype.workflow:INFO [Node] Finished "_MNItpms2t12".
+190605-15:34:11,164 nipype.workflow INFO:
+	 [Node] Setting-up "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.MNItpms2t1" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1".
+190605-15:34:11,168 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t10" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t10".
+190605-15:34:11,169 nipype.workflow INFO:
+	 [Node] Cached "_MNItpms2t10" - collecting precomputed outputs
+190605-15:34:11,169 nipype.workflow INFO:
+	 [Node] "_MNItpms2t10" found cached.
+190605-15:34:11,170 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t11" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t11".
+190605-15:34:11,171 nipype.workflow INFO:
+	 [Node] Cached "_MNItpms2t11" - collecting precomputed outputs
+190605-15:34:11,171 nipype.workflow INFO:
+	 [Node] "_MNItpms2t11" found cached.
+190605-15:34:11,172 nipype.workflow INFO:
+	 [Node] Setting-up "_MNItpms2t12" in "/data/younglw/lab/chunktesting_TPS/work/mriqc/workflow_enumerator/anatMRIQCT1w/ComputeIQMs/_in_file_..data..younglw..lab..chunktesting_TPS..this_is_bids..sub-01..anat..sub-01_run-01_T1w.nii.gz/MNItpms2t1/mapflow/_MNItpms2t12".
+190605-15:34:11,173 nipype.workflow INFO:
+	 [Node] Cached "_MNItpms2t12" - collecting precomputed outputs
+190605-15:34:11,173 nipype.workflow INFO:
+	 [Node] "_MNItpms2t12" found cached.
+190605-15:34:11,175 nipype.workflow INFO:
+	 [Node] Finished "workflow_enumerator.anatMRIQCT1w.ComputeIQMs.MNItpms2t1".

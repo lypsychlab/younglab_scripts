@@ -1,0 +1,104 @@
+#!/bin/tcsh
+#PBS -l mem=5gb,nodes=1:ppn=1,walltime=00:45:00
+#PBS -m abe -M kevin.jiang@bc.edu
+#PBS -N qqq
+#PBS -t 1
+
+module load anaconda/4.4.0-P3.6
+module load singularity/3.1.0
+module load fsl
+module load matlab
+
+echo 'hello'
+
+set sub_num = `printf "%02d" ${PBS_ARRAYID}`
+set behavioural_tasklist = ( 'TPS_crn' 'tom_localizer')
+set behavioural_tasklist2 = ( TPS_crn tom_localizer)
+echo $behavioural_tasklist
+echo $behavioural_tasklist2
+
+######################### EDIT these for new studies! ##########################
+# Note that YOU_${study_acronym}_${sub_num} are your subject names
+
+set dicom_source_folder = 'fake_TPS'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'fake_TPS_FMRIPREP'
+set study_acronym = 'FAKETPS'  # replace with study acronym (should be used when naming subjects)
+set infile = 'fake_full_infile.csv'  # must include file extension (.csv)
+set bids_folder_name = 'fake_hopefully_bids'
+
+################################################################################
+
+# handling command line arguments
+echo $argv
+
+foreach arg ($argv)
+	set split = ($arg:as/=/ /)  # splits arg into list split on '='
+	set key = $split[1]  # e.g., chunk
+	set value = $split[2]  # e.g., 2
+	echo "split: ${split}"
+	echo "key: ${key}"
+	echo "value: ${value}"
+
+	switch ( $key )
+	case chunk:
+		set chunk = $value
+		echo $value
+		echo "chunk: ${chunk}"
+		echo "(${chunk} == 2)"
+
+	# case *.[1-9].gz:
+	#     echo "$var is a man-page."
+	#     breaksw
+	# case *gz:
+	#     echo "$var is gzipped"
+	#     breaksw
+	default:  # exit if non-specified faulty command line argument
+	    echo 'will exit'
+	    # exit
+	endsw
+end
+
+######################### EDIT these for new studies! ##########################
+# Note that YOU_${study_acronym}_${sub_num} are your subject names
+
+set dicom_source_folder = 'fake_TPS'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'fake_TPS_FMRIPREP'
+set study_acronym = 'FAKETPS'  # replace with study acronym (should be used when naming subjects)
+set infile = 'fake_full_infile.csv'  # must include file extension (.csv)
+set bids_folder_name = 'fake_hopefully_bids'
+set behavioural_tasklist = ('TPS_crn' 'tom_localizer')  # must correspond to bids_tasklist
+set bids_tasklist = ('tps' 'tom')                       # must correspond to behavioural_tasklist
+
+################################################################################
+# iterates through each specified task
+set i = 1
+while ( $i <= $#behavioural_tasklist )
+	set behav_task = $behavioural_tasklist[$i]
+	set bids_task = $bids_tasklist[$i]
+
+	echo $behav_task
+	echo $bids_task
+	# run add_acompcor_regressors.m to behavioural files based on infile
+	# assumes infile in study_folder
+	# matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); add_acompcor_regressors('/data/younglw/lab/', '${study_folder}', {YOU_${study_acronym}_${sub_num}}, 10, '${behav_task}', '${bids_task}', '${infile}'); quit"
+
+	# first level modeling
+	# easy mistake: note that you need single quotes around ${subj_name} b/c it won't expand with quotes around it!
+	# easy mistake: variables only expand within double quotes for tcsh?  pretty confusing...
+	# parameters: model_one_subject(study_folder, subject_name, behavioural.mat name, task name in bids, list of runs)
+	# matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); model_one_subject('${study_folder}','YOU_${study_acronym}_${sub_num}','${behav_task}','${bids_task}','${infile}','no_art'); quit"
+
+	@ i ++  # increment i
+end
+
+
+
+
+# echo $myarg3
+# run add_acompcor_regressors.m to behavioural files based on infile
+# add_acompcor_regressors('/data/younglw/lab/', 'TPS_FMRIPREP', subjs, 10, 'TPS_crn', 'tps', '/data/younglw/lab/TPS_FMRIPREP/full_infile_TPS.csv')
+# add_acompcor_regressors('/data/younglw/lab/', 'TPS_FMRIPREP', subjs, 2, 'tom_localizer', 'tom', '/data/younglw/lab/TPS_FMRIPREP/full_infile_TPS.csv')
+
+# # example with infile
+# matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); model_one_subject('${study_folder}','YOU_${study_acronym}_${sub_num}','tom_localizer','tom','${infile_name}','no_art'); quit"
+# matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); model_one_subject('${study_folder}','YOU_${study_acronym}_${sub_num}','TPS_crn','tps','${infile_name}','no_art'); quit"

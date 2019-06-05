@@ -1,0 +1,115 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+This dataset appears to be BIDS compatible.
+        Summary:                 Available Tasks:        Available Modalities: 
+        164 Files, 1.27GB        tps                     /participants         
+        30 - Subjects            tom                     T1w                   
+        1 - Session                                      bold                  
+                                                         events                
+
+If you have any questions please post on https://neurostars.org/tags/bids
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+190605-14:24:36,9 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.3.2:
+      * BIDS dataset path: /data/younglw/lab/chunktesting_TPS/this_is_bids.
+      * Participant list: ['03'].
+      * Run identifier: 20190605-142435_d21cd895-8cdf-4587-bc3e-f2d5c6d36467.
+    
+2019-06-05 14:24:46,791 mriqc:IMPORTANT 
+    Running MRIQC version 0.15.0:
+      * BIDS dataset path: /data/younglw/lab/chunktesting_TPS/hopefully_bids.
+      * Output folder: /data/younglw/lab/chunktesting_TPS/derivatives/mriqc.
+      * Analysis levels: participant.
+    
+2019-06-05 14:24:52,393 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 14:24:53,253 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/classification.py:349: DeprecationWarning: invalid escape sequence \k
+  """
+
+2019-06-05 14:24:53,257 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/metrics/cluster/supervised.py:578: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 14:24:54,394 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 14:24:55,576 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/jedi/evaluate/arguments.py:95: DeprecationWarning: invalid escape sequence \[
+  match = re.match('(?:(?:(\[),? ?|, ?|)(\w+)|, ?/)\]*', string)
+
+2019-06-05 14:24:56,667 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/ipywidgets/widgets/trait_types.py:148: DeprecationWarning: invalid escape sequence \-
+  _number_format_re = re.compile('^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$', re.I)
+
+2019-06-05 14:24:56,758 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/importlib/_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
+  return f(*args, **kwds)
+
+2019-06-05 14:24:56,770 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:839: DeprecationWarning: invalid escape sequence \#
+  """
+
+2019-06-05 14:24:56,770 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/datasets/samples_generator.py:1429: DeprecationWarning: invalid escape sequence \c
+  """
+
+2019-06-05 14:24:56,804 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nilearn/datasets/neurovault.py:16: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  from collections import Container
+
+2019-06-05 14:24:56,862 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/decomposition/nmf.py:972: DeprecationWarning: invalid escape sequence \s
+  """
+
+2019-06-05 14:24:56,935 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/sklearn/linear_model/omp.py:343: DeprecationWarning: invalid escape sequence \g
+  """
+
+2019-06-05 14:24:57,128 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/svgutils/compose.py:347: DeprecationWarning: invalid escape sequence \.
+  m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+
+2019-06-05 14:24:57,271 py.warnings:WARNING /usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/afni/utils.py:214: DeprecationWarning: invalid escape sequence \d
+  pattern = 'x=(?P<x_min>-?\d+)\.\.(?P<x_max>-?\d+)  '\
+
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+[Warning: You appear to have added all SPM subfolders to the MATLAB
+search path. This is not recommended.
+You only need to add SPM main directory; relevant subfolders will be
+automatically added by SPM when needed.
+You can clear the MATLAB search path by typing the following:
+    spm_rmpath
+    addpath /usr/public/spm/spm12
+For more information, type the following:
+    help pathtool] 
+[> In spm_check_installation>check_basic (line 78)
+  In spm_check_installation (line 28)
+  In spm (line 317)
+  In younglab_preproc_spatial_spm12_BIDS (line 86)
+  In smooth_one_subject (line 15)] 
+ ___  ____  __  __                                            
+/ __)(  _ \(  \/  )                                           
+\__ \ )___/ )    (   Statistical Parametric Mapping           
+(___/(__)  (_/\/\_)  SPM12 - http://www.fil.ion.ucl.ac.uk/spm/
+
+
+SPM12: v6906                                       14:25:08 - 05/06/2019
+========================================================================
+Initialising SPM                        :                   .Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+.....[Warning: MATLAB has disabled some advanced graphics rendering features by
+switching to software OpenGL. For more information, click <a
+href="matlab:opengl('problems')">here</a>.] 
+.Defaults settings have been modified by file(s):
+  /data/younglw/lab/scripts/spm_my_defaults.m
+Modified fields: normalise 
+.done
+
+SPM present working directory:
+	/gsfs0/data/jiangko
+>> Bye for now...
+

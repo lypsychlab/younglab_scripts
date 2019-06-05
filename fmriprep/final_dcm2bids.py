@@ -567,7 +567,7 @@ def bids_run_conversion(conv_dir, first_pass, needs_converting, prot_dict, src_d
                                 bids_nii_fname = os.path.join(bids_purpose_dir, bids_prefix + bids_suffix + '.nii.gz')
                                 bids_json_fname = bids_nii_fname.replace('.nii.gz','.json')
                             elif int(ser_no) == 9:
-                                print('Skipping MPRAGE run 9 (re-run dcm2bids.py with --keep-all-anats flag if want to include this run)')
+                                print('Skipping MPRAGE run 9 (re-run dcm2bids.py with --keep-all-anats flag to include this run)')
                                 continue
                             else:
                                 print('Warning: MPRAGE anatomical run that is not 9 or 10; likely error in Protocol_Translator.  Skipping.')   
@@ -869,7 +869,7 @@ def bids_init(bids_src_dir, overwrite=False):
     meta_dict = dict({'BIDSVersion': "1.0.0",
                'License': "This data is made available under the Creative Commons BY-SA 4.0 International License.",
                'Name': "The dataset name goes here",
-               'ReferencesAndLinks': "References and links for this dataset go here"})
+               'ReferencesAndLinks': []})
 
     # Write JSON file
     bids_write_json(datadesc_json, meta_dict, overwrite)
