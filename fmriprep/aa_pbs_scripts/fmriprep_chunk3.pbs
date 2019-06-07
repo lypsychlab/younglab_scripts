@@ -1,18 +1,18 @@
 #!/bin/tcsh
 #PBS -l mem=35gb,nodes=1:ppn=8,walltime=48:00:00
 #PBS -m abe -M kevin.jiang@bc.edu
-#PBS -N zkevin_chunk3_322pm
-#PBS -t 6
+#PBS -N zkevina_repreprocess_m6d7y19
+#PBS -t 11,16-30
 
 ################################################################################
 ######################### EDIT these for new studies! ##########################
 # Note that YOU_${study_acronym}_${sub_num} are your subject names
 
-set dicom_source_folder = 'TPS'  # original directory with dicoms copied from MIT sigma server
-set study_folder = 'chunktesting_TPS'
-set study_acronym = 'TPS'  # replace with study acronym (should be used when naming subjects)
-set infile = 'full_infile_TPS.csv'  # must include file extension (.csv)
-set bids_folder_name = 'this_is_bids'
+set dicom_source_folder = 'MIT_DICOMS_FOLDER'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'STUDY_FOLDER'
+set study_acronym = 'ACRONYM'  # replace with study acronym (should be used when naming subjects)
+set infile = 'infile_name.csv'  # must include file extension (.csv)
+set bids_folder_name = 'bids_data'
 set behavioural_tasklist = ('tom_localizer' 'TPS_crn')  # must correspond to bids_tasklist
 set bids_tasklist = ('tom' 'tps')                       # must correspond to behavioural_tasklist
 
@@ -26,21 +26,18 @@ module load matlab
 
 set sub_num = `printf "%02d" ${PBS_ARRAYID}`
 
-echo 'PBS script: Initiating FMRIPREP'
 # running fmriprep v1.3.2 (with resampling grid option)
 # if this errors out, likely due to failed bids validation
-singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/fmriprep-1.3.2.simg /data/younglw/lab/${study_folder}/${bids_folder_name} /data/younglw/lab/${study_folder}/derivatives participant --participant-label ${sub_num} -w /data/younglw/lab/${study_folder}/work/ --nthreads 8 --fs-license-file /data/younglw/lab/images/license.txt --template-resampling-grid /data/younglw/lab/${study_folder}/bold_template_3x3x3.nii --output-space {T1w,template} 
+echo 'PBS script: Initiating FMRIPREP'
+singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/fmriprep-1.3.2.simg /data/younglw/lab/${study_folder}/${bids_folder_name} /data/younglw/lab/${study_folder}/derivatives participant --participant-label ${sub_num} -w /data/younglw/lab/${study_folder}/work/ --nthreads 8 --fs-license-file /data/younglw/lab/images/license.txt --template-resampling-grid /data/younglw/lab/images/bold_template_3x3x3.nii --output-space {T1w,template} 
 
-# fmriprepping subject 2 (used on nomachine 3:32pm 6/5/19)
-# singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/fmriprep-1.3.2.simg /data/younglw/lab/chunktesting_TPS/this_is_bids /data/younglw/lab/chunktesting_TPS/derivatives participant --participant-label 02 -w /data/younglw/lab/chunktesting_TPS/work/ --nthreads 8 --fs-license-file /data/younglw/lab/images/license.txt --template-resampling-grid /data/younglw/lab/chunktesting_TPS/bold_template_3x3x3.nii --output-space {T1w,template} 
-
-echo 'PBS script: Initiating mriqc'
 # running mriqc (per participant)
 # this does not run summary mriqc for group
+echo 'PBS script: Initiating mriqc'
 singularity run --cleanenv -B /data/younglw/lab/ /data/younglw/lab/images/mriqc-0.14.2.simg /data/younglw/lab/${study_folder}/${bids_folder_name} /data/younglw/lab/${study_folder}/derivatives/mriqc participant --participant-label ${sub_num} -w /data/younglw/lab/${study_folder}/work/mriqc --n_procs 8
 
-echo 'PBS script: Initiating smoothing'
 # run smoothing 
+echo 'PBS script: Initiating smoothing'
 matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); smooth_one_subject('${study_folder}', 'sub-${sub_num}'); quit"  # matlab's -batch flag doesn't work for some reason
 
 # iterates through each specified task
@@ -49,17 +46,18 @@ while ( $i <= $#behavioural_tasklist )
 	set behav_task = $behavioural_tasklist[$i]
 	set bids_task = $bids_tasklist[$i]
 
-	echo 'PBS script: Initiating add_acompcor_regressors for task: [behav: ${behav_task}, bids: ${bids_task}]'
 	# run add_acompcor_regressors.m to behavioural files based on infile
 	# assumes infile in study_folder
-	matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); add_acompcor_regressors('/data/younglw/lab/', '${study_folder}', {YOU_${study_acronym}_${sub_num}}, 10, '${behav_task}', '${bids_task}', '${infile}'); quit"
+	echo "PBS script: Initiating add_acompcor_regressors for task: [behav: ${behav_task}, bids: ${bids_task}]"
+	matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); add_acompcor_regressors('/data/younglw/lab/', '${study_folder}', {'YOU_${study_acronym}_${sub_num}'}, 10, '${behav_task}', '${bids_task}', '${infile}'); quit"
 
-	echo 'PBS script: Initiating modeling for task: [behav: ${behav_task}, bids: ${bids_task}]'
 	# first level modeling
 	# easy mistake: note that you need single quotes around ${subj_name} b/c it won't expand with quotes around it!
 	# easy mistake: variables only expand within double quotes for tcsh?  pretty confusing...
 	# parameters: model_one_subject(study_folder, subject_name, behavioural.mat name, task name in bids, list of runs)
+	echo "PBS script: Initiating modeling for task: [behav: ${behav_task}, bids: ${bids_task}]"
 	matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); model_one_subject('${study_folder}','YOU_${study_acronym}_${sub_num}','${behav_task}','${bids_task}','${infile}','no_art'); quit"
+	# matlab -r "addpath(genpath('/data/younglw/lab/scripts/fmriprep')); model_one_subject('${study_folder}','YOU_${study_acronym}_${sub_num}','${behav_task}','${bids_task}','${infile}','no_art','clobber'); quit"
 
 	@ i ++  # increment i
 end

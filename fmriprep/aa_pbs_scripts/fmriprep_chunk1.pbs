@@ -8,11 +8,11 @@
 ######################### EDIT these for new studies! ##########################
 # Note that YOU_${study_acronym}_${sub_num} are your subject names
 
-set dicom_source_folder = 'TPS'  # original directory with dicoms copied from MIT sigma server
-set study_folder = 'chunktesting_TPS'
-set study_acronym = 'TPS'  # replace with study acronym (should be used when naming subjects)
-set infile = 'full_infile_TPS.csv'  # must include file extension (.csv)
-set bids_folder_name = 'this_is_bids'
+set dicom_source_folder = 'MIT_DICOMS_FOLDER'  # original directory with dicoms copied from MIT sigma server
+set study_folder = 'STUDY_FOLDER'
+set study_acronym = 'ACRONYM'  # replace with study acronym (should be used when naming subjects)
+set infile = 'infile_name.csv'  # must include file extension (.csv)
+set bids_folder_name = 'bids_data'  # choose whatever you'd like
 
 ################################################################################
 ################################################################################
